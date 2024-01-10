@@ -114,7 +114,7 @@ obj = string value
 ## Type guard
 A type guard is an expression that performs a check on our type and then guarantees that type within its scope. Let’s rewrite our previous function with a type guard as follows:
 
-```TypeScript
+```ts
 // Declare a function called addWithTypeGuard that takes in two parameters, arg1 and arg2, with types of string or number
 function addWithTypeGuard(
   arg1: string | number,
