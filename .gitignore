@@ -28,3 +28,7 @@ Cargo.lock
 *.pdb
 codecov
 !doc/*
+
+# Added by cargo
+
+/target
