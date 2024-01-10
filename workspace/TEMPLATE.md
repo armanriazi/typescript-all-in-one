@@ -4,6 +4,7 @@
 [RUST](rust/RUST.md)
 
 # Template
+
 ```
 /*
 #![allow(dead_code, unused_variables)]
