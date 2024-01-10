@@ -7,7 +7,6 @@ I've been looking at the issues that turn up commonly when people start using Ty
 
 ## Reviews
 
-* Thanks for the wonderful book. Learned a lot from it. ([link](https://www.gitbook.com/book/armanriazi/typescript/discussions/21#comment-1468279131934))
 * Its probably the Best TypeScript book out there. Good Job ([link](https://twitter.com/thelondonjs/status/756419561570852864))
 * Love how precise and clear the examples and explanations are! ([link](https://twitter.com/joe_mighty/status/758290957280346112))
 * For the low, low price of free, you get pages of pure awesomeness. Chock full of source code examples and clear, concise explanations, TypeScript Deep Dive will help you learn TypeScript development. ([link](https://www.nativescript.org/blog/details/free-book-typescript-deep-dive))
@@ -36,23 +35,10 @@ I've been looking at the issues that turn up commonly when people start using Ty
 * This is sweet! So many #typescript goodies! [link](https://twitter.com/pauliescanlon/status/989898852474998784)
 
 ## Get Started
-If you are here to read the book online [get started](https://armanriazi.gitbook.io/typescript/getting-started).
+If you are here to read the book online [get started](https://armanriazi.github.io/typescript/getting-started).
 
 ## Translations 
-Book is completely free so you can copy paste whatever you want without requiring permission. If you have a translation you want me to link here. [Send a PR](https://github.com/armanriazi/typescript-all-in-one/edit/master/README.md).
-* [Filipino](https://github.com/themarshann/typescript-all-in-one-fil)
-* [Italian](https://github.com/TizioFittizio/typescript-all-in-one)
-* [Chinese](https://github.com/jkchao/typescript-all-in-one-chinese)
-* [Russian](https://github.com/etroynov/typescript-all-in-one)
-* [Portuguese](https://github.com/overlineink/typescript-all-in-one)
-* [Japanese](https://github.com/yohamta/typescript-all-in-one)
-* [Spanish](https://github.com/melissarofman/typescript-all-in-one)
-* [Korean](https://github.com/radlohead/typescript-all-in-one)
-* [French](https://github.com/HachemiH/typescript-all-in-one)
-* [Polish](https://github.com/mbiesiad/typescript-all-in-one/tree/pl_PL)
-* [Thai](https://github.com/futurouz/typescript-all-in-one)
-* [Bengali](https://github.com/Acesif/typescript-all-in-one)
-* [Ukrainian](https://github.com/ArtfulBits/typescript-all-in-one)
+Book is completely free so you can copy paste whatever you want without requiring permission. If you have a translation you want me to link here. [Send a PR](https://github.com/armanriazi/typescript-all-in-one/edit/main/README.md).
 
 ## Other Options
 You can also download one of the Epub, Mobi, or PDF formats from the [actions tab](https://github.com/armanriazi/typescript-all-in-one/actions) by clicking on the latest build run. You will find the files in the artifacts section.
@@ -61,4 +47,4 @@ You can also download one of the Epub, Mobi, or PDF formats from the [actions ta
 All the amazing [contributors](https://github.com/armanriazi/typescript-all-in-one/graphs/contributors) 🌹
 
 ## Share
-Share URL: https://armanriazi.gitbook.io/typescript/
+Share URL: [typescript-all-in-one](https://armanriazi.github.io/typescript-all-in-one/)

@@ -1,5 +1,6 @@
 # Summary
 
+* [Concised](Concise.md)
 * [Getting Started](getting-started.md)
   * [Why TypeScript](why-typescript.md)
 * [JavaScript](javascript/recap.md)
