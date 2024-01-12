@@ -38,3 +38,5 @@ And when you are ready to deploy your JavaScript application run `npm run build`
 ## Bonus points
 
 Such NPM modules work just fine with browserify (using tsify) or webpack (using ts-loader).
+
+[Nodejs-projects](https://github.com/armanriazi/nodejs-projects)
