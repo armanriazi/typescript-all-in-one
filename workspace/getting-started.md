@@ -36,5 +36,21 @@ The source for this book is available in the books github repository https://git
 ```ts
 // This will be the code under discussion
 ```
+# TypeScript Features
 
-With a dev setup out of the way let's jump into TypeScript syntax.
+TypeScript can compile code to any released version of JavaScript since ECMAScript 3 (1999). This means that TypeScript can transpile code from the latest JavaScript features to older versions, a process known as Downleveling. This allows the usage of modern JavaScript while maintaining maximum compatibility with older runtime environments.
+
+It's important to note that during transpilation to an older version of JavaScript, TypeScript may generate code that could incur a performance overhead compared to native implementations.
+
+Here are some of the modern JavaScript features that can be used in TypeScript:
+
+- [x] ECMAScript modules instead of AMD-style "define" callbacks or CommonJS "require" statements.
+- [x] Classes instead of prototypes.
+- [x] Variables declaration using "let" or "const" instead of "var".
+- [x] "for-of" loop or ".forEach" instead of the traditional "for" loop.
+- [x] Arrow functions instead of function expressions.
+- [x] Destructuring assignment.
+- [x] Shorthand property/method names and computed property names.
+- [x] Default function parameters.
+
+By leveraging these modern JavaScript features, developers can write more expressive and concise code in TypeScript.

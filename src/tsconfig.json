@@ -1,0 +1,15 @@
+{
+    
+    "moduleResolution":"node18",
+    "extends": "../tsconfig.base.json",
+    "compilerOptions": {
+      "outDir": "../dist",
+      "rootDir": "."
+    },
+    "include": ["."],
+    "files": [
+      "filter/filter.ts",
+      "index.ts",      
+      "oop/oop.ts",
+    ]
+}

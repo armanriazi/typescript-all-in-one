@@ -4,15 +4,12 @@ The Concise TypeScript Book provides a comprehensive and succinct overview of Ty
 
 This book is completely Free and Open Source.
 
-If you found this TypeScript book valuable and wish to contribute, consider supporting my efforts via PayPal. Thanks!
+If you found this TypeScript book valuable and wish to contribute, consider supporting my efforts via cryptocurrency. Thanks!
 
+```md
+0xde5D732a5AB44832E1c69b18be30834639F44A2c
+```
 
-
-## Translations
-
-This book has been translated into several language versions, including:
-
-* [Chinese](./README-zh_CN.md)
 
 ## Downloads
 
@@ -236,18 +233,18 @@ You can also download the Epub version here:
 
 Welcome to The Concise TypeScript Book! This guide equips you with essential knowledge and practical skills for effective TypeScript development. Discover key concepts and techniques to write clean, robust code. Whether you're a beginner or an experienced developer, this book serves as both a comprehensive guide and a handy reference for leveraging TypeScript's power in your projects.
 
-This book covers TypeScript 5.2.
+<!--This book covers TypeScript 5.2.-->
 
 ## About the Author
 
-Simone Poggiali is an experienced Senior Front-end Developer with a passion for writing professional-grade code since the 90s. Throughout his international career, he has contributed to numerous projects for a wide range of clients, from startups to large organizations. Notable companies such as HelloFresh, Siemens, O2, and Leroy Merlin have benefited from his expertise and dedication.
+Arman Riazi is an experienced Senior Backend-end Developer with a passion for Rust, R&D and Blockchain since 2012.
+You can reach Arman Riazi on the following platforms:
 
-You can reach Simone Poggiali on the following platforms:
-
-* LinkedIn: <https://www.linkedin.com/in/simone-poggiali>
-* GitHub: <https://github.com/armanriazi>
-* Twitter: <https://twitter.com/armanriazi_coding>
-* Email: armanriazi.coding📧gmail.com
+- [x] LinkedIn: <https://www.linkedin.com/in/armanriazi
+- [x] GitHub: <https://github.com/armanriazi>
+- [x] Twitter: <https://twitter.com/armanriazi.meta>
+- [x] Instagram: <https://instagram.com/armanriazi_meta>
+- [x] Email: armanriyazi.github.io📧gmail.com
 
 ## TypeScript Introduction
 
@@ -267,11 +264,11 @@ A strongly typed language allows the developer to specify various program constr
 
 Some of the benefits of TypeScript:
 
-* Static typing, optionally strongly typed
-* Type Inference
-* Access to ES6 and ES7 features
-* Cross-Platform and Cross-browser Compatibility
-* Tooling support with IntelliSense
+- [x] Static typing, optionally strongly typed
+- [x] Type Inference
+- [x] Access to ES6 and ES7 features
+- [x] Cross-Platform and Cross-browser Compatibility
+- [x] Tooling support with IntelliSense
 
 ### TypeScript and JavaScript
 
@@ -284,7 +281,7 @@ TypeScript is a typed superset of JavaScript (ECMAScript 2015) in terms of synta
 For instance, consider a function in a JavaScript file with the `.js` extension, such as the following:
 
 <!-- skip -->
-```typescript
+```javascript
 const sum = (a, b) => a + b;
 ```
 
@@ -350,54 +347,7 @@ const add = (a, b) => a + b;
 const result = add('x', 'y'); // xy
 ```
 
-It is not possible to check TypeScript types at runtime. For example:
 
-<!-- skip -->
-```typescript
-interface Animal {
-    name: string;
-}
-interface Dog extends Animal {
-    bark: () => void;
-}
-interface Cat extends Animal {
-    meow: () => void;
-}
-const makeNoise = (animal: Animal) => {
-    if (animal instanceof Dog) {
-        // 'Dog' only refers to a type, but is being used as a value here.
-        // ...
-    }
-};
-```
-
-As the types are erased after compilation, there is no way to run this code in JavaScript. To recognize types at runtime, we need to use another mechanism. TypeScript provides several options, with a common one being "tagged union". For example:
-
-```typescript
-interface Dog {
-    kind: 'dog'; // Tagged union
-    bark: () => void;
-}
-interface Cat {
-    kind: 'cat'; // Tagged union
-    meow: () => void;
-}
-type Animal = Dog | Cat;
-
-const makeNoise = (animal: Animal) => {
-    if (animal.kind === 'dog') {
-        animal.bark();
-    } else {
-        animal.meow();
-    }
-};
-
-const dog: Dog = {
-    kind: 'dog',
-    bark: () => console.log('bark'),
-};
-makeNoise(dog);
-```
 
 The property "kind" is a value that can be used at runtime to distinguish between objects in JavaScript.
 
@@ -451,14 +401,14 @@ It's important to note that during transpilation to an older version of JavaScri
 
 Here are some of the modern JavaScript features that can be used in TypeScript:
 
-* ECMAScript modules instead of AMD-style "define" callbacks or CommonJS "require" statements.
-* Classes instead of prototypes.
-* Variables declaration using "let" or "const" instead of "var".
-* "for-of" loop or ".forEach" instead of the traditional "for" loop.
-* Arrow functions instead of function expressions.
-* Destructuring assignment.
-* Shorthand property/method names and computed property names.
-* Default function parameters.
+- [x] ECMAScript modules instead of AMD-style "define" callbacks or CommonJS "require" statements.
+- [x] Classes instead of prototypes.
+- [x] Variables declaration using "let" or "const" instead of "var".
+- [x] "for-of" loop or ".forEach" instead of the traditional "for" loop.
+- [x] Arrow functions instead of function expressions.
+- [x] Destructuring assignment.
+- [x] Shorthand property/method names and computed property names.
+- [x] Default function parameters.
 
 By leveraging these modern JavaScript features, developers can write more expressive and concise code in TypeScript.
 
@@ -540,8 +490,8 @@ A tsconfig.json file is used to configure the TypeScript Compiler (tsc). Usually
 
 Notes:
 
-* tsconfig.json accepts comments even if it is in json format.
-* It is advisable to use this configuration file instead of the command-line options.
+- [x] tsconfig.json accepts comments even if it is in json format.
+- [x] It is advisable to use this configuration file instead of the command-line options.
 
 At the following link you can find the complete documentation and its schema:
 
@@ -563,10 +513,10 @@ The "lib" property is used to specify which library files to include at compilat
 
 The "strict" property enables stronger guarantees and enhances type safety. It is advisable to always include this property in your project's tsconfig.json file. Enabling the "strict" property allows TypeScript to:
 
-* Emit code using "use strict" for each source file.
-* Consider "null" and "undefined" in the type checking process.
-* Disable the usage of the "any" type when no type annotations are present.
-* Raise an error on the usage of the "this" expression, which would otherwise imply the "any" type.
+- [x] Emit code using "use strict" for each source file.
+- [x] Consider "null" and "undefined" in the type checking process.
+- [x] Disable the usage of the "any" type when no type annotations are present.
+- [x] Raise an error on the usage of the "this" expression, which would otherwise imply the "any" type.
 
 #### module
 
@@ -582,7 +532,7 @@ The "moduleResolution" property specifies the module resolution strategy. Use "n
 
 #### esModuleInterop
 
-The "esModuleInterop" property allows import default from CommonJS modules that did not export using the "default" property, this property provides a shim to ensure compatibility in the emitted JavaScript. After enabling this option we can use `import MyLibrary from "my-library"` instead of `import * as MyLibrary from "my-library"`.
+The "esModuleInterop" property allows import default from CommonJS modules that did not export using the "default" property, this property provides a shim to ensure compatibility in the emitted JavaScript. After enabling this option we can use `import MyLibrary from "my-library"` instead of `import - [x] as MyLibrary from "my-library"`.
 
 #### jsx
 
@@ -1239,10 +1189,10 @@ x = y; // Widening: No Freshness check
 
 TypeScript can infer types when no annotation is provided during:
 
-* Variable initialization.
-* Member initialization.
-* Setting defaults for parameters.
-* Function return type.
+- [x] Variable initialization.
+- [x] Member initialization.
+- [x] Setting defaults for parameters.
+- [x] Function return type.
 
 For example:
 
@@ -1413,10 +1363,10 @@ x += 100;
 
 Other ways to narrow down types in TypeScript include:
 
-* `instanceof` operator: Used to check if an object is an instance of a specific class.
-* `in` operator: Used to check if a property exists in an object.
-* `typeof` operator: Used to check the type of a value at runtime.
-* Built-in functions like `Array.isArray()`: Used to check if a value is an array.
+- [x] `instanceof` operator: Used to check if an object is an instance of a specific class.
+- [x] `in` operator: Used to check if a property exists in an object.
+- [x] `typeof` operator: Used to check the type of a value at runtime.
+- [x] Built-in functions like `Array.isArray()`: Used to check if a value is an array.
 
 #### Discriminated Union
 
@@ -1503,8 +1453,8 @@ const y: bigint = 9007199254740991n;
 
 Notes:
 
-* `bigInt` values cannot be mixed with `number` and cannot be used with built-in `Math`, they must be coerced to the same type.
-* `bigInt` values are available only if target configuration is ES2020 or higher.
+- [x] `bigInt` values cannot be mixed with `number` and cannot be used with built-in `Math`, they must be coerced to the same type.
+- [x] `bigInt` values are available only if target configuration is ES2020 or higher.
 
 ### Symbol
 
@@ -1857,7 +1807,7 @@ console.log(Language.English);
 Will be compiled into:
 
 ```typescript
-console.log('EN' /* Language.English */);
+console.log('EN' /- [x] Language.English */);
 ```
 
 Notes:
@@ -1934,7 +1884,7 @@ console.log(Color.Blue); // 6 generation at compilation time
 enum Color {
     Red = 1,
     Green = Math.pow(2, 2),
-    Blue = Math.floor(Math.random() * 3) + 1,
+    Blue = Math.floor(Math.random() - [x] 3) + 1,
 }
 console.log(Color.Blue); // random number generated at run time
 ```
@@ -1945,7 +1895,7 @@ Enums are denoted by unions comprising their member types. The values of each me
 const identity = (value: number) => value;
 
 enum E {
-    A = 2 * 5, // Numeric literal
+    A = 2 - [x] 5, // Numeric literal
     B = 'bar', // String literal
     C = identity(42), // Opaque computed
 }
@@ -2043,9 +1993,9 @@ class Rectangle {
 }
 function area(shape: Square | Rectangle) {
     if (shape instanceof Square) {
-        return shape.width * shape.width;
+        return shape.width - [x] shape.width;
     } else {
-        return shape.width * shape.height;
+        return shape.width - [x] shape.height;
     }
 }
 const square = new Square(5);
@@ -2160,7 +2110,7 @@ const area = (shape: Shape) => {
         case 'square':
             return Math.pow(shape.size, 2);
         case 'circle':
-            return Math.PI * Math.pow(shape.radius, 2);
+            return Math.PI - [x] Math.pow(shape.radius, 2);
     }
 };
 
@@ -2374,9 +2324,9 @@ we define MyMappedType to map over T's properties, creating a new type with each
 
 Mapped Type Modifiers in TypeScript enable the transformation of properties within an existing type:
 
-* `readonly` or `+readonly`: This renders a property in the mapped type as read-only.
-* `-readonly`: This allows a property in the mapped type to be mutable.
-* `?`: This designates a property in the mapped type as optional.
+- [x] `readonly` or `+readonly`: This renders a property in the mapped type as read-only.
+- [x] `-readonly`: This allows a property in the mapped type to be mutable.
+- [x] `?`: This designates a property in the mapped type as optional.
 
 Examples:
 
@@ -2459,9 +2409,9 @@ The `any` type is a special type (universal supertype) that can be used to repre
 
 By utilizing `any` type, you are indicating to the TypeScript compiler that values should be represented without any limitations. In order to maximizing type safety in your code consider the following:
 
-* Limit the usage of `any` to specific cases where the type is truly unknown.
-* Do not return `any` types from a function as you will lose type safety in the code using that function weakening your type safety.
-* Instead of `any` use `@ts-ignore` if you need to silence the compiler.
+- [x] Limit the usage of `any` to specific cases where the type is truly unknown.
+- [x] Do not return `any` types from a function as you will lose type safety in the code using that function weakening your type safety.
+- [x] Instead of `any` use `@ts-ignore` if you need to silence the compiler.
 
 ```typescript
 let value: any;
@@ -2628,16 +2578,16 @@ let myCombined: CombinedType = { name: 'John', age: 25 }; // Object with both na
 
 TypeScript has several built-in type primitives that can be used to define variables, function parameters, and return types:
 
-* `number`: Represents numeric values, including integers and floating-point numbers.
-* `string`: Represents textual data
-* `boolean`: Represents logical values, which can be either true or false.
-* `null`: Represents the absence of a value.
-* `undefined`: Represents a value that has not been assigned or has not been defined.
-* `symbol`: Represents a unique identifier. Symbols are typically used as keys for object properties.
-* `bigint`: Represents arbitrary-precision integers.
-* `any`: Represents a dynamic or unknown type. Variables of type any can hold values of any type, and they bypass type checking.
-* `void`: Represents the absence of any type. It is commonly used as the return type of functions that do not return a value.
-* `never`: Represents a type for values that never occur. It is typically used as the return type of functions that throw an error or enter an infinite loop.
+- [x] `number`: Represents numeric values, including integers and floating-point numbers.
+- [x] `string`: Represents textual data
+- [x] `boolean`: Represents logical values, which can be either true or false.
+- [x] `null`: Represents the absence of a value.
+- [x] `undefined`: Represents a value that has not been assigned or has not been defined.
+- [x] `symbol`: Represents a unique identifier. Symbols are typically used as keys for object properties.
+- [x] `bigint`: Represents arbitrary-precision integers.
+- [x] `any`: Represents a dynamic or unknown type. Variables of type any can hold values of any type, and they bypass type checking.
+- [x] `void`: Represents the absence of any type. It is commonly used as the return type of functions that do not return a value.
+- [x] `never`: Represents a type for values that never occur. It is typically used as the return type of functions that throw an error or enter an infinite loop.
 
 ## Common Built-in JS Objects
 
@@ -2646,21 +2596,21 @@ TypeScript is a superset of JavaScript, it includes all the commonly used built-
 
 Here is a list of some commonly used built-in JavaScript objects:
 
-* Function
-* Object
-* Boolean
-* Error
-* Number
-* BigInt
-* Math
-* Date
-* String
-* RegExp
-* Array
-* Map
-* Set
-* Promise
-* Intl
+- [x] Function
+- [x] Object
+- [x] Boolean
+- [x] Error
+- [x] Number
+- [x] BigInt
+- [x] Math
+- [x] Date
+- [x] String
+- [x] RegExp
+- [x] Array
+- [x] Map
+- [x] Set
+- [x] Promise
+- [x] Intl
 
 ## Overloads
 
@@ -3165,14 +3115,14 @@ For TypeScript versions prior to 5, they should be enabled using the `experiment
 
 Some of the common use cases for decorators include:
 
-* Watching property changes.
-* Watching method calls.
-* Adding extra properties or methods.
-* Runtime validation.
-* Automatic serialization and deserialization.
-* Logging.
-* Authorization and authentication.
-* Error guarding.
+- [x] Watching property changes.
+- [x] Watching method calls.
+- [x] Adding extra properties or methods.
+- [x] Runtime validation.
+- [x] Automatic serialization and deserialization.
+- [x] Logging.
+- [x] Authorization and authentication.
+- [x] Error guarding.
 
 Note: Decorators for version 5 do not allow decorating parameters.
 
@@ -3211,7 +3161,7 @@ class Person {
     }
 }
 const person = new Person('Simon');
-/* Logs:
+/- [x] Logs:
 {"name":"Simon"}
 {"kind":"class","name":"Person"}
 */
@@ -4216,7 +4166,7 @@ Generators make it easier to create iterators and are especially useful for work
 Example:
 
 ```typescript
-function* numberGenerator(start: number, end: number): Generator<number> {
+function- [x] numberGenerator(start: number, end: number): Generator<number> {
     for (let i = start; i <= end; i++) {
         yield i;
     }
@@ -4242,10 +4192,10 @@ Example:
 
 ```typescript
 /**
- * Computes the power of a given number
- * @constructor
- * @param {number} base – The base value of the expression
- * @param {number} exponent – The exponent value of the expression
+ - [x] Computes the power of a given number
+ - [x] @constructor
+ - [x] @param {number} base – The base value of the expression
+ - [x] @param {number} exponent – The exponent value of the expression
  */
 function power(base: number, exponent: number) {
     return Math.pow(base, exponent);
@@ -4280,8 +4230,8 @@ TypeScript extends the capabilities of JSX by providing type checking and static
 
 To use JSX you need to set the `jsx` compiler option in your `tsconfig.json` file. Two common configuration options:
 
-* "preserve": emit .jsx files with the JSX unchanged. This option tells TypeScript to keep the JSX syntax as-is and not transform it during the compilation process. You can use this option if you have a separate tool, like Babel, that handles the transformation.
-* "react": enables TypeScript's built-in JSX transformation. React.createElement will be used.
+- [x] "preserve": emit .jsx files with the JSX unchanged. This option tells TypeScript to keep the JSX syntax as-is and not transform it during the compilation process. You can use this option if you have a separate tool, like Babel, that handles the transformation.
+- [x] "react": enables TypeScript's built-in JSX transformation. React.createElement will be used.
 
 All options are available here:
 <https://www.typescriptlang.org/tsconfig#jsx>
@@ -4313,7 +4263,7 @@ The exponentiation (`**`) operator computes the value obtained by raising the fi
 TypeScript fully supports this operator using as `target` in your tsconfig.json file `es2016` or larger version.
 
 ```typescript
-console.log(2 ** (2 ** 2)); // 16
+console.log(2 *- [x] (2 *- [x] 2)); // 16
 ```
 
 ### The for-await-of Statement
@@ -4321,7 +4271,7 @@ console.log(2 ** (2 ** 2)); // 16
 This is a JavaScript feature fully supported in TypeScript which allows you to iterate over asynchronous iterable objects from target version es2018.
 
 ```typescript
-async function* asyncNumbers(): AsyncIterableIterator<number> {
+async function- [x] asyncNumbers(): AsyncIterableIterator<number> {
     yield Promise.resolve(1);
     yield Promise.resolve(2);
     yield Promise.resolve(3);
@@ -4612,8 +4562,8 @@ type B = Bar<['a', 'b'], [boolean]>; // ["a", "b", boolean, boolean]
 
 With the new variadic tuples we can use:
 
-* The spreads in tuple type syntax can now be generic, so we can represent higher-order operation on tuples and arrays even when we do not know the actual types we are operating over.
-* The rest elements can occur anywhere in a tuple.
+- [x] The spreads in tuple type syntax can now be generic, so we can represent higher-order operation on tuples and arrays even when we do not know the actual types we are operating over.
+- [x] The rest elements can occur anywhere in a tuple.
 
 Example:
 
@@ -4649,11 +4599,11 @@ console.log('\u0041'.normalize());
 
 TypeScript represents this differentiation by providing separate types for the primitives and their corresponding object wrappers:
 
-* string => String
-* number => Number
-* boolean => Boolean
-* symbol => Symbol
-* bigint => BigInt
+- [x] string => String
+- [x] number => Number
+- [x] boolean => Boolean
+- [x] symbol => Symbol
+- [x] bigint => BigInt
 
 The boxed types are usually not needed. Avoid using boxed types and instead use type for the primitives,  for instance `string` instead of `String`.
 
@@ -4824,7 +4774,7 @@ The following are supported forms:
 ```typescript
 import type T from './mod';
 import type { A, B } from './mod';
-import type * as Types from './mod';
+import type - [x] as Types from './mod';
 export type { T };
 export type { T } from './mod';
 ```
@@ -4837,8 +4787,8 @@ This is based on ECMAScript's Resource Management feature, which is useful for p
 
 Notes:
 
-* Due to its recent introduction in TypeScript version 5.2, most runtimes lack native support. You'll need polyfills for: `Symbol.dispose`, `Symbol.asyncDispose`, `DisposableStack`, `AsyncDisposableStack`, `SuppressedError`.
-* Additionally, you will need to configure your tsconfig.json as follows:
+- [x] Due to its recent introduction in TypeScript version 5.2, most runtimes lack native support. You'll need polyfills for: `Symbol.dispose`, `Symbol.asyncDispose`, `DisposableStack`, `AsyncDisposableStack`, `SuppressedError`.
+- [x] Additionally, you will need to configure your tsconfig.json as follows:
 
 ```json
 {
