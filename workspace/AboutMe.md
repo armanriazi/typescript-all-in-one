@@ -10,6 +10,7 @@ If you found this TypeScript book valuable and wish to contribute, consider supp
 0xde5D732a5AB44832E1c69b18be30834639F44A2c
 ```
 
+---
 
 ## Downloads
 
@@ -19,34 +20,18 @@ You can also download the Epub version here:
 
 ## Table of Contents
 
-<!-- markdownlint-disable MD004 -->
+<!-- markdownlint-disable MD004 
 - [The Concise TypeScript Book](#the-concise-typescript-all-in-one)
-  - [Translations](#translations)
+
   - [Downloads](#downloads)
   - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
   - [About the Author](#about-the-author)
-  - [TypeScript Introduction](#typescript-introduction)
-    - [What is TypeScript?](#what-is-typescript)
-    - [Why TypeScript?](#why-typescript)
-    - [TypeScript and JavaScript](#typescript-and-javascript)
-    - [TypeScript Code Generation](#typescript-code-generation)
-    - [Modern JavaScript Now (Downleveling)](#modern-javascript-now-downleveling)
-  - [Getting Started With TypeScript](#getting-started-with-typescript)
-    - [Installation](#installation)
-    - [Configuration](#configuration)
-    - [TypeScript Configuration File ​​tsconfig.json](#typescript-configuration-file-tsconfigjson)
-      - [target](#target)
-      - [lib](#lib)
-      - [strict](#strict)
-      - [module](#module)
-      - [moduleResolution](#moduleresolution)
-      - [esModuleInterop](#esmoduleinterop)
-      - [jsx](#jsx)
-      - [skipLibCheck](#skiplibcheck)
-      - [files](#files)
-      - [include](#include)
-      - [exclude](#exclude)
+    - [jsx](#jsx)
+    - [skipLibCheck](#skiplibcheck)
+    - [files](#files)
+    - [include](#include)
+    - [exclude](#exclude)
     - [importHelpers](#importhelpers)
     - [Migration to TypeScript Advice](#migration-to-typescript-advice)
   - [Exploring the Type System](#exploring-the-type-system)
@@ -229,6 +214,8 @@ You can also download the Epub version here:
     - [using declaration and Explicit Resource Management](#using-declaration-and-explicit-resource-management)
       - [await using declaration](#await-using-declaration)
 <!-- markdownlint-enable MD004 -->
+-->
+
 ## Introduction
 
 Welcome to The Concise TypeScript Book! This guide equips you with essential knowledge and practical skills for effective TypeScript development. Discover key concepts and techniques to write clean, robust code. Whether you're a beginner or an experienced developer, this book serves as both a comprehensive guide and a handy reference for leveraging TypeScript's power in your projects.

@@ -6,3 +6,5 @@ type Y = {
 };
 const x: X = { a: 'a' };
 const y: Y = x; // Valid
+
+console.log(`${y.a}`);

@@ -1,4 +1,4 @@
-/// `tags`: important fp
+/// `>tags:` #important #fp
 
 // Supertype
 class X {

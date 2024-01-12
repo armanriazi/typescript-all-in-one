@@ -1,3 +1,9 @@
+# AS
+`What is the advantage of using the as keyword in a type assertion?`
+
+It provides a way to override the inferred type of a variable. `{ id: 1, name: "item1" } as any;`
+
+# Conflict TS and JS
 TypeScript was designed to detect possible exceptions that can occur at runtime during compilation time by having the developer define the intent with type annotations. In addition, TypeScript can also catch issues if no type annotation is provided. For instance, the following code snippet does not specify any TypeScript types:
 
 <!-- skip -->
@@ -6,6 +12,7 @@ const items = [{ x: 1 }, { x: 2 }];
 const result = items.filter(item => item.y);
 ```
 
+[[Error_Property]]
 In this case, TypeScript detects an error and reports:
 
 ```text
@@ -25,6 +32,7 @@ The team behind TypeScript has made a deliberate decision to flag unusual usage 
 const result = 1 + true; // In JavaScript, the result is equal 2
 ```
 
+[[Error_Operator]]
 However, TypeScript throws an error:
 
 ```text
@@ -42,6 +50,7 @@ const add = (a: number, b: number): number => a + b;
 const result = add('x', 'y'); // Argument of type 'string' is not assignable to parameter of type 'number'.
 ```
 
+[[Error_Parameter]]
 However, it can still produce executable JavaScript output:
 
 <!-- skip -->
@@ -49,3 +58,6 @@ However, it can still produce executable JavaScript output:
 'use strict';
 const add = (a, b) => a + b;
 const result = add('x', 'y'); // xy
+```
+
+error TS7006: Parameter 'b' implicitly has an 'any' type.
