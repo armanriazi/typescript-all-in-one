@@ -8,8 +8,6 @@
     },
     "include": ["."],
     "files": [
-      "filter/filter.ts",
       "index.ts",      
-      "oop/oop.ts",
     ]
 }

@@ -59,5 +59,8 @@ However, it can still produce executable JavaScript output:
 const add = (a, b) => a + b;
 const result = add('x', 'y'); // xy
 ```
+`> Output:`
 
+```md
 error TS7006: Parameter 'b' implicitly has an 'any' type.
+```

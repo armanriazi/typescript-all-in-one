@@ -16,63 +16,6 @@ In TypeScript, objects are considered compatible based on their shape rather tha
 # Explicit casting
 uses the angled bracket syntax, that is, **< type >**, surrounding the name of the type.  `<any>{ id: 1, name: "item1" }`
 
-# Let vs var vs const
-TypeScript uses the *const keyword*, **which was introduced in ES6**, in order to accomplish this.
-Tip: It is best practice to use the let keyword to define variables and not to use the var keyword at all. By using *let keyword*, we are being **more explicit** about the intended use of these variables, which will help the compiler to pick up any mistakes in our code **where these rules are broken.**
-
-## Strong Type vs Dynamic Type
-**JavaScript is not strongly typed.** It is a language that is very dynamic, as it allows objects to change their types, properties, and behavior on the fly. **TypeScript, however, is strongly typed** and, as such, will enforce rules that govern how we use variables, functions, and objects.
-
-**TypeScript introduces a simple notation using the colon ( : )** symbol to indicate what type a variable should be.
-
-## Var
-
-```typescript
-// Declare a variable called index with a type of number and assign it the value 0
-var index: number = 0;
-
-// If index is equal to 0, create a new block scope with a new variable also called index, but with a type of number and value of 2, and log its value
-if (index == 0) {
-  var index: number = 2;
-  console.log(`index = ${index}`);
-}
-
-// Log the value of index
-console.log(`index = ${index}`);
-
-```
-
-`> Output:`
-
-```md
-index = 2
-index = 2
-```
-
-## Let
-
-```typescript
-// Declare a variable called index with a type of number and assign it the value 0
-let index: number = 0;
-
-// If index is equal to 0, create a new block scope with a new variable also called index, but with a type of number and value of 2, and log its value
-if (index == 0) {
-  let index: number = 2;
-  console.log(`index = ${index}`);
-}
-
-// Log the value of index
-console.log(`index = ${index}`);
-
-```
-
-`> Output:`
-
-```md
-index = 2
-index = 0
-```
-
 
 # Type Aliases
 
@@ -112,3 +55,103 @@ const y = { a: 'A', b: 'B' }; // Valid, as it has at least the same members as X
 const r: X = y;
 ```
 
+
+### Types can be Implicit
+TypeScript will try to infer as much of the type information as it can in order to give you type safety with minimal cost of productivity during code development. For example, in the following example TypeScript will know that foo is of type `number` below and will give an error on the second line as shown:
+
+```ts
+var foo = 123;
+foo = '456'; // Error: cannot assign `string` to `number`
+
+// Is foo a number or a string?
+```
+This type inference is well motivated. If you do stuff like shown in this example, then, in the rest of your code, you cannot be certain that `foo` is a `number` or a `string`. Such issues turn up often in large multi-file code bases. We will deep dive into the type inference rules later.
+
+### Types can be Explicit
+As we've mentioned before, TypeScript will infer as much as it can safely. However, you can use annotations to:
+
+1. Help along the compiler, and more importantly document stuff for the next developer who has to read your code (that might be future you!).
+1. Enforce that what the compiler sees, is what you thought it should see. That is your understanding of the code matches an algorithmic analysis of the code (done by the compiler).
+
+TypeScript uses postfix type annotations popular in other *optionally* annotated languages (e.g. ActionScript and F#).
+
+```ts
+var foo: number = 123;
+```
+So if you do something wrong the compiler will report an error e.g.:
+
+```ts
+var foo: number = '123'; // Error: cannot assign a `string` to a `number`
+```
+
+We will discuss all the details of all the annotation syntax supported by TypeScript in a later chapter.
+
+### Types are structural
+In some languages (specifically nominally typed ones) static typing results in unnecessary ceremony because even though *you know* that the code will work fine the language semantics force you to copy stuff around. This is why stuff like **automapper** for c# is *vital* for C#. In TypeScript because we really want it to be easy for JavaScript developers with a minimum cognitive overload, types are *structural*. This means that **duck typing** is a first class language construct. Consider the following example. The function `iTakePoint2D` will accept anything that contains all the things (`x` and `y`) it expects:
+
+```ts
+interface Point2D {
+    x: number;
+    y: number;
+}
+interface Point3D {
+    x: number;
+    y: number;
+    z: number;
+}
+var point2D: Point2D = { x: 0, y: 10 }
+var point3D: Point3D = { x: 0, y: 10, z: 20 }
+function iTakePoint2D(point: Point2D) { /* do something */ }
+
+iTakePoint2D(point2D); // exact match okay
+iTakePoint2D(point3D); // extra information okay
+iTakePoint2D({ x: 0 }); // Error: missing information `y`
+```
+
+### Type errors do not prevent JavaScript emit
+To make it easy for you to migrate your JavaScript code to TypeScript, even if there are compilation errors, by default TypeScript *will emit valid JavaScript* the best that it can. e.g.
+
+```ts
+var foo = 123;
+foo = '456'; // Error: cannot assign a `string` to a `number`
+```
+
+will emit the following js:
+
+```ts
+var foo = 123;
+foo = '456';
+```
+
+So you can incrementally upgrade your JavaScript code to TypeScript. This is very different from how many other language compilers work and yet another reason to move to TypeScript.
+
+### Types can be ambient
+A major design goal of TypeScript was to make it possible for you to safely and easily use existing JavaScript libraries in TypeScript. TypeScript does this by means of *declaration*. TypeScript provides you with a sliding scale of how much or how little effort you want to put in your declarations, the more effort you put the more type safety + code intelligence you get. Note that definitions for most of the popular JavaScript libraries have already been written for you by the [DefinitelyTyped community](https://github.com/borisyankov/DefinitelyTyped) so for most purposes either:
+
+1. The definition file already exists.
+1. Or at the very least, you have a vast list of well reviewed TypeScript declaration templates already available
+
+As a quick example of how you would author your own declaration file, consider a trivial example of [jquery](https://jquery.com/). By default (as is to be expected of good JS code) TypeScript expects you to declare (i.e. use `var` somewhere) before you use a variable
+
+```ts
+$('.awesome').show(); // Error: cannot find name `$`
+```
+
+> As a quick fix *you can tell TypeScript* that there is indeed something called `$`:
+
+```ts
+declare var $: any;
+$('.awesome').show(); // Okay!
+```
+
+If you want you can build on this basic definition and provide more information to help protect you from errors:
+
+```ts
+declare var $: {
+    (selector:string): any;
+};
+$('.awesome').show(); // Okay!
+$(123).show(); // Error: selector needs to be a string
+```
+
+We will discuss the details of creating TypeScript definitions for existing JavaScript in detail later once you know more about TypeScript (e.g. stuff like `interface` and the `any`).

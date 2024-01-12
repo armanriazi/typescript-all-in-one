@@ -1,10 +1,10 @@
 # Summary
 
-* [Concised](AboutMe.md)
-* [Getting Started](TypeScript.md)
-* [Configuration](configuration/configuration.md)
-  * [CLI](configuration/cli.md)
-  * [TS config file](configuration/ts_config_file.md)  
+* [About Me](AboutMe.md) <!--completed-->
+* [Getting Started](TypeScript.md) <!--completed-->
+* [Configuration](configuration/configuration.md) <!--completed-->
+  * [CLI](configuration/cli.md) <!--completed-->
+  * [TS config file](configuration/ts_config_file.md)  <!--completed-->
 * [JavaScript](javascript/recap.md)
   * [Equality](javascript/equality.md)
   * [References](javascript/references.md)
@@ -13,16 +13,16 @@
   * [Closure](javascript/closure.md)
   * [Number](javascript/number.md)
   * [Truthy](javascript/truthy.md)
-* [Var vs Let vs Const](defination/defination.md)
-  * [let](defination/let.md)
-  * [var](defination/var.md)
-  * [const](defination/const.md)  
-* [Future JavaScript Now](future-javascript.md)
+* [Var vs Let vs Const](defination/defination.md) <!--completed-->
+  * [let](defination/let.md) <!--completed-->
+  * [var](defination/var.md) <!--completed-->
+  * [const](defination/const.md)   <!--completed-->
+* [Future JavaScript Now](future-javascript.md) 
   * [Classes](classes.md)
     * [Classes Emit](classes-emit.md)
   * [Arrow Functions](arrow-functions.md)
   * [Rest Parameters](rest-parameters.md)
-  * [Destructuring](destructuring.md)
+  * [Destructuring](destructuring.md) <!--completed-->
   * [Spread Operator](spread-operator.md)
   * [for...of](for...of.md)
   * [Iterators](iterators.md)
@@ -43,7 +43,10 @@
 * [Node.js QuickStart](quick/nodejs.md)
 * [Browser QuickStart](quick/browser.md)
 * [Library QuickStart](quick/library.md)
-* [TypeScript's Types](types/types.md)
+* [TypeScript's Types](types/types.md) <!--completed-->
+  * [Conversion](types/conversion.md)
+  * [Union](types/union.md) <!--completed-->
+  * [Guard](types/guard.md)   <!--completed-->
 * [TypeScript's Type System](types/type-system.md)
   * [JS Migration Guide](types/migrating.md)
   * [@types](types/@types.md)
@@ -56,8 +59,7 @@
   * [Functions](types/functions.md)
   * [Callable](types/callable.md)
   * [Type Assertion](types/type-assertion.md)
-  * [Freshness](types/freshness.md)
-  * [Type Guard](types/typeGuard.md)
+  * [Freshness](types/freshness.md)  
   * [Literal Types](types/literal-types.md)
   * [Readonly](types/readonly.md)
   * [Generics](types/generics.md)

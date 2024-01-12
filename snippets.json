@@ -1,0 +1,44 @@
+[
+    {
+        "created": "2024-01-12T09:40:36.759Z",
+        "name": "tsenum",
+        "tags": [
+            "enum"
+        ],
+        "content": "const enum EnumOpenClose{\n    Open = 10,\n    Closed = 20\n   }\n  console.log(`const Closed =${EnumOpenClose.Open}`);",
+        "contentType": "typescript"
+    },
+    {
+        "created": "2024-01-12T12:47:46.168Z",
+        "name": "tslog",
+        "tags": [
+            "log",
+            "console",
+            "print"
+        ],
+        "content": "console.log(`${$1}`);",
+        "contentType": "typescript"
+    },
+    {
+        "created": "2024-01-12T19:40:05.498Z",
+        "name": "tstypeguard",
+        "tags": [
+            "type",
+            "typeof",
+            "guard"
+        ],
+        "content": "function addWithTypeGuard(\n  arg1: string | number,\n  arg2: string | number\n) {\n  if (typeof arg1 === \"string\"){\n\n  }\n}",
+        "contentType": "typescript"
+    },
+    {
+        "created": "2024-01-12T19:42:30.815Z",
+        "name": "tstypealias",
+        "tags": [
+            "type",
+            "alias",
+            "pipe"
+        ],
+        "content": "type StringOrNumber = string | number;",
+        "contentType": "typescript"
+    }
+]
