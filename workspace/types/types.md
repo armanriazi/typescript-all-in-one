@@ -23,7 +23,8 @@ TypeScript uses the const keyword, which was introduced in ES6, in order to acco
 Tip: It is best practice to use the let keyword to define variables and not to use the var keyword at all. By using let, we are being more explicit about the intended use of these variables, which will help the compiler to pick up any mistakes in our code where these rules are broken.
 
 ### Var
-```TypeScript
+
+```typescript
 // Declare a variable called index with a type of number and assign it the value 0
 var index: number = 0;
 
@@ -47,7 +48,7 @@ index = 2
 
 ### Let
 
-```TypeScript
+```typescript
 // Declare a variable called index with a type of number and assign it the value 0
 let index: number = 0;
 
@@ -71,7 +72,7 @@ index = 0
 
 ### Const
 
-```TypeScript
+```typescript
 // Declare a variable called constValue with a type of string and assign it the value "this should not be changed"
 const constValue = "this should not be changed";
 
@@ -89,7 +90,7 @@ index.ts(5,1): error TS2588: Cannot assign to 'constValue' because it is a const
 ## Union types
 They use the pipe symbol (|) to list all of the types that will make up this new type.
 
-```TypeScript
+```typescript
 // Declare a function called printObject that takes in a parameter called obj with a type of string or number
 function printObject(obj: string | number) {
   // Log the value of obj
@@ -143,7 +144,7 @@ function addWithTypeGuard(
 
 ## Type Aliases
 
-```TypeScript
+```typescript
 // Define a type alias for a string or number
 type StringOrNumber = string | number;
 
@@ -165,7 +166,7 @@ console.log(addWithTypeAlias('Hello', ' World')); // Output: 'Hello World'
 
 ### undefined
 
-```TypeScript
+```typescript
 let array = ["123", "456", "789"];  // Initialize an array with 3 elements, "123", "456", and "789"
 delete array[0]; // delete the element at index 0 of the array, in this case "123". Using delete leaves a hole in the index and can cause unexpected behavior in many situations. 
 
@@ -193,7 +194,7 @@ valid array element : 789
 ### null
 Along with undefined, JavaScript also allows values to be set to null. Setting a value to null is intended to indicate that the variable is known but has no value, as opposed to undefined, where the variable has not been defined in the current scope.  undefined is often seen as something that happens automatically or by default.
 
-```TypeScript
+```typescript
 // function that takes a parameter of type `number` or `null`
 function printValues(a: number | null) {
   console.log(`a = ${a}`);  // log the value of a
@@ -215,4 +216,36 @@ a = null
 ### unknown
 
 
+### Structural Typing
+
+TypeScript is based on a structural type system. This means that the compatibility and equivalence of types are determined by the type's actual structure or definition, rather than its name or place of declaration, as in nominative type systems like C# or C.
+
+TypeScript's structural type system was designed based on how JavaScript's dynamic duck typing system works during runtime.
+
+The following example is valid TypeScript code. As you can observe, "X" and "Y" have the same member "a," even though they have different declaration names. The types are determined by their structures, and in this case, since the structures are the same, they are compatible and valid.
+
+```typescript
+type X = {
+    a: string;
+};
+type Y = {
+    a: string;
+};
+const x: X = { a: 'a' };
+const y: Y = x; // Valid
+```
+
+### TypeScript Fundamental Comparison Rules
+
+The TypeScript comparison process is recursive and executed on types nested at any level.
+
+A type "X" is compatible with "Y" if "Y" has at least the same members as "X".
+
+```typescript
+type X = {
+    a: string;
+};
+const y = { a: 'A', b: 'B' }; // Valid, as it has at least the same members as X
+const r: X = y;
+```
 

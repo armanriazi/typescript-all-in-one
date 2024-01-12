@@ -4,6 +4,14 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+dependencies:
+  cd:
+    specifier: ^0.3.3
+    version: 0.3.3
+  typescript-all-in-one:
+    specifier: link:/home/u2204one/typescript-all-in-one
+    version: 'link:'
+
 devDependencies:
   '@tsconfig/node18':
     specifier: ^18.2.2
@@ -186,6 +194,10 @@ packages:
     dependencies:
       balanced-match: 1.0.2
     dev: true
+
+  /cd@0.3.3:
+    resolution: {integrity: sha512-X2y0Ssu48ucdkrNgCdg6k3EZWjWVy/dsEywUUTeZEIW31f3bQfq65Svm+TzU1Hz+qqhdmyCdjGhUvRsSKHl/mw==}
+    dev: false
 
   /color-convert@2.0.1:
     resolution: {integrity: sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==}

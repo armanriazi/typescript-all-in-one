@@ -1,10 +1,10 @@
 {
-    
-    "moduleResolution":"node18",
+
     "extends": "../tsconfig.base.json",
     "compilerOptions": {
       "outDir": "../dist",
-      "rootDir": "."
+      "rootDir": ".",
+      "moduleResolution":"Node16",
     },
     "include": ["."],
     "files": [
