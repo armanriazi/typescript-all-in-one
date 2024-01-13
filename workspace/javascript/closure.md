@@ -3,7 +3,7 @@
 The best thing that JavaScript ever got was closures. A function in JavaScript has access to any variables defined in the outer scope. Closures are best explained with examples:
 
 ```ts
-function outerFunction(arg) {
+function outerFunction(arg:String) {
     var variableInOuterFunction = arg;
 
     function bar() {
@@ -14,7 +14,7 @@ function outerFunction(arg) {
     bar();
 }
 
-outerFunction("hello closure"); // logs hello closure!
+outerFunction("hello closure"); // Result: hello closure
 ```
 
 You can see that the inner function has access to a variable (variableInOuterFunction) from the outer scope. The variables in the outer function have been closed by (or bound in) the inner function. Hence the term **closure**. The concept in itself is simple enough and pretty intuitive.

@@ -6,10 +6,17 @@ It provides a way to override the inferred type of a variable. `{ id: 1, name: "
 # Conflict TS and JS
 TypeScript was designed to detect possible exceptions that can occur at runtime during compilation time by having the developer define the intent with type annotations. In addition, TypeScript can also catch issues if no type annotation is provided. For instance, the following code snippet does not specify any TypeScript types:
 
+
+[[Error_Redeclare]] [[Error_TS2451]]
 <!-- skip -->
 ```typescript
 const items = [{ x: 1 }, { x: 2 }];
 const result = items.filter(item => item.y);
+```
+`> Output:`
+
+```md
+error TS2451: Cannot redeclare block-scoped variable 'result'.
 ```
 
 [[Error_Property]]
@@ -44,13 +51,21 @@ This error occurs because TypeScript strictly enforces type compatibility, and i
 The TypeScript compiler has two main responsibilities: checking for type errors and compiling to JavaScript. These two processes are independent of each other. Types do not affect the execution of the code in a JavaScript engine, as they are completely erased during compilation. TypeScript can still output JavaScript even in the presence of type errors.
 Here is an example of TypeScript code with a type error:
 
+
+[[Error_TS2345]]
 <!-- skip -->
 ```typescript
 const add = (a: number, b: number): number => a + b;
 const result = add('x', 'y'); // Argument of type 'string' is not assignable to parameter of type 'number'.
 ```
 
-[[Error_Parameter]]
+`> Output:`
+
+```md
+error TS2345: Argument of type 'string' is not assignable to parameter of type 'number'.
+```
+
+[[Error_Parameter]] [[Error_TS7006]]
 However, it can still produce executable JavaScript output:
 
 <!-- skip -->
@@ -64,3 +79,4 @@ const result = add('x', 'y'); // xy
 ```md
 error TS7006: Parameter 'b' implicitly has an 'any' type.
 ```
+

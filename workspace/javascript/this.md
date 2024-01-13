@@ -4,11 +4,21 @@ Any access to `this` keyword within a function is controlled by how the function
 
 Here is an example:
 
+[[Error_TS2683]]
+
 ```ts
 function foo() {
   console.log(this);
 }
+```
 
+`> Output:`
+
+```md
+ error TS2683: 'this' implicitly has type 'any' because it does not have a type annotation.
+```
+
+```ts
 foo(); // logs out the global e.g. `window` in browsers
 let bar = {
   foo

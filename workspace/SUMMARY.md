@@ -6,7 +6,7 @@
   * [CLI](configuration/cli.md) <!--completed-->
   * [TS config file](configuration/ts_config_file.md)  <!--completed-->
 * [JavaScript](javascript/recap.md)
-  * [Equality](javascript/equality.md)
+  * [Equality](javascript/equality_condition.md) <!--completed-->
   * [References](javascript/references.md)
   * [Null vs. Undefined](javascript/null-undefined.md)
   * [this](javascript/this.md)
@@ -22,7 +22,7 @@
     * [Classes Emit](classes-emit.md)
   * [Arrow Functions](arrow-functions.md)
   * [Rest Parameters](rest-parameters.md)
-  * [Destructuring](destructuring.md) <!--completed-->
+  * [Destructuring](destructuring/destructuring.md) <!--completed-->
   * [Spread Operator](spread-operator.md)
   * [for...of](for...of.md)
   * [Iterators](iterators.md)

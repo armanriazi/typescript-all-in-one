@@ -30,6 +30,8 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
+    "@types/big.js": "^6.2.2",
+    "big.js": "^6.2.1",
     "cd": "^0.3.3",
     "typescript-all-in-one": "link:/home/u2204one/typescript-all-in-one"
   }

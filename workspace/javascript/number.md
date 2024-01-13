@@ -16,6 +16,8 @@ console.log(.1 + .2); // 0.30000000000000004
 ### Integer
 The integer limits represented by the built in number type are `Number.MAX_SAFE_INTEGER` and `Number.MIN_SAFE_INTEGER`.
 
+[[MAX_SAFE_INTEGER]]
+
 ```js
 console.log({max: Number.MAX_SAFE_INTEGER, min: Number.MIN_SAFE_INTEGER});
 // {max: 9007199254740991, min: -9007199254740991}
