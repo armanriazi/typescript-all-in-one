@@ -71,6 +71,7 @@
   * [Moving Types](types/moving-types.md)
   * [Exception Handling](types/exceptions.md)
   * [Mixins](types/mixins.md)
+* [OOP](oop/oop.md)  
 * [JSX](jsx/tsx.md)
   * [React](jsx/react.md)
   * [Non React JSX](jsx/others.md)
