@@ -16,6 +16,7 @@
     "preserveConstEnums": true,
     "sourceMap": false,    
     "incremental": false,
+    "strictNullChecks": true, 
     "noEmit": true,
     "esModuleInterop": true,     
     "preserveSymlinks": true,      

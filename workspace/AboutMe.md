@@ -213,8 +213,7 @@ You can also download the Epub version here:
     - [Type-Only Imports and Export](#type-only-imports-and-export)
     - [using declaration and Explicit Resource Management](#using-declaration-and-explicit-resource-management)
       - [await using declaration](#await-using-declaration)
-<!-- markdownlint-enable MD004 -->
--->
+ markdownlint-enable MD004 -->
 
 ## Introduction
 
