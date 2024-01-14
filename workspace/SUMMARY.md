@@ -8,12 +8,11 @@
     * [TS config file](configuration/ts_config_file.md)  <!--completed-->
 * [JavaScript](javascript/recap.md)
   * [Equality](javascript/equality_condition.md) <!--completed-->
-  * [References](javascript/references.md)
-  * [Null vs. Undefined](javascript/null-undefined.md)
-  * [this](javascript/this.md)
-  * [Closure](javascript/closure.md)
-  * [Number](javascript/number.md)
-  * [Truthy](javascript/truthy.md)
+  * [References](javascript/references.md) <!--completed-->
+  * [this](javascript/this.md) <!--completed-->
+  * [Closure](javascript/closure.md) <!--completed-->
+  * [Number](javascript/number.md) <!--completed-->
+  * [Truthy](javascript/truthy.md) <!--completed-->
 * [QuickStarts](quick/quick.md)  <!--completed-->
   * [Node.js QuickStart](quick/nodejs.md)  <!--completed-->
   * [Browser QuickStart](quick/browser.md)  <!--completed-->

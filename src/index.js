@@ -12,12 +12,3 @@ console.log(result)
 if (123 && true) { // Will be treated like `true`
     console.log("Hello ".concat(version, " TypeScript"));
 }
-function toInt(str) {
-    var int = parseInt(str);
-    if (isNaN(int)) {
-        return { valid: false };
-    }
-    else {
-        return { valid: true };
-    }
-}

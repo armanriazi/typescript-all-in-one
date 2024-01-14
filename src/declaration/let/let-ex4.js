@@ -1,17 +1,12 @@
-///
-/// ```bash
-/// pnpm tsc ./src/declaration/let/let-ex4.ts
-/// ```
-///
 /// '>tags:' #iife pattern to solve issue of ex2 #important
 var funcs = [];
 // create a bunch of functions
 for (var i = 0; i < 3; i++) {
-    (function() {
+    (function () {
         var local = i;
-        funcs.push(function() {
+        funcs.push(function () {
             console.log(local);
-        })
+        });
     })();
 }
 // call them

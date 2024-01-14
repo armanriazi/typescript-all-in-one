@@ -37,7 +37,7 @@ So ProTip: Always use `===` and `!==` except for null checks, which we cover lat
 ## Structural Equality 
 If you want to compare two objects for structural equality `==`/`===` are ***not*** sufficient. e.g. 
 
-[[Error_Equality]] [[Error_TS2839]]
+`>tags:` #Important [[Error_Equality]] [[Error_TS2839]]
 <!-- skip -->
 ```js
 console.log({a:123} == {a:123}); // False
