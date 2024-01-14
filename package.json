@@ -6,20 +6,29 @@
   "description": "The  TypeScript Book provides a comprehensive and succinct overview of TypeScript's capabilities. It offers clear explanations covering all aspects found in the latest version of the language, from its powerful type system to advanced features. Whether you're a beginner or an experienced developer, this book is an invaluable resource to enhance your understanding and proficiency in TypeScript.",
   "main": "src/index.ts",
   "//": [
-    "ts-node-dev --transpileonly --ignore-watch node_modules src/server.ts"    ,
-    "cd .. && husky install .husky",
+    "ts-node-dev --transpileonly --ignore-watch node_modules src/server.ts",
+    "cd .. && husky install .husky"
   ],
   "scripts": {
     "start": "pnpm run build:live",
-    "build": "tsc -p .",
-    "build:live": "nodemon --watch 'src/**/*.ts' --exec \"ts-node\" src/index.ts",    
-    "format": "ts-node format",
+    "build": "tsc -p ./src",
+    "build:live": "nodemon --watch 'src/**/*.ts' --exec \"ts-node\" src/index.ts",
+    "format": "ts-node format",    
     "compile": "ts-node compile",
-    "test": "echo \"Error: no test specified\" && exit 1",    
+    "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "ts-node lint",
     "lint:md": "markdownlint \"./*.md\" markdownlint \"../*.md\"",
-    "check": "pnpm run lint:md && pnpm run format && pnpm run compile"
-  },  
+    "check": "pnpm run lint:md && pnpm run format && pnpm run compile",
+    "ts-node-check": "ts-node -p -e '\"Hello world!\"'",
+    "ts-node-esm":"ts-node --esm",
+    "ts-node":"ts-node -P ./",
+    "ts-node-showconfig":"ts-node --showConfig",
+    "ts-node-transpile":"ts-node -T",
+    "ts-node-typeCheck":"ts-node --typeCheck",
+    "ts-node-compiler-host": "ts-node -H",
+    "ts-node-pretty": "ts-node --pretty",
+    "ts-node-scope": "ts-node --scopeDir <path/to/directory>"
+  },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.2",
     "@types/fs-extra": "^11.0.4",
@@ -32,7 +41,7 @@
     "markdownlint-cli": "^0.35.0",
     "marked": "^5.1.2",
     "nodemon": "^3.0.2",
-    "prettier": "^3.1.1",
+    "prettier": "^3.2.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   },

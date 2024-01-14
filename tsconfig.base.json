@@ -2,12 +2,43 @@
   "extends": "@tsconfig/node18/tsconfig.json",  
   "include": ["src/**/*"],
   "exclude": ["**/*.spec.ts"],  
+  // Most ts-node options can be specified here using their programmatic names.
+  "ts-node": {
+    // It is faster to skip typechecking.
+    // Remove if you want ts-node to do typechecking.
+    "transpileOnly": true,
+
+    "files": true,
+
+    "compilerOptions": {
+      // compilerOptions specified here will override those declared below,
+      // but *only* in ts-node.  Useful if you want ts-node and tsc to use
+      // different options with a single tsconfig.json.
+      "allowJs":true,
+      "removeComments": true,
+      "target": "ES6",
+      "module": "Node16", 
+      "preserveConstEnums": true,
+      "sourceMap": false,    
+      "incremental": false,
+      "strictNullChecks": true, 
+      "noEmit": true,
+      "esModuleInterop": true,     
+      "preserveSymlinks": true,      
+      "strict": true,   
+      "skipLibCheck": true,
+      "lib": [
+        "dom",
+        "es6"
+      ]                        
+    }
+  },
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
     "allowJs":true,
     "removeComments": true,
     "target": "ES6",
-    "module": "CommonJS", 
+    "module": "Node16", 
     "preserveConstEnums": true,
     "sourceMap": false,    
     "incremental": false,
@@ -16,7 +47,11 @@
     "esModuleInterop": true,     
     "preserveSymlinks": true,      
     "strict": true,   
-    "skipLibCheck": true                               
+    "skipLibCheck": true,
+    "lib": [
+      "dom",
+      "es6"
+    ]                               
     /* Projects */
     // "incremental": true,                              /* Save .tsbuildinfo files to allow for incremental compilation of projects. */
     // "composite": true,                                /* Enable constraints that allow a TypeScript project to be used with project references. */

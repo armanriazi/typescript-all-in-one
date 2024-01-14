@@ -7,6 +7,7 @@ function x(a: string, b?: number): void {
 x('a'); // Valid
 x('a', 1); // Valid
 
+/*
 function y(a: string): void; // Invalid, not compatible with implementation signature
 function y(a: string, b: number): void;
 function y(a: string, b: number): void {
@@ -14,5 +15,5 @@ function y(a: string, b: number): void {
 }
 y('a');
 y('a', 1);
-
+*/
 

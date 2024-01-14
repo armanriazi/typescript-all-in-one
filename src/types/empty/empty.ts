@@ -8,8 +8,10 @@ c = 1; // Valid, all types are assignable to any
 let d: unknown;
 d = 1; // Valid, all types are assignable to unknown
 
+/*
 let n: null;
- n = 1; // Invalid error TS2322: Type '1' is not assignable to type 'null'.
+n = 1; // Invalid error TS2322: Type '1' is not assignable to type 'null'.
+*/
 
 //let na: NaN; // error TS2749: 'NaN' refers to a value, but is being used as a type here. Did you mean 'typeof NaN'?
 //na = 1;

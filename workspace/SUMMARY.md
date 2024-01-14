@@ -40,9 +40,10 @@
     * [global.d.ts](project/globals.md)
   * [Namespaces](project/namespaces.md)
   * [Dynamic Import Expressions](project/dynamic-import-expressions.md)
-* [Node.js QuickStart](quick/nodejs.md)
-* [Browser QuickStart](quick/browser.md)
-* [Library QuickStart](quick/library.md)
+* [QuickStarts](quick/quick.md)
+  * [Node.js QuickStart](quick/nodejs.md)
+  * [Browser QuickStart](quick/browser.md)
+  * [Library QuickStart](quick/library.md)
 * [TypeScript's Types](types/types.md) <!--completed-->
   * [Empty](types/empty.md) <!--completed-->
   * [Union](types/union.md) <!--completed-->

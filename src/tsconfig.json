@@ -4,10 +4,5 @@
     "compilerOptions": {
       "outDir": "../dist",
       "rootDir": ".",
-      "moduleResolution":"Node16",
-    },
-    "include": ["."],
-    "files": [
-      "index.ts",      
-    ]
+    }
 }
