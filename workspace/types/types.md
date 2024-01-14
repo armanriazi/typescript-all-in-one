@@ -162,6 +162,20 @@ iTakePoint2D(point3D); // extra information okay
 iTakePoint2D({ x: 0 }); // Error: missing information `y`
 ```
 
+TypeScript is based on a structural type system but excess property checking is a property of TypeScript which allows it to check whether an object has the exact properties specified in the type.
+
+Excess Property Checking is performed when assigning object literals to variables or when passing them as arguments to the function's excess property, for instance.
+
+<!-- skip -->
+```typescript
+type X = {
+    a: string;
+};
+const y = { a: 'a', b: 'b' };
+const x: X = y; // Valid because structural typing
+const w: X = { a: 'a', b: 'b' }; // Invalid because excess property checking
+```
+
 ### Type errors do not prevent JavaScript emit
 To make it easy for you to migrate your JavaScript code to TypeScript, even if there are compilation errors, by default TypeScript *will emit valid JavaScript* the best that it can. e.g.
 
@@ -179,6 +193,55 @@ foo = '456';
 
 So you can incrementally upgrade your JavaScript code to TypeScript. This is very different from how many other language compilers work and yet another reason to move to TypeScript.
 
+
+
+### Weak Types
+
+A type is considered weak when it contains nothing but a set of all-optional properties:
+
+```typescript
+type X = {
+    a?: string;
+    b?: string;
+};
+```
+
+TypeScript considers an error to assign anything to a weak type when there is no overlap, for instance, the following throws an error:
+
+<!-- skip -->
+```typescript
+type Options = {
+    a?: string;
+    b?: string;
+};
+
+const fn = (options: Options) => undefined;
+
+fn({ c: 'c' }); // Invalid
+```
+
+Although not recommended, if needed, it is possible to bypass this check by using type assertion:
+
+```typescript
+type Options = {
+    a?: string;
+    b?: string;
+};
+const fn = (options: Options) => undefined;
+fn({ c: 'c' } as Options); // Valid
+```
+
+Or by adding `unknown` to the index signature to the weak type:
+
+```typescript
+type Options = {
+    [prop: string]: unknown;
+    a?: string;
+    b?: string;
+};
+const fn = (options: Options) => undefined;
+fn({ c: 'c' }); // Valid
+```
 
 ### Ambient Declarations
 
