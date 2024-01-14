@@ -15,7 +15,7 @@ function iTakePoint3D(point: Point3D) { /* do something */ }
 iTakePoint2D(point2D); // exact match okay
 iTakePoint2D(point3D); // extra information okay
 iTakePoint3D(point3D); // extra information okay
-//iTakePoint2D({ x: 0 }); // Error: missing information `y`
+iTakePoint2D({ x: 0 }); // Error: missing information `y`
 //iTakePoint3D(point2D); // Error
 
 console.log(`${point2D.x},${point2D.y}`);

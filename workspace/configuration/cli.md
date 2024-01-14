@@ -8,6 +8,66 @@ TypeScript compiles into JavaScript. JavaScript is what you are actually going t
 
  
  # Configuration
+
+
+## NPM Security
+The public `npm` packages are scanned by security team worldwide and issues get reported to npm team. They then release security advisories detailing the issue and potential fixes. Commonly the fix is simply updating the package. 
+
+You can run an audit on your node project by simply running `npm audit`. This will highlight any vulnerabilities that might exist in the package / dependencies of the package. e.g. 
+
+```
+┌───────────────┬──────────────────────────────────────────────────────────────┐
+│ Low           │ Regular Expression Denial of Service                         │
+├───────────────┼──────────────────────────────────────────────────────────────┤
+│ Package       │ debug                                                        │
+├───────────────┼──────────────────────────────────────────────────────────────┤
+│ Dependency of │ jest [dev]                                                   │
+├───────────────┼──────────────────────────────────────────────────────────────┤
+│ Path          │ jest > jest-cli > istanbul-lib-source-maps > debug           │
+├───────────────┼──────────────────────────────────────────────────────────────┤
+│ More info     │ https://nodesecurity.io/advisories/534                       │
+└───────────────┴──────────────────────────────────────────────────────────────┘
+```
+
+Note that commonly the issues are found in *development* dependencies (e.g. jest in this case). Since these aren't are a part of your production deployments, most likely your production application is not vulnerable. But still good practice to keep vulnerabilities to `0`.
+
+Simply add `npm audit` (the command exist with error code `1` in case of error) as a part of your deployment to ensure the projects stay up to date.
+
+## NPM Scripts 
+
+### What is with `--` in scripts 
+You can build a base script with a limited set of command line arguments e.g. here is a script target that runs `tsc` for the TypeScript compiler: 
+
+```json
+{
+  "scripts": {
+    "build": "tsc -p ."
+  }
+}
+```
+
+You can create a `build:watch` target to run `tsc -p . -w` or alternatively asking npm to run `build` with the additional `-w` flag like so: 
+
+```json
+{
+  "scripts": {
+    "build": "tsc -p .",
+    "build:watch": "npm run build -- -w"
+  }
+}
+```
+You can pass in as many flags as you want after `--` e.g. in the following example `build:more` has the same effect as `something --foo -f -d --bar`
+
+```json
+{
+  "scripts": {
+    "build": "something --foo",
+    "build:more": "npm run build -- -f -d --bar"
+  }
+}
+```
+
+ 
  ## TypeScript project configuration and TSC commands
  This --init option will automatically generate the tsconfig.json file within the current directory.
 

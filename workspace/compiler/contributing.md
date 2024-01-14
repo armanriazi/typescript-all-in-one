@@ -46,10 +46,10 @@ There are different categories for different scenarios and even different test i
 
 These ensure that compiling a file :
 
-* generates errors as expected
-* generated JS as expected
-* types are identified as expected
-* symbols are identified as expected
+- [x] generates errors as expected
+- [x] generated JS as expected
+- [x] types are identified as expected
+- [x] symbols are identified as expected
 
 These expectations are validated using the baselines infrastructure.
 
@@ -64,5 +64,4 @@ I will even often do `jake runtests tests=compiler/yourtest || jake baseline-acc
 
 `jake runtests-browser tests=theNameOfYourTest` and debugging in-browser usually works pretty well.
 
-### More 
-* An article by Remo : https://dev.to/remojansen/learn-how-to-contribute-to-the-typescript-compiler-on-github-through-a-real-world-example-4df0 🌹
+🌹🌹🌹

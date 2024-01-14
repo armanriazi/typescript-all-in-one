@@ -2,9 +2,10 @@
 
 * [About Me](AboutMe.md) <!--completed-->
 * [Getting Started](TypeScript.md) <!--completed-->
-* [Configuration](configuration/configuration.md) <!--completed-->
-  * [CLI](configuration/cli.md) <!--completed-->
-  * [TS config file](configuration/ts_config_file.md)  <!--completed-->
+  * [StyleGuide](styleguide/styleguide.md)
+  * [Configuration](configuration/configuration.md) <!--completed-->
+    * [CLI](configuration/cli.md) <!--completed-->
+    * [TS config file](configuration/ts_config_file.md)  <!--completed-->
 * [JavaScript](javascript/recap.md)
   * [Equality](javascript/equality_condition.md) <!--completed-->
   * [References](javascript/references.md)
@@ -83,7 +84,6 @@
 * [Errors in TypeScript](errors/main.md)
   * [Interpreting Errors](errors/interpreting-errors.md)
   * [Common Errors](errors/common-errors.md)
-* [NPM](npm/index.md)
 * [Testing](testing/intro.md)
   * [Jest](testing/jest.md)
   * [Cypress](testing/cypress.md)
@@ -111,7 +111,6 @@
   * [Barrel](tips/barrel.md)
   * [Create Arrays](tips/create-arrays.md)
   * [Typesafe Event Emitter](tips/typed-event.md)
-* [StyleGuide](styleguide/styleguide.md)
 * [TypeScript Compiler Internals](compiler/overview.md)
   * [Program](compiler/program.md)
   * [AST](compiler/ast.md)

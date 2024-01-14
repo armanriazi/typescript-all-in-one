@@ -95,6 +95,7 @@ const r: X = y;
 ```
 
 
+
 ### Types can be Implicit
 TypeScript will try to infer as much of the type information as it can in order to give you type safety with minimal cost of productivity during code development. For example, in the following example TypeScript will know that foo is of type `number` below and will give an error on the second line as shown:
 
@@ -139,6 +140,30 @@ const x: X = {
 };
 ```
 
+
+## Type vs Interface
+
+* Use `type` when you *might* need a union or intersection:
+
+```
+type Foo = number | { someProperty: number }
+```
+* Use `interface` when you want `extends` or `implements` e.g.
+
+```
+interface Foo {
+  foo: string;
+}
+interface FooBar extends Foo {
+  bar: string;
+}
+class X implements FooBar {
+  foo: string;
+  bar: string;
+}
+```
+
+- Otherwise use whatever makes you happy that day. I use [type](https://www.youtube.com/watch?v=IXAT3If0pGI)
 
 ### Types are structural
 In some languages (specifically nominally typed ones) static typing results in unnecessary ceremony because even though *you know* that the code will work fine the language semantics force you to copy stuff around. This is why stuff like **automapper** for c# is *vital* for C#. In TypeScript because we really want it to be easy for JavaScript developers with a minimum cognitive overload, types are *structural*. This means that **duck typing** is a first class language construct. Consider the following example. The function `iTakePoint2D` will accept anything that contains all the things (`x` and `y`) it expects:

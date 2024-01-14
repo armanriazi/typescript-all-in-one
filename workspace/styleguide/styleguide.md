@@ -2,7 +2,7 @@
 
 > An unofficial TypeScript Style Guide
 
-People have asked me for my opinions on this. Personally I don't enforce these a lot on my teams and projects but it does help to have these mentioned as a tiebreaker when someone feels the need to have such strong consistency. There are other things that I feel much more strongly about and those are covered in the [tips chapter](../tips/main.md) (e.g. type assertion is bad, property setters are bad) 🌹.
+People have asked me for my opinions on this. Personally I don't enforce these a lot on my teams and projects but it does help to have these mentioned as a tiebreaker when someone feels the need to have such strong consistency. There are other things that I feel much more strongly about and those are covered in the [tips chapter](../tips/main.md).
 
 Key Sections:
 
@@ -267,28 +267,6 @@ When the file exports a component and your framework (like React) wants componen
 
 > Reason: Helps with consistency (little overthought required) and its what the ecosystem is doing.
 
-## type vs. interface
-
-* Use `type` when you *might* need a union or intersection:
-
-```
-type Foo = number | { someProperty: number }
-```
-* Use `interface` when you want `extends` or `implements` e.g.
-
-```
-interface Foo {
-  foo: string;
-}
-interface FooBar extends Foo {
-  bar: string;
-}
-class X implements FooBar {
-  foo: string;
-  bar: string;
-}
-```
-* Otherwise use whatever makes you happy that day. I use [type](https://www.youtube.com/watch?v=IXAT3If0pGI)
 
 ## `==` or `===`
 Both are [mostly safe for TypeScript users](https://www.youtube.com/watch?v=vBhRXMDlA18). I use `===` as that is what is used in the TypeScript codebase. 
