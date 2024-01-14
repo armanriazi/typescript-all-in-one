@@ -44,6 +44,7 @@
     "incremental": false,
     "strictNullChecks": true, 
     "noEmit": true,
+    "noImplicitAny": true,
     "esModuleInterop": true,     
     "preserveSymlinks": true,      
     "strict": true,   

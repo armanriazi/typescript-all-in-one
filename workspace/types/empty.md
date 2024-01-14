@@ -2,6 +2,16 @@
 ## any
 TypeScript introduces the **:any** type for such occasions. Specifying that an object has a type of any will, in essence, **remove the TypeScript strict type checking**. Used for **backward compatibility with JavaScript**. In short, avoid the any type at any cost.
 
+The any data type represents literally “any” value, it is the default value when TypeScript cannot infer the type or is not specified.
+
+When using any TypeScript **compiler skips** the type checking so there is no type safety when any is being used. Generally **do not use `any` to silence the compiler when an error occurs**, instead focus on fixing the error as with using any it is possible to break contracts and we lose the benefits of TypeScript autocomplete.
+
+The any type could be useful during a gradual **migration** from JavaScript to TypeScript, as it can silence the compiler.
+
+For new projects use TypeScript configuration **noImplicitAny** which enables TypeScript to issue errors where any is used or inferred.
+
+> *The anytype is usually a source of errors which can mask real problems with your types. Avoid using it as much as possible.*
+
 ## unknown
 
 ```ts
@@ -68,9 +78,12 @@ function toInt(str: string): { valid: boolean, int?: number } {
     return { valid: true, int };
   }
 }
+```
 
-### Limit explicit use of `undefined`
+### Limit explicit use of 'undefined'
+
 Because TypeScript gives you the opportunity to *document* your structures separately from values instead of stuff like:
+
 ```ts
 function foo(){
   // if Something
@@ -79,7 +92,9 @@ function foo(){
   return {a:1,b:undefined};//Valid
 }
 ```
+
 you should use a type annotation:
+
 ```ts
 function foo():{a:number,b?:number}{
   // if Something

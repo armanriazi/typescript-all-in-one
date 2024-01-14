@@ -373,53 +373,6 @@ console.log(obj[a]); // 123
 console.log(obj[b]); // 456
 ```
 
-### null and undefined
-
-`null` and `undefined` types both represent no value or the absence of any value.
-
-The `undefined` type means the value is not assigned or initialized or indicates an unintentional absence of value.
-
-The `null` type means that we know that the field does not have a value, so value is unavailable, it indicates an intentional absence of value.
-
-### Array
-
-An `array` is a data type that can store multiple values of the same type or not. It can be defined using the following syntax:
-
-```typescript
-const x: string[] = ['a', 'b'];
-const y: Array<string> = ['a', 'b'];
-const j: Array<string | number> = ['a', 1, 'b', 2]; // Union
-```
-
-TypeScript supports readonly arrays using the following syntax:
-
-<!-- skip -->
-```typescript
-const x: readonly string[] = ['a', 'b']; // Readonly modifier
-const y: ReadonlyArray<string> = ['a', 'b'];
-const j: ReadonlyArray<string | number> = ['a', 1, 'b', 2];
-j.push('x'); // Invalid
-```
-
-TypeScript supports tuple and readonly tuple:
-
-```typescript
-const x: [string, number] = ['a', 1];
-const y: readonly [string, number] = ['a', 1];
-```
-
-### any
-
-The `any` data type represents literally "any" value, it is the default value when TypeScript cannot infer the type or is not specified.
-
-When using `any` TypeScript compiler skips the type checking so there is no type safety when `any` is being used. Generally do not use `any` to silence the compiler when an error occurs, instead focus on fixing the error as with using `any`  it is possible to break contracts and we lose the benefits of TypeScript autocomplete.
-
-The `any` type could be useful during a gradual migration from JavaScript to TypeScript, as it can silence the compiler.
-
-For new projects use TypeScript configuration `noImplicitAny` which enables TypeScript to issue errors where `any` is used or inferred.
-
-The `any`type  is usually a source of errors which can mask real problems with your types. Avoid using it as much as possible.
-
 ## Type Annotations
 
 On variables declared using `var`, `let` and `const`, it is possible to optionally add a type:
