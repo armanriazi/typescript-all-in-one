@@ -13,6 +13,10 @@
   * [Closure](javascript/closure.md)
   * [Number](javascript/number.md)
   * [Truthy](javascript/truthy.md)
+* [QuickStarts](quick/quick.md)  <!--completed-->
+  * [Node.js QuickStart](quick/nodejs.md)  <!--completed-->
+  * [Browser QuickStart](quick/browser.md)  <!--completed-->
+  * [Library QuickStart](quick/library.md)  <!--completed-->  
 * [Var vs Let vs Const](defination/defination.md) <!--completed-->
   * [let](defination/let.md) <!--completed-->
   * [var](defination/var.md) <!--completed-->
@@ -40,10 +44,6 @@
     * [global.d.ts](project/globals.md)
   * [Namespaces](project/namespaces.md)
   * [Dynamic Import Expressions](project/dynamic-import-expressions.md)
-* [QuickStarts](quick/quick.md)
-  * [Node.js QuickStart](quick/nodejs.md)
-  * [Browser QuickStart](quick/browser.md)
-  * [Library QuickStart](quick/library.md)
 * [TypeScript's Types](types/types.md) <!--completed-->
   * [Empty](types/empty.md) <!--completed-->
   * [Union](types/union.md) <!--completed-->

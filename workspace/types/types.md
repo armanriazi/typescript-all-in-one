@@ -126,7 +126,7 @@ var foo: number = '123'; // Error: cannot assign a `string` to a `number`
 We will discuss all the details of all the annotation syntax supported by TypeScript in a later chapter.
 
 ### Assign a type
-Type Declarations and Type Assertions.
+Type Declarations and Type Assertions.In the following example, we use x: X (": Type") to declare a type for the variable x.
 
 ```ts
 type X = {
@@ -138,7 +138,6 @@ const x: X = {
     b: 'b', // Error: Object literal may only specify known properties
 };
 ```
-
 
 
 ### Types are structural
