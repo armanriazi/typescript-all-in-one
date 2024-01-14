@@ -2,6 +2,17 @@
 ## any
 TypeScript introduces the **:any** type for such occasions. Specifying that an object has a type of any will, in essence, **remove the TypeScript strict type checking**. Used for **backward compatibility with JavaScript**. In short, avoid the any type at any cost.
 
+## unknown
+
+```ts
+type Options = {
+    [prop: string]: unknown;
+    a?: string;
+    b?: string;
+};
+const fn = (options: Options) => undefined;
+fn({ c: 'c' }); // Valid
+```
 
 ## undefined
 
@@ -26,9 +37,69 @@ function checkAndPrintElement(arrElement: string | undefined) {
 ```
 
 `> Output:`
-    :invalid array element
+
+```md
+:invalid array element
 valid array element : 456
 valid array element : 789
+```
+
+### return validity checking by undefined
+
+> Don't use return `undefined` as a means of denoting *validity*
+
+For example an awful function like this:
+
+```ts
+function toInt(str: string) {
+  return str ? parseInt(str) : undefined;
+}
+```
+
+can be much better written like this:
+
+```ts
+function toInt(str: string): { valid: boolean, int?: number } {
+  const int = parseInt(str);
+  if (isNaN(int)) {
+    return { valid: false };
+  }
+  else {
+    return { valid: true, int };
+  }
+}
+
+### Limit explicit use of `undefined`
+Because TypeScript gives you the opportunity to *document* your structures separately from values instead of stuff like:
+```ts
+function foo(){
+  // if Something
+  return {a:1,b:2};
+  // else
+  return {a:1,b:undefined};//Valid
+}
+```
+you should use a type annotation:
+```ts
+function foo():{a:number,b?:number}{
+  // if Something
+  return {a:1,b:2};
+  // else
+  return {a:1};//Valid
+}
+```
+
+### JSON and serialization
+
+The JSON standard has support for encoding `null` but not `undefined`. When JSON-encoding an object with an attribute that is `null`, the attribute will be included with its null value, whereas an attribute with an `undefined` value will be excluded entirely.
+
+```ts
+JSON.stringify({willStay: null, willBeGone: undefined}); // {"willStay":null}
+```
+
+As a result, JSON-based databases may support `null` values but not `undefined` values. Since attributes set to `null` are encoded, you can transmit the intent to clear an attribute by setting its value to `null` before encoding and transmitting the object to a remote store.
+
+Setting attribute values to undefined can save on storage and transmission costs, as the attribute names will not be encoded. However, this can complicate the semantics of clearing values vs. absent values.
 
 ## null
 Along with undefined, JavaScript also allows values to be set to null. Setting a value to null is intended to indicate that the variable is known but has no value, as opposed to undefined, where the variable has not been defined in the current scope.  undefined is often seen as something that happens automatically or by default.
@@ -48,7 +119,49 @@ printValues(null); // call the function with a null value
     :a = 1
 a = null
 
-## unknown
+## Null and Undefined
+
+> [Free youtube video on the subject](https://www.youtube.com/watch?v=kaUfBNzuUAI)
+
+JavaScript (and by extension TypeScript) has two bottom types : `null` and `undefined`. They are *intended* to mean different things:
+
+- [x] Something hasn't been **initialized** : `undefined`.
+- [x] Something is **currently unavailable**: `null`.
+
+```ts
+// Both null and undefined are only `==` to themselves and each other:
+console.log(null == null); // true (of course)
+console.log(undefined == undefined); // true (of course)
+console.log(null == undefined); // true
+
+
+// You don't have to worry about falsy values making through this check
+console.log(0 == undefined); // false
+console.log('' == undefined); // false
+console.log(false == undefined); // false
+```
+Recommend `== null` to check for both `undefined` or `null`. You generally don't want to make a distinction between the two.
+
+```ts
+function foo(arg: string | null | undefined) {
+  if (arg != null) {
+    // arg must be a string as `!=` rules out both null and undefined. 
+  }
+}
+```
+
+Remember how I said you should use `== null`? Of course you do (cause I just said it ^). Don't use it for root level things. In strict mode if you use `foo` and `foo` is undefined you get a `ReferenceError` **exception** and the whole call stack unwinds.
+
+> You should use strict mode ... and in fact the TS compiler will insert it for you if you use modules ... more on those later in the book so you don't have to be explicit about it :)
+
+So to check if a variable is defined or not at a *global* level you normally use `typeof`:
+
+```ts
+if (typeof someglobal !== 'undefined') {
+  // someglobal is now safe to use
+  console.log(someglobal);
+}
+```
 
 ## never
 The never type is used in TypeScript to denote this bottom type. Cases when it occurs naturally:
@@ -81,3 +194,9 @@ const failExpression = function(message: string) {
   throw new Error(message);
 };
 ```
+
+
+### Final thoughts
+TypeScript team doesn't use `null` : [TypeScript coding guidelines](https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines#null-and-undefined) and it hasn't caused any problems. Douglas Crockford thinks [`null` is a bad idea](https://www.youtube.com/watch?v=PSGEjv3Tqo0&feature=youtu.be&t=9m21s) and we should all just use `undefined`.
+
+However, NodeJS style code bases uses `null` for Error arguments as standard as it denotes `Something is currently unavailable`. I personally don't care to distinguish between the two as most projects use libraries with differing opinions and just rule out both with `== null`.

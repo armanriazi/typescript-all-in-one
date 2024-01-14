@@ -1,4 +1,4 @@
-export var test;
+export var test: any;
 
 namespace formatting {
     var FooVar;
@@ -7,7 +7,7 @@ namespace formatting {
 
 namespace asdfasdf {
     class Foo {
-        bar: number;
+        bar: number | undefined;
         baz() { }
     }
 }

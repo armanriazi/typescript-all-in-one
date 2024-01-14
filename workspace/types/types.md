@@ -94,8 +94,6 @@ const y = { a: 'A', b: 'B' }; // Valid, as it has at least the same members as X
 const r: X = y;
 ```
 
-
-
 ### Types can be Implicit
 TypeScript will try to infer as much of the type information as it can in order to give you type safety with minimal cost of productivity during code development. For example, in the following example TypeScript will know that foo is of type `number` below and will give an error on the second line as shown:
 

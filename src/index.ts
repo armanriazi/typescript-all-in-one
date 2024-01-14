@@ -1,3 +1,9 @@
+///
+/// ```bash
+/// pnpm tsc ./src/index.ts`
+/// ```
+///
+
 // export { Foo } from './foo';. Exporting from this file makes it available for consumption when someone does import //{ /* Here */ //} from 'example';
 
 var version = `ES6`;
@@ -11,7 +17,3 @@ console.log(result)
 if (123 && true) { // Will be treated like `true`
     console.log(`Hello ${version} TypeScript`);
 }
-
-
-
-

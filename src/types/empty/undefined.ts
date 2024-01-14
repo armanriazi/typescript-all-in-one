@@ -15,3 +15,22 @@ function checkAndPrintElement(arrElement: string | undefined) {
     console.log(`valid array element : ${arrElement}`); // Else if the element is defined, log the message "valid array element: " and the element
   }
 }
+
+
+
+// For example an awful function like this:
+/*
+function toInt(str: string) {
+  return str ? parseInt(str) : undefined;
+}
+*/
+//can be much better written like this:
+function toInt(str: string): { valid: boolean, int?: number } {
+  const int = parseInt(str);
+  if (isNaN(int)) {
+    return { valid: false };
+  }
+  else {
+    return { valid: true, int };
+  }
+}
