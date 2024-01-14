@@ -1,19 +1,25 @@
 {
   "name": "typescript-all-in-one",
   "version": "1.0.0",
-  "description": "The  TypeScript Book provides a comprehensive and succinct overview of TypeScript's capabilities. It offers clear explanations covering all aspects found in the latest version of the language, from its powerful type system to advanced features. Whether you're a beginner or an experienced developer, this book is an invaluable resource to enhance your understanding and proficiency in TypeScript.",
-  "main": "src/index.ts",
-  "scripts": {
-    "format": "ts-node format",
-    "compile": "ts-node compile",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "cd .. && husky install .husky",
-    "lint": "ts-node lint",
-    "lint:md": "markdownlint \"./*.md\" markdownlint \"../*.md\"",
-    "check": "npm run lint:md && npm run format && npm run compile"
-  },
   "author": "Arman Riazi",
   "license": "ISC",
+  "description": "The  TypeScript Book provides a comprehensive and succinct overview of TypeScript's capabilities. It offers clear explanations covering all aspects found in the latest version of the language, from its powerful type system to advanced features. Whether you're a beginner or an experienced developer, this book is an invaluable resource to enhance your understanding and proficiency in TypeScript.",
+  "main": "src/index.ts",
+  "//": [
+    "ts-node-dev --transpileonly --ignore-watch node_modules src/server.ts"    ,
+    "cd .. && husky install .husky",
+  ],
+  "scripts": {
+    "start": "pnpm run build:live",
+    "build": "tsc -p .",
+    "build:live": "nodemon --watch 'src/**/*.ts' --exec \"ts-node\" src/index.ts",    
+    "format": "ts-node format",
+    "compile": "ts-node compile",
+    "test": "echo \"Error: no test specified\" && exit 1",    
+    "lint": "ts-node lint",
+    "lint:md": "markdownlint \"./*.md\" markdownlint \"../*.md\"",
+    "check": "pnpm run lint:md && pnpm run format && pnpm run compile"
+  },  
   "devDependencies": {
     "@tsconfig/node18": "^18.2.2",
     "@types/fs-extra": "^11.0.4",
@@ -25,6 +31,7 @@
     "husky": "^8.0.3",
     "markdownlint-cli": "^0.35.0",
     "marked": "^5.1.2",
+    "nodemon": "^3.0.2",
     "prettier": "^3.1.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
@@ -32,7 +39,6 @@
   "dependencies": {
     "@types/big.js": "^6.2.2",
     "big.js": "^6.2.1",
-    "cd": "^0.3.3",
-    "typescript-all-in-one": "link:/home/u2204one/typescript-all-in-one"
+    "cd": "^0.3.3"
   }
 }

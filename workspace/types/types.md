@@ -1,7 +1,46 @@
 
+# Types as Sets
 
-# Any
-TypeScript introduces the **:any** type for such occasions. Specifying that an object has a type of any will, in essence, **remove the TypeScript strict type checking**. Used for **backward compatibility with JavaScript**. In short, avoid the any type at any cost.
+In TypeScript, a type is a set of possible values. This set is also referred to as the domain of the type. Each value of a type can be viewed as an element in a set. A type establishes the constraints that every element in the set must satisfy to be considered a member of that set.
+The primary task of TypeScript is to check and verify whether one set is a subset of another.
+
+TypeScript supports various types of sets:
+
+| Set term           | TypeScript                      | Notes                                                                                                              |
+| ------------------ | ------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| Empty set          | never                           | "never" contains anything apart itself                                                                             |
+| Single element set | undefined / null / literal type |                                                                                                                    |
+| Finite set         | boolean / union                 |                                                                                                                    |
+| Infinite set       | string / number / object        |                                                                                                                    |
+| Universal set      | any / unknown                   | Every element is a member of "any" and every set is a subset of it / "unknown" is a type-safe counterpart of "any" |
+
+Here few examples:
+
+| TypeScript            | Set term               | Example                                                                         |
+| --------------------- | ---------------------- | ------------------------------------------------------------------------------- |
+| never                 | ∅ (empty set)          | const x: never = 'x'; // Error: Type 'string' is not assignable to type 'never' |
+|                       |                        |
+| Literal type          | Single element set     | type X = 'X';                                                                   |
+|                       |                        | type Y = 7;                                                                     |
+|                       |                        |
+| Value assignable to T | Value ∈ T (member of)  | type XY = 'X' \| 'Y';                                                           |
+|                       |                        | const x: XY = 'X';                                                              |
+|                       |                        |
+| T1 assignable to T2   | T1 ⊆ T2 (subset of)    | type XY = 'X' \| 'Y';                                                           |
+|                       |                        | const x: XY = 'X';                                                              |
+|                       |                        | const j: XY = 'J'; // Type '"J"' is not assignable to type 'XY'.                |
+|                       |                        |                                                                                 |
+| T1 extends T2         | T1 ⊆ T2 (subset of)    | type X = 'X' extends string ? true : false;                                     |
+|                       |                        |
+| T1 \| T2              | T1 ∪ T2 (union)        | type XY = 'X' \| 'Y';                                                           |
+|                       |                        | type JK = 1 \| 2;                                                               |
+|                       |                        |
+| T1 & T2               | T1 ∩ T2 (intersection) | type X = { a: string }                                                          |
+|                       |                        | type Y = { b: string }                                                          |
+|                       |                        | type XY = X & Y                                                                 |
+|                       |                        | const x: XY = { a: 'a', b: 'b' }                                                |
+|                       |                        |
+| unknown               | Universal set          | const x: unknown = 1                                                            |
 
 # S.F.I.A.T
 meaning that **using the any type, in most cases, is unnecessary**. We use an acronym within our programming teams, which is Simply Find an Interface for the Any Type, pronounced sveat or sweat.
@@ -140,6 +179,7 @@ foo = '456';
 ```
 
 So you can incrementally upgrade your JavaScript code to TypeScript. This is very different from how many other language compilers work and yet another reason to move to TypeScript.
+
 
 ### Types can be ambient
 A major design goal of TypeScript was to make it possible for you to safely and easily use existing JavaScript libraries in TypeScript. TypeScript does this by means of *declaration*. TypeScript provides you with a sliding scale of how much or how little effort you want to put in your declarations, the more effort you put the more type safety + code intelligence you get. Note that definitions for most of the popular JavaScript libraries have already been written for you by the [DefinitelyTyped community](https://github.com/borisyankov/DefinitelyTyped) so for most purposes either:

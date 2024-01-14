@@ -1,48 +1,6 @@
 
-
-
-# Types as Sets
-
-In TypeScript, a type is a set of possible values. This set is also referred to as the domain of the type. Each value of a type can be viewed as an element in a set. A type establishes the constraints that every element in the set must satisfy to be considered a member of that set.
-The primary task of TypeScript is to check and verify whether one set is a subset of another.
-
-TypeScript supports various types of sets:
-
-| Set term           | TypeScript                      | Notes                                                                                                              |
-| ------------------ | ------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| Empty set          | never                           | "never" contains anything apart itself                                                                             |
-| Single element set | undefined / null / literal type |                                                                                                                    |
-| Finite set         | boolean / union                 |                                                                                                                    |
-| Infinite set       | string / number / object        |                                                                                                                    |
-| Universal set      | any / unknown                   | Every element is a member of "any" and every set is a subset of it / "unknown" is a type-safe counterpart of "any" |
-
-Here few examples:
-
-| TypeScript            | Set term               | Example                                                                         |
-| --------------------- | ---------------------- | ------------------------------------------------------------------------------- |
-| never                 | ∅ (empty set)          | const x: never = 'x'; // Error: Type 'string' is not assignable to type 'never' |
-|                       |                        |
-| Literal type          | Single element set     | type X = 'X';                                                                   |
-|                       |                        | type Y = 7;                                                                     |
-|                       |                        |
-| Value assignable to T | Value ∈ T (member of)  | type XY = 'X' \| 'Y';                                                           |
-|                       |                        | const x: XY = 'X';                                                              |
-|                       |                        |
-| T1 assignable to T2   | T1 ⊆ T2 (subset of)    | type XY = 'X' \| 'Y';                                                           |
-|                       |                        | const x: XY = 'X';                                                              |
-|                       |                        | const j: XY = 'J'; // Type '"J"' is not assignable to type 'XY'.                |
-|                       |                        |                                                                                 |
-| T1 extends T2         | T1 ⊆ T2 (subset of)    | type X = 'X' extends string ? true : false;                                     |
-|                       |                        |
-| T1 \| T2              | T1 ∪ T2 (union)        | type XY = 'X' \| 'Y';                                                           |
-|                       |                        | type JK = 1 \| 2;                                                               |
-|                       |                        |
-| T1 & T2               | T1 ∩ T2 (intersection) | type X = { a: string }                                                          |
-|                       |                        | type Y = { b: string }                                                          |
-|                       |                        | type XY = X & Y                                                                 |
-|                       |                        | const x: XY = { a: 'a', b: 'b' }                                                |
-|                       |                        |
-| unknown               | Universal set          | const x: unknown = 1                                                            |
+## any
+TypeScript introduces the **:any** type for such occasions. Specifying that an object has a type of any will, in essence, **remove the TypeScript strict type checking**. Used for **backward compatibility with JavaScript**. In short, avoid the any type at any cost.
 
 
 ## undefined
@@ -93,3 +51,33 @@ a = null
 ## unknown
 
 ## never
+The never type is used in TypeScript to denote this bottom type. Cases when it occurs naturally:
+
+- [x] A function never returns (e.g. if the function body has while(true){})
+- [x] A function always throws (e.g. in function foo(){throw new Error('Not Implemented')} the return type of foo is never)
+
+```ts
+let foo: never = 123; // Error: Type number is not assignable to never
+
+// Okay as the function's return type is `never`
+let bar: never = (() => { throw new Error(`Throw my hands in the air like I just don't care`) })();
+```
+
+And because `never` is only assignable to another `never` you can use it for *compile time* exhaustive checks as well. This is covered in the [*discriminated union* section](./discriminated-unions.md).
+
+## never vs null
+As soon as someone tells you that never is returned when a function never exits gracefully you intuitively want to think of it as the same as void. However, void is a Unit. never is a falsum.
+
+A function that returns nothing returns a Unit void. However, a function that never returns (or always throws) returns never. void is something that can be assigned (without strictNullChecking) but never can never be assigned to anything other than never.
+
+```ts
+// Inferred return type: void
+function failDeclaration(message: string) {
+  throw new Error(message);
+}
+
+// Inferred return type: never
+const failExpression = function(message: string) {
+  throw new Error(message);
+};
+```

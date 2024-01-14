@@ -45,7 +45,7 @@
 * [Library QuickStart](quick/library.md)
 * [TypeScript's Types](types/types.md) <!--completed-->
   * [Empty](types/empty.md) <!--completed-->
-    * [Union](types/union.md) <!--completed-->
+  * [Union](types/union.md) <!--completed-->
   * [Conversion](types/conversion.md)  <!--completed-->
   * [Assertion Type Mapping](types/mapping.md)  <!--completed-->
   * [Guard](types/guard.md)   <!--completed-->
@@ -66,8 +66,7 @@
   * [Readonly](types/readonly.md)
   * [Generics](types/generics.md)
   * [Type Inference](types/type-inference.md)
-  * [Type Compatibility](types/type-compatibility.md)
-  * [Never Type](types/never.md)
+  * [Type Compatibility](types/type-compatibility.md)  
   * [Discriminated Unions](types/discriminated-unions.md)
   * [Index Signatures](types/index-signatures.md)
   * [Moving Types](types/moving-types.md)
