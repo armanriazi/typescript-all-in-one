@@ -44,8 +44,10 @@
 * [Browser QuickStart](quick/browser.md)
 * [Library QuickStart](quick/library.md)
 * [TypeScript's Types](types/types.md) <!--completed-->
-  * [Conversion](types/conversion.md)
-  * [Union](types/union.md) <!--completed-->
+  * [Empty](types/empty.md) <!--completed-->
+    * [Union](types/union.md) <!--completed-->
+  * [Conversion](types/conversion.md)  <!--completed-->
+  * [Assertion Type Mapping](types/mapping.md)  <!--completed-->
   * [Guard](types/guard.md)   <!--completed-->
 * [TypeScript's Type System](types/type-system.md)
   * [JS Migration Guide](types/migrating.md)

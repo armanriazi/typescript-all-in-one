@@ -1,4 +1,51 @@
-# undefined
+
+
+
+# Types as Sets
+
+In TypeScript, a type is a set of possible values. This set is also referred to as the domain of the type. Each value of a type can be viewed as an element in a set. A type establishes the constraints that every element in the set must satisfy to be considered a member of that set.
+The primary task of TypeScript is to check and verify whether one set is a subset of another.
+
+TypeScript supports various types of sets:
+
+| Set term           | TypeScript                      | Notes                                                                                                              |
+| ------------------ | ------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| Empty set          | never                           | "never" contains anything apart itself                                                                             |
+| Single element set | undefined / null / literal type |                                                                                                                    |
+| Finite set         | boolean / union                 |                                                                                                                    |
+| Infinite set       | string / number / object        |                                                                                                                    |
+| Universal set      | any / unknown                   | Every element is a member of "any" and every set is a subset of it / "unknown" is a type-safe counterpart of "any" |
+
+Here few examples:
+
+| TypeScript            | Set term               | Example                                                                         |
+| --------------------- | ---------------------- | ------------------------------------------------------------------------------- |
+| never                 | ∅ (empty set)          | const x: never = 'x'; // Error: Type 'string' is not assignable to type 'never' |
+|                       |                        |
+| Literal type          | Single element set     | type X = 'X';                                                                   |
+|                       |                        | type Y = 7;                                                                     |
+|                       |                        |
+| Value assignable to T | Value ∈ T (member of)  | type XY = 'X' \| 'Y';                                                           |
+|                       |                        | const x: XY = 'X';                                                              |
+|                       |                        |
+| T1 assignable to T2   | T1 ⊆ T2 (subset of)    | type XY = 'X' \| 'Y';                                                           |
+|                       |                        | const x: XY = 'X';                                                              |
+|                       |                        | const j: XY = 'J'; // Type '"J"' is not assignable to type 'XY'.                |
+|                       |                        |                                                                                 |
+| T1 extends T2         | T1 ⊆ T2 (subset of)    | type X = 'X' extends string ? true : false;                                     |
+|                       |                        |
+| T1 \| T2              | T1 ∪ T2 (union)        | type XY = 'X' \| 'Y';                                                           |
+|                       |                        | type JK = 1 \| 2;                                                               |
+|                       |                        |
+| T1 & T2               | T1 ∩ T2 (intersection) | type X = { a: string }                                                          |
+|                       |                        | type Y = { b: string }                                                          |
+|                       |                        | type XY = X & Y                                                                 |
+|                       |                        | const x: XY = { a: 'a', b: 'b' }                                                |
+|                       |                        |
+| unknown               | Universal set          | const x: unknown = 1                                                            |
+
+
+## undefined
 
 ```typescript
 let array = ["123", "456", "789"];  // Initialize an array with 3 elements, "123", "456", and "789"
@@ -25,7 +72,7 @@ function checkAndPrintElement(arrElement: string | undefined) {
 valid array element : 456
 valid array element : 789
 
-# null
+## null
 Along with undefined, JavaScript also allows values to be set to null. Setting a value to null is intended to indicate that the variable is known but has no value, as opposed to undefined, where the variable has not been defined in the current scope.  undefined is often seen as something that happens automatically or by default.
 
 ```typescript
@@ -43,6 +90,6 @@ printValues(null); // call the function with a null value
     :a = 1
 a = null
 
-# unknown
+## unknown
 
-# never
+## never

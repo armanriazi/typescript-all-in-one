@@ -86,6 +86,22 @@ var foo: number = '123'; // Error: cannot assign a `string` to a `number`
 
 We will discuss all the details of all the annotation syntax supported by TypeScript in a later chapter.
 
+### Assign a type
+Type Declarations and Type Assertions.
+
+```ts
+type X = {
+    a: string;
+};
+
+const x: X = {
+    a: 'a',
+    b: 'b', // Error: Object literal may only specify known properties
+};
+```
+
+
+
 ### Types are structural
 In some languages (specifically nominally typed ones) static typing results in unnecessary ceremony because even though *you know* that the code will work fine the language semantics force you to copy stuff around. This is why stuff like **automapper** for c# is *vital* for C#. In TypeScript because we really want it to be easy for JavaScript developers with a minimum cognitive overload, types are *structural*. This means that **duck typing** is a first class language construct. Consider the following example. The function `iTakePoint2D` will accept anything that contains all the things (`x` and `y`) it expects:
 
