@@ -180,11 +180,32 @@ foo = '456';
 So you can incrementally upgrade your JavaScript code to TypeScript. This is very different from how many other language compilers work and yet another reason to move to TypeScript.
 
 
-### Types can be ambient
+### Ambient Declarations
+
+Ambient declarations are files that describe types for JavaScript code, they have a file name format as `.d.ts.`. They are usually imported and used to annotate existing JavaScript libraries or to add types to existing JS files in your project.
+
+Many common libraries types can be found at:
+<https://github.com/DefinitelyTyped/DefinitelyTyped/>
+
+and can be installed using:
+
+```shell
+npm install --save-dev @types/library-name
+```
+
+For your defined Ambient Declarations, you can import using the "triple-slash" reference:
+
+<!-- skip -->
+```typescript
+/// <reference path="./library-types.d.ts" />
+```
+
+You can use Ambient Declarations even within JavaScript files using `// @ts-check`.
+
 A major design goal of TypeScript was to make it possible for you to safely and easily use existing JavaScript libraries in TypeScript. TypeScript does this by means of *declaration*. TypeScript provides you with a sliding scale of how much or how little effort you want to put in your declarations, the more effort you put the more type safety + code intelligence you get. Note that definitions for most of the popular JavaScript libraries have already been written for you by the [DefinitelyTyped community](https://github.com/borisyankov/DefinitelyTyped) so for most purposes either:
 
 1. The definition file already exists.
-1. Or at the very least, you have a vast list of well reviewed TypeScript declaration templates already available
+2. Or at the very least, you have a vast list of well reviewed TypeScript declaration templates already available
 
 As a quick example of how you would author your own declaration file, consider a trivial example of [jquery](https://jquery.com/). By default (as is to be expected of good JS code) TypeScript expects you to declare (i.e. use `var` somewhere) before you use a variable
 

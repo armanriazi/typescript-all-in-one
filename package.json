@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "author": "Arman Riazi",
   "license": "ISC",
-  "description": "The  TypeScript Book provides a comprehensive and succinct overview of TypeScript's capabilities. It offers clear explanations covering all aspects found in the latest version of the language, from its powerful type system to advanced features. Whether you're a beginner or an experienced developer, this book is an invaluable resource to enhance your understanding and proficiency in TypeScript.",
+  "description": "The  TypeScript Book provides a comprehensive and savvy overview of TypeScript's capabilities. It offers clear explanations covering all aspects found in the latest version of the language, from its powerful type system to advanced features. Whether you're a beginner or an experienced developer, this book is an invaluable resource to enhance your understanding and proficiency in TypeScript.",
   "main": "src/index.ts",
   "//": [
     "ts-node-dev --transpileonly --ignore-watch node_modules src/server.ts",

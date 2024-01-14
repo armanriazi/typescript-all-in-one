@@ -14,23 +14,23 @@
       // compilerOptions specified here will override those declared below,
       // but *only* in ts-node.  Useful if you want ts-node and tsc to use
       // different options with a single tsconfig.json.
-      "allowJs":true,
-      "removeComments": true,
-      "target": "ES6",
-      "module": "Node16", 
-      "preserveConstEnums": true,
-      "sourceMap": false,    
-      "incremental": false,
-      "strictNullChecks": true, 
-      "noEmit": true,
-      "esModuleInterop": true,     
-      "preserveSymlinks": true,      
-      "strict": true,   
-      "skipLibCheck": true,
-      "lib": [
-        "dom",
-        "es6"
-      ]                        
+      // "allowJs":true,
+      // "removeComments": true,
+      // "target": "ES6",
+      // "module": "Node16", 
+      // "preserveConstEnums": true,
+      // "sourceMap": false,    
+      // "incremental": false,
+      // "strictNullChecks": true, 
+      // "noEmit": true,
+      // "esModuleInterop": true,     
+      // "preserveSymlinks": true,      
+      // "strict": true,   
+      // "skipLibCheck": true,
+      // "lib": [
+      //   "dom",
+      //   "es6"
+      // ]                        
     }
   },
   "compilerOptions": {
@@ -38,7 +38,7 @@
     "allowJs":true,
     "removeComments": true,
     "target": "ES6",
-    "module": "Node16", 
+    "module": "Node16",     
     "preserveConstEnums": true,
     "sourceMap": false,    
     "incremental": false,

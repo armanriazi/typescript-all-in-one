@@ -49,27 +49,7 @@ Types have proven ability to enhance code quality and understandability. Large t
 - [x] Types are one of the best forms of documentation you can have. *The function signature is a theorem and the function body is the proof*.
 
 
-#### Ambient Declarations
 
-Ambient declarations are files that describe types for JavaScript code, they have a file name format as `.d.ts.`. They are usually imported and used to annotate existing JavaScript libraries or to add types to existing JS files in your project.
-
-Many common libraries types can be found at:
-<https://github.com/DefinitelyTyped/DefinitelyTyped/>
-
-and can be installed using:
-
-```shell
-npm install --save-dev @types/library-name
-```
-
-For your defined Ambient Declarations, you can import using the "triple-slash" reference:
-
-<!-- skip -->
-```typescript
-/// <reference path="./library-types.d.ts" />
-```
-
-You can use Ambient Declarations even within JavaScript files using `// @ts-check`.
 
 ### Property Checking and Excess Property Checking
 
