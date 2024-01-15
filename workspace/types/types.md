@@ -344,8 +344,7 @@ const y: string = 'y';
 Strings can span multiple lines if surrounded by the backtick (`) character:
 
 ```typescript
-let sentence: string = `xxx,
-   yyy`;
+let sentence: string = `xxx,yyy`;
 ```
 
 ### boolean

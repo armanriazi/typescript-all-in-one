@@ -1,7 +1,7 @@
 /// `>tags:` #important #keyof  #type_mapping #assertion
 
 type PREFIX<Type> = {
-    [Property in keyof Type as `prefix_${string & Property}`]: () => Type[Property];
+    [prop in keyof Type as `prefix_${string & prop}`]: () => Type[prop];
 };
 type X = {
     a: string;

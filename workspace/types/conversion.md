@@ -1,7 +1,3 @@
-# AS
-`What is the advantage of using the as keyword in a type assertion?`
-
-It provides a way to override the inferred type of a variable. `{ id: 1, name: "item1" } as any;`
 
 # Conflict TS and JS
 TypeScript was designed to detect possible exceptions that can occur at runtime during compilation time by having the developer define the intent with type annotations. In addition, TypeScript can also catch issues if no type annotation is provided. For instance, the following code snippet does not specify any TypeScript types:

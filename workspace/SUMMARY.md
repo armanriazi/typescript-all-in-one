@@ -46,9 +46,8 @@
 * [TypeScript's Types](types/types.md) <!--completed-->
   * [Empty](types/empty.md) <!--completed-->
   * [Union](types/union.md) <!--completed-->
-  * [Conversion](types/conversion.md)  <!--completed-->
-  * [Assertion Type Mapping](types/mapping.md)  <!--completed-->  
   * [Type Assertion](types/type-assertion.md)<!--completed-->
+    * [Type Mapping](types/mapping.md)  <!--completed-->  
   * [Freshness](types/freshness.md)  <!--completed-->  
   * [Widening](types/widening.md)  <!--completed-->  
   * [Type Inference](types/type-inference.md)
@@ -88,7 +87,8 @@
   * [noImplicitAny](options/noImplicitAny.md)
   * [strictNullChecks](options/strictNullChecks.md)
 * [Errors in TypeScript](errors/main.md)
-  * [Interpreting Errors](errors/interpreting-errors.md)
+  * [Type Conversion](types/conversion.md)  <!--completed-->  
+  * [Interpreting Errors](errors/interpreting-errors.md)  
   * [Common Errors](errors/common-errors.md)
 * [Testing](testing/intro.md)
   * [Jest](testing/jest.md)

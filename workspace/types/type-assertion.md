@@ -1,5 +1,5 @@
 ## Type Assertion
-TypeScript allows you to override its inferred and analyzed view of types in any way you want to. This is done by a mechanism called "type assertion". TypeScript's type assertion is purely you telling the compiler that you know about the types better than it does, and that it should not second guess you.
+TypeScript allows you to override its inferred and analyzed view of types in any way you want to. This is done by a mechanism called "type assertion". TypeScript's type assertion is purely **you telling the compiler that you know about the types(unsafe)** better than it does, and that it should not second guess you.
 
 Type assertion using `as`
 
@@ -92,7 +92,7 @@ var foo: Foo = {
 In some cases you might need to create a temporary variable, but at least you will not be making (possibly false) promises and instead relying on the type inference to do the checking for you.
 
 ### Double assertion
-The type assertion, despite being a bit unsafe as we've shown, is not *completely open season*. E.g. the following is a very valid use case (e.g. the user thinks the event passed in will be a more specific case of an event) and the type assertion works as expected:
+The type assertion, despite being a bit **unsafe** as we've shown, is not *completely open season*. E.g. the following is a very valid use case (e.g. the user thinks the event passed in will be a more specific case of an event) and the type assertion works as expected:
 
 ```ts
 function handler (event: Event) {

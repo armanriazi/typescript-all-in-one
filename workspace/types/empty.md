@@ -24,6 +24,20 @@ const fn = (options: Options) => undefined;
 fn({ c: 'c' }); // Valid
 ```
 
+using unknown as a **double assertion type**
+
+```ts
+function handler(event: Event) {
+    let element = event as unknown as HTMLElement; // Okay, fix compiler complain!
+}
+```
+
+### any vs unknown
+Both are **equally unsafe** as far as TypeScript is concerned. Use what makes you happy. Considerations:
+
+- [x] Linters prefer unknown (with no-explicit-any rule)
+- [x] any is less characters to type than unknown
+
 ## undefined
 
 ```typescript
