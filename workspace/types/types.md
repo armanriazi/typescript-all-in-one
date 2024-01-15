@@ -266,6 +266,184 @@ const fn = (options: Options) => undefined;
 fn({ c: 'c' }); // Valid
 ```
 
+
+### Explicit Type Annotation
+
+We can be specific and pass a type, in the following example property `x` is of type `number`:
+
+```typescript
+const v = {
+    x: 1, // Inferred type: number (widening)
+};
+v.x = 3; // Valid
+```
+
+We can make the type annotation more specific by using a union of literal types:
+
+<!-- skip -->
+```typescript
+const v: { x: 1 | 2 | 3 } = {
+    x: 1, // x is now a union of literal types: 1 | 2 | 3
+};
+v.x = 3; // Valid
+v.x = 100; // Invalid
+```
+
+### Type Narrowing
+
+Type Narrowing is the process in TypeScript where a general type is narrowed down to a more specific type. This occurs when TypeScript analyzes the code and determines that certain conditions or operations can refine the type information.
+
+Narrowing types can occur in different ways, including:
+
+#### Conditions
+
+By using conditional statements, such as `if` or `switch`, TypeScript can narrow down the type based on the outcome of the condition. For example:
+
+```typescript
+let x: number | undefined = 10;
+
+if (x !== undefined) {
+    x += 100; // The type is number, which had been narrowed by the condition
+}
+```
+
+#### Throwing or returning
+
+Throwing an error or returning early from a branch can be used to help TypeScript narrow down a type. For example:
+
+```typescript
+let x: number | undefined = 10;
+
+if (x === undefined) {
+    throw 'error';
+}
+x += 100;
+```
+
+Other ways to narrow down types in TypeScript include:
+
+- [x] `instanceof` operator: Used to check if an object is an instance of a specific class.
+- [x] `in` operator: Used to check if a property exists in an object.
+- [x] `typeof` operator: Used to check the type of a value at runtime.
+- [x] Built-in functions like `Array.isArray()`: Used to check if a value is an array.
+
+
+## Primitive Types
+
+TypeScript supports 7 primitive types. A primitive data type refers to a type that is not an object and does not have any methods associated with it. In TypeScript, all primitive types are immutable, meaning their values cannot be changed once they are assigned.
+
+### string
+
+The `string` primitive type stores textual data, and the value is always double or single-quoted.
+
+```typescript
+const x: string = 'x';
+const y: string = 'y';
+```
+
+Strings can span multiple lines if surrounded by the backtick (`) character:
+
+```typescript
+let sentence: string = `xxx,
+   yyy`;
+```
+
+### boolean
+
+The `boolean` data type in TypeScript stores a binary value, either `true` or `false`.
+
+```typescript
+const isReady: boolean = true;
+```
+
+### number
+
+A `number` data type in TypeScript is represented with a 64-bit floating point value. A `number` type can represent integers and fractions.
+TypeScript also supports hexadecimal, binary, and octal, for instance:
+
+```typescript
+const decimal: number = 10;
+const hexadecimal: number = 0xa00d; // Hexadecimal starts with 0x
+const binary: number = 0b1010; // Binary starts with 0b
+const octal: number = 0o633; // Octal starts with 0o
+```
+
+### bigInt
+
+A `bigInt` represents numeric values that are very large (253 – 1) and cannot be represented with a `number`.
+
+A `bigInt` can be created by calling the built-in function `BigInt()` or by adding `n` to the end of any integer numeric literal:
+
+```typescript
+const x: bigint = BigInt(9007199254740991);
+const y: bigint = 9007199254740991n;
+```
+
+Notes:
+
+- [x] `bigInt` values cannot be mixed with `number` and cannot be used with built-in `Math`, they must be coerced to the same type.
+- [x] `bigInt` values are available only if target configuration is ES2020 or higher.
+
+### Symbol
+
+Symbols are unique identifiers that can be used as property keys in objects to prevent naming conflicts.
+
+```typescript
+type Obj = {
+    [sym: symbol]: number;
+};
+
+const a = Symbol('a');
+const b = Symbol('b');
+let obj: Obj = {};
+obj[a] = 123;
+obj[b] = 456;
+
+console.log(obj[a]); // 123
+console.log(obj[b]); // 456
+```
+
+## Type Annotations
+
+On variables declared using `var`, `let` and `const`, it is possible to optionally add a type:
+
+```typescript
+const x: number = 1;
+```
+
+TypeScript does a good job of inferring types, especially when simple one, so these declarations in most cases are not necessary.
+
+On functions is possible to add type annotations to parameters:
+
+```typescript
+function sum(a: number, b: number) {
+    return a + b;
+}
+```
+
+The following is an example using a anonymous functions (so called lambda function):
+
+```typescript
+const sum = (a: number, b: number) => a + b;
+```
+
+These annotation can be avoided when a default value for a parameter is present:
+
+```typescript
+const sum = (a = 10, b: number) => a + b;
+```
+
+Return type annotations can be added to functions:
+
+```typescript
+const sum = (a = 10, b: number): number => a + b;
+```
+
+This is useful especially for  more complex functions as writing expliciting the return type before an implementation can help better think about the function.
+
+Generally consider annotating type signatures but not the body local variables and add types always to object literals.
+
+
 ### Ambient Declarations
 
 Ambient declarations are files that describe types for JavaScript code, they have a file name format as `.d.ts.`. They are usually imported and used to annotate existing JavaScript libraries or to add types to existing JS files in your project.

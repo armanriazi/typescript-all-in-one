@@ -26,7 +26,6 @@
     * [Classes Emit](classes-emit.md)
   * [Arrow Functions](arrow-functions.md)
   * [Rest Parameters](rest-parameters.md)
-  * [Destructuring](destructuring/destructuring.md) <!--completed-->
   * [Spread Operator](spread-operator.md)
   * [for...of](for...of.md)
   * [Iterators](iterators.md)
@@ -48,31 +47,36 @@
   * [Empty](types/empty.md) <!--completed-->
   * [Union](types/union.md) <!--completed-->
   * [Conversion](types/conversion.md)  <!--completed-->
-  * [Assertion Type Mapping](types/mapping.md)  <!--completed-->
-  * [Guard](types/guard.md)   <!--completed-->
-* [TypeScript's Type System](types/type-system.md)
-  * [JS Migration Guide](types/migrating.md)
-  * [@types](types/@types.md)
-  * [Ambient Declarations](types/ambient/intro.md)
-    * [Declaration Files](types/ambient/d.ts.md)
-    * [Variables](types/ambient/variables.md)
-  * [Interfaces](types/interfaces.md)
-  * [Enums](enums.md)
-  * [`lib.d.ts`](types/lib.d.ts.md)
-  * [Functions](types/functions.md)
-  * [Callable](types/callable.md)
-  * [Type Assertion](types/type-assertion.md)
-  * [Freshness](types/freshness.md)  
-  * [Literal Types](types/literal-types.md)
-  * [Readonly](types/readonly.md)
-  * [Generics](types/generics.md)
+  * [Assertion Type Mapping](types/mapping.md)  <!--completed-->  
+  * [Type Assertion](types/type-assertion.md)<!--completed-->
+  * [Freshness](types/freshness.md)  <!--completed-->  
+  * [Widening](types/widening.md)  <!--completed-->  
   * [Type Inference](types/type-inference.md)
-  * [Type Compatibility](types/type-compatibility.md)  
-  * [Discriminated Unions](types/discriminated-unions.md)
-  * [Index Signatures](types/index-signatures.md)
-  * [Moving Types](types/moving-types.md)
-  * [Exception Handling](types/exceptions.md)
-  * [Mixins](types/mixins.md)
+    * [structuring](types/structural.md) <!--completed-->
+    * [Destructuring](types/destructuring.md) <!--completed-->
+    * [Guard](types/guard.md)   <!--completed-->    
+  * [Literal Types](types/literal-types.md)<!--completed-->
+    * [Inference Literal](types/inference-literal-types.md)   <!--completed-->
+    * [Inference Gurad Literal](types/inference-literal-gurad-type.md)   <!--completed-->
+  * [Interfaces](types/interfaces.md)  
+  * [TypeScript's Type System](types/type-system.md)
+    * [JS Migration Guide](types/migrating.md)
+    * [@types](types/@types.md)
+    * [Ambient Declarations](types/ambient/intro.md)
+      * [Declaration Files](types/ambient/d.ts.md)
+      * [Variables](types/ambient/variables.md)    
+    * [Enums](enums.md)
+    * [`lib.d.ts`](types/lib.d.ts.md)
+    * [Functions](types/functions.md)
+    * [Callable](types/callable.md)
+    * [Readonly](types/readonly.md)
+    * [Generics](types/generics.md)    
+    * [Type Compatibility](types/type-compatibility.md)  
+    * [Discriminated Unions](types/discriminated-unions.md)
+    * [Index Signatures](types/index-signatures.md)
+    * [Moving Types](types/moving-types.md)
+    * [Exception Handling](types/exceptions.md)
+    * [Mixins](types/mixins.md)
 * [Collection](collection/collection.md)
   * [Array](collection/array/array.md)
     * [Create Arrays](tips/create-arrays.md)

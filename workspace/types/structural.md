@@ -16,3 +16,31 @@ type Y = {
 const x: X = { a: 'a' };
 const y: Y = x; // Valid
 ```
+
+## Structuring
+
+These simple rules also work in the presence of **structuring** (object literal creation). For example in the following case the type of `foo` is inferred to be `{a:number, b:number}`
+
+```ts
+let foo = {
+    a: 123,
+    b: 456
+};
+// foo.a = "hello"; // Would Error: cannot assign `string` to a `number`
+```
+
+Similarly for arrays:
+
+```ts
+const bar = [1,2,3];
+// bar[0] = "hello"; // Would error: cannot assign `string` to a `number`
+```
+
+And of course any nesting:
+
+```ts
+let foo = {
+    bar: [1, 3, 4]
+};
+// foo.bar[0] = 'hello'; // Would error: cannot assign `string` to a `number`
+```

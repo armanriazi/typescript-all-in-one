@@ -59,6 +59,14 @@ foo.bar = 456; // Okay
 fooReadonly.bar = 456; // ERROR: bar is readonly
 ```
 
+#### Modelling existing JavaScript APIs
+
+E.g. [CodeMirror editor has an option `readOnly`](https://codemirror.net/doc/manual.html#option_readOnly) that can either be a `boolean` or the literal string `"nocursor"` (effective valid values `true,false,"nocursor"`).  It can be declared as:
+
+```ts
+readOnly: boolean | 'nocursor';
+```
+
 ### Various Use Cases
 
 #### ReactJS

@@ -85,3 +85,26 @@ const z1: Z1 = { a: 'a', b: 'b', c: 'c' };
 
 const r: Z1 = z; // Valid
 ```
+
+#### Discriminated Unions
+
+Using a "Discriminated Union" is a pattern in TypeScript where an explicit "tag" is added to objects to distinguish between different types within a union. This pattern is also referred to as a "tagged union." In the following example, the "tag" is represented by the property "type":
+
+```typescript
+type A = { type: 'type_a'; value: number };
+type B = { type: 'type_b'; value: string };
+
+const x = (input: A | B): string | number => {
+    switch (input.type) {
+        case 'type_a':
+            return input.value + 100; // type is A
+        case 'type_b':
+            return input.value + 'extra'; // type is B
+    }
+};
+```
+
+We will cover [this later in the book](./discriminated-unions.md).
+
+
+[TypeScript/pull/5185](https://github.com/Microsoft/TypeScript/pull/5185)

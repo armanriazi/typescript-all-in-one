@@ -63,6 +63,38 @@ var x: { foo: number, [x: string]: unknown };
 x = { foo: 1, baz: 2 };  // Ok, `baz` matched by index signature
 ```
 
+
+### Strict Object Literal Checking (Freshness)
+
+Strict object literal checking, sometimes referred to as “freshness”, is a feature in TypeScript that helps catch excess or misspelled properties that would otherwise go unnoticed in normal structural type checks.
+
+When creating an object literal, the TypeScript compiler considers it “fresh.” If the object literal is assigned to a variable or passed as a parameter, TypeScript will throw an error if the object literal specifies properties that do not exist in the target type.
+
+However, “freshness” disappears when an object literal is widened or a type assertion is used.
+
+Here are some examples to illustrate:
+
+```ts
+type X = { a: string };
+type Y = { a: string; b: string };
+
+let x: X;
+x = { a: 'a', b: 'b' }; // Freshness check: Invalid assignment
+var y: Y;
+y = { a: 'a', bx: 'bx' }; // Freshness check: Invalid assignment
+
+const fn = (x: X) => console.log(x.a);
+
+fn(x);
+fn(y); // Widening: No errors, structurally type compatible
+
+fn({ a: 'a', bx: 'b' }); // Freshness check: Invalid argument
+
+let x: { a: string } = { a: 'a' };
+let y: { a: string; b: string } = { a: 'a', b: '' };
+x = y; // Widening: No Freshness check
+```
+
 ### Use Case: React State
 
 [Facebook ReactJS](https://facebook.github.io/react/) offers a nice use case for object freshness. Quite commonly in a component you call `setState` with only a few properties instead of passing in all the properties, i.e.: 

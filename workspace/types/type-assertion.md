@@ -1,6 +1,16 @@
 ## Type Assertion
 TypeScript allows you to override its inferred and analyzed view of types in any way you want to. This is done by a mechanism called "type assertion". TypeScript's type assertion is purely you telling the compiler that you know about the types better than it does, and that it should not second guess you.
 
+Type assertion using `as`
+
+```ts
+const user2 = {
+    name: 'Simon',
+    nickName: undefined,
+    attributes: ['dev', 'admin'],
+} as User;
+```
+
 A common use case for type assertion is when you are porting over code from JavaScript to TypeScript. For example consider the following pattern:
 
 ```ts
@@ -9,7 +19,7 @@ foo.bar = 123; // Error: property 'bar' does not exist on `{}`
 foo.bas = 'hello'; // Error: property 'bas' does not exist on `{}`
 ```
 
-Here the code errors because the *inferred* type of `foo` is `{}` i.e. an object with zero properties. Therefore you are not allowed to add `bar` or `bas` to it. You can fix this simply by a type assertion `as Foo`:
+Here the code errors because the **inferred** type of `foo` is `{}` i.e. an object with zero properties. Therefore you are not allowed to add `bar` or `bas` to it. You can **fix this simply by a type assertion `as Foo`**:
 
 ```ts
 interface Foo {

@@ -18,3 +18,4 @@ if (123 && true) { // Will be treated like `true`
     console.log(`Hello ${version} TypeScript`);
 }
 
+

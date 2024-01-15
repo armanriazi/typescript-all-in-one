@@ -1,4 +1,8 @@
-## Type guard
+# Type Guard
+
+We have already seen how [literal types](./literal-types.md.md) help change and narrow down types (particularly in the case of unions). Type guards are just another form of type inference for a variable in a block.
+
+
 A type guard is an expression that performs a check on our type and then **guarantees that type within its scope**. Let’s rewrite our previous function with a type guard as follows:
 
 ```ts
@@ -37,7 +41,7 @@ function addWithTypeGuard(
 * [Type Guard](#type-guard)
 * [User Defined Type Guards](#user-defined-type-guards)
 
-## Type Guard
+
 Type Guards allow you to narrow down the type of an object within a conditional block. 
 
 
@@ -140,61 +144,64 @@ function doStuff(q: A | B) {
 }
 ```
 
-### Literal Type Guard
+## Warnings
 
-You can use `===` / `==` / `!==` / `!=` to distinguish between literal values
+### Be careful around parameters
+
+Types do not flow into the function parameters if it cannot be inferred from an assignment. For example in the following case the compiler does not know the type of `foo` so it cannot infer the type of `a` or `b`.
 
 ```ts
-type TriState = 'yes' | 'no' | 'unknown';
+const foo = (a,b) => { /* do something */ };
+```
 
-function logOutState(state:TriState) {
-  if (state == 'yes') {
-    console.log('User selected yes');
-  } else if (state == 'no') {
-    console.log('User selected no');
-  } else {
-    console.log('User has not made a selection yet');
-  }
+However, if `foo` was typed the function parameters type can be inferred (`a`,`b` are both inferred to be of type `number` in the example below).
+
+```ts
+type TwoNumberFunction = (a: number, b: number) => void;
+const foo: TwoNumberFunction = (a, b) => { /* do something */ };
+```
+
+### Be careful around return
+
+Although TypeScript can generally infer the return type of a function, it might not be what you expect. For example here function `foo` has a return type of `any`.
+
+```ts
+function foo(a: number, b: number) {
+    return a + addOne(b);
+}
+// Some external function in a library someone wrote in JavaScript
+function addOne(c) {
+    return c + 1;
 }
 ```
 
-This even works when you have literal types in a union. You can check the value of a shared property name to discriminate the union e.g. 
+This is because the return type is impacted by the poor type definition for `addOne` (`c` is `any` so the return of `addOne` is `any` so the return of `foo` is `any`).
 
-```ts
-type Foo = {
-  kind: 'foo', // Literal type 
-  foo: number
-}
-type Bar = {
-  kind: 'bar', // Literal type 
-  bar: number
-}
+> I find it simplest to always be explicit about function returns. After all, these annotations are a theorem and the function body is the proof.
 
-function doStuff(arg: Foo | Bar) {
-    if (arg.kind === 'foo') {
-        console.log(arg.foo); // OK
-        console.log(arg.bar); // Error!
-    }
-    else {  // MUST BE Bar!
-        console.log(arg.foo); // Error!
-        console.log(arg.bar); // OK
-    }
-}
-```
+There are other cases that one can imagine, but the good news is that there is a compiler flag that can help catch such bugs.
 
-### null and undefined with `strictNullChecks`
+## `noImplicitAny`
 
-TypeScript is smart enough to rule out both `null` and `undefined` with a `== null` / `!= null` check. For example:
+The flag `noImplicitAny` instructs the compiler to raise an error if it cannot infer the type of a variable (and therefore can only have it as an *implicit* `any` type). You can then
 
-```ts
-function foo(a?: number | null) {
-  if (a == null) return;
+- [x] Either say that *yes I want it to be of type `any`* by *explicitly* adding an `: any` type annotation
+- [x] Help the compiler out by adding a few more *correct* annotations.
 
-  // a is number now.
-}
-```
 
 ### User Defined Type JS Guards
+In cases where TypeScript is unable to determine a type, it is possible to write a helper function known as a "user-defined type guard." In the following example, we will utilize a Type Predicate to narrow down the type after applying certain filtering:
+
+```typescript
+const data = ['a', null, 'c', 'd', null, 'f'];
+
+const r1 = data.filter(x => x != null); // The type is (string | null)[], TypeScript was not able to infer the type properly
+
+const isValid = (item: string | null): item is string => item !== null; // Custom type guard
+
+const r2 = data.filter(isValid); // The type is fine now string[], by using the predicate type guard we were able to narrow the type
+```
+
 JavaScript doesn't have very rich runtime introspection support built in. When you are using just plain JavaScript Objects (using structural typing to your advantage), you do not even have access to `instanceof` or `typeof`. For these cases you can create *User Defined Type Guard functions*. These are just functions that return `someArgumentName is SomeType`. Here is an example:
 
 ```ts
@@ -235,6 +242,7 @@ function doStuff(arg: Foo | Bar) {
 doStuff({ foo: 123, common: '123' });
 doStuff({ bar: 123, common: '123' });
 ```
+
 
 ### Type Guards and callbacks
 

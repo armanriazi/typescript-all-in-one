@@ -178,6 +178,18 @@ if (typeof someglobal !== 'undefined') {
 }
 ```
 
+### null and undefined with `strictNullChecks`
+
+TypeScript is smart enough to rule out both `null` and `undefined` with a `== null` / `!= null` check. For example:
+
+```ts
+function foo(a?: number | null) {
+  if (a == null) return;
+
+  // a is number now.
+}
+```
+
 ## never
 The never type is used in TypeScript to denote this bottom type. Cases when it occurs naturally:
 
