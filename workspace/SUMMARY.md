@@ -17,10 +17,11 @@
   * [Node.js QuickStart](quick/nodejs.md)  <!--completed-->
   * [Browser QuickStart](quick/browser.md)  <!--completed-->
   * [Library QuickStart](quick/library.md)  <!--completed-->  
-* [Var vs Let vs Const](defination/defination.md) <!--completed-->
+* [Var vs Let vs Const vs Readonly](defination/defination.md) <!--completed-->
   * [let](defination/let.md) <!--completed-->
   * [var](defination/var.md) <!--completed-->
   * [const](defination/const.md)   <!--completed-->
+  * [Readonly](types/readonly.md)   <!--completed-->
 * [Future JavaScript Now](future-javascript.md) 
   * [Classes](classes.md)
     * [Classes Emit](classes-emit.md)
@@ -67,8 +68,7 @@
     * [Enums](enums.md)
     * [`lib.d.ts`](types/lib.d.ts.md)
     * [Functions](types/functions.md)
-    * [Callable](types/callable.md)
-    * [Readonly](types/readonly.md)
+    * [Callable](types/callable.md)    
     * [Generics](types/generics.md)    
     * [Type Compatibility](types/type-compatibility.md)  
     * [Discriminated Unions](types/discriminated-unions.md)

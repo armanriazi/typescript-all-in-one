@@ -1,4 +1,23 @@
-## readonly
+Is it possible to prevent writing on a property by using the modifier readonlywhich makes sure that the property cannot be re-written but does not provide any guarantee of total immutability:
+
+```ts
+interface Y {
+    readonly a: number;
+}
+
+type X = {
+    readonly a: number;
+};
+
+type J = Readonly<{
+    a: number;
+}>;
+
+type K = {
+    readonly [index: number]: string;
+};
+```
+
 TypeScript's type system allows you to mark individual properties on an interface as `readonly`. This allows you to work in a functional way (unexpected mutation is bad):
 
 ```ts
@@ -146,34 +165,23 @@ console.log(person.fullName); // John Doe
 person.fullName = "Dear Reader"; // Error! fullName is readonly
 ```
 
-### Difference from `const`
+### readonly difference from `const`
+
 `const`
 
 1. is for a variable reference
-1. the variable cannot be reassigned to anything else.
+2. the variable cannot be reassigned to anything else.
 
 `readonly` is
 
 1. for a property
-1. the property can be modified because of aliasing
+2. the property can be modified because of aliasing
 
-Sample explaining 1:
-
-```ts
-const foo = 123; // variable reference
-var bar: {
-    readonly bar: number; // for property
-}
-```
-
-Sample explaining 2:
 
 ```ts
-let foo: {
-    readonly bar: number;
-} = {
+let foo: { readonly bar: number;} = {
         bar: 123
-    };
+};
 
 function iMutateFoo(foo: { bar: number }) {
     foo.bar = 456;
@@ -200,4 +208,4 @@ function iTakeFoo(foo: Foo) {
 iTakeFoo(foo); // The foo argument is aliased by the foo parameter
 ```
 
-[](https://github.com/Microsoft/TypeScript/pull/6532)
+[TypeScript/pull/6532](https://github.com/Microsoft/TypeScript/pull/6532)

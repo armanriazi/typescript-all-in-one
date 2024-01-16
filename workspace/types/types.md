@@ -146,6 +146,7 @@ const x: X = {
 ```
 type Foo = number | { someProperty: number }
 ```
+
 * Use `interface` when you want `extends` or `implements` e.g.
 
 ```
