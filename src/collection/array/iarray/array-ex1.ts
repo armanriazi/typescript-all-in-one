@@ -1,6 +1,6 @@
 ///
 /// ```bash
-/// pnpm tsc workspace/collection/array/array-ex1.ts
+/// pnpm tsc ./src/index.ts
 /// ```
 ///
 

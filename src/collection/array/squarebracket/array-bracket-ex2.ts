@@ -1,6 +1,6 @@
 ///
 /// ```bash
-/// pnpm tsc workspace/collection/array/array-ex2.ts
+/// pnpm tsc ./src/collection/array/squarebracket/array-bracket-ex2.ts
 /// ```
 ///
 //TypeScript supports readonly arrays using the following syntax:

@@ -1,6 +1,6 @@
 ///
 /// ```bash
-/// pnpm tsc workspace/collection/array/array-ex3.ts
+/// pnpm tsc ./src/collection/array/squarebracket/array-bracket-ex3.ts
 /// ```
 ///
 //TypeScript supports tuple and readonly tuple:
