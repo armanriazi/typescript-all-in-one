@@ -4,6 +4,7 @@
 Type widening is the process in which TypeScript assigns a type to a variable initialized when no type annotation was provided. It allows narrow to wider types but not vice versa.
 In the following example:
 
+`>tags:` [[Error_TS2322]] [[Error_Assignable]]
 <!-- skip -->
 ```typescript
 let x = 'x'; // TypeScript infers as string, a wide type
@@ -19,8 +20,10 @@ TypeScript provides ways to have control of the widening process, for instance u
 
 ### Const
 
-Using the `const` keyword when declaring a variable results in a narrower type inference in TypeScript.
 
+
+Using the `const` keyword when declaring a variable results in a narrower type inference in TypeScript.
+ 
 For example:
 
 ```typescript

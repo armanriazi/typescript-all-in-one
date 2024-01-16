@@ -1,6 +1,6 @@
 ///
 /// ```bash
-/// pnpm tsc ./src/index.ts`
+/// pnpm tsc ./src/index.ts
 /// ```
 ///
 
@@ -17,5 +17,4 @@ console.log(result)
 if (123 && true) { // Will be treated like `true`
     console.log(`Hello ${version} TypeScript`);
 }
-
 

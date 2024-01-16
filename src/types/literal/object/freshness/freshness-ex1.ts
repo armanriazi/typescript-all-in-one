@@ -12,4 +12,4 @@ logName(person); // okay
 logName(animal); // okay
 //logName(random); // Error: undefined, property `name` is missing
 logName({ name: 'matt' }); // okay
-logName({ name: 'matt', job: 'being awesome' }); // Error: object literals must only specify known properties. `job` is excessive here.
+//logName({ name: 'matt', job: 'being awesome' }); // Error: object literals must only specify known properties. `job` is excessive here.

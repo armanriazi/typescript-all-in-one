@@ -47,25 +47,25 @@
 * [TypeScript's Types](types/types.md) <!--completed-->
   * [Empty](types/empty.md) <!--completed-->
   * [Union](types/union.md) <!--completed-->
+  * [Enums](enums.md)
   * [Type Assertion](types/type-assertion.md)<!--completed-->
     * [Type Mapping](types/mapping.md)  <!--completed-->  
   * [Freshness](types/freshness.md)  <!--completed-->  
   * [Widening](types/widening.md)  <!--completed-->  
   * [Type Inference](types/type-inference.md)
-    * [structuring](types/structural.md) <!--completed-->
+    * [Structuring](types/structural.md) <!--completed-->
     * [Destructuring](types/destructuring.md) <!--completed-->
     * [Guard](types/guard.md)   <!--completed-->    
   * [Literal Types](types/literal-types.md)<!--completed-->
     * [Inference Literal](types/inference-literal-types.md)   <!--completed-->
+    * [Enum Literal](types/enum-literal-type.md)   <!--completed-->    
     * [Inference Gurad Literal](types/inference-literal-gurad-type.md)   <!--completed-->
-  * [Interfaces](types/interfaces.md)  
   * [TypeScript's Type System](types/type-system.md)
     * [JS Migration Guide](types/migrating.md)
     * [@types](types/@types.md)
     * [Ambient Declarations](types/ambient/intro.md)
       * [Declaration Files](types/ambient/d.ts.md)
       * [Variables](types/ambient/variables.md)    
-    * [Enums](enums.md)
     * [`lib.d.ts`](types/lib.d.ts.md)
     * [Functions](types/functions.md)
     * [Callable](types/callable.md)    
@@ -80,6 +80,7 @@
   * [Array](collection/array/array.md)
     * [Create Arrays](tips/create-arrays.md)
 * [OOP](oop/oop.md)  
+  * [Interfaces](oop/interfaces.md)  
 * [JSX](jsx/tsx.md)
   * [React](jsx/react.md)
   * [Non React JSX](jsx/others.md)

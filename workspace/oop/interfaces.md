@@ -88,6 +88,8 @@ interface Crazy {
 }
 ```
 
+`>tags:` [[Error_TS2420]] [[Interface]] error TS2420: Class 'CrazyClass' incorrectly implements interface 'Crazy'.
+
 You would essentially have something like:
 
 ```ts
