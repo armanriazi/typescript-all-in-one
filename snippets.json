@@ -135,7 +135,7 @@
     },
     {
         "created": "2024-01-14T09:29:29.386Z",
-        "name": "tstype_mapping",
+        "name": "tstype_prop_mapping",
         "tags": [
             "assertion",
             "map",
@@ -144,7 +144,7 @@
             "prefix",
             "keyof"
         ],
-        "content": "type PREFIX<Type> = {\n    [Property in keyof Type as `prefix_${string & Property}`]: () => Type[Property];\n};\ntype X = {\n    a: string;\n    b: number;\n    c: ()=>{}\n};\ntype Y = PREFIX<X>;",
+        "content": "type PREFIX<Type> = {\n    [prop in keyof Type as `prefix_${string & prop}`]: () => Type[prop];\n};\ntype X = {\n    a: string;\n    b: number;\n    c: ()=>{}\n};\ntype Y = PREFIX<X>;",
         "contentType": "typescript"
     },
     {
@@ -159,27 +159,143 @@
         "contentType": "typescript"
     },
     {
-        "created": "2024-01-14T18:23:48.225Z",
-        "name": "tstype_weak",
+        "created": "2024-01-14T21:53:59.841Z",
+        "name": "tsindex_retrieve_map",
+        "tags": [
+            "index",
+            "map",
+            "get",
+            "indexOf"
+        ],
+        "content": "const fooIndex = list.map(i => i.id).indexOf('foo');",
+        "contentType": "typescript"
+    },
+    {
+        "created": "2024-01-14T21:55:39.320Z",
+        "name": "tstype_structural",
+        "tags": [
+            "structural",
+            "type"
+        ],
+        "content": "type X = {\n    a: string;\n};\nconst y = { a: 'a', b: 'b' };\nconst x: X = y; // Valid because structural typing\nconst w: X = { a: 'a', b: 'b' }; // Invalid because excess property checking",
+        "contentType": "typescript"
+    },
+    {
+        "created": "2024-01-14T21:57:15.116Z",
+        "name": "tstype_prop_weak",
         "tags": [
             "type",
             "weak",
-            "prop",
-            "unknown"
+            "unknown",
+            "prop"
         ],
-        "content": "type Options = {\r\n    [prop: string]: unknown;\r\n    a?: string;\r\n    b?: string;\r\n};\r\nconst fn = (options: Options) => undefined;\r\nfn({ c: 'c' }); // Valid",
-        "contentType": "markdown"
+        "content": "type Options = {\n    [prop: string]: unknown;\n    a?: string;\n    b?: string;\n};\nconst fn = (options: Options) => undefined;\nfn({ c: 'c' }); // Valid",
+        "contentType": "typescript"
     },
     {
-        "created": "2024-01-14T18:25:39.276Z",
-        "name": "tstype_structural",
+        "created": "2024-01-15T10:22:12.753Z",
+        "name": "tstype_literal_number",
         "tags": [
             "type",
-            "structural",
-            "property",
-            "check"
+            "literal",
+            "pipe"
         ],
-        "content": "type X = {\r\n    a: string;\r\n};\r\nconst y = { a: 'a', b: 'b' };\r\nconst x: X = y; // Valid because structural typing\r\nconst w: X = { a: 'a', b: 'b' }; // Invalid because excess property checking",
-        "contentType": "markdown"
+        "content": "type OneToFive = 1 | 2 | 3 | 4 | 5;",
+        "contentType": "typescript"
+    },
+    {
+        "created": "2024-01-15T10:22:53.927Z",
+        "name": "tstype_literal_bool",
+        "tags": [
+            "literal",
+            "type",
+            "bool"
+        ],
+        "content": "type Bools = true | false;",
+        "contentType": "typescript"
+    },
+    {
+        "created": "2024-01-15T10:23:28.569Z",
+        "name": "tstype_literal_string",
+        "tags": [
+            "type",
+            "literal",
+            "string"
+        ],
+        "content": "type CardinalDirection =\n    | \"North\"\n    | \"East\"\n    | \"South\"\n    | \"West\";",
+        "contentType": "typescript"
+    },
+    {
+        "created": "2024-01-15T10:24:35.176Z",
+        "name": "tstype_literal_inference",
+        "tags": [
+            "type",
+            "literal",
+            "as",
+            "inference"
+        ],
+        "content": "function iTakeFoo(foo: 'foo') { }\nconst test = {\n  someProp: 'foo' as 'foo'\n};\niTakeFoo(test.someProp); ",
+        "contentType": "typescript"
+    },
+    {
+        "created": "2024-01-15T10:36:23.342Z",
+        "name": "tstype_literal_enum_string",
+        "tags": [
+            "literal",
+            "enum",
+            "keyof",
+            "typeof"
+        ],
+        "content": "function strEnum<T extends string>(o: Array<T>): {[K in T]: K} {\n  return o.reduce((res, key) => {\n    res[key] = key;\n    return res;\n  }, Object.create(null));\n}\nconst Direction = strEnum([\n  'North',\n  'South',\n  'East',\n  'West'\n])\ntype Direction = keyof typeof Direction;\n\nlet sample: Direction;\nsample = Direction.North; \nsample = 'North';\n//sample = 'AnythingElse'; // ERROR!",
+        "contentType": "typescript"
+    },
+    {
+        "created": "2024-01-15T12:08:51.510Z",
+        "name": "tstype_assertion_interface",
+        "tags": [
+            "type",
+            "assertion",
+            "as",
+            "interface"
+        ],
+        "content": "interface Foo {\n    bar: number;\n    bas: string;\n}\nvar foo = {} as Foo;\nfoo.bar = 123;\nfoo.bas = 'hello';",
+        "contentType": "typescript"
+    },
+    {
+        "created": "2024-01-16T08:33:19.593Z",
+        "name": "tstype_array_of_objects",
+        "tags": [
+            "type",
+            "object",
+            "array",
+            "interface",
+            "index"
+        ],
+        "content": "interface Foo {\n    [x: number]: number;\n}\n\nlet foo: Foo = { 0: 123, 1: 345 };\nconsole.log(foo[0]);   ",
+        "contentType": "typescript"
+    },
+    {
+        "created": "2024-01-16T08:52:12.113Z",
+        "name": "tstype_readonly_mutate",
+        "tags": [
+            "type",
+            "readonly",
+            "mutate",
+            "object"
+        ],
+        "content": "let foo: {readonly bar: number;} = {\n        bar: 123\n    };\nfunction iMutateFoo(foo: { bar: number }) {\n    foo.bar = 456;\n}\niMutateFoo(foo); // The foo argument is aliased by the foo parameter\nconsole.log(foo.bar); // 456!",
+        "contentType": "typescript"
+    },
+    {
+        "created": "2024-01-16T08:56:45.246Z",
+        "name": "tstype_readonly_immutate",
+        "tags": [
+            "type",
+            "immutate",
+            "readonly",
+            "interface"
+        ],
+        "content": "interface Foo {\n    readonly bar: number;\n}\nlet foo: Foo = {\n    bar: 123\n};\nfunction iTakeFoo(foo: Foo) {\n    foo.bar = 456; // Error! bar is readonly\n}\niTakeFoo(foo); // The foo argument is aliased by the foo parameter",
+        "contentType": "typescript"
     }
 ]
