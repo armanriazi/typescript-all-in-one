@@ -46,8 +46,9 @@
   * [Dynamic Import Expressions](project/dynamic-import-expressions.md)
 * [TypeScript's Types](types/types.md) <!--completed-->
   * [Empty](types/empty.md) <!--completed-->
-  * [Union](types/union.md) <!--completed-->
-  * [Enums](enums.md)
+  * [Compound](types/compound/compound.md)  <!--completed-->
+    * [Union](types/compound/union/union.md) <!--completed-->
+    * [Enums](types/compound/enum/enum.md)  <!--completed-->
   * [Type Assertion](types/type-assertion.md)<!--completed-->
     * [Type Mapping](types/mapping.md)  <!--completed-->  
   * [Freshness](types/freshness.md)  <!--completed-->  

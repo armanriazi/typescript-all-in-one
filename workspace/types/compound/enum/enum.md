@@ -28,6 +28,42 @@ card = "not a member of card suit"; // Error : string is not assignable to type 
 
 These enums values are `number`s so I'll call them Number Enums from hence forth.
 
+
+## Enums
+
+In TypeScript, an `enum` is a set of named constant values.
+
+```typescript
+enum Color {
+    Red = '#ff0000',
+    Green = '#00ff00',
+    Blue = '#0000ff',
+}
+```
+
+Note: TypeScript allows the usage of heterogeneous Enums where string and numeric members can coexist.
+
+### Constant enums
+
+A constant enum in TypeScript is a special type of Enum where all the values are known at compile time and are inlined wherever the enum is used, resulting in more efficient code.
+
+```typescript
+const enum Language {
+    English = 'EN',
+    Spanish = 'ES',
+}
+console.log(Language.English);
+```
+
+Will be compiled into:
+
+```js
+console.log('EN' /- [x] Language.English */);
+```
+
+`>tags:` [[Important]] [[Hardcode]] [[Enum]]
+Const Enums have hardcoded values, erasing the Enum, which can be more efficient in self-contained libraries but is generally not desirable. Also, Const enums cannot have computed members.
+
 #### Number Enums and Numbers
 TypeScript enums are number based. This means that numbers can be assigned to an instance of the enum, and so can anything else that is compatible with `number`.
 
@@ -94,6 +130,7 @@ enum Color {
     DarkGreen,    // 4
     DarkBlue      // 5
 }
+console.log(`${Color.DarkGreen}`); // 4
 ```
 
 > TIP: I quite commonly initialize the first enum with ` = 1` as it allows me to do a safe truthy check on an enum value.
@@ -104,10 +141,10 @@ One excellent use of enums is the ability to use enums as `Flags`. Flags allow y
 ```ts
 enum AnimalFlags {
     None           = 0,
-    HasClaws       = 1 << 0,
-    CanFly         = 1 << 1,
-    EatsFish       = 1 << 2,
-    Endangered     = 1 << 3
+    HasClaws       = 1 << 0, // Result 1
+    CanFly         = 1 << 1, // Result 2
+    EatsFish       = 1 << 2, // Result 4
+    Endangered     = 1 << 3 // Result 8
 }
 ```
 

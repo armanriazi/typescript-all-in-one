@@ -33,6 +33,10 @@ The "strict" property enables stronger guarantees and enhances type safety. It i
 - [x] Disable the usage of the "any" type when no type annotations are present.
 - [x] Raise an error on the usage of the "this" expression, which would otherwise imply the "any" type.
 
+#### strictNullChecks
+
+`strictNullChecks` is a TypeScript compiler option that enforces strict null checking. When this option is enabled, variables and parameters can only be assigned `null` or `undefined` if they have been explicitly declared to be of that type using the union type `null` | `undefined`. If a variable or parameter is not explicitly declared as nullable, TypeScript will generate an error to prevent potential runtime errors.
+
 #### module
 
 The "module" property sets the module system supported for the compiled program. During runtime, a module loader is used to locate and execute dependencies based on the specified module system.

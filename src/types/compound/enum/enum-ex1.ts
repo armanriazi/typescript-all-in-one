@@ -1,3 +1,8 @@
+///
+/// ```bash
+/// pnpm tsc ./src/types/compound/enum/enum-ex1.ts
+/// ```
+///
 enum X {
     A,
     B,
