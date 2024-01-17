@@ -15,6 +15,10 @@ For new projects use TypeScript configuration **noImplicitAny** which enables Ty
 ## unknown
 
 ```ts
+const isString = (value: unknown): value is string => typeof value === 'string';
+```
+
+```ts
 type Options = {
     [prop: string]: unknown;
     a?: string;

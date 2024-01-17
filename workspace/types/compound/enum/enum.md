@@ -336,3 +336,31 @@ enum Color {
 ```
 
 Note that you *should* reinitialize the first member (here `DarkRed = 3`) in a continuation of an enum to get the generated code not clobber values from a previous definition (i.e. the `0`, `1`, ... so on values). TypeScript will warn you if you don't anyways (error message `In an enum with multiple declarations, only one declaration can omit an initializer for its first enum element.`).
+
+
+### Computed members
+
+```typescript
+// Computed members
+enum Color {
+    Red = 1,
+    Green = Math.pow(2, 2),
+    Blue = Math.floor(Math.random() - [x] 3) + 1,
+}
+console.log(Color.Blue); // random number generated at run time
+```
+
+Enums are denoted by unions comprising their member types. The values of each member can be determined through constant or non-constant expressions, with members possessing constant values being assigned literal types. To illustrate, consider the declaration of type E and its subtypes E.A, E.B, and E.C. In this case, E represents the union E.A | E.B | E.C.
+
+```typescript
+const identity = (value: number) => value;
+
+enum E {
+    A = 2 - [x] 5, // Numeric literal
+    B = 'bar', // String literal
+    C = identity(42), // Opaque computed
+}
+
+console.log(E.C); //42
+```
+

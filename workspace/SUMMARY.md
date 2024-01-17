@@ -56,7 +56,8 @@
   * [Type Inference](types/type-inference.md)
     * [Structuring](types/structural.md) <!--completed-->
     * [Destructuring](types/destructuring.md) <!--completed-->
-    * [Guard](types/guard.md)   <!--completed-->    
+    * [Narrowing](types/narrowing/narrowing.md)   <!--completed-->    
+      * [Guard](types/narrowing/guard.md)   <!--completed-->    
   * [Literal Types](types/literal-types.md)<!--completed-->
     * [Inference Literal](types/inference-literal-types.md)   <!--completed-->
     * [Enum Literal](types/enum-literal-type.md)   <!--completed-->    
