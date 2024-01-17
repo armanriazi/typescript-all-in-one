@@ -1,4 +1,4 @@
-### Variables
+## Variables
 For example to tell TypeScript about the [`process` variable](https://nodejs.org/api/process.html) you *can* do:
 
 ```ts

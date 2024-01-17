@@ -485,52 +485,5 @@ Generally consider annotating type signatures but not the body local variables a
 
 ### Ambient Declarations
 
-Ambient declarations are files that describe types for JavaScript code, they have a file name format as `.d.ts.`. They are usually imported and used to annotate existing JavaScript libraries or to add types to existing JS files in your project.
+['@'types](./module/@types.md)
 
-Many common libraries types can be found at:
-<https://github.com/DefinitelyTyped/DefinitelyTyped/>
-
-and can be installed using:
-
-```shell
-npm install --save-dev @types/library-name
-```
-
-For your defined Ambient Declarations, you can import using the "triple-slash" reference:
-
-<!-- skip -->
-```typescript
-/// <reference path="./library-types.d.ts" />
-```
-
-You can use Ambient Declarations even within JavaScript files using `// @ts-check`.
-
-A major design goal of TypeScript was to make it possible for you to safely and easily use existing JavaScript libraries in TypeScript. TypeScript does this by means of *declaration*. TypeScript provides you with a sliding scale of how much or how little effort you want to put in your declarations, the more effort you put the more type safety + code intelligence you get. Note that definitions for most of the popular JavaScript libraries have already been written for you by the [DefinitelyTyped community](https://github.com/borisyankov/DefinitelyTyped) so for most purposes either:
-
-1. The definition file already exists.
-2. Or at the very least, you have a vast list of well reviewed TypeScript declaration templates already available
-
-As a quick example of how you would author your own declaration file, consider a trivial example of [jquery](https://jquery.com/). By default (as is to be expected of good JS code) TypeScript expects you to declare (i.e. use `var` somewhere) before you use a variable
-
-```ts
-$('.awesome').show(); // Error: cannot find name `$`
-```
-
-> As a quick fix *you can tell TypeScript* that there is indeed something called `$`:
-
-```ts
-declare var $: any;
-$('.awesome').show(); // Okay!
-```
-
-If you want you can build on this basic definition and provide more information to help protect you from errors:
-
-```ts
-declare var $: {
-    (selector:string): any;
-};
-$('.awesome').show(); // Okay!
-$(123).show(); // Error: selector needs to be a string
-```
-
-We will discuss the details of creating TypeScript definitions for existing JavaScript in detail later once you know more about TypeScript (e.g. stuff like `interface` and the `any`).

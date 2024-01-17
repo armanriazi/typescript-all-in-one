@@ -5,7 +5,6 @@
   * [StyleGuide](styleguide/styleguide.md)
   * [Configuration](configuration/configuration.md) <!--completed-->
     * [CLI](configuration/cli.md) <!--completed-->
-    * [TS config file](configuration/ts_config_file.md)  <!--completed-->
 * [JavaScript](javascript/recap.md)
   * [Equality](javascript/equality_condition.md) <!--completed-->
   * [References](javascript/references.md) <!--completed-->
@@ -24,6 +23,7 @@
   * [const](defination/const.md)   <!--completed-->
   * [Readonly](types/readonly.md)   <!--completed-->
 * [Future JavaScript Now](future-javascript.md) 
+  * [Template Strings](types/string/template-strings.md)  <!--completed-->  
   * [Classes](classes.md)
     * [Classes Emit](classes-emit.md)
   * [Arrow Functions](arrow-functions.md)
@@ -31,13 +31,12 @@
   * [Spread Operator](spread-operator.md)
   * [for...of](for...of.md)
   * [Iterators](iterators.md)
-  * [Template Strings](template-strings.md)
   * [Promise](promise.md)
   * [Generators](generators.md)
   * [Async Await](async-await.md)
 * [Project](project/project.md)
   * [Compilation Context](project/compilation-context.md)
-    * [tsconfig.json](project/tsconfig.md)
+    * [tsconfig.json](project/tsconfig.md) <!--completed--> 
     * [Which Files?](project/files.md)
   * [Declaration Spaces](project/declarationspaces.md)
   * [Modules](project/modules.md)
@@ -63,12 +62,13 @@
     * [Inference Literal](types/inference-literal-types.md)   <!--completed-->
     * [Enum Literal](types/enum-literal-type.md)   <!--completed-->    
     * [Inference Gurad Literal](types/inference-literal-gurad-type.md)   <!--completed-->
+  * [Conditional](types/conditional/conditional.md) <!--completed-->    
   * [TypeScript's Type System](types/type-system.md)
     * [JS Migration Guide](types/migrating.md)
-    * [@types](types/@types.md)
-    * [Ambient Declarations](types/ambient/intro.md)
-      * [Declaration Files](types/ambient/d.ts.md)
-      * [Variables](types/ambient/variables.md)    
+    * [@types](types/module/@types.md) <!--completed--> 
+      * [Ambient Declarations](types/ambient/intro.md)<!--completed-->
+        * [Declaration Files](types/ambient/d.ts.md)<!--completed-->
+        * [Variables](types/ambient/variables.md)    <!--completed-->
     * [`lib.d.ts`](types/lib.d.ts.md)
     * [Functions](types/functions.md)
     * [Callable](types/callable.md)    

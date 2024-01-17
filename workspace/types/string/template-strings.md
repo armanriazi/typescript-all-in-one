@@ -1,9 +1,9 @@
 ### Template Literals (Template Strings)
 Syntactically these are strings that use backticks ( i.e. \` ) instead of single (') or double (") quotes. The motivation of Template Literals is three fold:
 
-* String Interpolation
-* Multiline Strings
-* Tagged Templates
+- [x] String Interpolation
+- [x] Multiline Strings
+- [x] Tagged Templates
 
 #### String Interpolation
 Another common use case is when you want to generate some string out of some static strings + some variables. For this you would need some *templating logic* and this is where *template strings* originally got their name from. They have since been officially renamed to *template literals*. Here's how you would potentially generate an html string previously:
@@ -73,9 +73,3 @@ function htmlEscape(literals: TemplateStringsArray, ...placeholders: string[]) {
 }
 ```
 > Note: You can annotate `placeholders` to be any `[]`. Whatever you annotate it as, TypeScript will type check to make sure the placeholders used to call the tag match the annotation. For example if you expect to deal with `string` or `number`s you can annotate `...placeholders:(string | number)[]`
-
-#### Generated JS
-For pre ES6 compile targets the code is fairly simple. Multiline strings become escaped strings. String interpolation becomes *string concatenation*. Tagged Templates become function calls.
-
-#### Summary
-Multiline strings and string interpolation are just great things to have in any language. It's great that you can now use them in your JavaScript (thanks TypeScript!). Tagged templates allow you to create powerful string utilities.
