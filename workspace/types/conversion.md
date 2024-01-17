@@ -76,3 +76,5 @@ const result = add('x', 'y'); // xy
 error TS7006: Parameter 'b' implicitly has an 'any' type.
 ```
 
+## Mapped Type Modifiers
+[Related to](../collection/map.md)

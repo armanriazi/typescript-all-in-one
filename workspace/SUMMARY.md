@@ -14,9 +14,10 @@
   * [Number](javascript/number.md) <!--completed-->
   * [Truthy](javascript/truthy.md) <!--completed-->
 * [QuickStarts](quick/quick.md)  <!--completed-->
-  * [Node.js QuickStart](quick/nodejs.md)  <!--completed-->
-  * [Browser QuickStart](quick/browser.md)  <!--completed-->
-  * [Library QuickStart](quick/library.md)  <!--completed-->  
+  * [Node Browser Lib](quick/quick.md)  <!--completed-->
+    * [Node.js QuickStart](quick/nodejs.md)  <!--completed-->
+    * [Browser QuickStart](quick/browser.md)  <!--completed-->
+    * [Library QuickStart](quick/library.md)  <!--completed-->  
 * [Var vs Let vs Const vs Readonly](defination/defination.md) <!--completed-->
   * [let](defination/let.md) <!--completed-->
   * [var](defination/var.md) <!--completed-->
@@ -73,7 +74,6 @@
     * [Callable](types/callable.md)    
     * [Generics](types/generics.md)    
     * [Type Compatibility](types/type-compatibility.md)  
-    * [Discriminated Unions](types/discriminated-unions.md)
     * [Index Signatures](types/index-signatures.md)
     * [Moving Types](types/moving-types.md)
     * [Exception Handling](types/exceptions.md)

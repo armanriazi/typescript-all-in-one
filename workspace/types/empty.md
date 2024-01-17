@@ -221,7 +221,50 @@ let foo: never = 123; // Error: Type number is not assignable to never
 let bar: never = (() => { throw new Error(`Throw my hands in the air like I just don't care`) })();
 ```
 
-And because `never` is only assignable to another `never` you can use it for *compile time* exhaustive checks as well. This is covered in the [*discriminated union* section](./discriminated-unions.md).
+And because `never` is only assignable to another `never` you can use it for *compile time* exhaustive checks as well. 
+
+
+## The never Type
+
+When a variable is narrowed to a type that cannot contain any values, the TypeScript compiler will infer that the variable must be of the `never` type. This is because The never Type represents a value that can never be produced.
+
+```typescript
+const printValue = (val: string | number) => {
+    if (typeof val === 'string') {
+        console.log(val.toUpperCase());
+    } else if (typeof val === 'number') {
+        console.log(val.toFixed(2));
+    } else {
+        // val has type never here because it can never be anything other than a string or a number
+        const neverVal: never = val;
+        console.log(`Unexpected value: ${neverVal}`);
+    }
+};
+```
+
+## Exhaustiveness checking
+
+Exhaustiveness checking is a feature in TypeScript that ensures all possible cases of a discriminated union are handled in a `switch` statement or an `if` statement.
+
+```typescript
+type Direction = 'up' | 'down';
+
+const move = (direction: Direction) => {
+    switch (direction) {
+        case 'up':
+            console.log('Moving up');
+            break;
+        case 'down':
+            console.log('Moving down');
+            break;
+        default:
+            const exhaustiveCheck: never = direction;
+            console.log(exhaustiveCheck); // This line will never be executed
+    }
+};
+```
+
+The `never` type is used to ensure that the default case is exhaustive and that TypeScript will raise an error if a new value is added to the Direction type without being handled in the switch statement.
 
 ## never vs null
 As soon as someone tells you that never is returned when a function never exits gracefully you intuitively want to think of it as the same as void. However, void is a Unit. never is a falsum.
