@@ -48,6 +48,7 @@
   * [Empty](types/empty.md) <!--completed-->
   * [Compound](types/compound/compound.md)  <!--completed-->
     * [Union](types/compound/union/union.md) <!--completed-->
+      * [Union](types/compound/union/discriminated-unions.md) <!--completed-->
     * [Enums](types/compound/enum/enum.md)  <!--completed-->
   * [Type Assertion](types/type-assertion.md)<!--completed-->
     * [Type Mapping](types/mapping.md)  <!--completed-->  
@@ -74,12 +75,13 @@
     * [Callable](types/callable.md)    
     * [Generics](types/generics.md)    
     * [Type Compatibility](types/type-compatibility.md)  
-    * [Index Signatures](types/index-signatures.md)
+    * [Index Signatures](types/system/index-signatures.md)
     * [Moving Types](types/moving-types.md)
     * [Exception Handling](types/exceptions.md)
     * [Mixins](types/mixins.md)
 * [Collection](collection/collection.md)
   * [Array](collection/array.md)    
+  * [Array](collection/map.md)        
 * [OOP](oop/oop.md)  
   * [Interfaces](oop/interfaces.md)  
 * [JSX](jsx/tsx.md)

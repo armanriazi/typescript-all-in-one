@@ -12,7 +12,24 @@ For new projects use TypeScript configuration **noImplicitAny** which enables Ty
 
 > *The anytype is usually a source of errors which can mask real problems with your types. Avoid using it as much as possible.*
 
-## unknown
+The `any` type is a special type (**universal supertype**) that can be used to represent any type of value (*primitives, objects, arrays, functions, errors, symbols*). It is often used in situations where the **type of a value is not known at compile time**, or when working with values from external APIs or libraries that do not have TypeScript typings.
+
+By utilizing `any` type, you are indicating to the TypeScript compiler that values should be represented without any limitations. In order to maximizing type safety in your code consider the following:
+
+- [x] **Limit the usage of `any`** to specific cases where the type is truly unknown.
+- [x] **Do not return `any` types from a function** as you will lose type safety in the code using that function weakening your type safety.
+- [x] **Instead of `any` use `@ts-ignore` if you need to silence the compiler.**
+
+```typescript
+let value: any;
+value = true; // Valid
+value = 7; // Valid
+```
+
+
+## Unknown type
+
+In TypeScript, the `unknown` type represents a value that is of an unknown type. Unlike `any` type, which allows for any type of value, `unknown` requires a type check or assertion before it can be used in a specific way so **no operations are permitted on an `unknown` without first asserting or narrowing to a more specific type.**
 
 ```ts
 const isString = (value: unknown): value is string => typeof value === 'string';
@@ -36,11 +53,31 @@ function handler(event: Event) {
 }
 ```
 
+The `unknown` type is only assignable to any type and the `unknown` type itself, it is a type-safe alternative to `any`.
+
+<!-- skip -->
+```typescript
+let value: unknown;
+
+let value1: unknown = value; // Valid
+let value2: any = value; // Valid
+let value3: boolean = value; // Invalid
+let value4: number = value; // Invalid
+```
+
+```typescript
+const add = (a: unknown, b: unknown): number | undefined =>
+    typeof a === 'number' && typeof b === 'number' ? a + b : undefined;
+console.log(add(1, 2)); // 3
+console.log(add('x', 2)); // undefined
+```
+
 ### any vs unknown
 Both are **equally unsafe** as far as TypeScript is concerned. Use what makes you happy. Considerations:
 
-- [x] Linters prefer unknown (with no-explicit-any rule)
-- [x] any is less characters to type than unknown
+- [x] **Linters prefer unknown** (with no-explicit-any rule)
+- [x] **any is less characters** to type than unknown
+- [x] Unlike `any` type, which allows for any type of value, **`unknown` requires a type check or assertion** before it can be used in a specific way
 
 ## undefined
 
@@ -208,11 +245,33 @@ function foo(a?: number | null) {
 }
 ```
 
-## never
+
+## Never type
+
+The `never` type represents values that never occur. It is used to **denote functions or expressions that never return or throw an error.**
+
+For instance an infinite loop:
+
+```typescript
+const infiniteLoop = (): never => {
+    while (true) {
+        // do something
+    }
+};
+```
+
+Throwing an error:
+
+```typescript
+const throwError = (message: string): never => {
+    throw new Error(message);
+};
+```
+
 The never type is used in TypeScript to denote this bottom type. Cases when it occurs naturally:
 
-- [x] A function never returns (e.g. if the function body has while(true){})
-- [x] A function always throws (e.g. in function foo(){throw new Error('Not Implemented')} the return type of foo is never)
+- [x] A function **never returns** (e.g. if the function body has while(true){})
+- [x] A function **always throws** (e.g. in function foo(){throw new Error('Not Implemented')} the return type of foo is never)
 
 ```ts
 let foo: never = 123; // Error: Type number is not assignable to never
@@ -223,6 +282,24 @@ let bar: never = (() => { throw new Error(`Throw my hands in the air like I just
 
 And because `never` is only assignable to another `never` you can use it for *compile time* exhaustive checks as well. 
 
+The `never` type is useful in ensuring type safety and catching potential errors in your code. It helps TypeScript analyze and infer more precise types when used in combination with other types and control flow statements, for instance:
+
+```typescript
+type Direction = 'up' | 'down';
+const move = (direction: Direction): void => {
+    switch (direction) {
+        case 'up':
+            // move up
+            break;
+        case 'down':
+            // move down
+            break;
+        default:
+            const exhaustiveCheck: never = direction;
+            throw new Error(`Unhandled direction: ${exhaustiveCheck}`);
+    }
+};
+```
 
 ## The never Type
 

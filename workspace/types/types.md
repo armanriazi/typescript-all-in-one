@@ -294,7 +294,7 @@ const fn = (options: Options) => undefined;
 fn({ c: 'c' } as Options); // Valid
 ```
 
-Or by adding `unknown` to the index signature to the weak type:
+Or by adding `unknown` to the [index signatures](../types/system/index-signatures.md) to the weak type:
 
 ```typescript
 type Options = {
