@@ -58,7 +58,7 @@
     * [Destructuring](types/destructuring.md) <!--completed-->
     * [Narrowing](types/narrowing/narrowing.md)   <!--completed-->    
       * [Guard](types/narrowing/guard.md)   <!--completed-->    
-  * [Literal Types](types/literal-types.md)<!--completed-->
+  * [Literal Types](types/literal/literal-types.md)<!--completed-->
     * [Inference Literal](types/inference-literal-types.md)   <!--completed-->
     * [Enum Literal](types/enum-literal-type.md)   <!--completed-->    
     * [Inference Gurad Literal](types/inference-literal-gurad-type.md)   <!--completed-->
@@ -66,9 +66,9 @@
   * [TypeScript's Type System](types/type-system.md)
     * [JS Migration Guide](types/migrating.md)
     * [@types](types/module/@types.md) <!--completed--> 
-      * [Ambient Declarations](types/ambient/intro.md)<!--completed-->
-        * [Declaration Files](types/ambient/d.ts.md)<!--completed-->
-        * [Variables](types/ambient/variables.md)    <!--completed-->
+      * [Ambient Declarations](types/module/ambient/intro.md)<!--completed-->
+        * [Declaration Files](types/module/ambient/d.ts.md)<!--completed-->
+        * [Variables](types/module/ambient/variables.md)    <!--completed-->
     * [`lib.d.ts`](types/lib.d.ts.md)
     * [Functions](types/functions.md)
     * [Callable](types/callable.md)    
