@@ -93,3 +93,58 @@ class Animal {
     }
 }
 ```
+
+### Abstract Classes
+
+Abstract Classes are used in TypeScript mainly for inheritance, they provide a way to define common properties and methods that can be inherited by subclasses.
+This is useful when you want to define common behavior and enforce that subclasses implement certain methods. They provide a way to create a hierarchy of classes where the abstract base class provides a **shared interface and common functionality for the subclasses**.
+
+```typescript
+abstract class Animal {
+    protected name: string;
+
+    constructor(name: string) {
+        this.name = name;
+    }
+
+    abstract makeSound(): void;
+}
+
+class Cat extends Animal {
+    makeSound(): void {
+        console.log(`${this.name} meows.`);
+    }
+}
+
+const cat = new Cat('Whiskers');
+cat.makeSound(); // Output: Whiskers meows.
+```
+
+### With Generics
+
+Classes with generics allow you to define reusable classes which can work with different types.
+
+```typescript
+class Container<T> {
+    private item: T;
+
+    constructor(item: T) {
+        this.item = item;
+    }
+
+    getItem(): T {
+        return this.item;
+    }
+
+    setItem(item: T): void {
+        this.item = item;
+    }
+}
+
+const container1 = new Container<number>(42);
+console.log(container1.getItem()); //  42
+
+const container2 = new Container<string>('Hello');
+container2.setItem('World');
+console.log(container2.getItem()); // World
+```
