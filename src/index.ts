@@ -17,3 +17,7 @@ console.log(result)
 if (123 && true) { // Will be treated like `true`
     console.log(`Hello ${version} TypeScript`);
 }
+
+let x= 2;
+var x=3;
+console.log(`${x}`);
