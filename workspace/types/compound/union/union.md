@@ -1,4 +1,19 @@
 ## Union types
+Quite commonly in JavaScript you want to allow a property to be one of multiple types e.g. *a `string` or a `number`*. This is where the *union type* (denoted by `|` in a type annotation e.g. `string|number`) comes in handy. A common use case is a function that can take a single object or an array of the object e.g.:
+
+```ts
+function formatCommandline(command: string[]|string) {
+    var line = '';
+    if (typeof command === 'string') {
+        line = command.trim();
+    } else {
+        line = command.join(' ').trim();
+    }
+
+    // Do stuff with line: string
+}
+```
+
 They use the **pipe symbol (|)** to list all of the types that will make up this new type.
 
 ```typescript

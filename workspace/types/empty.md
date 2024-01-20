@@ -20,6 +20,24 @@ By utilizing `any` type, you are indicating to the TypeScript compiler that valu
 - [x] **Do not return `any` types from a function** as you will lose type safety in the code using that function weakening your type safety.
 - [x] **Instead of `any` use `@ts-ignore` if you need to silence the compiler.**
 
+The `any` type holds a special place in the TypeScript type system. It gives you an escape hatch from the type system to **tell the compiler to bugger off**. `any` is compatible with **any and all** types in the type system. This means that **anything can be assigned to it** and **it can be assigned to anything**. This is demonstrated in the example below:
+
+```ts
+var power: any;
+
+// Takes any and all types
+power = '123';
+power = 123;
+
+// Is compatible with all types
+var num: number;
+power = num;
+num = power;
+```
+
+If you are porting JavaScript code to TypeScript, you are going to be close friends with `any` in the beginning. However, don't take this friendship too seriously as it means that it is up to you to **ensure the type safety**. *You are basically telling the compiler* to **not do any meaningful static analysis**.
+
+
 ```typescript
 let value: any;
 value = true; // Valid
@@ -80,6 +98,20 @@ Both are **equally unsafe** as far as TypeScript is concerned. Use what makes yo
 - [x] Unlike `any` type, which allows for any type of value, **`unknown` requires a type check or assertion** before it can be used in a specific way
 
 ## undefined
+
+### `null` and `undefined`
+
+How they are treated by the type system depends on the `strictNullChecks` compiler flag (we cover this flag later). When in `strictNullCheck:false`, the `null` and `undefined` JavaScript literals are effectively treated by the type system the same as something of type `any`. These literals can be assigned to any other type. This is demonstrated in the below example:
+
+```ts
+var num: number;
+var str: string;
+
+// These literals can be assigned to anything
+num = null;
+str = undefined;
+```
+
 
 ```typescript
 let array = ["123", "456", "789"];  // Initialize an array with 3 elements, "123", "456", and "789"
@@ -224,7 +256,7 @@ Remember how I said you should use `== null`? Of course you do (cause I just sai
 
 > You should use strict mode ... and in fact the TS compiler will insert it for you if you use modules ... more on those later in the book so you don't have to be explicit about it :)
 
-So to check if a variable is defined or not at a *global* level you normally use `typeof`:
+So to check if a variable is defined or not at a **global** level you normally **use `typeof`**:
 
 ```ts
 if (typeof someglobal !== 'undefined') {
@@ -247,8 +279,13 @@ function foo(a?: number | null) {
 
 
 ## Never type
-
 The `never` type represents values that never occur. It is used to **denote functions or expressions that never return or throw an error.**
+
+### never vs null
+
+The `never` type is used to ensure that the default case is exhaustive and that TypeScript will raise an error if a new value is added to the Direction type without being handled in the switch statement.
+
+### Never use-cases
 
 For instance an infinite loop:
 
@@ -301,7 +338,6 @@ const move = (direction: Direction): void => {
 };
 ```
 
-## The never Type
 
 When a variable is narrowed to a type that cannot contain any values, the TypeScript compiler will infer that the variable must be of the `never` type. This is because The never Type represents a value that can never be produced.
 
@@ -341,9 +377,17 @@ const move = (direction: Direction) => {
 };
 ```
 
-The `never` type is used to ensure that the default case is exhaustive and that TypeScript will raise an error if a new value is added to the Direction type without being handled in the switch statement.
 
-## never vs null
+
+## void
+
+Use `:void` to signify that a function does not have a return type:
+
+```ts
+function log(message): void {
+    console.log(message);
+}
+```
 As soon as someone tells you that never is returned when a function never exits gracefully you intuitively want to think of it as the same as void. However, void is a Unit. never is a falsum.
 
 A function that returns nothing returns a Unit void. However, a function that never returns (or always throws) returns never. void is something that can be assigned (without strictNullChecking) but never can never be assigned to anything other than never.

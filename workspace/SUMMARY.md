@@ -17,11 +17,12 @@
     * [Node.js QuickStart](quick/nodejs.md)  <!--completed-->
     * [Browser QuickStart](quick/browser.md)  <!--completed-->
     * [Library QuickStart](quick/library.md)  <!--completed-->  
-* [Var vs Let vs Const vs Readonly](defination/defination.md) <!--completed-->
+* [Var_Let_Const_Readonly_Static](defination/defination.md) <!--completed-->
   * [let](defination/let.md) <!--completed-->
   * [var](defination/var.md) <!--completed-->
   * [const](defination/const.md)   <!--completed-->
-  * [Readonly](types/readonly.md)   <!--completed-->
+  * [readonly](types/readonly/readonly.md)   <!--completed-->
+  * [static](types/static/static.md)   <!--completed-->
 * [Future JavaScript Now](future-javascript.md) 
   * [Template Strings](types/string/template-strings.md)  <!--completed-->  
   * [Classes](classes.md)
@@ -48,28 +49,30 @@
   * [Empty](types/empty.md) <!--completed-->
   * [Compound](types/compound/compound.md)  <!--completed-->
     * [Union](types/compound/union/union.md) <!--completed-->
-      * [Union](types/compound/union/discriminated-unions.md) <!--completed-->
+      * [Discriminated-unions](types/compound/union/discriminated-unions.md) <!--completed-->
     * [Enums](types/compound/enum/enum.md)  <!--completed-->
+    * [Tuple](types/compound/tuple/tuple.md) <!--completed-->
   * [Type Assertion](types/type-assertion.md)<!--completed-->
     * [Type Mapping](types/mapping.md)  <!--completed-->  
   * [Freshness](types/freshness.md)  <!--completed-->  
   * [Widening](types/widening.md)  <!--completed-->  
   * [Type Inference](types/type-inference.md)
-    * [Structuring](types/structural.md) <!--completed-->
-    * [Destructuring](types/destructuring.md) <!--completed-->
-    * [Narrowing](types/narrowing/narrowing.md)   <!--completed-->    
+  [Duck Type](types/duck/duck.md) <!--completed-->
+    * [Structuring](types/duck/structural/structural.md) <!--completed-->
+    * [Destructuring](types/duck/structural/destructuring.md) <!--completed-->
+  * [Narrowing](types/narrowing/narrowing.md)   <!--completed-->    
       * [Guard](types/narrowing/guard.md)   <!--completed-->    
   * [Literal Types](types/literal/literal-types.md)<!--completed-->
     * [Inference Literal](types/inference-literal-types.md)   <!--completed-->
     * [Enum Literal](types/enum-literal-type.md)   <!--completed-->    
     * [Inference Gurad Literal](types/inference-literal-gurad-type.md)   <!--completed-->
   * [Conditional](types/conditional/conditional.md) <!--completed-->    
-  * [TypeScript's Type System](types/type-system.md)
-    * [JS Migration Guide](types/migrating.md)
-    * [@types](types/module/@types.md) <!--completed--> 
-      * [Ambient Declarations](types/module/ambient/intro.md)<!--completed-->
-        * [Declaration Files](types/module/ambient/d.ts.md)<!--completed-->
-        * [Variables](types/module/ambient/variables.md)    <!--completed-->
+  * [Intersection](types/patterns/intersection/intersection.md) <!--completed-->      
+  * [JS Migration Guide](types/migrating.md)
+  * [@types](types/module/@types.md) <!--completed--> 
+    * [Ambient Declarations](types/module/ambient/intro.md)<!--completed-->
+      * [Declaration Files](types/module/ambient/d.ts.md)<!--completed-->
+      * [Variables](types/module/ambient/variables.md)    <!--completed-->
     * [`lib.d.ts`](types/lib.d.ts.md)
     * [Functions](types/functions.md)
     * [Callable](types/callable.md)    
@@ -83,9 +86,12 @@
   * [Array](collection/array.md)    
   * [Map](collection/map.md)        
 * [OOP](oop/oop.md)  
+  * [Generic](types/generic/generic.md)    
   * [Class](oop/class.md)    
   * [Interfaces](oop/interfaces.md)  
   * [Decorators](oop/decorators.md)      
+  * [Inheritance](oop/inheritance.md)        
+  * [Polymorphism](oop/polymorphism.md)          
 * [JSX](jsx/tsx.md)
   * [React](jsx/react.md)
   * [Redux](jsx/redux.md)

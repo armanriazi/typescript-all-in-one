@@ -1,3 +1,18 @@
+TypeScript provides dedicated type syntax for arrays to make it easier for you to annotate and document your code. The syntax is basically postfixing `[]` to any valid type annotation (e.g. `:boolean[]`). It allows you to safely do any array manipulation that you would normally do and protects you from errors like assigning a member of the wrong type.  This is demonstrated below:
+
+```ts
+var boolArray: boolean[];
+
+boolArray = [true, false];
+console.log(boolArray[0]); // true
+console.log(boolArray.length); // 2
+boolArray[1] = true;
+boolArray = [false, false];
+
+boolArray[0] = 'false'; // Error!
+boolArray = 'false'; // Error!
+boolArray = [true, 'false']; // Error!
+```
 
 ## Creating arrays
 

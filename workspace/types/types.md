@@ -482,6 +482,31 @@ This is useful especially for  more complex functions as writing expliciting the
 
 Generally consider annotating type signatures but not the body local variables and add types always to object literals.
 
+TypeScript provides convenient syntax for providing names for type annotations that you would like to use in more than one place. The aliases are created using the `type SomeName = someValidTypeAnnotation` syntax. An example is demonstrated below:
+
+```ts
+type StrOrNum = string|number;
+
+// Usage: just like any other notation
+var sample: StrOrNum;
+sample = 123;
+sample = '123';
+
+// Just checking
+sample = true; // Error!
+```
+
+Unlike an `interface` you can give a type alias to literally any type annotation (useful for stuff like union and intersection types). Here are a few more examples to make you familiar with the syntax:
+
+```ts
+type Text = string | { text: string };
+type Coordinates = [number, number];
+type Callback = (data: string) => void;
+```
+
+`> TIP:` If you need to have hierarchies of Type annotations use an `interface`. They can be used with `implements` and `extends`
+
+`> TIP:` Use a type alias for simpler object structures (like `Coordinates`) just to give them a semantic name. Also when you want to give semantic names to **Union or Intersection types**, a Type alias is the way to go.
 
 ### Ambient Declarations
 

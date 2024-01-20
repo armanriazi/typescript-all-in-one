@@ -1,5 +1,4 @@
-
-### Decorators
+## Decorators
 
 Decorators provide **a mechanism to add metadata, modify behavior, validate, or extend the functionality** of the target element. They are functions that execute at runtime. Multiple decorators can be applied to a declaration.
 
@@ -124,4 +123,85 @@ It logs:
 LOG: Entering method 'sayHello'.
 Hello!
 LOG: Exiting method 'sayHello'.
+```
+
+
+#### Getter and Setter Decorators
+
+Getter and setter decorators allow you to change or enhance the behavior of class accessors. They are useful, for instance, for validating property assignments. Here's a simple example for a getter decorator:
+
+```typescript
+function range<This, Return extends number>(min: number, max: number) {
+    return function (
+        target: (this: This) => Return,
+        context: ClassGetterDecoratorContext<This, Return>
+    ) {
+        return function (this: This): Return {
+            const value = target.call(this);
+            if (value < min || value > max) {
+                throw 'Invalid';
+            }
+            Object.defineProperty(this, context.name, {
+                value,
+                enumerable: true,
+            });
+            return value;
+        };
+    };
+}
+
+class MyClass {
+    private _value = 0;
+
+    constructor(value: number) {
+        this._value = value;
+    }
+    @range(1, 100)
+    get getValue(): number {
+        return this._value;
+    }
+}
+
+const obj = new MyClass(10);
+console.log(obj.getValue); // Valid: 10
+
+const obj2 = new MyClass(999);
+console.log(obj2.getValue); // Throw: Invalid!
+```
+
+#### Decorator Metadata
+
+Decorator Metadata simplifies the process for decorators to apply and utilize metadata in any class. They can access a new metadata property on the context object, which can serve as a key for both primitives and objects.
+Metadata information can be accessed on the class via `Symbol.metadata`.
+
+Metadata can be used for various purposes, such as debugging, serialization, or dependency injection with decorators.
+
+```typescript
+//@ts-ignore
+Symbol.metadata ??= Symbol('Symbol.metadata'); // Simple polify
+
+type Context =
+    | ClassFieldDecoratorContext
+    | ClassAccessorDecoratorContext
+    | ClassMethodDecoratorContext; // Context contains property metadata: DecoratorMetadata
+
+function setMetadata(_target: any, context: Context) {
+    // Set the metadata object with a primitive value
+    context.metadata[context.name] = true;
+}
+
+class MyClass {
+    @setMetadata
+    a = 123;
+
+    @setMetadata
+    accessor b = 'b';
+
+    @setMetadata
+    fn() {}
+}
+
+const metadata = MyClass[Symbol.metadata]; // Get metadata information
+
+console.log(JSON.stringify(metadata)); // {"bar":true,"baz":true,"foo":true}
 ```
