@@ -55,20 +55,21 @@
     * [Tuple](types/compound/tuple/tuple.md) <!--completed-->
   * [Type Assertion](types/type-assertion.md)<!--completed-->
     * [Type Mapping](types/mapping.md)  <!--completed-->  
-  * [Freshness](types/freshness.md)  <!--completed-->  
-  * [Widening](types/widening.md)  <!--completed-->  
+  * [Freshness](types/freshness.md)  <!--completed-->    
   * [Type Inference](types/type-inference.md)
   * [Duck Type](types/duck/duck.md) <!--completed-->
     * [Structuring](types/duck/structural/structural.md) <!--completed-->
     * [Destructuring](types/duck/structural/destructuring.md) <!--completed-->
   * [Narrowing](types/narrowing/narrowing.md)   <!--completed-->    
       * [Guard](types/narrowing/guard.md)   <!--completed-->    
+      * [Widening](types/narrowing/widening.md)  <!--completed-->        
   * [Literal Types](types/literal/literal-types.md)<!--completed-->
     * [Inference Literal](types/inference-literal-types.md)   <!--completed-->
     * [Enum Literal](types/enum-literal-type.md)   <!--completed-->    
-    * [Inference Gurad Literal](types/inference-literal-gurad-type.md)   <!--completed-->
-  * [Conditional](types/conditional/conditional.md) <!--completed-->    
-  * [Intersection](types/patterns/intersection/intersection.md) <!--completed-->      
+    * [Inference Gurad Literal](types/inference-literal-gurad-type.md)   <!--completed-->  
+  * [Patterns](types/patterns/patterns.md) <!--completed-->          
+    * [Intersection](types/patterns/intersection/intersection.md) <!--completed-->      
+    * [Manipulation conditionally](types/patterns/manipulation/conditional.md) <!--completed-->      
   * [JS Migration Guide](types/migrating.md)
   * [@types](types/module/@types.md) <!--completed--> 
     * [Ambient Declarations](types/module/ambient/intro.md)<!--completed-->

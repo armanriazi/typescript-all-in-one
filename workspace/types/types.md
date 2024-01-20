@@ -331,42 +331,26 @@ v.x = 100; // Invalid
 
 ### Type Narrowing
 
-Type Narrowing is the process in TypeScript where a general type is narrowed down to a more specific type. This occurs when TypeScript analyzes the code and determines that certain conditions or operations can refine the type information.
+Type Narrowing is the process in TypeScript where a general type is narrowed down to a more specific type. This occurs when TypeScript analyzes the code and determines that certain conditions or operations can refine the type information.(instanceof, in, typeof, const)
 
-Narrowing types can occur in different ways, including:
 
-#### Conditions
+### Indexed Access Types
 
-By using conditional statements, such as `if` or `switch`, TypeScript can **narrow down the type based on the outcome of the condition.** For example:
-
-```typescript
-let x: number | undefined = 10;
-
-if (x !== undefined) {
-    x += 100; // The type is number, which had been narrowed by the condition
-}
-```
-
-#### Throwing or returning
-
-Throwing an error or returning early from a branch can be used to help TypeScript narrow down a type. For example:
+In TypeScript is it possible to access and manipulate  the types of properties within another type using an index, `Type[Key]`.
 
 ```typescript
-let x: number | undefined = 10;
+type Person = {
+    name: string;
+    age: number;
+};
 
-if (x === undefined) {
-    throw 'error';
-}
-x += 100;
+type AgeType = Person['age']; // number
 ```
 
-Other ways to **narrow down types** in TypeScript include:
-
-- [x] **`instanceof` operator**: Used to check if an object is an instance of a specific class.
-- [x] **`in` operator**: Used to check if a property exists in an object.
-- [x] **`typeof` operator**: Used to check the type of a value at runtime.
-- [x] **Built-in functions like `Array.isArray()`**: Used to check if a value is an array.
-
+```typescript
+type MyTuple = [string, number, boolean];
+type MyType = MyTuple[2]; // boolean
+```
 
 ## Type Annotations
 

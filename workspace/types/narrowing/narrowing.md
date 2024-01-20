@@ -2,6 +2,41 @@
 
 TypeScript narrowing is the process of refining the type of a variable within a conditional block. This is useful when working with union types, where a variable can have more than one type.
 
+
+Narrowing types can occur in different ways, including:
+
+#### Conditions
+
+By using conditional statements, such as `if` or `switch`, TypeScript can **narrow down the type based on the outcome of the condition.** For example:
+
+```typescript
+let x: number | undefined = 10;
+
+if (x !== undefined) {
+    x += 100; // The type is number, which had been narrowed by the condition
+}
+```
+
+#### Throwing or returning
+
+Throwing an error or returning early from a branch can be used to help TypeScript narrow down a type. For example:
+
+```typescript
+let x: number | undefined = 10;
+
+if (x === undefined) {
+    throw 'error';
+}
+x += 100;
+```
+
+Other ways to **narrow down types** in TypeScript include:
+
+- [x] **`instanceof` operator**: Used to check if an object is an instance of a specific class.
+- [x] **`in` operator**: Used to check if a property exists in an object.
+- [x] **`typeof` operator**: Used to check the type of a value at runtime.
+- [x] **Built-in functions like `Array.isArray()`**: Used to check if a value is an array.
+
 TypeScript recognizes several ways to narrow the type:
 
 ### typeof type guards
@@ -88,9 +123,9 @@ class Rectangle {
 }
 function area(shape: Square | Rectangle) {
     if (shape instanceof Square) {
-        return shape.width - [x] shape.width;
+        return shape.width - shape.width;
     } else {
-        return shape.width - [x] shape.height;
+        return shape.width - shape.height;
     }
 }
 const square = new Square(5);
@@ -116,3 +151,7 @@ if (typeof value === 'number') {
     console.log(value.toFixed(2));
 }
 ```
+
+## Another form of widening
+
+[Ref.to widening](./widening.md) to findings `const x= 'x' ` is a narrow type in spite of `let`!

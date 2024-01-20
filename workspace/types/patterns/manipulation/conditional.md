@@ -1,4 +1,15 @@
+
 ## Conditional Types
+
+
+Allow you to create types based on some conditions:
+
+```typescript
+type ExtractParam<T> = T extends (param: infer P) => any ? P : never;
+type MyFunction = (name: string) => number;
+type ParamType = ExtractParam<MyFunction>; // string
+```
+
 
 Conditional Types are a way to create a type that depends on a condition, where the type to be created is determined based on the result of the condition. They are defined using the `extends` keyword and a ternary operator to conditionally choose between two types.
 
