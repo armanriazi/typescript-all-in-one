@@ -1,6 +1,36 @@
 ## External modules
 There is a lot of power and usability packed into the TypeScript external module pattern. Here we discuss its power and some patterns needed to reflect real world usages.
 
+## Triple-Slash Directives
+
+Triple-slash directives are special comments that provide instructions to the compiler about how to process a file. These directives begin with three consecutive slashes (`///`) and are typically placed at the top of a TypeScript file and have no effects on the runtime behavior.
+
+Triple-slash directives are used to reference external dependencies, specify module loading behavior, enable/disable certain compiler features, and more. Few examples:
+
+`>tags:` [[Comment]] #load_module
+
+Referencing a declaration file:
+
+<!-- skip -->
+```typescript
+/// <reference path="path/to/declaration/file.d.ts" />
+```
+
+Indicate the module format:
+
+<!-- skip -->
+```typescript
+/// <amd|commonjs|system|umd|es6|es2015|none>
+```
+
+Enable compiler options, in the following example strict mode:
+
+<!-- skip -->
+```typescript
+/// <strict|noImplicitAny|noUnusedLocals|noUnusedParameters>
+```
+
+
 ### Clarification: commonjs, amd, es modules, others
 
 First up we need to clarify the (awful) inconsistency of the module systems out there. I'll just give you my *current* recommendation and remove the noise i.e. not show you all the *other* ways things can work.

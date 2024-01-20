@@ -226,10 +226,11 @@ Welcome to The Concise TypeScript Book! This guide equips you with essential kno
 Arman Riazi is an experienced Senior Backend-end Developer with a passion for Rust, R&D and Blockchain since 2012.
 You can reach Arman Riazi on the following platforms:
 
-- [x] LinkedIn: <https://www.linkedin.com/in/armanriazi
+- [x] LinkedIn: <https://www.linkedin.com/showcase/armanriazi
 - [x] GitHub: <https://github.com/armanriazi>
 - [x] Twitter: <https://twitter.com/armanriazi.meta>
-- [x] Instagram: <https://instagram.com/armanriazi_meta>
 - [x] Email: armanriyazi.github.io📧gmail.com
+
+<!-- - [x] Instagram: <https://instagram.com/armanriazi_meta>-->
 
 

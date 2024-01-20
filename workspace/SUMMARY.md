@@ -43,10 +43,11 @@
   * [Modules](project/modules.md)
     * [File Module Details](project/external-modules.md)
     * [global.d.ts](project/globals.md)
-  * [Namespaces](project/namespaces.md)
+  * [Namespaces](project/namespaces.md)  <!--completed-->
   * [Dynamic Import Expressions](project/dynamic-import-expressions.md)
 * [TypeScript's Types](types/types.md) <!--completed-->
   * [Empty](types/empty.md) <!--completed-->
+  * [Primitive](types/primitive/primitive.md) <!--completed-->
   * [Compound](types/compound/compound.md)  <!--completed-->
     * [Union](types/compound/union/union.md) <!--completed-->
       * [Discriminated-unions](types/compound/union/discriminated-unions.md) <!--completed-->
@@ -57,7 +58,7 @@
   * [Freshness](types/freshness.md)  <!--completed-->  
   * [Widening](types/widening.md)  <!--completed-->  
   * [Type Inference](types/type-inference.md)
-  [Duck Type](types/duck/duck.md) <!--completed-->
+  * [Duck Type](types/duck/duck.md) <!--completed-->
     * [Structuring](types/duck/structural/structural.md) <!--completed-->
     * [Destructuring](types/duck/structural/destructuring.md) <!--completed-->
   * [Narrowing](types/narrowing/narrowing.md)   <!--completed-->    

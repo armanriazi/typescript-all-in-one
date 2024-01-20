@@ -1,13 +1,24 @@
-## Namespaces
-Namespaces provide you with a convenient syntax around a common pattern used in JavaScript:
+## Namespacing
 
-```ts
-(function(something) {
+In TypeScript, namespaces are used to organize code into logical containers, preventing naming collisions and providing a way to group related code together.
+The usage of the `export` keywords allows access to the namespace in "outside" modules.
 
-    something.foo = 123;
+```typescript
+export namespace MyNamespace {
+    export interface MyInterface1 {
+        prop1: boolean;
+    }
+    export interface MyInterface2 {
+        prop2: string;
+    }
+}
 
-})(something || (something = {}))
+const a: MyNamespace.MyInterface1 = {
+    prop1: true,
+};
 ```
+
+Namespaces provide you with a convenient syntax around a common pattern used in JavaScript:
 
 Basically `something || (something = {})` allows an anonymous function `function(something) {}` to *add stuff to an existing object* (the `something ||` portion) or *start a new object then add stuff to that object* (the `|| (something = {})` portion). This means that you can have two such blocks split by some execution boundary:
 
