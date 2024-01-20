@@ -47,12 +47,13 @@
   * [Dynamic Import Expressions](project/dynamic-import-expressions.md)
 * [TypeScript's Types](types/types.md) <!--completed-->
   * [Empty](types/empty.md) <!--completed-->
-  * [Primitive](types/primitive/primitive.md) <!--completed-->
+  * [Primitive](types/primitive/primitive.md) <!--completed-->  
   * [Compound](types/compound/compound.md)  <!--completed-->
     * [Union](types/compound/union/union.md) <!--completed-->
       * [Discriminated-unions](types/compound/union/discriminated-unions.md) <!--completed-->
     * [Enums](types/compound/enum/enum.md)  <!--completed-->
     * [Tuple](types/compound/tuple/tuple.md) <!--completed-->
+  * [Generic](types/generic/generic.md)       <!--completed-->  
   * [Type Assertion](types/type-assertion.md)<!--completed-->
     * [Type Mapping](types/mapping.md)  <!--completed-->  
   * [Freshness](types/freshness.md)  <!--completed-->    
@@ -67,9 +68,13 @@
     * [Inference Literal](types/inference-literal-types.md)   <!--completed-->
     * [Enum Literal](types/enum-literal-type.md)   <!--completed-->    
     * [Inference Gurad Literal](types/inference-literal-gurad-type.md)   <!--completed-->  
+  * [Built-in](types/builtin/builtin.md) <!--completed-->    
+  * [Exception Handling](types/exceptions/exceptions.md)
   * [Patterns](types/patterns/patterns.md) <!--completed-->          
     * [Intersection](types/patterns/intersection/intersection.md) <!--completed-->      
-    * [Manipulation conditionally](types/patterns/manipulation/conditional.md) <!--completed-->      
+    * [Manipulation](types/patterns/manipulation/manipulation.md) <!--completed-->      
+      * [Conditionally](types/patterns/manipulation/conditional.md) <!--completed-->      
+      * [Transform Mapping](types/patterns/manipulation/transform-mapping.md) <!--completed-->          
   * [JS Migration Guide](types/migrating.md)
   * [@types](types/module/@types.md) <!--completed--> 
     * [Ambient Declarations](types/module/ambient/intro.md)<!--completed-->
@@ -77,12 +82,10 @@
       * [Variables](types/module/ambient/variables.md)    <!--completed-->
     * [`lib.d.ts`](types/lib.d.ts.md)
     * [Functions](types/functions.md)
-    * [Callable](types/callable.md)    
-    * [Generics](types/generics.md)    
+    * [Callable](types/callable.md)        
     * [Type Compatibility](types/type-compatibility.md)  
     * [Index Signatures](types/system/index-signatures.md)
     * [Moving Types](types/moving-types.md)
-    * [Exception Handling](types/exceptions.md)
     * [Mixins](types/mixins.md)
 * [Collection](collection/collection.md)
   * [Array](collection/array.md)    

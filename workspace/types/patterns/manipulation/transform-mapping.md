@@ -1,4 +1,4 @@
-Mapped Types:
+## Mapped Types
 
 Allow you to transform the properties of an existing type to create new type:
 

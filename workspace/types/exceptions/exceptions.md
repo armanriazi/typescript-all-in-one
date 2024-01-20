@@ -1,3 +1,51 @@
+
+## Errors and Exception Handling
+
+TypeScript allows you to catch and handle errors using standard JavaScript error handling mechanisms:
+
+Try-Catch-Finally Blocks:
+
+```typescript
+try {
+    // Code that might throw an error
+} catch (error) {
+    // Handle the error
+} finally {
+    // Code that always executes, finally is optional
+}
+```
+
+You can also handle different types of error:
+
+```typescript
+try {
+    // Code that might throw different types of errors
+} catch (error) {
+    if (error instanceof TypeError) {
+        // Handle TypeError
+    } else if (error instanceof RangeError) {
+        // Handle RangeError
+    } else {
+        // Handle other errors
+    }
+}
+```
+
+Custom Error Types:
+
+It is possible to specify more specific error by extending on the Error `class`:
+
+```typescript
+class CustomError extends Error {
+    constructor(message: string) {
+        super(message);
+        this.name = 'CustomError';
+    }
+}
+
+throw new CustomError('This is a custom error.');
+```
+
 # Exception Handling
 
 JavaScript has an `Error` class that you can use for exceptions. You throw an error with the `throw` keyword. You can catch it with a `try` / `catch` block pair e.g.
