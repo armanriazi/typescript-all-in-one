@@ -36,6 +36,56 @@ var myPoint.z; // Allowed!
 This is because **interfaces in TypeScript are open ended**. This is a vital tenet of TypeScript that it allows you to mimic the extensibility of JavaScript using *interfaces*.
 
 
+
+Interfaces are the core way in TypeScript to compose multiple type annotations into a single named annotation. Consider the following example:
+
+```ts
+interface Name {
+    first: string;
+    second: string;
+}
+
+var name: Name;
+name = {
+    first: 'John',
+    second: 'Doe'
+};
+
+name = {           // Error : `second` is missing
+    first: 'John'
+};
+name = {           // Error : `second` is the wrong type
+    first: 'John',
+    second: 1337
+};
+```
+
+Here we've composed the annotations `first: string` + `second: string` into a new annotation `Name` that enforces the type checks on individual members. Interfaces have a lot of power in TypeScript and we will dedicate an entire section to how you can use that to your advantage.
+
+### Inline Type Annotation
+Instead of creating a new `interface` you can annotate anything you want *inline* using `:{ /*Structure*/ }`. The previous example presented again with an inline type:
+
+```ts
+var name: {
+    first: string;
+    second: string;
+};
+name = {
+    first: 'John',
+    second: 'Doe'
+};
+
+name = {           // Error : `second` is missing
+    first: 'John'
+};
+name = {           // Error : `second` is the wrong type
+    first: 'John',
+    second: 1337
+};
+```
+
+Inline types are great for quickly providing a one off type annotation for something. It saves you the hassle of coming up with (a potentially bad) type name. However, if you find yourself putting in the same type annotation inline multiple times it's a good idea to consider refactoring it into an interface (or a `type alias` covered later in this section).
+
 ## Classes can implement interfaces
 
 If you want to use *classes* that must follow an object structure that someone declared for you in an `interface` you can use the `implements` keyword to ensure compatibility:

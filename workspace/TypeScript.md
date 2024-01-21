@@ -51,58 +51,6 @@ Types have proven ability to enhance code quality and understandability. Large t
 ---
 
 
-### Mixin classes
-
-Mixin classes allow you to combine and compose behavior from multiple classes into a single class. They provide a way to reuse and extend functionality without the need for deep inheritance chains.
-
-```typescript
-abstract class Identifiable {
-    name: string = '';
-    logId() {
-        console.log('id:', this.name);
-    }
-}
-abstract class Selectable {
-    selected: boolean = false;
-    select() {
-        this.selected = true;
-        console.log('Select');
-    }
-    deselect() {
-        this.selected = false;
-        console.log('Deselect');
-    }
-}
-class MyClass {
-    constructor() {}
-}
-
-// Extend MyClass to include the behavior of Identifiable and Selectable
-interface MyClass extends Identifiable, Selectable {}
-
-// Function to apply mixins to a class
-function applyMixins(source: any, baseCtors: any[]) {
-    baseCtors.forEach(baseCtor => {
-        Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-            let descriptor = Object.getOwnPropertyDescriptor(
-                baseCtor.prototype,
-                name
-            );
-            if (descriptor) {
-                Object.defineProperty(source.prototype, name, descriptor);
-            }
-        });
-    });
-}
-
-// Apply the mixins to MyClass
-applyMixins(MyClass, [Identifiable, Selectable]);
-let o = new MyClass();
-o.name = 'abc';
-o.logId();
-o.select();
-```
-
 ### Asynchronous Language Features
 
 As TypeScript is a superset of JavaScript, it has built-in asynchronous language features of JavaScript as:
@@ -841,7 +789,7 @@ console.log(3);
 
 The code will log:
 
-```shell
+```md
 1
 2
 disposed
@@ -920,7 +868,7 @@ doWork();
 
 The code logs:
 
-```shell
+```md
 Doing some work...
 Closing the connection...
 Connection closed.
