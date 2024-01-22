@@ -34,8 +34,9 @@
   * [Iterators](iterators.md)
   * [Promise](promise.md)
   * [Generators](generators.md)
-  * [Async Await](async-await.md)
+  * [Async Await](async/async.md)
 * [Project](project/project.md)
+  * [JS Migration Guide](types/migrating.md) <!--completed--> 
   * [Compilation Context](project/compilation-context.md)
     * [tsconfig.json](project/tsconfig.md) <!--completed--> 
     * [Which Files?](project/files.md)
@@ -69,13 +70,12 @@
     * [Enum Literal](types/enum-literal-type.md)   <!--completed-->    
     * [Inference Gurad Literal](types/inference-literal-gurad-type.md)   <!--completed-->  
   * [Built-in](types/builtin/builtin.md) <!--completed-->    
-  * [Exception Handling](types/exceptions/exceptions.md)
+  * [Exception Handling](types/exceptions/exceptions.md)  <!--completed-->  
   * [Patterns](types/patterns/patterns.md) <!--completed-->          
     * [Intersection](types/patterns/intersection/intersection.md) <!--completed-->      
     * [Manipulation](types/patterns/manipulation/manipulation.md) <!--completed-->      
       * [Conditionally](types/patterns/manipulation/conditional.md) <!--completed-->      
-      * [Transform Mapping](types/patterns/manipulation/transform-mapping.md) <!--completed-->          
-  * [JS Migration Guide](types/migrating.md)
+      * [Transform Mapping](types/patterns/manipulation/transform-mapping.md) <!--completed-->            
   * [@types](types/module/@types.md) <!--completed--> 
     * [Ambient Declarations](types/module/ambient/intro.md)<!--completed-->
       * [Declaration Files](types/module/ambient/d.ts.md)<!--completed-->

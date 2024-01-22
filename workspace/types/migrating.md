@@ -1,16 +1,16 @@
 ## Migrating From JavaScript
 
 Assuming:
-* you know JavaScript.
-* you know patterns and build tools (e.g. webpack) used in the project. 
+- [x] you know JavaScript.
+- [x] you know patterns and build tools (e.g. webpack) used in the project. 
 
 With that assumption out of the way, in general the process consists of the following steps:
 
-* Add a `tsconfig.json`.
-* Change your source code file extensions from `.js` to `.ts`. Start *suppressing* errors using `any`.
-* Write new code in TypeScript and make as little use of `any` as possible.
-* Go back to the old code and start adding type annotations and fix identified bugs.
-* Use ambient definitions for third party JavaScript code.
+- [x] Add a `tsconfig.json`.
+- [x] Change your source code file extensions from `.js` to `.ts`. Start *suppressing* errors using `any`.
+- [x] Write new code in TypeScript and make as little use of `any` as possible.
+- [x] Go back to the old code and start adding type annotations and fix identified bugs.
+- [x] Use ambient definitions for third party JavaScript code.
 
 Let us discuss a few of these points further.
 
@@ -68,7 +68,7 @@ Consider the case of `jquery`, you can create a *trivial* definition for it quit
 declare var $: any;
 ```
 
-Sometimes you might want to add an explicit annotation on something (e.g. `JQuery`) and you need something in *type declaration space*. You can do that quite easily using the `type` keyword:
+Sometimes you might want to add an explicit annotation on something (e.g. `JQuery`) and you need something in **type declaration space**. You can do that quite easily using the `type` keyword:
 
 ```ts
 declare type JQuery = any;
@@ -94,9 +94,8 @@ And then you can import it in your file as needed:
 import * as $ from "jquery";
 ```
 
-> Again, a high quality `jquery.d.ts` exists at [DefinitelyTyped](https://github.com/borisyankov/DefinitelyTyped) that provides a much higher quality jquery module declaration. But it might not exist for your library, so now you have a quick low friction way of continuing the migration 🌹
 
-# External non js resources
+## External non js resources
 
 You can even allow import of any file e.g. `.css` files (if you are using something like webpack style loaders or css modules) with a simple `*` style declaration (ideally in a [`global.d.ts` file](../project/globals.md)): 
 
