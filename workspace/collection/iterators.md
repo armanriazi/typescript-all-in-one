@@ -1,8 +1,65 @@
-### Iterators
 
-Iterator itself is not a TypeScript or ES6 feature, Iterator is a
-Behavioral Design Pattern common for Object oriented programming languages.
-It is, generally, an object which implements the following interface:
+### Iterators and Generators
+
+Both Interators and Generators are well supported in TypeScript.
+
+Iterators are objects that implement the iterator protocol, providing a way to access elements of a collection or sequence one by one. It is a structure that contains a pointer to the next element in the iteration. They have a `next()` method that returns the next value in the sequence along with a boolean indicating if the sequence is `done`.
+
+```typescript
+class NumberIterator implements Iterable<number> {
+    private current: number;
+
+    constructor(
+        private start: number,
+        private end: number
+    ) {
+        this.current = start;
+    }
+
+    public next(): IteratorResult<number> {
+        if (this.current <= this.end) {
+            const value = this.current;
+            this.current++;
+            return { value, done: false };
+        } else {
+            return { value: undefined, done: true };
+        }
+    }
+
+    [Symbol.iterator](): Iterator<number> {
+        return this;
+    }
+}
+
+const iterator = new NumberIterator(1, 3);
+
+for (const num of iterator) {
+    console.log(num);
+}
+```
+
+Generators are special functions defined using the `function*` syntax that simplifies the creation of iterators. They use the `yield` keyword to define the sequence of values and automatically pause and resume execution when values are requested.
+
+Generators make it easier to create iterators and are especially useful for working with large or infinite sequences.
+
+Example:
+
+```typescript
+function- [x] numberGenerator(start: number, end: number): Generator<number> {
+    for (let i = start; i <= end; i++) {
+        yield i;
+    }
+}
+
+const generator = numberGenerator(1, 5);
+
+for (const num of generator) {
+    console.log(num);
+}
+```
+
+Iterator itself is not a TypeScript or ES6 feature, Iterator is a Behavioral Design Pattern common for Object oriented programming languages. It is, generally, an object which implements the following interface:
+
 
 ```ts
 interface Iterator<T> {
@@ -16,6 +73,7 @@ This interface allows to retrieve a value from some collection or sequence
 which belongs to the object.
 
 The `IteratorResult` is simply a `value`+`done` pair: 
+
 ```ts
 interface IteratorResult<T> {
     done: boolean;
@@ -23,9 +81,7 @@ interface IteratorResult<T> {
 }
 ```
 
-Imagine that there's an object of some frame, which includes the list of
-components of which this frame consists. With Iterator interface it is possible
-to retrieve components from this frame object like below:
+Imagine that there's an object of some frame, which includes the list of components of which this frame consists. With Iterator interface it is possible to retrieve components from this frame object like below:
 
 ```ts
 class Component {
@@ -64,13 +120,11 @@ let iteratorResult5 = frame.next(); //{ done: true, value: null }
 //It is possible to access the value of iterator result via the value property:
 let component = iteratorResult1.value; //Component { name: 'top' }
 ```
-Again. Iterator itself is not a TypeScript feature, this code could work without
-implementing Iterator and IteratorResult interfaces explicitly.
-However, it is very helpful to use these common
-ES6 [interfaces](./types/interfaces.md) for code consistency.
 
-Ok, Nice, but could be more helpful. ES6 defines the *iterable protocol*
-which includes the [Symbol.iterator] `symbol` if the Iterable interface is implemented:
+Again. Iterator itself is not a TypeScript feature, this code could work without implementing Iterator and IteratorResult interfaces explicitly. However, it is very helpful to use these common ES6 [interfaces](../oop/interfaces.md) for code consistency.
+
+Ok, Nice, but could be more helpful. ES6 defines the *iterable protocol* which includes the [Symbol.iterator] `symbol` if the Iterable interface is implemented:
+
 ```ts
 //...
 class Frame implements Iterable<Component> {
@@ -103,10 +157,11 @@ let frame = new Frame("Door", [new Component("top"), new Component("bottom"), ne
 for (let cmp of frame) {
   console.log(cmp);
 }
+
 ```
 
-Unfortunately `frame.next()` won't work with this pattern and it also looks
-a bit clunky. IterableIterator interface to the rescue!
+Unfortunately `frame.next()` won't work with this pattern and it also looks a bit clunky. IterableIterator interface to the rescue!
+
 ```ts
 //...
 class Frame implements IterableIterator<Component> {
@@ -135,11 +190,15 @@ class Frame implements IterableIterator<Component> {
 
 }
 //...
+
 ```
 Both `frame.next()` and `for` cycle now work fine with IterableIterator interface.
 
 Iterator does not have to iterate a finite value.
 The typical example is a Fibonacci sequence:
+
+`>tags:` [[Important]] [[Fib]] [[Fibonacci]] [[IterableIterator]] [[Iterator]] [[Symbol]]
+
 ```ts
 class Fib implements IterableIterator<number> {
 
@@ -188,11 +247,14 @@ for(let num of fibMax21) {
 }
 ```
 
-#### Building code with iterators for ES5 target
-Code examples above require ES6 target. However, it could work
-with ES5 target as well if target JS engine supports `Symbol.iterator`.
-This can be achieved by using ES6 lib with ES5 target
-(add es6.d.ts to your project) to make it compile.
-Compiled code should work in node 4+, Google Chrome and in some other browsers.
+### Building code with iterators for ES5 target
+Code examples above require ES6 target. However, it could work with ES5 target as well if target JS engine supports `Symbol.iterator`. This can be achieved by using ES6 lib with ES5 target (add es6.d.ts to your project) to make it compile. Compiled code should work in node 4+, Google Chrome and in some other browsers.
 
-[generics]: ./types/generics.md
+TypeScript also supports async iterators and async Generators.
+
+To learn more:
+<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator>        
+<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Iterator>
+
+
+[generics](../types/generic/generic.md)

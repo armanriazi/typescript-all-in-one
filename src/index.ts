@@ -3,6 +3,17 @@
 /// pnpm tsc ./src/index.ts
 /// ```
 ///
+/**
+ - [x] Computes the power of a given number
+ - [x] @constructor
+ - [x] @param {number} base – The base value of the expression
+ - [x] @param {number} exponent – The exponent value of the expression
+ */
+ /*
+ function power(base: number, exponent: number) {
+    return Math.pow(base, exponent);
+}
+*/
 
 // export { Foo } from './foo';. Exporting from this file makes it available for consumption when someone does import //{ /* Here */ //} from 'example';
 

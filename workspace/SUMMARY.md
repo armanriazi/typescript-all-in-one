@@ -31,9 +31,9 @@
   * [Rest Parameters](rest-parameters.md)
   * [Spread Operator](spread-operator.md)
   * [for...of](for...of.md)
-  * [Iterators](iterators.md)
+  * [Iterators](collection/iterators.md)  <!--completed-->  
   * [Promise](promise.md)
-  * [Generators](generators.md)
+  * [Generators](collection/generators.md)  <!--completed-->  
   * [Async Await](async/async.md)
 * [Project](project/project.md)
   * [JS Migration Guide](types/migrating.md) <!--completed--> 
