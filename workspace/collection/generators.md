@@ -1,12 +1,12 @@
 ## Generators
 
-`function *` is the syntax used to create a *generator function*. Calling a generator function returns a *generator object*. The generator object just follows the [iterator][iterator] interface (i.e. the `next`, `return` and `throw` functions). 
+`function *` is the syntax used to create a **generator function**. Calling a generator function returns a *generator object*. The generator object just follows the iterator interface (i.e. the `next`, `return` and `throw` functions). 
 
 There are two key motivations behind generator functions: 
 
 ### Lazy Iterators
 
-Generator functions can be used to create lazy iterators e.g. the following function returns an **infinite** list of integers on demand:
+Generator functions can be used to create **lazy iterators** e.g. the following function returns an **infinite** list of integers on demand:
 
 ```ts
 function* infiniteSequence() {
@@ -42,7 +42,9 @@ console.log(gen.next()); // { done: true }
 ### Externally Controlled Execution
 This is the part of generators that is truly exciting. It essentially allows a function to pause its execution and pass control (fate) of the remainder of the function execution to the caller.
 
-A generator function does not execute when you call it. It just creates a generator object. Consider the following example along with a sample execution:
+`>tags:` [[Important]] [[Yield]] [[Generator]]
+
+**A generator function does not execute when you call it. It just creates a generator object**. Consider the following example along with a sample execution:
 
 ```ts
 function* generator(){
@@ -62,8 +64,8 @@ console.log(iterator.next()); // { value: undefined, done: true }
 
 If you run this you get the following output:
 
-```
-$ node outside.js
+```bash
+node outside.js
 Starting iteration
 Execution started
 { value: 0, done: false }
@@ -73,16 +75,16 @@ Execution resumed
 { value: undefined, done: true }
 ```
 
-* The function only starts execution once `next` is called on the generator object.
-* The function *pauses* as soon as a `yield` statement is encountered.
-* The function *resumes* when `next` is called.
+- [x] The function only starts execution once `next` is called on the generator object.
+- [x] The function **pauses** as soon as a `yield` statement is encountered.
+- [x] The function **resumes** when `next` is called.
 
 > So essentially the execution of the generator function is controllable by the generator object.
 
 Our communication using the generator has been mostly one way with the generator returning values for the iterator. One extremely powerful feature of generators in JavaScript is that they allow two way communications (with caveats).
 
-* you can control the resulting value of the `yield` expression using `iterator.next(valueToInject)`
-* you can throw an exception at the point of the `yield` expression using `iterator.throw(error)`
+- [x] you can **control** the resulting value of the **`yield`** expression using `iterator.next(valueToInject)`
+- [x] you can throw an exception at the point of the `yield` expression using `iterator.throw(error)`
 
 The following example demonstrates `iterator.next(valueToInject)`:
 
@@ -100,7 +102,7 @@ console.log(foo.value); // foo
 const nextThing = iterator.next('bar');
 ```
 
-Since `yield` returns the parameter passed to the iterator's `next` function, and all iterators' `next` functions accept a parameter of any type, TypeScript will always assign the `any` type to the result of the `yield` operator (`bar` above).
+Since `yield` returns the parameter passed to the iterator's `next` function, and all iterators' `next` functions accept a parameter of any type, **TypeScript will always assign the `any` type to the result of the `yield` operator (`bar` above).**
 
 > You are on your own to coerce the result to the type you expect, and ensure that only values of that type are passed to next (such as by scaffolding an additional type-enforcement layer that calls `next` for you.) If strong typing is important to you, you may want to avoid two-way communication altogether, as well as packages that rely heavily on it (e.g., redux-saga).
 
@@ -125,11 +127,10 @@ var nextThing = iterator.throw(new Error('bar'));
 ```
 
 So here is the summary:
-* `yield` allows a generator function to pause its communication and pass control to an external system
-* the external system can push a value into the generator function body
-* the external system can throw an exception into the generator function body
+- [x] `yield` allows a generator function to pause its communication and pass control to an external system
+- [x] **the external system can push a value into the generator function body**
+- [x] the external system can throw an exception into the generator function body
 
-How is this useful? Jump to the next section [**async/await**][async-await] and find out.
+How is this useful? Jump to the next section [**async/await**](../async/async.md) and find out.
 
-[iterator]:./iterators.md
-[async-await]:./async-await.md
+[iterator](../collection/iterators.md)

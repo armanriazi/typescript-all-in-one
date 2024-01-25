@@ -30,10 +30,8 @@
   * [Arrow Functions](arrow-functions.md)
   * [Rest Parameters](rest-parameters.md)
   * [Spread Operator](spread-operator.md)
-  * [for...of](for...of.md)
-  * [Iterators](collection/iterators.md)  <!--completed-->  
+  * [for...of](for...of.md)  
   * [Promise](promise.md)
-  * [Generators](collection/generators.md)  <!--completed-->  
   * [Async Await](async/async.md)
 * [Project](project/project.md)
   * [JS Migration Guide](types/migrating.md) <!--completed--> 
@@ -87,9 +85,11 @@
     * [Index Signatures](types/system/index-signatures.md)
     * [Moving Types](types/moving-types.md)
     * [Mixins](types/mixins.md)
-* [Collection](collection/collection.md)
-  * [Array](collection/array.md)    
-  * [Map](collection/map.md)        
+* [Collection](collection/collection.md)<!--completed-->    
+  * [Array](collection/array.md)    <!--completed-->    
+  * [Map](collection/map.md)        <!--completed-->    
+  * [Iterators](collection/iterators.md)  <!--completed-->    
+  * [Generators](collection/generators.md)  <!--completed-->  
 * [OOP](oop/oop.md)  
   * [Generic](types/generic/generic.md)    
   * [Class](oop/class.md)    
