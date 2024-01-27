@@ -41,6 +41,13 @@ var Point = (function () {
 ```
 This is a fairly idiomatic traditional JavaScript class pattern now as a first class language construct.
 
+
+```ts
+class Foo {}; 
+var someVar = Foo; //variable space declaretion
+var someOtherVar = 123; //Valid
+```
+
 ### New.target
 
 You can use in TypeScript the `new.target` meta-property which enables you to determine if a function or constructor was invoked using the new operator. It allows you to detect whether an object was created as a result of a constructor call.

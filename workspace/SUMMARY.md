@@ -34,12 +34,11 @@
   * [Promise](promise.md)
   * [Async Await](async/async.md)
 * [Project](project/project.md)
-  * [JS Migration Guide](types/migrating.md) <!--completed--> 
-  * [Compilation Context](project/compilation-context.md)
+  * [JS Migration Guide](types/migrating.md) <!--completed-->   
     * [tsconfig.json](project/tsconfig.md) <!--completed--> 
     * [Which Files?](project/files.md)
-  * [Declaration Spaces](project/declarationspaces.md)
-  * [Modules](project/modules.md)
+  * [Declaration Spaces](project/declarationspaces.md)  <!--completed--> 
+  * [Modules](project/modules.md) 
     * [File Module Details](project/external-modules.md)
     * [global.d.ts](project/globals.md)
   * [Namespaces](project/namespaces.md)  <!--completed-->
@@ -68,6 +67,7 @@
     * [Enum Literal](types/enum-literal-type.md)   <!--completed-->    
     * [Inference Gurad Literal](types/inference-literal-gurad-type.md)   <!--completed-->  
   * [Built-in](types/builtin/builtin.md) <!--completed-->    
+  * [Recursive](types/recursive/recursive.md) <!--completed-->
   * [Exception Handling](types/exceptions/exceptions.md)  <!--completed-->  
   * [Patterns](types/patterns/patterns.md) <!--completed-->          
     * [Intersection](types/patterns/intersection/intersection.md) <!--completed-->      

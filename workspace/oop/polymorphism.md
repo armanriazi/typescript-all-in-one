@@ -1,4 +1,25 @@
 # Polymorphism
+## Function overloading
+
+Function overloading allows you to define multiple function signatures for the same function name, each with different parameter types and return type.
+When you call an overloaded function, TypeScript uses the provided arguments to determine the correct function signature:
+
+```typescript
+function makeGreeting(name: string): string;
+function makeGreeting(names: string[]): string[];
+
+function makeGreeting(person: unknown): unknown {
+    if (typeof person === 'string') {
+        return `Hi ${person}!`;
+    } else if (Array.isArray(person)) {
+        return person.map(name => `Hi, ${name}!`);
+    }
+    throw new Error('Unable to greet');
+}
+
+makeGreeting('Simon');
+makeGreeting(['Simone', 'John']);
+```
 
 ## Method overloading
 
