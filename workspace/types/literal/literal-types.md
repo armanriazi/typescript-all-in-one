@@ -21,6 +21,17 @@ In the following example you can see a type alias union, `O` can be the only val
 type O = 'a' | 'b' | 'c';
 ```
 
+
+### Template Literal Types
+
+Template Literal Types allow to manipulate string value at type level and generate new string types based on existing ones. They are useful to create more expressive and precise types from string-based operations.
+
+```typescript
+type Department = 'engineering' | 'hr';
+type Language = 'english' | 'spanish';
+type Id = `${Department}-${Language}-id`; // "engineering-english-id" | "engineering-spanish-id" | "hr-english-id" | "hr-spanish-id"
+```
+
 ### String Literals
 
 You can use a string literal as a type. For example:

@@ -37,8 +37,9 @@
     /* Visit https://aka.ms/tsconfig to read more about this file */
     "allowJs":true,
     "removeComments": true,
-    "target": "es6",
-    "module": "es6",  
+    "target": "ES6",
+    "module": "Node16",  
+    "moduleResolution": "Node16",
     "outDir": "dist",  
     "preserveConstEnums": true,
     "sourceMap": false,    

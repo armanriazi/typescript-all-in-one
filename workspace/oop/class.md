@@ -41,6 +41,27 @@ var Point = (function () {
 ```
 This is a fairly idiomatic traditional JavaScript class pattern now as a first class language construct.
 
+### New.target
+
+You can use in TypeScript the `new.target` meta-property which enables you to determine if a function or constructor was invoked using the new operator. It allows you to detect whether an object was created as a result of a constructor call.
+
+```typescript
+class Parent {
+    constructor() {
+        console.log(new.target); // Logs the constructor function used to create an instance
+    }
+}
+
+class Child extends Parent {
+    constructor() {
+        super();
+    }
+}
+
+const parentX = new Parent(); // [Function: Parent]
+const child = new Child(); // [Function: Child]
+```
+
 ### Inheritance
 Classes in TypeScript (like other languages) support *single* inheritance using the `extends` keyword as shown below:
 

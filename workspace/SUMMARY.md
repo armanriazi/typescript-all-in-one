@@ -43,7 +43,7 @@
     * [File Module Details](project/external-modules.md)
     * [global.d.ts](project/globals.md)
   * [Namespaces](project/namespaces.md)  <!--completed-->
-  * [Dynamic Import Expressions](project/dynamic-import-expressions.md)
+  * [Dynamic Import Expressions](project/dynamic-import-expressions.md) <!--completed-->  
 * [TypeScript's Types](types/types.md) <!--completed-->
   * [Empty](types/empty.md) <!--completed-->
   * [Primitive](types/primitive/primitive.md) <!--completed-->  

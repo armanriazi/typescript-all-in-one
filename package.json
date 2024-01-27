@@ -12,6 +12,7 @@
   "scripts": {
     "start": "pnpm run build:live",
     "build": "tsc -p ./src",
+    "ts-watch": "tsc --watch",
     "build:live": "nodemon --watch 'src/**/*.ts' --exec \"ts-node\" src/index.ts",
     "format": "ts-node format",    
     "compile": "ts-node compile",

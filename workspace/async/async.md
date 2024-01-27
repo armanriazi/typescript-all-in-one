@@ -152,6 +152,7 @@ You can see full example [here](https://cdn.rawgit.com/armanriazi/typescript-all
 
 
 **Transpiling to ES5 (--target es5)**
+
 ```js
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {

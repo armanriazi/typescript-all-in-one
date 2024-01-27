@@ -247,6 +247,24 @@ for(let num of fibMax21) {
 }
 ```
 
+### The for-await-of Statement
+
+This is a JavaScript feature fully supported in TypeScript which allows you to iterate over asynchronous iterable objects from target version es2018.
+
+```typescript
+async function- [x] asyncNumbers(): AsyncIterableIterator<number> {
+    yield Promise.resolve(1);
+    yield Promise.resolve(2);
+    yield Promise.resolve(3);
+}
+
+(async () => {
+    for await (const num of asyncNumbers()) {
+        console.log(num);
+    }
+})();
+```
+
 ### Building code with iterators for ES5 target
 Code examples above require ES6 target. However, it could work with ES5 target as well if target JS engine supports `Symbol.iterator`. This can be achieved by using ES6 lib with ES5 target (add es6.d.ts to your project) to make it compile. Compiled code should work in node 4+, Google Chrome and in some other browsers.
 

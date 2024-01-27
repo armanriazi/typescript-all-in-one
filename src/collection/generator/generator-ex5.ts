@@ -2,7 +2,7 @@ function* generator() {
     try {
         yield 'foo';
     }
-    catch(err) {
+    catch(err:any) {
         console.log(err.message); // bar!
     }
 }
