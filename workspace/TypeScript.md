@@ -68,70 +68,14 @@ function power(base: number, exponent: number) {
     return Math.pow(base, exponent);
 }
 power(10, 2); // function power(base: number, exponent: number): number
+// console.log(10 ** 2) //eq. 10^2
 ```
 
-Full documentation is provided to this link:
-<https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html>
+Full documentation is provided to this [link](<https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html)
 
 From version 3.7 it is possible to generate .d.ts type definitions from JavaScript JSDoc syntax.
-More information can be found here:
-<https://www.typescriptlang.org/docs/handbook/declaration-files/dts-from-js.html>
+More information can be found [here](https://www.typescriptlang.org/docs/handbook/declaration-files/dts-from-js.html)
 
-### @types
-
-Packages under the @types organization are special package naming conventions used to provide type definitions for existing JavaScript libraries or modules. For instance using:
-
-```shell
-npm install --save-dev @types/lodash
-```
-
-Will install the type definitions of `lodash` in your current project.
-
-To contribute to the type definitions of @types package, please submit a pull request to <https://github.com/DefinitelyTyped/DefinitelyTyped>.
-
-### JSX
-
-JSX (JavaScript XML) is an extension to the JavaScript language syntax that allows you to write HTML-like code within your JavaScript or TypeScript files. It is commonly used in React to define the HTML structure.
-
-TypeScript extends the capabilities of JSX by providing type checking and static analysis.
-
-To use JSX you need to set the `jsx` compiler option in your `tsconfig.json` file. Two common configuration options:
-
-- [x] "preserve": emit .jsx files with the JSX unchanged. This option tells TypeScript to keep the JSX syntax as-is and not transform it during the compilation process. You can use this option if you have a separate tool, like Babel, that handles the transformation.
-- [x] "react": enables TypeScript's built-in JSX transformation. React.createElement will be used.
-
-All options are available here:
-<https://www.typescriptlang.org/tsconfig#jsx>
-
-### ES6 Modules
-
-TypeScript does support ES6 (ECMAScript 2015) and many subsequent versions. This means you can use ES6 syntax, such as arrow functions, template literals, classes, modules, destructuring, and more.
-
-To enable ES6 features in your project, you can specify the `target` property in the tsconfig.json.
-
-A configuration example:
-
-```json
-{
-  "compilerOptions": {
-    "target": "es6",
-    "module": "es6",
-    "moduleResolution": "node",
-    "sourceMap": true,
-    "outDir": "dist"
-  },
-  "include": ["src"]
-}
-```
-
-### ES7 Exponentiation Operator
-
-The exponentiation (`**`) operator computes the value obtained by raising the first operand to the power of the second operand. It functions similarly to `Math.pow()`, but with the added capability of accepting BigInts as operands.
-TypeScript fully supports this operator using as `target` in your tsconfig.json file `es2016` or larger version.
-
-```typescript
-console.log(2 *- [x] (2 *- [x] 2)); // 16
-```
 
 ### The for-await-of Statement
 

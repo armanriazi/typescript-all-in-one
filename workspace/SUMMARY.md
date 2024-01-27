@@ -71,6 +71,7 @@
   * [Exception Handling](types/exceptions/exceptions.md)  <!--completed-->  
   * [Patterns](types/patterns/patterns.md) <!--completed-->          
     * [Intersection](types/patterns/intersection/intersection.md) <!--completed-->      
+    * [power](types/patterns/power/power.md) <!--completed-->   
     * [Manipulation](types/patterns/manipulation/manipulation.md) <!--completed-->      
       * [Conditionally](types/patterns/manipulation/conditional.md) <!--completed-->      
       * [Transform Mapping](types/patterns/manipulation/transform-mapping.md) <!--completed-->            
@@ -97,10 +98,6 @@
   * [Decorators](oop/decorators.md)      
   * [Inheritance](oop/inheritance.md)        
   * [Polymorphism](oop/polymorphism.md)          
-* [JSX](jsx/tsx.md)
-  * [React](jsx/react.md)
-  * [Redux](jsx/redux.md)
-  * [Non React JSX](jsx/others.md)
 * [Options](options/intro.md)
   * [noImplicitAny](options/noImplicitAny.md)
   * [strictNullChecks](options/strictNullChecks.md)
@@ -111,6 +108,10 @@
 * [Testing](testing/intro.md)
   * [Jest](testing/jest.md)
   * [Cypress](testing/cypress.md)
+* [JSX](jsx/tsx.md)
+  * [React](jsx/react.md)
+  * [Redux](jsx/redux.md)
+  * [Non React JSX](jsx/others.md)  
 * [Tools](tools/intro.md)
   * [Prettier](tools/prettier.md)
   * [Husky](tools/husky.md)

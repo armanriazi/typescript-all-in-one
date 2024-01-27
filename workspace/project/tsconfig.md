@@ -21,6 +21,27 @@ It is extremely easy to get started with tsconfig.json as the basic file you nee
 
 i.e. an empty JSON file at the *root* of your project. This way TypeScript will include *all* the `.ts` files in this directory (and sub directories) as a part of the compilation context. It will also select a few sane default compiler options.
 
+### ES6 Modules
+
+TypeScript does support ES6 (ECMAScript 2015) and many subsequent versions. This means you can use ES6 syntax, such as arrow functions, template literals, classes, modules, destructuring, and more.
+
+To enable ES6 features in your project, you can specify the `target` property in the tsconfig.json.
+
+A configuration example:
+
+```json
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "es6",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "dist"
+  },
+  "include": ["src"]
+}
+```
+
 ### compilerOptions
 You can customize the compiler options using `compilerOptions`:
 

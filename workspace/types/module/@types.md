@@ -2,7 +2,12 @@
 
 `@types`
 
-A major design goal of TypeScript was to make it possible for you to safely and easily use existing JavaScript libraries in TypeScript. TypeScript does this by means of *declaration*.
+A major design goal of TypeScript was to make it possible for you to safely and easily use existing JavaScript libraries in TypeScript. TypeScript does this by means of **declaration**.
+Packages under the @types organization are special package naming conventions used to **provide type definitions for existing JavaScript libraries or modules**. For instance using:
+
+```shell
+npm install --save-dev @types/lodash
+```
 
 Ambient declarations allow you to **safely use existing popular JavaScript libraries** and *incrementally migrate your JavaScript/CoffeeScript/Other-Compile-To-Js-Language project to TypeScript*.
 
