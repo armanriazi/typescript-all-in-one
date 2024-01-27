@@ -77,37 +77,6 @@ From version 3.7 it is possible to generate .d.ts type definitions from JavaScri
 More information can be found [here](https://www.typescriptlang.org/docs/handbook/declaration-files/dts-from-js.html)
 
 
-### Assertion Functions
-
-In TypeScript, assertion functions are functions that indicate the verification of a specific condition based on their return value. In their simplest form, an assert function examines a provided predicate and raises an error when the predicate evaluates to false.
-
-```typescript
-function isNumber(value: unknown): asserts value is number {
-    if (typeof value !== 'number') {
-        throw new Error('Not a number');
-    }
-}
-```
-
-Or can be declared as function expression:
-
-```typescript
-type AssertIsNumber = (value: unknown) => asserts value is number;
-const isNumber: AssertIsNumber = value => {
-    if (typeof value !== 'number') {
-        throw new Error('Not a number');
-    }
-};
-```
-
-Assertion functions share similarities with type guards. Type guards were initially introduced to perform runtime checks and ensure the type of a value within a specific scope.
-Specifically, a type guard is a function that evaluates a type predicate and returns a boolean value indicating whether the predicate is true or false. This differs slightly from assertion functions,where the intention is to throw an error rather than returning false when the predicate is not satisfied.
-
-Example of type guard:
-
-```typescript
-const isNumber = (value: unknown): value is number => typeof value === 'number';
-```
 
 ### Variadic Tuple Types
 
@@ -334,32 +303,6 @@ const user3 = {
 
 user3.attributes?.map(console.log); // TypeScript infers correctly: string[]
 user3.nickName; // TypeScript infers correctly: undefined
-```
-
-### Type-Only Imports and Export
-
-Type-Only Imports and Export allows you to import or export types without importing or exporting the values or functions associated with those types. This can be useful for reducing the size of your bundle.
-
-To use type-only imports, you can use the `import type` keyword.
-
-TypeScript permits using both declaration and implementation file extensions (.ts, .mts, .cts, and .tsx) in type-only imports, regardless of `allowImportingTsExtensions` settings.
-
-For example:
-
-<!-- skip -->
-```typescript
-import type { House } from './house.ts';
-```
-
-The following are supported forms:
-
-<!-- skip -->
-```typescript
-import type T from './mod';
-import type { A, B } from './mod';
-import type - [x] as Types from './mod';
-export type { T };
-export type { T } from './mod';
 ```
 
 ### using declaration and Explicit Resource Management

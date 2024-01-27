@@ -59,8 +59,9 @@
   * [Duck Type](types/duck/duck.md) <!--completed-->
     * [Structuring](types/duck/structural/structural.md) <!--completed-->
     * [Destructuring](types/duck/structural/destructuring.md) <!--completed-->
-  * [Narrowing](types/narrowing/narrowing.md)   <!--completed-->    
+  * [Narrowing](types/narrowing/narrowing.md)   <!--completed-->          
       * [Guard](types/narrowing/guard.md)   <!--completed-->    
+      * [AssertionFN](types/narrowing/assertion-fn.md)   <!--completed-->    
       * [Widening](types/narrowing/widening.md)  <!--completed-->        
   * [Literal Types](types/literal/literal-types.md)<!--completed-->
     * [Inference Literal](types/inference-literal-types.md)   <!--completed-->
@@ -79,6 +80,7 @@
     * [Ambient Declarations](types/module/ambient/intro.md)<!--completed-->
       * [Declaration Files](types/module/ambient/d.ts.md)<!--completed-->
       * [Variables](types/module/ambient/variables.md)    <!--completed-->
+  * [Ex/Import of Types](types/exchange/exchange-types.md) <!--completed--> 
     * [`lib.d.ts`](types/lib.d.ts.md)
     * [Functions](types/functions.md)
     * [Callable](types/callable.md)        
