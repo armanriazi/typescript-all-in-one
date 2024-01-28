@@ -18,7 +18,8 @@ const user: User = {
 };
 
 // In the following lines, TypeScript won't be able to infer properly
-user.attributes?.map(console.log); // Property 'map' does not exist on type 'string | string[]'. Property 'map' does not exist on type 'string'.
+
+/*user.attributes?.map(console.log); // Property 'map' does not exist on type 'string | string[]'. Property 'map' does not exist on type 'string'.*/
 user.nickName; // string | string[] | undefined
 
 console.log(`\n---one---`);
@@ -30,7 +31,8 @@ const user2 = {
 } as User;
 
 // Here too, TypeScript won't be able to infer properly
-user2.attributes?.map(console.log); // Property 'map' does not exist on type 'string | string[]'. Property 'map' does not exist on type 'string'.
+
+/*user2.attributes?.map(console.log); // Property 'map' does not exist on type 'string | string[]'. Property 'map' does not exist on type 'string'.*/
 user2.nickName; // string | string[] | undefined
 
 console.log(`\n---two---`);
