@@ -70,11 +70,13 @@
     * [Enum Literal](types/enum-literal-type.md)   <!--completed-->    
     * [Inference Gurad Literal](types/inference-literal-gurad-type.md)   <!--completed-->      
   * [Built-in](types/builtin/builtin.md) <!--completed-->    
+  * [Covariance & Contravariance](types/covariance_contravariance/covariance_contravariance.md) <!--completed-->        
   * [Recursive](types/recursive/recursive.md) <!--completed-->
   * [Exception Handling](types/exceptions/exceptions.md)  <!--completed-->  
   * [Patterns](types/patterns/patterns.md) <!--completed-->          
     * [Intersection](types/patterns/intersection/intersection.md) <!--completed-->      
-    * [power](types/patterns/power/power.md) <!--completed-->   
+    * [Power](types/patterns/power/power.md) <!--completed-->   
+    * [Satisfies](types/patterns/satisfies/satisfies.md) <!--completed-->       
     * [Manipulation](types/patterns/manipulation/manipulation.md) <!--completed-->      
       * [Conditionally](types/patterns/manipulation/conditional.md) <!--completed-->      
       * [Transform Mapping](types/patterns/manipulation/transform-mapping.md) <!--completed-->            

@@ -40,6 +40,33 @@ console.log(obj[a]); // 123
 console.log(obj[b]); // 456
 ```
 
+#### Template String Pattern Index Signatures
+
+Template string pattern index signatures allow us to define flexible index signatures using template string patterns. This feature enables us to create objects that can be indexed with specific patterns of string keys, providing more control and specificity when accessing and manipulating properties.
+
+TypeScript from version 4.4 allows index signatures for symbols and template string patterns.
+
+```typescript
+const uniqueSymbol = Symbol('description');
+
+type MyKeys = `key-${string}`;
+
+type MyObject = {
+    [uniqueSymbol]: string;
+    [key: MyKeys]: number;
+};
+
+const obj: MyObject = {
+    [uniqueSymbol]: 'Unique symbol key',
+    'key-a': 123,
+    'key-b': 456,
+};
+
+console.log(obj[uniqueSymbol]); // Unique symbol key
+console.log(obj['key-a']); // 123
+console.log(obj['key-b']); // 456
+```
+
 ### string
 
 The `string` primitive type stores textual data, and the value is always double or single-quoted.
