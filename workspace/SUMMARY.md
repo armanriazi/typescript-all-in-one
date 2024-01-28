@@ -46,6 +46,8 @@
 * [TypeScript's Types](types/types.md) <!--completed-->
   * [Empty](types/empty.md) <!--completed-->
   * [Primitive](types/primitive/primitive.md) <!--completed-->  
+    * [Wrapper](types/wrapper/wrapper.md)  <!--completed-->
+      * [Object](types/wrapper/wrapper_objects.md)  <!--completed-->
   * [Compound](types/compound/compound.md)  <!--completed-->
     * [Union](types/compound/union/union.md) <!--completed-->
       * [Discriminated-unions](types/compound/union/discriminated-unions.md) <!--completed-->
@@ -66,7 +68,7 @@
   * [Literal Types](types/literal/literal-types.md)<!--completed-->
     * [Inference Literal](types/inference-literal-types.md)   <!--completed-->
     * [Enum Literal](types/enum-literal-type.md)   <!--completed-->    
-    * [Inference Gurad Literal](types/inference-literal-gurad-type.md)   <!--completed-->  
+    * [Inference Gurad Literal](types/inference-literal-gurad-type.md)   <!--completed-->      
   * [Built-in](types/builtin/builtin.md) <!--completed-->    
   * [Recursive](types/recursive/recursive.md) <!--completed-->
   * [Exception Handling](types/exceptions/exceptions.md)  <!--completed-->  
