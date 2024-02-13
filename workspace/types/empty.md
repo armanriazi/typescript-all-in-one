@@ -1,5 +1,17 @@
 
 ## any
+TypeScript introduces the any type for such occasions. Specifying that an object has a type of any will, in essence, remove the TypeScript strict type checking.
+
+The following TypeScript code shows how to use the any type to mimic our original JavaScript code, as follows:
+
+```typescript
+// Declare a variable called item1 with a type of any and assign to it an object literal that has properties id and name
+var item1: any = { id: 1, name: "item1" }
+
+// Assign a new object literal to item1 with only an id property
+item1 = { id: 2 };
+```
+
 TypeScript introduces the **:any** type for such occasions. Specifying that an object has a type of any will, in essence, **remove the TypeScript strict type checking**. Used for **backward compatibility with JavaScript**. In short, avoid the any type at any cost.
 
 The any data type represents literally “any” value, it is the default value when TypeScript cannot infer the type or is not specified.

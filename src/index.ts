@@ -35,3 +35,11 @@ const y = "Good";
 console.log(`${x},${y}`);
 
 
+// This function takes in a string as a parameter and does not return anything
+function printString(a: string) : void {
+    // This line logs the string passed as an argument to the console
+    console.log(a);
+  }
+  
+  // This variable is declared as a string type and is assigned the return value of the printString function
+  var returnedValue  = printString("this is a string");

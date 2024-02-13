@@ -43,14 +43,48 @@ Here few examples:
 | unknown               | Universal set          | const x: unknown = 1                                                            |
 
 # S.F.I.A.T
-meaning that **using the any type, in most cases, is unnecessary**. We use an acronym within our programming teams, which is Simply Find an Interface for the Any Type, pronounced sveat or sweat.
+Interfaces are a way of defining custom types. Using interfaces allows us to cover almost every possible combination of types, meaning that **using the any type, in most cases, is unnecessary**. We use an acronym within our programming teams, which is Simply Find an Interface for the Any Type, pronounced sveat or sweat.  While this may sound rather odd, it simply brings home the point that the any type can and should be defined **as an interface**, so simply find it.
+In short, avoid the any type at any cost.
 
 # Inferred typing
-Is a feature of TypeScript that allows the type of a variable or expression to be **determined based on the context** in which it appears rather than being explicitly specified with a type annotation.
+Is a feature of TypeScript that allows the type of a variable or expression to be **determined based on the context** The process of determining the type of a variable **based on its value**. in which it appears rather than being explicitly specified with a type annotation.
+`as` keyword in a type assertion
+It provides a way to override the inferred type of a variable.
 
 # Duck typing
-Checks the compatibility of an object with a particular type based on **the presence of certain properties or methods rather than the object’s actual type.**
-In TypeScript, objects are considered compatible based on their shape rather than the order of their properties.
+Checks the compatibility of an object with a particular type based on *the presence of certain properties or methods rather than the object’s actual type.*
+In TypeScript, objects are considered compatible based on their shape rather than the order of their properties. **In other words, two variables are considered to have the same type if they have the same properties and methods.** In TypeScript, objects are considered compatible based on their **shape rather than the order of their properties.**
+
+
+Sample of non-duck:
+
+```typescript
+//*Missing property example*
+// Declare a variable 'nameIdObject' and initialize it with an object that has a 'name' property, an 'id' property, and a 'print' method
+var nameIdObject = { name: "myName", id: 1, print() {} };
+// Assign a new object to 'nameIdObject'. This object has a 'name' property and an 'id' property, but it does not have the 'print' method
+// that the original object had.
+nameIdObject = { id: 3, name: "thirdName" };
+//*Dynamic object typing*
+// Declare a variable 'obj1' and initialize it with an object that has an 'id' property and a 'print' method
+var obj1 = { id: 1, print() { } };
+
+// Declare a variable 'obj2' and initialize it with an object that has an 'id' property, a 'print' method, and a 'select' method
+var obj2 = { id: 2, print() { }, select() { } }
+
+// Attempt to assign 'obj2' to 'obj1'. This won't cause a type error because 'obj2' has all of the methods that are present in the type of 'obj1'
+obj1 = obj2;
+
+// Attempt to assign 'obj1' to 'obj2'. This will cause a type error because 'obj1' is missing the 'select' method that is present in the type of 'obj2'
+obj2 = obj1;
+```
+
+`> Output:`
+
+```md
+index.ts(5,1): error TS2741: Property 'print' is missing in type '{ id: number; name: string; }' but required in type '{ name: string; id: number; print(): void; }'.
+```
+
 
 # Explicit casting
 uses the angled bracket syntax, that is, **< type >**, surrounding the name of the type.  `<any>{ id: 1, name: "item1" }`
@@ -257,10 +291,9 @@ foo = '456';
 So you can incrementally upgrade your JavaScript code to TypeScript. This is very different from how many other language compilers work and yet another reason to move to TypeScript.
 
 
-
 ### Weak Types
-
 A type is considered weak when it contains nothing but a set of all-optional properties:
+
 
 ```typescript
 type X = {
@@ -306,6 +339,8 @@ const fn = (options: Options) => undefined;
 fn({ c: 'c' }); // Valid
 ```
 
+#### Strong Type VS Weak Type
+Strong typing enforces strict type checking, while weak typing allows for more flexibility in type conversions.
 
 ### Explicit Type Annotation
 
