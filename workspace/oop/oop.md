@@ -270,7 +270,7 @@ let c: any;
 c = 1; // Valid, all types are assignable to any
 
 let d: unknown;
-d = 1; // Valid, all types are assignable to unknown
+d = 1; // Valid, all types are assignable to unknown. Unknown is a type-safe as a alternative for 'any'
 
 let e: unknown;
 let e1: unknown = e; // Valid, unknown is only assignable to itself and any

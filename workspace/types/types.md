@@ -453,6 +453,28 @@ type Callback = (data: string) => void;
 
 `> TIP:` Use a type alias for simpler object structures (like `Coordinates`) just to give them a semantic name. Also when you want to give semantic names to **Union or Intersection types**, a Type alias is the way to go.
 
+## Object Type
+TypeScript introduces the object type to cover types that are not primitive types. This includes any type that is not number, boolean, string, null, symbol, or undefined.
+
+```ts
+let structuredObject: object = {
+  name: "myObject",
+  properties: {
+    id: 1,
+    type: "AnObject"
+  }
+};
+
+// Define a function that takes an object as an argument and logs its string representation
+function printObjectType(a: object) {
+  console.log(`a: ${JSON.stringify(a)}`);
+}
+
+printObjectType(structuredObject);
+printObjectType("this is a string");
+
+```
+
 ### Ambient Declarations
 
 ['@'types](./module/@types.md)

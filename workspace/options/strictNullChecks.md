@@ -48,7 +48,9 @@ getMember()
 
 ## Non-Null Assertion Operator
 
-A new `!` post-fix expression operator may be used to assert that its operand is non-null and non-undefined in contexts where the type checker is unable to conclude that fact. For example:
+`definite assignment`
+
+A new `!` post-fix expression operator may be used to assert that its operand is **non-null and non-undefined** in contexts where the type checker is unable to conclude that fact. For example:
 
 ```ts
 // Compiled with --strictNullChecks
@@ -63,7 +65,28 @@ function processEntity(e?: Entity) {
 }
 ```
 
-> Note that it is just an assertion, and just like type assertions *you are responsible* for making sure the value is not null. A non-null assertion is essentially you telling the compiler "I know it's not null so let me use it as though it's not null".
+> Note that it is just an assertion, and just like type assertions **you are responsible*** for making sure the value is not null. A non-null assertion is essentially you telling the compiler "I know it's not null so let me use it as though it's not null".
+
+`Next Example`
+
+We have placed an exclamation mark (!) after the use of the globalString variable on line 8, which has now become globalString!. This will tell the compiler that we are overriding its type-checking rules and are willing to let it use the globalString variable even though it thinks it has not been assigned.
+
+```ts
+// Declare a variable named "globalString" with the type of "string"
+var globalString: string;
+
+// Call the function "setGlobalString" and pass in the argument "this string is set"
+setGlobalString("this string is set");
+
+// Log the current value of the "globalString" variable to the console, using the definite assignment assertion syntax to indicate that the variable has been assigned a value before this point.
+console.log(`globalString = ${globalString!}`); // added ! to globalString without ! will expose `error TS2454: Variable 'globalString' is used before being assigned.`
+
+// Define a function named "setGlobalString" that takes in a parameter named "value" with the type "string"
+function setGlobalString(value: string) {
+  // Assign the value of the "value" parameter to the "globalString" variable
+  globalString = value;
+}
+```
 
 ### Definite Assignment Assertion Operator
 

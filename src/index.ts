@@ -1,6 +1,6 @@
 ///
 /// ```bash
-/// pnpm tsc ./src/index.ts
+/// pnpm tsc ./src/index.ts --outfile  ./dist/index.js
 /// ```
 ///
 /**
@@ -34,7 +34,7 @@ const y = "Good";
 
 console.log(`${x},${y}`);
 
-
+//**** */
 // This function takes in a string as a parameter and does not return anything
 function printString(a: string) : void {
     // This line logs the string passed as an argument to the console
@@ -42,4 +42,16 @@ function printString(a: string) : void {
   }
   
   // This variable is declared as a string type and is assigned the return value of the printString function
-  var returnedValue  = printString("this is a string");
+var returnedValue  = printString("this is a string");
+
+//**** */
+// Declare a variable of type any with a string value
+let a: any = "test";
+
+// Declare a variable of type number with a number value
+let aNumber: number = 2;
+
+// Attempt to assign a value of type any to a variable of type number
+aNumber = a;
+
+console.log(`${aNumber}`);

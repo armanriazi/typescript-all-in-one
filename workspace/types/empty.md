@@ -62,8 +62,38 @@ value = 7; // Valid
 In TypeScript, the `unknown` type represents a value that is of an unknown type. Unlike `any` type, which allows for any type of value, `unknown` requires a type check or assertion before it can be used in a specific way so **no operations are permitted on an `unknown` without first asserting or narrowing to a more specific type.**
 
 ```ts
+// Declare a variable of type any with a string value
+let a: any = "test";
+
+// Declare a variable of type number with a number value
+let aNumber: number = 2;
+
+// Attempt to assign a value of type any to a variable of type number
+aNumber = a; // Ok
+```
+
+Next:
+
+```ts
+// Declare a variable of type unknown with a string value
+let u: unknown = "an unknown";
+
+// Assign a number value to the unknown type variable
+u = 1;
+
+// Declare a variable of type number
+let aNumber2: number;
+
+// Assign the value of the unknown type variable to a number type variable
+aNumber2 = u; // Skip. Not Ok
+aNumber2 = <number>u; // Ok
+```
+
+```ts
 const isString = (value: unknown): value is string => typeof value === 'string';
 ```
+
+Next 
 
 ```ts
 type Options = {
@@ -104,6 +134,7 @@ console.log(add('x', 2)); // undefined
 
 ### any vs unknown
 Both are **equally unsafe** as far as TypeScript is concerned. Use what makes you happy. Considerations:
+The difference between the two, however, is that a variable of type unknown can’t be assigned to a known type without **explicit casting**.
 
 - [x] **Linters prefer unknown** (with no-explicit-any rule)
 - [x] **any is less characters** to type than unknown
@@ -277,6 +308,28 @@ if (typeof someglobal !== 'undefined') {
 }
 ```
 
+### Nullish coalescing
+
+In general, it is a good idea to check that a particular variable is not either null or undefined before using it, as this can lead to errors.
+
+```ts
+function nullishCheck(a: number | undefined | null) {
+    // Check if the passed variable 'a' is either undefined or null
+    // If it is, then print 'undefined or null'
+    // Else print the value of 'a'
+    console.log(`a : ${a ?? `undefined or null`}`);
+}
+
+// Call the function with a number
+nullishCheck(1);
+
+// Call the function with null
+nullishCheck(null);
+
+// Call the function with undefined
+nullishCheck(undefined);
+```
+
 ### null and undefined with `strictNullChecks`
 
 TypeScript is smart enough to rule out both `null` and `undefined` with a `== null` / `!= null` check. For example:
@@ -291,7 +344,7 @@ function foo(a?: number | null) {
 
 
 ## Never type
-The `never` type represents values that never occur. It is used to **denote functions or expressions that never return or throw an error.**
+The `never` type represents values that never occur. It is used to **denote functions or expressions that never return or throw an error.** This type is used to indicate instances where **something should never occur**. Even though this may sound confusing, we can often write code where this occurs.
 
 ### never vs null
 

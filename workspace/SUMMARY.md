@@ -43,9 +43,12 @@
     * [global.d.ts](project/globals.md)
   * [Namespaces](project/namespaces.md)  <!--completed-->
   * [Dynamic Import Expressions](project/dynamic-import-expressions.md) <!--completed-->  
-* [TypeScript's Types](types/types.md) <!--completed-->
-  * [Empty](types/empty.md) <!--completed-->
+* [TypeScript's Types](types/types.md) <!--completed-->  
+  * [Type Checking](options/intro.md)
+    * [noImplicitAny](options/noImplicitAny.md)
+    * [strictNullChecks](options/strictNullChecks.md) <!--completed-->  
   * [Primitive](types/primitive/primitive.md) <!--completed-->  
+    * [Empty](types/empty.md) <!--completed-->
     * [Wrapper](types/wrapper/wrapper.md)  <!--completed-->
       * [Object](types/wrapper/wrapper_objects.md)  <!--completed-->
   * [Compound](types/compound/compound.md)  <!--completed-->
@@ -104,13 +107,10 @@
   * [Decorators](oop/decorators.md)      
   * [Inheritance](oop/inheritance.md)        
   * [Polymorphism](oop/polymorphism.md)          
-* [Options](options/intro.md)
-  * [noImplicitAny](options/noImplicitAny.md)
-  * [strictNullChecks](options/strictNullChecks.md)
 * [Errors in TypeScript](errors/main.md)
+  * [Common Errors](errors/common-errors.md)  <!--completed-->  
   * [Type Conversion](types/conversion.md)  <!--completed-->  
-  * [Interpreting Errors](errors/interpreting-errors.md)  
-  * [Common Errors](errors/common-errors.md)
+  * [Interpreting Errors](errors/interpreting-errors.md)    
 * [Testing](testing/intro.md)
   * [Jest](testing/jest.md)
   * [Cypress](testing/cypress.md)
@@ -163,4 +163,4 @@
     * [Emitter Functions](compiler/emitter-functions.md)
     * [Emitter SourceMaps](compiler/emitter-sourcemaps.md)
   * [Contributing](compiler/contributing.md)
-  * [GLOSSARY](../GLOSSARY.md)
+  * [GLOSSARY](./GLOSSARY.md)
