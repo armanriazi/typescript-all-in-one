@@ -211,6 +211,9 @@ The `public` modifier provides unrestricted access to the class member, allowing
 ### Abstract
 `abstract` can be thought of as an access modifier. We present it separately because opposed to the previously mentioned modifiers it can be on a `class` as well as any member of the class. Having an `abstract` modifier primarily means that such functionality *cannot be directly invoked* and a child class must provide the functionality.
 
+- [x] Can an abstract class have a constructor in TypeScript? Yes, and it can be called by subclasses.
+- [x] Can an abstract class have static methods in TypeScript? Yes, and they can be overridden in subclasses.
+
 * `abstract` **classes** cannot be directly instantiated. Instead the user must create some `class` that inherits from the `abstract class`.
 
 ```ts
@@ -242,6 +245,9 @@ const barCommand = new BarCommand();
 
 barCommand.execute(); // Command Bar executed
 ```
+
+#### Abstract vs Interface
+An abstract class can have methods with implementation but an interface can’t.
 
 ### Constructor is optional
 
