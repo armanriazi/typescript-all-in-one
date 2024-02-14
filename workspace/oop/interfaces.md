@@ -1,5 +1,5 @@
 ## Interfaces
-
+The purpose of an interface in TypeScript is to define a **blueprint for objects**.
 Interfaces have *zero* runtime JS impact. There is a lot of power in TypeScript interfaces to declare the structure of variables.
 
 The following two are equivalent declarations, the first uses an *inline annotation*, the second uses an *interface*:
@@ -121,6 +121,31 @@ var foo: Point = new MyPoint();
 
 And stuff like `foo: Point = MyPoint` is not the same thing.
 
+## Keyof
+
+`>tags:` [[Important]] [[Keyof]]
+
+```ts
+Define an interface `IPerson` with properties `id` and `name`
+interface IPerson {
+  id: number;
+  name: string;
+}
+
+// Generate a string literal type for the properties of the interface `IPerson`
+type PersonPropertyName = keyof IPerson;
+//This is equivalent to the following string literal:
+type PersonPropertyLiteral = "id" | "name";
+```
+
+## In
+Purpose of the in keyword in TypeScript interface To specify a constraint for the types of properties.
+
+```ts
+    if ('id' in obj) {
+      console.log(`obj.name : ${obj.name}`);
+    }
+```
 
 ## TIPs
 

@@ -13,3 +13,4 @@ function setGlobalString(value: string) {
   // Assign the value of the "value" parameter to the "globalString" variable
   globalString = value;
 }
+

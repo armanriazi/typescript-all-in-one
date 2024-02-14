@@ -1,5 +1,7 @@
 
 ## any
+
+It allows us to assign anything to the variable of type any.
 TypeScript introduces the any type for such occasions. Specifying that an object has a type of any will, in essence, remove the TypeScript strict type checking.
 
 The following TypeScript code shows how to use the any type to mimic our original JavaScript code, as follows:

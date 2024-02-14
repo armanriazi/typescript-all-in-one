@@ -6,3 +6,4 @@ class CustomError extends Error {
 }
 
 //throw new CustomError('This is a custom error.');
+

@@ -110,6 +110,29 @@ console.log(addWithTypeAlias('Hello', ' World')); // Output: 'Hello World'
 
 ```
 
+# Literal Types
+
+TypeScript also allows us to use what are known as literals, which are almost a **hybrid of enums and type aliases**. A literal will limit the allowed values to a set of values specified. A literal can be made of string, number, or boolean values.
+
+```ts
+// Define a literal `AllowedStringValues` that can be either "one", "two", or "three".
+type AllowedStringValues = "one" | "two" | "three";
+
+// Define a literal `AllowedNumericValues` that can be either 1, 20, or 65535.
+type AllowedNumericValues = 1 | 20 | 65535;
+
+// The `withLiteral` function takes a parameter `input` of the union type `AllowedStringValues | AllowedNumericValues`.
+function withLiteral(input: AllowedStringValues | AllowedNumericValues) {
+  // Logs the string representation of `input` to the console.
+  console.log(`called with : ${input}`);
+}
+
+```
+
+## Literal Types vs Aliases
+
+The syntax used for literals is very similar to the syntax of a type alias where we use the type keyword followed by a set of allowed values. Unlike type aliases, however, we are not specifying a set of different types. We are specifying a set of allowed values, which is similar in concept to an enum.
+
 # Comparison Rules
 
 The TypeScript comparison process is recursive and executed on types nested at any level.
