@@ -62,6 +62,21 @@ name = {           // Error : `second` is the wrong type
 
 Here we've composed the annotations `first: string` + `second: string` into a new annotation `Name` that enforces the type checks on individual members. Interfaces have a lot of power in TypeScript and we will dedicate an entire section to how you can use that to your advantage.
 
+### Narrowing a type on a derived interface
+
+```ts
+// Interface `IBaseStringOrNumber` defines a property `id` that can be either a string or a number
+interface IBaseStringOrNumber {
+    id: string | number;
+}
+
+// Interface `IDerivedFromBaseNumber` extends `IBaseStringOrNumber` and defines the property `id` as being a number type
+interface IDerivedFromBaseNumber
+    extends IBaseStringOrNumber {
+    id: number;
+}
+```
+
 ### Inline Type Annotation
 Instead of creating a new `interface` you can annotate anything you want *inline* using `:{ /*Structure*/ }`. The previous example presented again with an inline type:
 
