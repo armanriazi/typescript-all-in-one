@@ -48,6 +48,8 @@ var someVar = Foo; //variable space declaretion
 var someOtherVar = 123; //Valid
 ```
 
+
+
 ### New.target
 
 You can use in TypeScript the `new.target` meta-property which enables you to determine if a function or constructor was invoked using the new operator. It allows you to detect whether an object was created as a result of a constructor call.
@@ -121,6 +123,7 @@ If an access modifier is not specified it is implicitly `public` as that matches
 
 Note that at runtime (in the generated JS) these have no significance but will give you compile time errors if you use them incorrectly. An example of each is shown below:
 
+
 ```ts
 class FooBase {
     public x: number;
@@ -150,6 +153,27 @@ As always these modifiers work for both member properties and member functions.
 In TypeScript, constructors can be marked as private or protected, which restricts their accessibility and usage.
 
 `Private Constructors:`
+An experimental proposal to the ECMAScript standard introduces the concept of a private field by using the hash (#) symbol before a property name.
+
+```ts
+// Class 'ClassES6Private' defines a private property '#id' of type number
+class ClassES6Private {
+  // Property '#id' is a private field and can only be accessed within the class
+  #id: number;
+
+  // Constructor initializes the private '#id' field with the passed 'id' argument
+  constructor(id: number) {
+    this.#id = id;
+  }
+}
+
+// Instantiate a new object of type 'ClassES6Private' with an 'id' of 10
+let es6PrivateClass = new ClassES6Private(10);
+
+// Attempt to change the private '#id' field
+es6PrivateClass.#id = 20;
+```
+
 Can be called only within the class itself. Private constructors are often used in scenarios where you want to enforce a singleton pattern or restrict the creation of instances to a factory method within the class
 
 `Protected Constructors:`

@@ -55,3 +55,4 @@ let aNumber: number = 2;
 aNumber = a;
 
 console.log(`${aNumber}`);
+
