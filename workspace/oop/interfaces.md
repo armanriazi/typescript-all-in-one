@@ -77,6 +77,35 @@ interface IDerivedFromBaseNumber
 }
 ```
 
+### Generic Constraint
+
+Can we specify a generic constraint on a function parameter in TypeScript? Yes
+
+```ts
+// This class takes an array of strings or numbers and concatenates them into a single string
+class Concatenator<T extends Array<string> | Array<number>> {
+  
+  // Method that concatenates the array of items into a string
+  public concatenateArray(items: T): string {
+    
+    // Initialize an empty string to store the concatenated values
+    let returnString = "";
+
+    // Loop through each item in the array
+    for (let i = 0; i < items.length; i++) {
+      // If this is not the first item, add a comma before appending the value
+      returnString += i > 0 ? "," : "";
+      
+      // Append the current value to the return string
+      returnString += items[i].toString();
+    }
+
+    // Return the final concatenated string
+    return returnString;
+  }
+}
+```
+
 ### Inline Type Annotation
 Instead of creating a new `interface` you can annotate anything you want *inline* using `:{ /*Structure*/ }`. The previous example presented again with an inline type:
 
