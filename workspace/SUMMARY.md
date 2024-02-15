@@ -163,4 +163,4 @@
     * [Emitter Functions](compiler/emitter-functions.md)
     * [Emitter SourceMaps](compiler/emitter-sourcemaps.md)
   * [Contributing](compiler/contributing.md)
-  * [GLOSSARY](./GLOSSARY.md)
+* [GLOSSARY](./GLOSSARY.md)

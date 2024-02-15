@@ -12,6 +12,81 @@ To learn more: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Referenc
 
 Async/await keywords are a way to provide a more synchronous-looking syntax for working with Promises. The `async` keyword is used to define an asynchronous function, and the `await` keyword is used within an async function to pause execution until a Promise is resolved or rejected.
 
+How does async work?
+This function takes a callback function as a parameter.
+we are using two callback functions, namely afterWait and executeAfterTimeout, there is only one asynchronous call in this example.This asynchronous call is the call to the setTimeout function.
+
+```ts
+function delayedResponseWithCallback(callback: () => void) {
+    function executeAfterTimeout() {
+      console.log(`5. executeAfterTimeout()`);
+      // This line calls the callback function passed in as a parameter
+      callback();
+    }
+  
+    console.log(`2. calling setTimeout`)
+  
+    // This line schedules the executeAfterTimeout function to be called after 1000 ms
+    setTimeout(executeAfterTimeout, 1000);
+  
+    console.log(`3. after calling setTimeout`)
+  }
+  
+  function callDelayedAndWait() {
+
+    // Define another function called afterWait
+    function afterWait() {
+      console.log(`6. afterWait()`);
+    }
+  
+    // Log message to console indicating that delayedResponseWithCallback will be called
+    console.log(`1. calling delayedResponseWithCallback`);
+  
+    // Call delayedResponseWithCallback function, passing in the afterWait function as an argument
+    delayedResponseWithCallback(afterWait);
+  
+    // Log message to console indicating that delayedResponseWithCallback has been called
+    console.log(`4. after calling delayedResponseWithCallback`);
+  }
+  
+  // Call the callDelayedAndWait function
+  callDelayedAndWait();
+```  
+
+what is known as callback hell, where we have so many callbacks that are nested in other callbacks that the code becomes increasingly difficult to read and maintain.
+
+e.g.,
+
+```ts
+// Import the 'fs' module and use it to read the contents of different text files.
+import * as fs from "fs";
+// The 'readFile' function is used to read the contents of the first text file, 'test1.txt'.
+fs.readFile("./test1.txt", (err, data) => {
+  if (err) {
+    console.log(`an error occurred : ${err}`);
+  } else {
+    console.log(`test1.txt contents : ${data}`);
+    // The 'readFile' function is used to read the contents of the second text file, 'test1.txt'.
+    fs.readFile("./test2.txt", (err, data) => {
+      if (err) {
+        console.log(`an error occurred : ${err}`);
+      } else {
+        console.log(`test2.txt contents : ${data}`);
+        // The 'readFile' function is used to read the contents of the third text file, 'test1.txt'.
+        fs.readFile("./test3.txt", (err, data) => {
+          if (err) {
+            console.log(`an error occurred : ${err}`);
+          } else {
+            console.log(`test3.txt contents
+                : ${data}`);
+          }
+        });
+      }
+    });
+  }
+});
+```
+
 `To learn more:`
 <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function>
 <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await>
@@ -30,6 +105,90 @@ The following API are well supported in TypeScript:
 `WebSocket:`
 <https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API>
 
+
+## Promise
+To make asynchronous code a lot simpler and to **eliminate callback hell**, many different JavaScript libraries implemented similar design patterns to make the syntax of callbacks easier to work with.
+The Promise mechanism also allows us to **chain multiple asynchronous calls** one after another, and this technique is known as **fluent syntax**. Another technique is known as async and await, where we mark certain functions as asynchronous, and we can then use the await keyword to pause the execution flow of our code until the asynchronous function returns.
+
+Note: A Promise-based asynchronous call is also referred to as being thenable, meaning that we can attach a then function to the original function call.
+
+```ts
+// Use the promises version of the fs module to read test1.txt
+fs.promises.readFile("./test1.txt")
+  // Once test1.txt is read, log the contents to the console and then read test2.txt
+  .then((value) => {
+    console.log(`ps test1.txt read : ${value}`);
+    return fs.promises.readFile("./test2.txt");
+  })
+  // Once test2.txt is read, log the contents to the console and then read test3.txt
+  .then((value) => {
+    console.log(`ps test2.txt read : ${value}`);
+    return fs.promises.readFile("./test3.txt");
+  })
+  // Once test3.txt is read, log the contents to the console
+  .then((value) => {
+    console.log(`ps test3.txt read : ${value}`);
+  })
+  // If an error occurs at any point in the chain, log the error to the console
+  .catch((error) => {
+    console.log(`an error occurred : ${error}`);
+  });
+
+```
+
+`Writing Promises`
+
+A Promise is an instance of a new Promise class whose constructor requires a function signature that accepts two callback functions, generally named resolve and reject.
+
+- [x] Firstly, to use a Promise, we must return a new Promise object.
+- [x] Secondly, a Promise object is constructed with a function that takes two callback arguments, generally named resolve and reject.
+
+We can clearly see from the output the sequence of events that our code is executing from the logged output:
+
+- [x] Our first console log occurs just before we call the errorPromise function.
+- [x] The second log output occurs within our Promise itself, just before we call the reject callback on the Promise.
+- [x] The third log output message occurs within our catch block.
+
+
+Consider the following function definition:
+
+```ts
+// This function takes two arguments, both of which are functions.
+function fnDelayedPromise(
+    resolve: () => void, // This function will be called when the promise is resolved.
+    reject: () => void   // This function will be called when the promise is rejected.
+) {
+    // This function will be called after a timeout of 1000ms (1 second).
+    function afterTimeout() {
+        resolve();
+    }
+    // Set a timeout of 1000ms and call the afterTimeout function when the timeout expires.
+    setTimeout(afterTimeout, 1000);
+}
+// This function returns a Promise that resolves after a delay.
+function delayedResponsePromise(): Promise<void> {
+    // Create a new Promise object that takes a function as an argument.
+    return new Promise<void>(fnDelayedPromise);
+}
+delayedPromise().then(() => {
+  console.log(`delayed promise returned`);
+});
+function errorPromise(): Promise<void> {
+ return new Promise<void>(
+ ( // constructor
+ resolve: () => void,
+ reject: () => void
+ ) => {
+ // function definition
+ console.log(`2. calling reject()`);
+ reject();
+ }
+ )
+}
+console.log(`1. calling errorPromise()`);
+errorPromise().then(() => { })
+ .catch(() => { console.log(`3. caught an error`) });
+```
 
 ## Async Await
 
