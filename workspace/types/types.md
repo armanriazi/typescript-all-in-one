@@ -498,6 +498,23 @@ printObjectType("this is a string");
 
 ```
 
+### Conditional Type
+
+```ts
+type IsArray<T> = T extends any[] ? true : false;
+const myArray = [1, 2, 3];
+const myNumber = 42;
+type IsMyArrayAnArray = IsArray<typeof myArray>; // Type true
+type IsMyNumberAnArray = IsArray<typeof myNumber>; 
+```
+
+#### Type Inference
+conditional type inference in TypeScript is a feature that allows TypeScript to **infer different types based on conditions**.
+Which statement best describes type inference in TypeScript?
+A process by which TypeScript **automatically** infers the types of variables and expressions from their usage in code.
+
+Better **runtime performance is not** a benefit of advanced type inference in TypeScript.
+
 ### Ambient Declarations
 
 ['@'types](./module/@types.md)
