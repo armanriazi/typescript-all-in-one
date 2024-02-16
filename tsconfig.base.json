@@ -51,6 +51,7 @@
     "esModuleInterop": true,     
     "preserveSymlinks": true,      
     "experimentalDecorators":true,
+    "emitDecoratorMetadata" : true,
     "strict": true,   
     "forceConsistentCasingInFileNames" : true,
     "skipLibCheck": true,
