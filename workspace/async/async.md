@@ -209,6 +209,8 @@ async function foo() {
 }
 ```
 
+- [x] The await keyword will pause execution of our code block until the Promise has returned. If we need to use the - - [x] await keyword, then we must mark the function that it is used in with the async keyword.
+
 When the promise settles execution continues,
 
 - [x] if it was fulfilled then await will return the value,
@@ -240,6 +242,54 @@ const foo = wrapToReturnPromise(function* () {
 
 where the `wrapToReturnPromise` just executes the generator function to get the `generator` and then use `generator.next()`, if the value is a `promise` it would `then`+`catch` the promise and depending upon the result call `generator.next(result)` or `generator.throw(error)`. That's it!
 
+### Callbacks vs. Promises vs. Async
+
+`Callbacks`
+
+```ts
+function usingCallbacks() {
+ function afterCallbackSuccess() {
+ // execute when the callback succeeds
+ }
+ function afterCallbackFailure() {
+ // execute when the callback fails
+ }
+ // call a function and provide both callbacks
+ invokeAsync(afterCallbackSuccess, afterCallbackFailure);
+ // code here does not wait for callback to execute
+}
+```
+
+`Promise`
+
+```ts
+function usingPromises() {
+ delayedPromise().then(
+ () => {
+ // execute on success
+ }
+ ).catch(
+ () => {
+ // execute on error
+ }
+ )
+ // code here does not wait for promise to return
+}
+```
+
+`Async-Await`
+
+```ts
+async function usingAsync() {
+ try {
+ await delayedPromise();
+ // continue to next line of code on error
+ } catch(error) {
+ // execute on error
+ }
+ // code here waits for async call to complete
+}
+```
 
 ### Async Await Support in TypeScript
 **Async - Await** has been supported by [TypeScript since version 1.7](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-7.html). Asynchronous functions are prefixed with the *async* keyword; *await* suspends the execution until an asynchronous function **return promise** is fulfilled and **unwraps the value from the Promise** returned.

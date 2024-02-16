@@ -1,3 +1,6 @@
+What is a traditional callback in TypeScript?
+A function that is passed as an argument to another function and is called when the operation is complete.
+
 ## Promise
 
 The `Promise` class is something that exists in many modern JavaScript engines and can be easily [polyfilled][polyfill]. The main motivation for promises is to bring synchronous style error handling to Async / Callback style code.

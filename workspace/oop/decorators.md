@@ -1,8 +1,44 @@
 ## Decorators
-
+Decorators, however, allow us to inject code into the actual definition of a class **before a class instance has been created**. They are similar to **attributes** in C# or annotations in Java.
+Angular, where they are primarily used for dependency injection, or Vue, where they are used to inject functions into a class definition.
 Decorators provide **a mechanism to add metadata, modify behavior, validate, or extend the functionality** of the target element. They are functions that execute at runtime. Multiple decorators can be applied to a declaration.
 
 Decorators are experimental features, and the following examples are only compatible with TypeScript version 5 or above using ES6.
+
+A decorator is a function that is called with a specific set of parameters. These parameters are automatically populated by the JavaScript runtime and contain information about the class, method, or property to which the decorator has been applied. The number of parameters, and their types, determine where a decorator can be applied. 
+
+- [x] logs a message to the console, indicating that it has been invoked.
+- [x] Decorators are only invoked once when a class is defined.
+- [x] Decorators are **called in the reverse order** of their appearance within our code.
+
+To illustrate this syntax, let’s define a class decorator as follows:
+
+```ts
+function simpleDecorator(constructor: Function) {
+ console.log('simpleDecorator called');
+}
+function secondDecorator(constructor: Function) {
+ console.log(`secondDecorator called`);
+}
+
+@simpleDecorator
+@secondDecorator
+class ClassWithSimpleDecorator {
+}
+let instance_1 = new ClassWithSimpleDecorator();
+let instance_2 = new ClassWithSimpleDecorator();
+console.log(`instance_1 : ${JSON.stringify(instance_1)}`);
+console.log(`instance_2 : ${JSON.stringify(instance_2)}`);
+```
+
+`> Output:`
+
+```md
+secondDecorator called
+simpleDecorator called
+instance_1 : {}
+instance_2 : {}
+```
 
 For TypeScript versions prior to 5, they should be enabled using the `experimentalDecorators` property in your `tsconfig.json` or by using `--experimentalDecorators` in your command line (but the following example won't work).
 
@@ -18,6 +54,78 @@ For TypeScript versions prior to 5, they should be enabled using the `experiment
 - [x] Error guarding.
 
 Note: Decorators for version 5 do not allow decorating parameters.
+
+Let’s take a quick look at the types of decorators, which are:
+
+- [x] Class decorators: These are decorators that can be applied to a class definition.
+- [x] Property decorators: These are decorators that can be applied to a property within a class.
+- [x] Method decorators: These are decorators that can be applied to a method on a class.
+- [x] Parameter decorators: These are decorators that can be applied to a parameter of a method within a class.
+
+```ts
+// Define a function called classDecorator which takes a constructor function as input
+function classDecorator(
+  constructor: Function
+) {}
+
+// Define a function called propertyDecorator which takes an object and a string property key as input
+function propertyDecorator(
+  target: any,
+  propertyKey: string
+) {}
+
+// Define a function called methodDecorator which takes an object, a string method name, and an optional property descriptor object as input
+function methodDecorator(
+  target: any,
+  methodName: string,
+  descriptor?: PropertyDescriptor
+) {}
+
+// Define a function called parameterDecorator which takes an object, a string method name, and a number representing a parameter index as input
+function parameterDecorator(
+  target: any,
+  methodName: string,
+  parameterIndex: number
+) {}
+
+// Define a class called ClassWithAllTypesOfDecorators and apply the classDecorator to it
+@classDecorator
+class ClassWithAllTypesOfDecorators {
+  // Apply the propertyDecorator to the id property of the class
+  @propertyDecorator
+  id: number = 1;
+
+  // Apply the methodDecorator to the print method of the class
+  @methodDecorator
+  print() { }
+
+  // Apply the parameterDecorator to the id parameter of the setId method of the class
+  setId(@parameterDecorator id: number) { }
+}
+
+```
+
+## Decorator factories
+
+We can see that the anonymous function returned by the decoratorFactory function is invoked with the string "testName" as the value of the name argument.
+
+There are two things to note regarding decorator factory functions.
+
+- [x] Firstly, they must return a function that has the correct number of parameters and types of parameters, depending on what type of decorator they are.
+- [x] Secondly, the parameters defined for the decorator factory function can be used anywhere within the function definition, which includes within the anonymous decorator function itself.
+
+```ts
+function decoratorFactory(name: string) {
+  // Return a decorator function that takes a constructor function as input and logs the name parameter to the console
+  return (constructor: Function) => {
+    console.log(`decorator function called with : ${name}`);
+  }
+}
+// Apply the decorator generated by decoratorFactory function to the ClassWithDecoratorFactory class
+@decoratorFactory('testName')
+class ClassWithDecoratorFactory {
+}
+```
 
 Types of decorators:
 

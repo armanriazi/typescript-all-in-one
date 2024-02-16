@@ -50,7 +50,9 @@
     "noImplicitAny": true,
     "esModuleInterop": true,     
     "preserveSymlinks": true,      
+    "experimentalDecorators":true,
     "strict": true,   
+    "forceConsistentCasingInFileNames" : true,
     "skipLibCheck": true,
     "lib": [
       "dom",
