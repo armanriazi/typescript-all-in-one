@@ -6,8 +6,6 @@ The community has, over time, built a number of command-line tools to help with 
 
 Note: This popularity has also meant that the TypeScript team itself has included a tool for searching for types on their [website](https://www.typescriptlang.org/dt/search?search=) named Type Search. Here, we can search for type declaration files and, as can be seen in the help text, declaration files that are either bundled or in the Definitely Typed repository.
 
-> `Sample of writing declaration file` projects of typescript-all-in-one-> Ref.to ErrorHelper, ReadME
-
 - [x] Declaration files, including:
     -   Global variables
     -   JavaScript code embedded in HTML
@@ -37,6 +35,8 @@ Note that all JavaScript is *valid* TypeScript. That is to say that if you give 
 
 ### Suppressing Errors
 TypeScript will immediately start TypeChecking your code and your original JavaScript code *might not be as neat as you thought it was* and hence you get diagnostic errors. Many of these errors you can suppress with using `any` e.g.:
+
+> `Sample of writing declaration file` projects of typescript-all-in-one-> Ref.to ErrorHelper, ReadME
 
 ```ts
 var foo = 123;
