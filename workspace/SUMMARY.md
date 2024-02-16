@@ -41,6 +41,7 @@
   * [Modules](project/modules.md) 
     * [File Module Details](project/external-modules.md)
     * [global.d.ts](project/globals.md)
+    * [global.d.ts](project/namespacing.d.md)
   * [Namespaces](project/namespaces.md)  <!--completed-->
   * [Dynamic Import Expressions](project/dynamic-import-expressions.md) <!--completed-->  
 * [TypeScript's Types](types/types.md) <!--completed-->  

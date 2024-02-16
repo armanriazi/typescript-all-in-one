@@ -28,8 +28,6 @@ flyingFish.fly();
 flyingFish.swim();
 ```
 
-The `class` keyword in TypeScript, similar to JavaScript, is often referred to as syntactic sugar. It was introduced in ECMAScript 2015 (ES6) to offer a more familiar syntax for creating and working with objects in a class-based manner. However, it's important to note that TypeScript, being a superset of JavaScript, ultimately compiles down to JavaScript, which remains prototype-based at its core.
-
 ### Implements with Extends
 
 ```ts

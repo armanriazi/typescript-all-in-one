@@ -1,4 +1,13 @@
 # global.d.ts
+Note that over time, some JavaScript libraries have begun to include declaration files within their main package, and therefore, we do not even need to install an @types package in order to use it.
+
+`declare module 'underscore';`
+
+Here, we declare that there is a module named 'underscore' that we wish to use, but we don’t provide a declaration file for it. This solution is really the last resort and should be avoided when possible.
+
+The reason for this is that we will not have any types declared *for this library*, and it will just be of **type any**.
+
+> `Sample project` Ref.To project of typescript-all-in-one-> ts-declare-global, ReadME
 
 We discussed *global* vs. *file* modules when covering [projects](./modules.md) and recommended using file based modules and not polluting the global namespace.
 

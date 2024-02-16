@@ -1,5 +1,24 @@
 ## Migrating From JavaScript
 
+**Boris Yankov set up a GitHub repository** to house TypeScript declaration files for third-party libraries. This repository, named Definitely Typed, quickly became very popular and is now the go-to repository for declaration files.
+
+The community has, over time, built a number of command-line tools to help with this, including **tsd, typings, and NuGet extensions**.
+
+Note: This popularity has also meant that the TypeScript team itself has included a tool for searching for types on their [website](https://www.typescriptlang.org/dt/search?search=) named Type Search. Here, we can search for type declaration files and, as can be seen in the help text, declaration files that are either bundled or in the Definitely Typed repository.
+
+> `Sample of writing declaration file` projects of typescript-all-in-one-> Ref.to ErrorHelper, ReadME
+
+- [x] Declaration files, including:
+    -   Global variables
+    -   JavaScript code embedded in HTML
+    -   Finding declaration files with npm
+    -   Writing declaration files
+    -   Using the module keyword
+- [x] Declaration file typing
+- [x] The allowJs and outDir options
+- [x] Compiling JavaScript
+- [x] The declaration option
+
 Assuming:
 - [x] you know JavaScript.
 - [x] you know patterns and build tools (e.g. webpack) used in the project. 
