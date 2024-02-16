@@ -134,7 +134,7 @@ TypeScript has no effect on runtime performance, as all types will be erased. Ho
 ## Future JavaScript => Now
 TypeScript provides a number of features that are planned in ES6 for current JavaScript engines (that only support ES5 etc). The TypeScript team is actively adding these features and this list is only going to get bigger over time and we will cover this in its own section. But just as a specimen here is an example of a class:
 
-```ts
+```typescript
 class Point {
     constructor(public x: number, public y: number) {
     }
@@ -150,7 +150,7 @@ var p3 = p1.add(p2); // { x: 10, y: 30 }
 
 and the lovely fat arrow function:
 
-```ts
+```typescript
 var inc = x => x+1;
 ```
 

@@ -2,7 +2,7 @@
 
 TypeScript (and JavaScript) classes support strict single inheritance. So you *cannot* do:
 
-```ts
+```typescript
 class User extends Tagged, Timestamped { // ERROR : no multiple inheritance
 }
 ```
@@ -19,7 +19,7 @@ The idea is simple, instead of a *class A extending class B* to get its function
 
 A complete example
 
-```ts
+```typescript
 // Needed for all mixins
 type Constructor<T = {}> = new (...args: any[]) => T;
 
@@ -83,7 +83,7 @@ Let's decompose this example.
 
 Mixins take a class and extend it with new functionality. So we need to define what is a *constructor*. Easy as:
 
-```ts
+```typescript
 // Needed for all mixins
 type Constructor<T = {}> = new (...args: any[]) => T;
 ```
@@ -92,7 +92,7 @@ type Constructor<T = {}> = new (...args: any[]) => T;
 
 Pretty easy:
 
-```ts
+```typescript
 // A mixin that adds a property
 function Timestamped<TBase extends Constructor>(Base: TBase) {
   return class extends Base {

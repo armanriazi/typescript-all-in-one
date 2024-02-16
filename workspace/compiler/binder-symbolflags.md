@@ -1,7 +1,7 @@
 ### SymbolFlags
 Symbols have `SymbolFlags`. Below we have them in their verbatim, as of TypeScript 2.2
 
-```ts
+```typescript
     export const enum SymbolFlags {
         None                    = 0,
         FunctionScopedVariable  = 1 << 0,   // Variable (var) or parameter

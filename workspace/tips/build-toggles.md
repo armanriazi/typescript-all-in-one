@@ -13,7 +13,7 @@ Of course I am assuming you have `npm install webpack --save-dev`. Now you can r
 
 Using this variable is super easy as well:
 
-```ts
+```typescript
 /**
  * This interface makes sure we don't miss adding a property to both `prod` and `test`
  */

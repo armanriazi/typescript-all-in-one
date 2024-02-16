@@ -31,7 +31,7 @@ Let’s see an example to figure out how to configure webpack + TypeScript 2.4.
 
 In the following code I want to **lazy load the library _moment_** but I am interested in code splitting as well, which means, having the moment library in a separate chunk of JS (JavaScript file) that will be loaded only when required.
 
-```ts
+```typescript
 import(/* webpackChunkName: "momentjs" */ "moment")
   .then((moment) => {
       // lazyModule has all of the proper types, autocomplete works,

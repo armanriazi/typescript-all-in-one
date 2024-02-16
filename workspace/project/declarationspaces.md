@@ -5,14 +5,14 @@ There are two declaration spaces in TypeScript: the *variable* declaration space
 ### Type Declaration Space
 The type declaration space contains stuff that can be used as a type annotation. E.g. the following are a few type declarations:
 
-```ts
+```typescript
 class Foo {};
 interface Bar {};
 type Bas = {};
 ```
 This means that you can use `Foo`, `Bar`, `Bas`, etc. as a type annotation. E.g.:
 
-```ts
+```typescript
 var foo: Foo;
 var bar: Bar;
 var bas: Bas;
@@ -20,7 +20,7 @@ var bas: Bas;
 
 Notice that even though you have `interface Bar`, *you can't use it as a variable* because it doesn't contribute to the *variable declaration space*. This is shown below:
 
-```ts
+```typescript
 interface Bar {};
 var bar = Bar; // ERROR: "cannot find name 'Bar'"
 ```
@@ -30,7 +30,7 @@ The reason why it says `cannot find name` is because the name `Bar` *is not defi
 ### Variable Declaration Space
 The variable declaration space contains stuff that you can use as a variable. We saw that having `class Foo` contributes a type `Foo` to the *type* declaration space. Guess what? It also contributes a *variable* `Foo` to the *variable* declaration space as shown below:
 
-```ts
+```typescript
 class Foo {};
 var someVar = Foo;
 var someOtherVar = 123;
@@ -41,7 +41,7 @@ This is great as sometimes you want to pass classes around as variables. Remembe
 
 Similarly something that you declare with `var`, is *only* in the *variable* declaration space and cannot be used as a type annotation:
 
-```ts
+```typescript
 var foo = 123;
 var bar: foo; // ERROR: "cannot find name 'foo'"
 ```

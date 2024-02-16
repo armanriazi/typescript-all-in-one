@@ -32,7 +32,7 @@ You import modules like `foo` or `./foo`. For any file path lookup TypeScript au
 
 An import with a relative path e.g.:
 
-```ts
+```typescript
 import foo = require('./foo');
 ```
 
@@ -42,7 +42,7 @@ Tells the TypeScript compiler to look for a TypeScript file at the relative loca
 
 The following statement:
 
-```ts
+```typescript
 import foo = require('foo');
 ```
 
@@ -58,7 +58,7 @@ Note that `"foo"` can be a longer path string e.g. `"foo/bar/bas"`. The key here
 
 A module declaration looks like:
 
-```ts
+```typescript
 declare module "foo" {
 
     /// Some variable declarations

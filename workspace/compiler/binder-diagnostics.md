@@ -4,7 +4,7 @@ Binding errors are added to the sourceFile's list of `bindDiagnostics`.
 
 An example error detected during binding is the use of `eval` or `arguments` as a variable name in `use strict` scenario. The relevant code is presented in its entirety below (`checkStrictModeEvalOrArguments` is called from multiple places, call stacks originating from `bindWorker` which calls different functions for different node `SyntaxKind`):
 
-```ts
+```typescript
 function checkStrictModeEvalOrArguments(contextNode: Node, name: Node) {
     if (name && name.kind === SyntaxKind.Identifier) {
         let identifier = <Identifier>name;

@@ -9,7 +9,7 @@ The `Promise` class is something that exists in many modern JavaScript engines a
 
 In order to fully appreciate promises let's present a simple sample that proves the difficulty of creating reliable Async code with just callbacks. Consider the simple case of authoring an async version of loading JSON from a file. A synchronous version of this can be quite simple:
 
-```ts
+```typescript
 import fs = require('fs');
 
 function loadJSONSync(filename: string) {
@@ -38,7 +38,7 @@ catch (err) {
 
 There are three behaviors of this simple `loadJSONSync` function, a valid return value, a file system error or a JSON.parse error. We handle the errors with a simple try/catch as you are used to when doing synchronous programming in other languages. Now let's make a good async version of such a function. A decent initial attempt with trivial error checking logic would be as follows:
 
-```ts
+```typescript
 import fs = require('fs');
 
 // A decent initial attempt .... but not correct. We explain the reasons below
@@ -57,7 +57,7 @@ Simple enough, it takes a callback, passes any file system errors to the callbac
 
 However, this simple function fails to accommodate for point two. In fact, `JSON.parse` throws an error if it is passed bad JSON and the callback never gets called and the application crashes. This is demonstrated in the below example:
 
-```ts
+```typescript
 import fs = require('fs');
 
 // A decent initial attempt .... but not correct
@@ -78,7 +78,7 @@ loadJSON('invalid.json', function (err, data) {
 
 A naive attempt at fixing this would be to wrap the `JSON.parse` in a try catch as shown in the below example:
 
-```ts
+```typescript
 import fs = require('fs');
 
 // A better attempt ... but still not correct
@@ -107,7 +107,7 @@ loadJSON('invalid.json', function (err, data) {
 
 However, there is a subtle bug in this code. If the callback (`cb`), and not `JSON.parse`, throws an error, since we wrapped it in a `try`/`catch`, the `catch` executes and we call the callback again i.e. the callback gets called twice! This is demonstrated in the example below:
 
-```ts
+```typescript
 import fs = require('fs');
 
 function loadJSON(filename: string, cb: (error: Error) => void) {
@@ -153,7 +153,7 @@ This is because our `loadJSON` function wrongfully wrapped the callback in a `tr
 
 Following this simple lesson, we have a fully functional async version of `loadJSON` as shown below:
 
-```ts
+```typescript
 import fs = require('fs');
 
 function loadJSON(filename: string, cb: (error: Error) => void) {
@@ -181,7 +181,7 @@ A promise can be either `pending` or `fulfilled` or `rejected`.
 
 Let's look at creating a promise. It's a simple matter of calling `new` on `Promise` (the promise constructor). The promise constructor is passed `resolve` and `reject` functions for settling the promise state:
 
-```ts
+```typescript
 const promise = new Promise((resolve, reject) => {
     // the resolve / reject functions control the fate of the promise
 });
@@ -191,7 +191,7 @@ const promise = new Promise((resolve, reject) => {
 
 The promise fate can be subscribed to using `.then` (if resolved) or `.catch` (if rejected).
 
-```ts
+```typescript
 const promise = new Promise((resolve, reject) => {
     resolve(123);
 });
@@ -203,7 +203,7 @@ promise.catch((err) => {
 });
 ```
 
-```ts
+```typescript
 const promise = new Promise((resolve, reject) => {
     reject(new Error("Something awful happened"));
 });
@@ -224,7 +224,7 @@ The chain-ability of promises **is the heart of the benefit that promises provid
 
 * If you return a promise from any function in the chain, `.then` is only called once the value is resolved:
 
-```ts
+```typescript
 Promise.resolve(123)
     .then((res) => {
         console.log(res); // 123
@@ -242,7 +242,7 @@ Promise.resolve(123)
 
 * You can aggregate the error handling of any preceding portion of the chain with a single `catch`:
 
-```ts
+```typescript
 // Create a rejected promise
 Promise.reject(new Error('something bad happened'))
     .then((res) => {
@@ -264,7 +264,7 @@ Promise.reject(new Error('something bad happened'))
 
 * The `catch` actually returns a new promise (effectively creating a new promise chain):
 
-```ts
+```typescript
 // Create a rejected promise
 Promise.reject(new Error('something bad happened'))
     .then((res) => {
@@ -282,7 +282,7 @@ Promise.reject(new Error('something bad happened'))
 
 * Any synchronous errors thrown in a `then` (or `catch`) result in the returned promise to fail:
 
-```ts
+```typescript
 Promise.resolve(123)
     .then((res) => {
         throw new Error('something bad happened'); // throw a synchronous error
@@ -299,7 +299,7 @@ Promise.resolve(123)
 
 * Only the relevant (nearest tailing) `catch` is called for a given error (as the catch starts a new promise chain).
 
-```ts
+```typescript
 Promise.resolve(123)
     .then((res) => {
         throw new Error('something bad happened'); // throw a synchronous error
@@ -320,7 +320,7 @@ Promise.resolve(123)
 
 * A `catch` is only called in case of an error in the preceding chain:
 
-```ts
+```typescript
 Promise.resolve(123)
     .then((res) => {
         return 456;
@@ -341,7 +341,7 @@ effectively provides us with an async programming paradigm that allows better er
 ### TypeScript and promises
 The great thing about TypeScript is that it understands the flow of values through a promise chain:
 
-```ts
+```typescript
 Promise.resolve(123)
     .then((res) => {
          // res is inferred to be of type `number`
@@ -355,7 +355,7 @@ Promise.resolve(123)
 
 Of course it also understands unwrapping any function calls that might return a promise:
 
-```ts
+```typescript
 function iReturnPromiseAfter1Second(): Promise<string> {
     return new Promise((resolve) => {
         setTimeout(() => resolve("Hello world!"), 1000);
@@ -382,7 +382,7 @@ Just wrap the function call in a promise and
 
 E.g. let's wrap `fs.readFile`:
 
-```ts
+```typescript
 import fs = require('fs');
 function readFileAsync(filename: string): Promise<any> {
     return new Promise((resolve,reject) => {
@@ -396,13 +396,13 @@ function readFileAsync(filename: string): Promise<any> {
 
 The most reliable way to do this is to hand write it and it doesn't have to be as verbose as the previous example e.g. converting `setTimeout` into a promisified `delay` function is super easy:
 
-```ts
+```typescript
 const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
 ```
 
 Note that there is a handy dandy function in NodeJS that does this `node style function => promise returning function` magic for you:
 
-```ts
+```typescript
 /** Sample usage */
 import fs from 'fs';
 import util from 'util';
@@ -413,7 +413,7 @@ const readFile = util.promisify(fs.readFile);
 
 If you have a node callback style function as a *member* be sure to `bind` it as well to make sure it has the correct `this`: 
 
-```ts
+```typescript
 const dbGet = util.promisify(db.get).bind(db);
 ```
 
@@ -421,7 +421,7 @@ const dbGet = util.promisify(db.get).bind(db);
 
 Now let's revisit our `loadJSON` example and rewrite an async version that uses promises. All that we need to do is read the file contents as a promise, then parse them as JSON and we are done. This is illustrated in the below example:
 
-```ts
+```typescript
 function loadJSONAsync(filename: string): Promise<any> {
     return readFileAsync(filename) // Use the function we just wrote
                 .then(function (res) {
@@ -431,7 +431,7 @@ function loadJSONAsync(filename: string): Promise<any> {
 ```
 
 Usage (notice how similar it is to the original `sync` version introduced at the start of this section 🌹):
-```ts
+```typescript
 // good json file
 loadJSONAsync('good.json')
     .then(function (val) { console.log(val); })
@@ -465,7 +465,7 @@ We have seen how trivial doing a serial sequence of async tasks is with promises
 
 However, you might potentially want to run a series of async tasks and then do something with the results of all of these tasks. `Promise` provides a static `Promise.all` function that you can use to wait for `n` number of promises to complete. You provide it with an array of `n` promises and it gives you an array of `n` resolved values. Below we show Chaining as well as Parallel:
 
-```ts
+```typescript
 // an async function to simulate loading an item from some server
 function loadItem(id: number): Promise<{ id: number }> {
     return new Promise((resolve) => {
@@ -498,7 +498,7 @@ Promise.all([loadItem(1), loadItem(2)])
 
 Sometimes, you want to run a series of async tasks, but you get all you need as long as any one of these tasks is settled. `Promise` provides a static `Promise.race` function for this scenario:
 
-```ts
+```typescript
 var task1 = new Promise(function(resolve, reject) {
     setTimeout(resolve, 1000, 'one');
 });

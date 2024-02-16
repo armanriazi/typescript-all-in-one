@@ -38,7 +38,7 @@ And when you are ready to deploy your JavaScript application run `npm run build`
 ## Node style callbacks
 Node style callback functions (e.g. `(err,somethingElse)=>{ /* something */ }`) are generally called with `err` set to `null` if there isn't an error. You generally just use a truthy check for this anyways:
 
-```ts
+```typescript
 fs.readFile('someFile', 'utf8', (err,data) => {
   if (err) {
     // do something

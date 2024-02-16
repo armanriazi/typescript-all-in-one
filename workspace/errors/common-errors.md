@@ -159,7 +159,7 @@ function setGlobalString(value: string) {
 
 ## TS2448
 
-```ts
+```typescript
 // This line logs the value of the variable "lValue" to the console, before it has been defined
 console.log(`lValue = ${lValue}`);
 

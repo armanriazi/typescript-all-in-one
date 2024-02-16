@@ -114,7 +114,7 @@ console.log(addWithTypeAlias('Hello', ' World')); // Output: 'Hello World'
 
 TypeScript also allows us to use what are known as literals, which are almost a **hybrid of enums and type aliases**. A literal will limit the allowed values to a set of values specified. A literal can be made of string, number, or boolean values.
 
-```ts
+```typescript
 // Define a literal `AllowedStringValues` that can be either "one", "two", or "three".
 type AllowedStringValues = "one" | "two" | "three";
 
@@ -154,7 +154,7 @@ const r: X = y;
 ### Types can be Implicit
 TypeScript will try to infer as much of the type information as it can in order to give you type safety with minimal cost of productivity during code development. For example, in the following example TypeScript will know that foo is of type `number` below and will give an error on the second line as shown:
 
-```ts
+```typescript
 var foo = 123;
 foo = '456'; // Error: cannot assign `string` to `number`
 
@@ -170,12 +170,12 @@ As we've mentioned before, TypeScript will infer as much as it can safely. Howev
 
 TypeScript uses postfix type annotations popular in other *optionally* annotated languages (e.g. ActionScript and F#).
 
-```ts
+```typescript
 var foo: number = 123;
 ```
 So if you do something wrong the compiler will report an error e.g.:
 
-```ts
+```typescript
 var foo: number = '123'; // Error: cannot assign a `string` to a `number`
 ```
 
@@ -184,7 +184,7 @@ We will discuss all the details of all the annotation syntax supported by TypeSc
 ### Assign a type
 Type Declarations and Type Assertions.In the following example, we use x: X (": Type") to declare a type for the variable x.
 
-```ts
+```typescript
 type X = {
     a: string;
 };
@@ -200,13 +200,13 @@ const x: X = {
 
 * Use `type` when you *might* need a union or intersection:
 
-```ts
+```typescript
 type Foo = number | { someProperty: number }
 ```
 
 * Use `interface` when you want `extends` or `implements` e.g.
 
-```ts
+```typescript
 interface Foo {
   foo: string;
 }
@@ -263,7 +263,7 @@ interface B extends A {
 ### Types are structural
 In some languages (specifically nominally typed ones) static typing results in unnecessary ceremony because even though *you know* that the code will work fine the language semantics force you to copy stuff around. This is why stuff like **automapper** for c# is *vital* for C#. In TypeScript because we really want it to be easy for JavaScript developers with a minimum cognitive overload, types are *structural*. This means that **duck typing** is a first class language construct. Consider the following example. The function `iTakePoint2D` will accept anything that contains all the things (`x` and `y`) it expects:
 
-```ts
+```typescript
 interface Point2D {
     x: number;
     y: number;
@@ -299,14 +299,14 @@ const w: X = { a: 'a', b: 'b' }; // Invalid because excess property checking
 ### Type errors do not prevent JavaScript emit
 To make it easy for you to migrate your JavaScript code to TypeScript, even if there are compilation errors, by default TypeScript *will emit valid JavaScript* the best that it can. e.g.
 
-```ts
+```typescript
 var foo = 123;
 foo = '456'; // Error: cannot assign a `string` to a `number`
 ```
 
 will emit the following js:
 
-```ts
+```typescript
 var foo = 123;
 foo = '456';
 ```
@@ -452,7 +452,7 @@ Generally consider annotating type signatures but not the body local variables a
 
 TypeScript provides convenient syntax for providing names for type annotations that you would like to use in more than one place. The aliases are created using the `type SomeName = someValidTypeAnnotation` syntax. An example is demonstrated below:
 
-```ts
+```typescript
 type StrOrNum = string|number;
 
 // Usage: just like any other notation
@@ -466,7 +466,7 @@ sample = true; // Error!
 
 Unlike an `interface` you can give a type alias to literally any type annotation (useful for stuff like union and intersection types). Here are a few more examples to make you familiar with the syntax:
 
-```ts
+```typescript
 type Text = string | { text: string };
 type Coordinates = [number, number];
 type Callback = (data: string) => void;
@@ -479,7 +479,7 @@ type Callback = (data: string) => void;
 ## Object Type
 TypeScript introduces the object type to cover types that are not primitive types. This includes any type that is not number, boolean, string, null, symbol, or undefined.
 
-```ts
+```typescript
 let structuredObject: object = {
   name: "myObject",
   properties: {
@@ -500,7 +500,7 @@ printObjectType("this is a string");
 
 ### Conditional Type
 
-```ts
+```typescript
 type IsArray<T> = T extends any[] ? true : false;
 const myArray = [1, 2, 3];
 const myNumber = 42;

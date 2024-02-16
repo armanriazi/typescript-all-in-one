@@ -17,7 +17,7 @@ TypeScript is just JavaScript with docs.
 
 TypeScript will try to protect you from portions of JavaScript that never worked (so you don't need to remember this stuff):
 
-```ts
+```typescript
 [] + []; // JavaScript will give you "" (which makes little sense), TypeScript will error
 
 //

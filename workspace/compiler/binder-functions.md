@@ -17,7 +17,7 @@ This function switches on `node.kind` (of type `SyntaxKind`) and delegates work 
 #### `bindFoo` functions
 There are a few patterns common to `bindFoo` functions as well as some utility functions that these use. One function that is almost always used is the `createSymbol` function. It is presented in its entirety below:
 
-```ts
+```typescript
 function createSymbol(flags: SymbolFlags, name: string): Symbol {
     symbolCount++;
     return new Symbol(flags, name);

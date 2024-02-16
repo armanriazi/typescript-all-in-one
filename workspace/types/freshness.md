@@ -15,7 +15,7 @@ TypeScript provides a concept of **Freshness** (also called *strict object liter
 
 Here are some examples to illustrate:
 
-```ts
+```typescript
 type X = { a: string };
 type Y = { a: string; b: string };
 
@@ -39,7 +39,7 @@ x = y; // Widening: No Freshness check
 
 Structural typing is *extremely convenient*. Consider the following piece of code. This allows you to *very conveniently* **upgrade your JavaScript to TypeScript** while still preserving a level of type **safety**:
 
-```ts
+```typescript
 function logName(something: { name: string }) {
     console.log(something.name);
 }
@@ -55,7 +55,7 @@ logName(random); // Error: property `name` is missing
 
 However, *structural* typing has a weakness in that it allows you to misleadingly think that something accepts more data than it actually does. This is demonstrated in the following code which TypeScript will error on as shown:
 
-```ts
+```typescript
 function logName(something: { name: string }) {
     console.log(something.name);
 }
@@ -68,7 +68,7 @@ Note that this error *only happens on object literals*. Without this error one m
 
 Another big use case is with interfaces that have optional members, without such object literal checking, a typo would type check just fine. This is demonstrated below:
 
-```ts
+```typescript
 function logIfHasName(something: { name?: string }) {
     if (something.name) {
         console.log(something.name);
@@ -88,7 +88,7 @@ The reason why only object literals are type checked this way is because in this
 
 A type can include an index signature to explicitly indicate that excess properties are permitted:
 
-```ts
+```typescript
 var x: { foo: number, [x: string]: unknown };
 x = { foo: 1, baz: 2 };  // Ok, `baz` matched by index signature
 ```
@@ -98,7 +98,7 @@ x = { foo: 1, baz: 2 };  // Ok, `baz` matched by index signature
 
 [Facebook ReactJS](https://facebook.github.io/react/) offers a nice use case for object freshness. Quite commonly in a component you call `setState` with only a few properties instead of passing in all the properties, i.e.: 
 
-```ts
+```typescript
 // Assuming
 interface State {
     foo: string;
@@ -114,7 +114,7 @@ this.setState({foo: "Hello", bar: this.state.bar});
 
 Using the idea of freshness you would mark all the members as optional and *you still get to catch typos*!: 
 
-```ts
+```typescript
 // Assuming
 interface State {
     foo?: string;

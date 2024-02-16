@@ -3,7 +3,7 @@ Linking between a `node` and a `symbol` is performed by a few functions. One fun
 
 Note : the `Symbol` for an external module source file is setup as `flags : SymbolFlags.ValueModule` and `name: '"' + removeFileExtension(file.fileName) + '"'`).
 
-```ts
+```typescript
 function addDeclarationToSymbol(symbol: Symbol, node: Declaration, symbolFlags: SymbolFlags) {
     symbol.flags |= symbolFlags;
 
@@ -35,7 +35,7 @@ The important linking portions:
 #### Declaration
 Declaration is just a `node` with an optional name. In `types.ts`
 
-```ts
+```typescript
 interface Declaration extends Node {
     _declarationBrand: any;
     name?: DeclarationName;

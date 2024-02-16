@@ -2,7 +2,7 @@
 
 An AST node can be a container. This determines the kinds of `SymbolTables` the Node and associated Symbol will have. Container is an abstract concept (i.e. has no associated data structure). The concept is driven by a few things, one being the `ContainerFlags` enum. The function `getContainerFlags` (in `binder.ts`) drives this flag and is presented below:
 
-```ts
+```typescript
 function getContainerFlags(node: Node): ContainerFlags {
     switch (node.kind) {
         case SyntaxKind.ClassExpression:
@@ -64,7 +64,7 @@ function getContainerFlags(node: Node): ContainerFlags {
 
 It is *only* invoked from the binder's `bindChildren` function which sets up a node as a `container` and/or a `blockScopedContainer` depending upon the evaluation of the `getContainerFlags` function. The function `bindChildren` is presented below:
 
-```ts
+```typescript
 // All container nodes are kept on a linked list in declaration order. This list is used by
 // the getLocalNameOfContainer function in the type checker to validate that the local name
 // used for a container is unique.

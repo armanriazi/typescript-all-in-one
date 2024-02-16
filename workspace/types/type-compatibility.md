@@ -17,7 +17,7 @@
 
 Type Compatibility (as we discuss here) determines if one thing can be assigned to another. E.g. `string` and `number` are not compatible:
 
-```ts
+```typescript
 let str: string = "Hello";
 let num: number = 123;
 
@@ -29,7 +29,7 @@ num = str; // ERROR: `string` is not assignable to `number`
 
 TypeScript's type system is designed to be convenient and allows for *unsound* behaviours e.g. anything can be assigned to `any` which means telling the compiler to allow you to do whatever you want:
 
-```ts
+```typescript
 let foo: any = 123;
 foo = "Hello";
 
@@ -41,7 +41,7 @@ foo.toPrecision(3); // Allowed as you typed it as `any`
 
 TypeScript objects are structurally typed. This means the *names* don't matter as long as the structures match
 
-```ts
+```typescript
 interface Point {
     x: number,
     y: number
@@ -60,7 +60,7 @@ This allows you to create objects on the fly (like you do in vanilla JS) and sti
 
 Also *more* data is considered fine:
 
-```ts
+```typescript
 interface Point2D {
     x: number;
     y: number;
@@ -104,7 +104,7 @@ There are a few subtle things to consider when comparing two functions.
 
 `covariant`: The return type must contain at least enough data.
 
-```ts
+```typescript
 /** Type Hierarchy */
 interface Point2D { x: number; y: number; }
 interface Point3D { x: number; y: number; z: number; }
@@ -122,7 +122,7 @@ iMakePoint3D = iMakePoint2D; // ERROR: Point2D is not assignable to Point3D
 
 Fewer arguments are okay (i.e. functions can choose to ignore additional parameters). After all you are guaranteed to be called with at least enough arguments.
 
-```ts
+```typescript
 let iTakeSomethingAndPassItAnErr
     = (x: (err: Error, data: any) => void) => { /* do something */ };
 
@@ -138,7 +138,7 @@ iTakeSomethingAndPassItAnErr((err, data, more) => null);
 
 Optional (pre determined count) and Rest parameters (any count of arguments) are compatible, again for convenience.
 
-```ts
+```typescript
 let foo = (x:number, y: number) => { /* do something */ }
 let bar = (x?:number, y?: number) => { /* do something */ }
 let bas = (...args: number[]) => { /* do something */ }
@@ -153,7 +153,7 @@ bas = bar = foo;
 
 `bivariant` : This is designed to support common event handling scenarios
 
-```ts
+```typescript
 /** Event Hierarchy */
 interface Event { timestamp: number; }
 interface MouseEvent extends Event { x: number; y: number }
@@ -180,7 +180,7 @@ Also makes `Array<Child>` assignable to `Array<Base>` (covariance) as the functi
 
 **This can be confusing for people coming from other languages** who would expect the following to error but will not in TypeScript:
 
-```ts
+```typescript
 /** Type Hierarchy */
 interface Point2D { x: number; y: number; }
 interface Point3D { x: number; y: number; z: number; }
@@ -197,7 +197,7 @@ iTakePoint2D = iTakePoint3D; // Okay : WHAT
 
 * Enums are compatible with numbers, and numbers are compatible with enums.
 
-```ts
+```typescript
 enum Status { Ready, Waiting };
 
 let status = Status.Ready;
@@ -209,7 +209,7 @@ num = status; // OKAY
 
 * Enum values from different enum types are considered incompatible. This makes enums useable *nominally* (as opposed to structurally)
 
-```ts
+```typescript
 enum Status { Ready, Waiting };
 enum Color { Red, Blue, Green };
 
@@ -223,7 +223,7 @@ status = color; // ERROR
 
 * Only instance members and methods are compared. *constructors* and *statics* play no part.
 
-```ts
+```typescript
 class Animal {
     feet: number;
     constructor(name: string, numFeet: number) { /** do something */ }
@@ -243,7 +243,7 @@ s = a;  // OK
 
 * `private` and `protected` members *must originate from the same class*. Such members essentially make the class *nominal*.
 
-```ts
+```typescript
 /** A class hierarchy */
 class Animal { protected feet: number; }
 class Cat extends Animal { }
@@ -267,7 +267,7 @@ size = animal; // ERROR
 
 Since TypeScript has a structural type system, type parameters only affect compatibility when used by a member. For example, in the  following `T` has no impact on compatibility:
 
-```ts
+```typescript
 interface Empty<T> {
 }
 let x: Empty<number>;
@@ -278,7 +278,7 @@ x = y;  // okay, y matches structure of x
 
 However, if `T` is used, it will play a role in compatibility based on its *instantiation* as shown below:
 
-```ts
+```typescript
 interface NotEmpty<T> {
     data: T;
 }
@@ -290,7 +290,7 @@ x = y;  // error, x and y are not compatible
 
 In cases where generic arguments haven't been *instantiated* they are substituted by `any` before checking compatibility:
 
-```ts
+```typescript
 let identity = function<T>(x: T): T {
     // ...
 }
@@ -304,7 +304,7 @@ identity = reverse;  // Okay because (x: any)=>any matches (y: any)=>any
 
 Generics involving classes are matched by relevant class compatibility as mentioned before. e.g. 
 
-```ts
+```typescript
 class List<T> {
   add(val: T) { }
 }
@@ -325,7 +325,7 @@ cats.add(new Cat()); // Okay
 
 We said invariance is the only sound option. Here is an example where both `contra` and `co` variance are shown to be unsafe for arrays.
 
-```ts
+```typescript
 /** Hierarchy */
 class Animal { constructor(public name: string){} }
 class Cat extends Animal { meow() { } }

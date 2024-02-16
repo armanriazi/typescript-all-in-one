@@ -6,7 +6,7 @@ Note: you need to install the `jquery.d.ts` file for these tips
 
 Just create `jquery-foo.d.ts` with: 
 
-```ts
+```typescript
 interface JQuery {
   foo: any;
 }

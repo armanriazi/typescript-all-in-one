@@ -4,7 +4,7 @@ Interfaces have *zero* runtime JS impact. There is a lot of power in TypeScript 
 
 The following two are equivalent declarations, the first uses an *inline annotation*, the second uses an *interface*:
 
-```ts
+```typescript
 // Sample A
 declare var myPoint: { x: number; y: number; };
 
@@ -17,7 +17,7 @@ declare var myPoint: Point;
 
 However, the beauty of *Sample B* is that if someone authors a library that builds on the `myPoint` library to add new members, they can easily add to the existing declaration of `myPoint`:
 
-```ts
+```typescript
 // Lib a.d.ts
 interface Point {
     x: number; y: number;
@@ -39,7 +39,7 @@ This is because **interfaces in TypeScript are open ended**. This is a vital ten
 
 Interfaces are the core way in TypeScript to compose multiple type annotations into a single named annotation. Consider the following example:
 
-```ts
+```typescript
 interface Name {
     first: string;
     second: string;
@@ -64,7 +64,7 @@ Here we've composed the annotations `first: string` + `second: string` into a ne
 
 ### Narrowing a type on a derived interface
 
-```ts
+```typescript
 // Interface `IBaseStringOrNumber` defines a property `id` that can be either a string or a number
 interface IBaseStringOrNumber {
     id: string | number;
@@ -81,7 +81,7 @@ interface IDerivedFromBaseNumber
 
 Can we specify a generic constraint on a function parameter in TypeScript? Yes
 
-```ts
+```typescript
 // This class takes an array of strings or numbers and concatenates them into a single string
 class Concatenator<T extends Array<string> | Array<number>> {
   
@@ -109,7 +109,7 @@ class Concatenator<T extends Array<string> | Array<number>> {
 ### Inline Type Annotation
 Instead of creating a new `interface` you can annotate anything you want *inline* using `:{ /*Structure*/ }`. The previous example presented again with an inline type:
 
-```ts
+```typescript
 var name: {
     first: string;
     second: string;
@@ -134,7 +134,7 @@ Inline types are great for quickly providing a one off type annotation for somet
 
 If you want to use *classes* that must follow an object structure that someone declared for you in an `interface` you can use the `implements` keyword to ensure compatibility:
 
-```ts
+```typescript
 interface Point {
     x: number; y: number;
 }
@@ -146,7 +146,7 @@ class MyPoint implements Point {
 
 Basically in the presence of that `implements`, any changes in that external `Point` interface will result in a compile error in your code base so you can easily keep it in sync:
 
-```ts
+```typescript
 interface Point {
     x: number; y: number;
     z: number; // New member
@@ -159,7 +159,7 @@ class MyPoint implements Point { // ERROR : missing member `z`
 
 Note that `implements` restricts the structure of the class *instances* i.e.:
 
-```ts
+```typescript
 var foo: Point = new MyPoint();
 ```
 
@@ -169,7 +169,7 @@ And stuff like `foo: Point = MyPoint` is not the same thing.
 
 `>tags:` [[Important]] [[Keyof]]
 
-```ts
+```typescript
 Define an interface `IPerson` with properties `id` and `name`
 interface IPerson {
   id: number;
@@ -185,7 +185,7 @@ type PersonPropertyLiteral = "id" | "name";
 ## In
 Purpose of the in keyword in TypeScript interface To specify a constraint for the types of properties.
 
-```ts
+```typescript
     if ('id' in obj) {
       console.log(`obj.name : ${obj.name}`);
     }
@@ -199,7 +199,7 @@ Interfaces are designed to declare *any arbitrarily crazy* structure that might 
 
 Consider the following interface where something is callable with `new`:
 
-```ts
+```typescript
 interface Crazy {
     new (): {
         hello: number
@@ -211,7 +211,7 @@ interface Crazy {
 
 You would essentially have something like:
 
-```ts
+```typescript
 class CrazyClass implements Crazy {
     constructor() {
         return { hello: 123 };

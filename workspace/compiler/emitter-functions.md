@@ -1,6 +1,6 @@
 ### `emitFiles`
 Defined in `emitter.ts` here is the function signature:
-```ts
+```typescript
 // targetSourceFile is when users only want one file in entire project to be emitted. This is used in compileOnSave feature
 export function emitFiles(resolver: EmitResolver, host: EmitHost, targetSourceFile?: SourceFile): EmitResult {
 ```
@@ -18,7 +18,7 @@ emitFiles ->
 ### `emitJavaScript`
 There is a lot of good comments in this function so we present it below :
 
-```ts
+```typescript
 function emitJavaScript(jsFilePath: string, root?: SourceFile) {
     let writer = createTextWriter(newLine);
     let write = writer.write;
@@ -113,7 +113,7 @@ function emitJavaScript(jsFilePath: string, root?: SourceFile) {
 
 Basically it sets up a bunch of locals (these functions form the *bulk* of `emitter.ts`) and then hands off to a local function `emitSourceFile` which kicks off the emit. The `emitSourceFile` function just sets up the `currentSourceFile` and in turn hands off to a local `emit` function.
 
-```ts
+```typescript
 function emitSourceFile(sourceFile: SourceFile): void {
     currentSourceFile = sourceFile;
     exportFunctionForFile = undefined;
@@ -126,7 +126,7 @@ The `emit` function handles *comment* emit + *actual JavaScript* emit. The *actu
 ### `emitJavaScriptWorker`
 
 The complete function:
-```ts
+```typescript
 function emitJavaScriptWorker(node: Node) {
     // Check if the node can be emitted regardless of the ScriptTarget
     switch (node.kind) {
@@ -300,7 +300,7 @@ function emitJavaScriptWorker(node: Node) {
 ```
 
 Recursion is done by simply calling other `emitFoo` function from these functions as needed e.g. from `emitFunctionDeclaration` :
-```ts
+```typescript
 function emitFunctionDeclaration(node: FunctionLikeDeclaration) {
     if (nodeIsMissing(node.body)) {
         return emitOnlyPinnedOrTripleSlashComments(node);

@@ -30,7 +30,7 @@ flyingFish.swim();
 
 ### Implements with Extends
 
-```ts
+```typescript
 // This is the BaseClass implementation that implements the IBase interface
 // The `id` property is set to a default value of 0
 class BaseClass implements IBase {

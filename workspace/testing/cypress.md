@@ -39,7 +39,7 @@ Add a few scripts to the `e2e/package.json` file:
 
 Write your first test under `cypress/integration/basic.ts`: 
 
-```ts
+```typescript
 it('should perform basic google search', () => {
   cy.visit('https://google.com');
   cy.get('[name="q"]')
@@ -61,7 +61,7 @@ Under the `e2e` folder you now have these files:
 ## First test
 * create a file `/cypress/integration/first.ts` with the following contents:
 
-```ts
+```typescript
 describe('google search', () => {
   it('should work', () => {
     cy.visit('http://www.google.com');
@@ -151,7 +151,7 @@ cy.get('div')
 ## Tip: Commands and Chaining
 Every function call in a cypress chain is a `command`. The `should` command is an assertion. It is conventional to start distinct *category* of chains and actions separately e.g.
 
-```ts
+```typescript
 // Don't do this
 cy.get(/**something*/)
   .should(/**something*/)
@@ -200,7 +200,7 @@ This keeps you from having to constantly add arbitrary timeout (and retry) logic
 ## Tip: Implicit assertion
 Cypress has a concept of implicit assertion. These kick in if a future command is erroring because of a previous command. E.g. the following will error at `contains` (after automatic retries of course) as nothing found can get `click`ed:
 
-```ts
+```typescript
 cy.get('#foo')
   // Once #foo is found the following:
   .contains('Submit')
@@ -217,7 +217,7 @@ A lot of tests have been traditionally brittle due to all the arbitrary timeouts
 
 e.g.
 
-```ts
+```typescript
 cy.server()
   .route('POST', 'https://example.com/api/application/load')
   .as('load') // create an alias
@@ -233,7 +233,7 @@ cy.wait('@load')
 
 ## Tip: Mocking an HTTP request response
 You can also easily mock out a request response using `route`:
-```ts
+```typescript
 cy.server()
   .route('POST', 'https://example.com/api/application/load', /* Example payload response */{success:true});
 ```
@@ -241,7 +241,7 @@ cy.server()
 ### Tip: Asserting an Http request response
 You can assert requests without mocking using `route` `onRequest` / `onResponse` e.g.
 
-```ts
+```typescript
 cy.route({
   method: 'POST',
   url: 'https://example.com/api/application/load',
@@ -255,7 +255,7 @@ cy.route({
 ## Tip: Mocking time
 You can use `wait` to pause a test for some time e.g. to test an automatic "you are about to be logged out" notification screen:
 
-```ts
+```typescript
 cy.visit('/');
 cy.wait(waitMilliseconds);
 cy.get('#logoutNotification').should('be.visible');
@@ -263,7 +263,7 @@ cy.get('#logoutNotification').should('be.visible');
 
 However, it is recommended to mock time using `cy.clock` and forwarding time using `cy.tick` e.g.
 
-```ts
+```typescript
 cy.clock();
 
 cy.visit('/');
@@ -292,7 +292,7 @@ If you are unit testing modules in your application you can provide mocks using 
 
 * `foo.ts`
 
-```ts
+```typescript
 import { navigate } from 'takeme';
 
 export function foo() {
@@ -302,7 +302,7 @@ export function foo() {
 
 * You can do this as in `some.spec.ts`:
 
-```ts
+```typescript
 /// <reference types="cypress"/>
 
 import { foo } from '../../../src/app/foo';
@@ -322,7 +322,7 @@ When you invoke a cypress command (or assertion) e.g. `cy.get('#something')`, th
 
 You are basically building a command list that the runner will then go ahead and execute. You can verify this command - execution separation with a simple test, observe that you will see the `start / between / end` `console.log` statements execute immediately before the runner starts *executing* the commands:
 
-```ts
+```typescript
 /// <reference types="cypress"/>
 
 describe('Hello world', () => {

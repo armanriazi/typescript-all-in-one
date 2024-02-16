@@ -2,7 +2,7 @@
 
 Quite commonly in JavaScript code bases you would initialize object literals in the following manner:
 
-```ts
+```typescript
 let foo = {};
 foo.bar = 123;
 foo.bas = "Hello World";
@@ -10,7 +10,7 @@ foo.bas = "Hello World";
 
 As soon as you move the code to TypeScript you will start to get Errors like the following:
 
-```ts
+```typescript
 let foo = {};
 foo.bar = 123; // Error: Property 'bar' does not exist on type '{}'
 foo.bas = "Hello World"; // Error: Property 'bas' does not exist on type '{}'
@@ -22,7 +22,7 @@ This is because from the state `let foo = {}`, TypeScript *infers* the type of `
 
 The *proper* way to initialize an object in TypeScript is to do it in the assignment:
 
-```ts
+```typescript
 let foo = {
     bar: 123,
     bas: "Hello World",
@@ -37,7 +37,7 @@ This is also great for code review and code maintainability purposes.
 
 If you have a large JavaScript code base that you are migrating to TypeScript the ideal fix might not be a viable solution for you. In that case you can carefully use a *type assertion* to silence the compiler:
 
-```ts
+```typescript
 let foo = {} as any;
 foo.bar = 123;
 foo.bas = "Hello World";
@@ -52,7 +52,7 @@ Of course using the `any` assertion can be very bad as it sort of defeats the sa
 
 This is shown below:
 
-```ts
+```typescript
 interface Foo {
     bar: number
     bas: string
@@ -65,7 +65,7 @@ foo.bas = "Hello World";
 
 Here is a quick example that shows the fact that using the interface can save you:
 
-```ts
+```typescript
 interface Foo {
     bar: number
     bas: string

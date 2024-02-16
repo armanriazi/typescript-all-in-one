@@ -3,7 +3,7 @@ Since TypeScript is a heavily focused *Developer Help* oriented programming lang
 
 Lets look at an example in an IDE to break apart the process of reading an error message. 
 
-```ts
+```typescript
 type SomethingComplex = {
   foo: number,
   bar: string

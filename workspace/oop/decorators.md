@@ -13,7 +13,7 @@ A decorator is a function that is called with a specific set of parameters. Thes
 
 To illustrate this syntax, let’s define a class decorator as follows:
 
-```ts
+```typescript
 function simpleDecorator(constructor: Function) {
  console.log('simpleDecorator called');
 }
@@ -62,7 +62,7 @@ Let’s take a quick look at the types of decorators, which are:
 - [x] Method decorators: These are decorators that can be applied to a method on a class.
 - [x] Parameter decorators: These are decorators that can be applied to a parameter of a method within a class.
 
-```ts
+```typescript
 // Define a function called classDecorator which takes a constructor function as input
 function classDecorator(
   constructor: Function
@@ -114,7 +114,7 @@ There are two things to note regarding decorator factory functions.
 - [x] Firstly, they must return a function that has the correct number of parameters and types of parameters, depending on what type of decorator they are.
 - [x] Secondly, the parameters defined for the decorator factory function can be used anywhere within the function definition, which includes within the anonymous decorator function itself.
 
-```ts
+```typescript
 function decoratorFactory(name: string) {
   // Return a decorator function that takes a constructor function as input and logs the name parameter to the console
   return (constructor: Function) => {
@@ -310,7 +310,7 @@ we will need to set the emitDecoratorMetadata flag in our tsconfig.json file to 
 
 For example
 
-```ts
+```typescript
 function metadataParameterDec(
  target: any,
  methodName: string,
@@ -329,7 +329,7 @@ class ClassWithMetadata {
 
 If the emitDecoratorMetadata flag of our tsconfig.json file is **set to false** or is not present, then the compiler will emit the following JavaScript:
 
-```ts
+```typescript
 function metadataParameterDec(target, methodName, parameterIndex) {
 }
 var ClassWithMetadata = /** @class */ (function () {
@@ -371,7 +371,7 @@ The information that is recorded by the TypeScript compiler when using the emitD
 
 We can now start to use this metadata by calling the Reflect.getMetadata function that this library provides, as follows:
 
-```ts
+```typescript
 import 'reflect-metadata';
 
 function reflectParameterDec(target: any,

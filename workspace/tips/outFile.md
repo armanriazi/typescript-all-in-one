@@ -19,14 +19,14 @@ If your code depends on any form of js ordering you will get random errors at ru
 * **class inheritance can break at runtime.**
 
 Consider `foo.ts`: 
-```ts
+```typescript
 class Foo {
     
 }
 ```
 
 and a `bar.ts`:
-```ts
+```typescript
 class Bar extends Foo {
     
 }
@@ -37,13 +37,13 @@ If you fail to compile it in correct order e.g. perhaps alphabetically `tsc bar.
 * **module splitting can fail at runtime.**
 
 Consider `foo.ts`: 
-```ts
+```typescript
 module App {
     export var foo = 123;
 }
 ```
 And `bar.ts`: 
-```ts
+```typescript
 module App {
     export var bar = foo + 456;
 }
@@ -80,19 +80,19 @@ Also if you decide to reuse your browser code in something like nodejs (e.g. for
 
 ## Isolated Compile
 Files cannot be compiled in isolation. E.g. consider `a.ts`: 
-```ts
+```typescript
 module M {
   var s = t;
 }
 ```
 Will have different output depending upon whether there is a `b.ts` of the form: 
-```ts
+```typescript
 module M {
   export var t = 5;
 }
 ```
 or 
-```ts
+```typescript
 var t = 5;
 ```
 So `a.ts` [cannot be compiled in isolation](https://github.com/Microsoft/TypeScript/issues/2715).

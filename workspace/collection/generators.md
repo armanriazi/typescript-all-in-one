@@ -8,7 +8,7 @@ There are two key motivations behind generator functions:
 
 Generator functions can be used to create **lazy iterators** e.g. the following function returns an **infinite** list of integers on demand:
 
-```ts
+```typescript
 function* infiniteSequence() {
     var i = 0;
     while(true) {
@@ -24,7 +24,7 @@ while (true) {
 
 Of course if the iterator does end, you get the result of `{ done: true }` as demonstrated below:
 
-```ts
+```typescript
 function* idMaker(){
   let index = 0;
   while(index < 3)
@@ -46,7 +46,7 @@ This is the part of generators that is truly exciting. It essentially allows a f
 
 **A generator function does not execute when you call it. It just creates a generator object**. Consider the following example along with a sample execution:
 
-```ts
+```typescript
 function* generator(){
     console.log('Execution started');
     yield 0;
@@ -88,7 +88,7 @@ Our communication using the generator has been mostly one way with the generator
 
 The following example demonstrates `iterator.next(valueToInject)`:
 
-```ts
+```typescript
 function* generator() {
     const bar = yield 'foo'; // bar may be *any* type
     console.log(bar); // bar!
@@ -108,7 +108,7 @@ Since `yield` returns the parameter passed to the iterator's `next` function, an
 
 The following example demonstrates `iterator.throw(error)`:
 
-```ts
+```typescript
 function* generator() {
     try {
         yield 'foo';

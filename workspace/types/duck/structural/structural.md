@@ -21,7 +21,7 @@ const y: Y = x; // Valid
 
 These simple rules also work in the presence of **structuring** (object literal creation). For example in the following case the type of `foo` is inferred to be `{a:number, b:number}`
 
-```ts
+```typescript
 let foo = {
     a: 123,
     b: 456
@@ -31,14 +31,14 @@ let foo = {
 
 Similarly for arrays:
 
-```ts
+```typescript
 const bar = [1,2,3];
 // bar[0] = "hello"; // Would error: cannot assign `string` to a `number`
 ```
 
 And of course any nesting:
 
-```ts
+```typescript
 let foo = {
     bar: [1, 3, 4]
 };

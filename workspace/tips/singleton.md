@@ -2,7 +2,7 @@
 
 The conventional singleton pattern is really something that is used to overcome the fact that all code must be in a `class`.
 
-```ts
+```typescript
 class Singleton {
     private static instance: Singleton;
     private constructor() {
@@ -25,7 +25,7 @@ let instance = Singleton.getInstance() // do something with the instance...
 
 However, if you don't want lazy initialization you can instead just use a `namespace`: 
 
-```ts
+```typescript
 namespace Singleton {
     // ... any one time initialization goes here ...
     export function someMethod() { }
@@ -38,7 +38,7 @@ Singleton.someMethod();
 
 For most projects `namespace` can additionally be replaced by a *module*.
 
-```ts
+```typescript
 // someFile.ts
 // ... any one time initialization goes here ...
 export function someMethod() { }

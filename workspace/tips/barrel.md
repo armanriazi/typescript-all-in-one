@@ -4,7 +4,7 @@ A barrel is a way to rollup exports from several modules into a single convenien
 
 Imagine the following class structure in a library: 
 
-```ts
+```typescript
 // demo/foo.ts
 export class Foo {}
 
@@ -17,7 +17,7 @@ export class Baz {}
 
 Without a barrel, a consumer would need three import statements:
 
-```ts
+```typescript
 import { Foo } from '../demo/foo';
 import { Bar } from '../demo/bar';
 import { Baz } from '../demo/baz';
@@ -25,7 +25,7 @@ import { Baz } from '../demo/baz';
 
 You can instead add a barrel `demo/index.ts` containing the following: 
 
-```ts
+```typescript
 // demo/index.ts
 export * from './foo'; // re-export all of its exports
 export * from './bar'; // re-export all of its exports
@@ -34,14 +34,14 @@ export * from './baz'; // re-export all of its exports
 
 Now the consumer can import what it needs from the barrel:
 
-```ts
+```typescript
 import { Foo, Bar, Baz } from '../demo'; // demo/index.ts is implied
 ```
 
 ### Named exports
 Instead of exporting `*`, you can choose to export the module in a name. E.g., assume that `baz.ts` has functions:
 
-```ts
+```typescript
 // demo/foo.ts
 export class Foo {}
 
@@ -55,7 +55,7 @@ export function setBaz() {}
 
 If you would rather not export `getBaz` / `setBaz` from demo you can instead put them in a variable by importing them in a name and exporting that name as shown below: 
 
-```ts
+```typescript
 // demo/index.ts
 export * from './foo'; // re-export all of its exports
 export * from './bar'; // re-export all of its exports
@@ -66,7 +66,7 @@ export { baz }; // export the name
 
 And now the consumer would look like: 
 
-```ts
+```typescript
 import { Foo, Bar, baz } from '../demo'; // demo/index.ts is implied
 
 // usage

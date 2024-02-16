@@ -2,7 +2,7 @@
 
 JavaScript has a concept of `truthy` i.e. things that evaluate like `true` would in certain positions (e.g. `if` conditions and the boolean `&&` `||` operators). The following things are truthy in JavaScript. An example is any number other than `0` e.g.
 
-```ts
+```typescript
 if (123) { // Will be treated like `true`
   console.log('Any number other than 0 is truthy');
 }

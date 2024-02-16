@@ -2,7 +2,7 @@
 
 SymbolTable is implemented as a simple HashMap. Here is the interface (`types.ts`):
 
-```ts
+```typescript
 interface SymbolTable {
     [index: string]: Symbol;
 }
@@ -11,13 +11,13 @@ interface SymbolTable {
 SymbolTables are initialized by binding. There are a few SymbolTables used by the compiler:
 
 On `Node`:
-```ts
+```typescript
 locals?: SymbolTable;                   // Locals associated with node
 ```
 
 On `Symbol`:
 
-```ts
+```typescript
 members?: SymbolTable;                  // Class, interface or literal instance members
 exports?: SymbolTable;                  // Module exports
 ```
@@ -27,7 +27,7 @@ Note: We saw `locals` getting initialized (to `{}`) by `bindChildren` based on `
 #### SymbolTable population
 SymbolTables are populated with `Symbols` primarily by a call to `declareSymbol`. This function is presented below in entirety:
 
-```ts
+```typescript
 /**
  * Declares a Symbol for the node and adds it to symbols. Reports errors for conflicting identifier names.
  * @param symbolTable - The symbol table which node will be added to.
@@ -102,7 +102,7 @@ function declareSymbol(symbolTable: SymbolTable, parent: Symbol, node: Declarati
 
 Which SymbolTable is populated is driven by the first argument to this function. e.g. when adding a declaration to a *container* of kind `SyntaxKind.ClassDeclaration` or `SyntaxKind.ClassExpression` the function `declareClassMember` will get called which has the following code:
 
-```ts
+```typescript
 function declareClassMember(node: Declaration, symbolFlags: SymbolFlags, symbolExcludes: SymbolFlags) {
     return node.flags & NodeFlags.Static
         ? declareSymbol(container.symbol.exports, container.symbol, node, symbolFlags, symbolExcludes)

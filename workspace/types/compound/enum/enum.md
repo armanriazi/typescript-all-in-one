@@ -11,7 +11,7 @@
 ### Enums
 An enum is a way to organize a collection of related values. Many other programming languages (C/C#/Java) have an `enum` data type but JavaScript does not. However, TypeScript does. Here is an example definition of a TypeScript enum:
 
-```ts
+```typescript
 enum CardSuit {
 	Clubs,
 	Diamonds,
@@ -67,7 +67,7 @@ Const Enums have hardcoded values, erasing the Enum, which can be more efficient
 #### Number Enums and Numbers
 TypeScript enums are number based. This means that numbers can be assigned to an instance of the enum, and so can anything else that is compatible with `number`.
 
-```ts
+```typescript
 enum Color {
     Red,
     Green,
@@ -80,7 +80,7 @@ col = 0; // Effectively same as Color.Red
 #### Number Enums and Strings
 Before we look further into enums let's look at the JavaScript that it generates, here is a sample TypeScript:
 
-```ts
+```typescript
 enum Tristate {
     False,
     True,
@@ -100,7 +100,7 @@ var Tristate;
 
 let's focus on the line `Tristate[Tristate["False"] = 0] = "False";`. Within it `Tristate["False"] = 0` should be self explanatory, i.e. sets `"False"` member of `Tristate` variable to be `0`. Note that in JavaScript the assignment operator returns the assigned value (in this case `0`). Therefore the next thing executed by the JavaScript runtime is `Tristate[0] = "False"`. This means that you can use the `Tristate` variable to convert a string version of the enum to a number or a number version of the enum to a string. This is demonstrated below:
 
-```ts
+```typescript
 enum Tristate {
     False,
     True,
@@ -114,7 +114,7 @@ console.log(Tristate[Tristate.False]); // "False" because `Tristate.False == 0`
 #### Changing the number associated with a Number Enum
 By default enums are `0` based and then each subsequent value increments by 1 automatically. As an example consider the following:
 
-```ts
+```typescript
 enum Color {
     Red,     // 0
     Green,   // 1
@@ -124,7 +124,7 @@ enum Color {
 
 However, you can change the number associated with any enum member by assigning to it specifically. This is demonstrated below where we start at 3 and start incrementing from there:
 
-```ts
+```typescript
 enum Color {
     DarkRed = 3,  // 3
     DarkGreen,    // 4
@@ -138,7 +138,7 @@ console.log(`${Color.DarkGreen}`); // 4
 #### Number Enums as flags
 One excellent use of enums is the ability to use enums as `Flags`. Flags allow you to check if a certain condition from a set of conditions is true. Consider the following example where we have a set of properties about animals:
 
-```ts
+```typescript
 enum AnimalFlags {
     None           = 0,
     HasClaws       = 1 << 0, // Result 1
@@ -150,7 +150,7 @@ enum AnimalFlags {
 
 Here we are using the left shift operator to move `1` around a certain level of bits to come up with bitwise disjoint numbers `0001`, `0010`, `0100` and `1000` (these are decimals `1`,`2`,`4`,`8` if you are curious). The bitwise operators `|` (or) / `&` (and) / `~` (not) are your best friends when working with flags and are demonstrated below:
 
-```ts
+```typescript
 enum AnimalFlags {
     None           = 0,
     HasClaws       = 1 << 0,
@@ -190,7 +190,7 @@ Here:
 
 > Note: you can combine flags to create convenient shortcuts within the enum definition e.g. `EndangeredFlyingClawedFishEating` below:
 
-```ts
+```typescript
 enum AnimalFlags {
 	None           = 0,
     HasClaws       = 1 << 0,
@@ -205,7 +205,7 @@ enum AnimalFlags {
 #### String Enums
 We've only looked at enums where the member values are `number`s. You are actually allowed to have enum members with string values as well. e.g. 
 
-```ts
+```typescript
 export enum EvidenceTypeEnum {
   UNKNOWN = '',
   PASSPORT_VISA = 'passport_visa',
@@ -220,7 +220,7 @@ These can be easier to deal with and debug as they provide meaningful / debuggab
 
 You can use these values to do simple string comparisons. e.g. 
 
-```ts
+```typescript
 // Where `someStringFromBackend` will be '' | 'passport_visa' | 'passport' ... etc.
 const value = someStringFromBackend as EvidenceTypeEnum; 
 
@@ -235,7 +235,7 @@ if (value === EvidenceTypeEnum.PASSPORT){
 
 If you have an enum definition like the following:
 
-```ts
+```typescript
 enum Tristate {
     False,
     True,
@@ -247,7 +247,7 @@ var lie = Tristate.False;
 
 The line `var lie = Tristate.False` is compiled to the JavaScript `var lie = Tristate.False` (yes, output is same as input). This means that at execution the runtime will need to lookup `Tristate` and then `Tristate.False`. To get a performance boost here you can mark the `enum` as a `const enum`. This is demonstrated below:
 
-```ts
+```typescript
 const enum Tristate {
     False,
     True,
@@ -274,7 +274,7 @@ Inlining has obvious performance benefits. The fact that there is no `Tristate` 
 ### Enum with static functions
 You can use the declaration `enum` + `namespace` merging to add static methods to an enum. The following demonstrates an example where we add a static member `isBusinessDay` to an enum `Weekday`:
 
-```ts
+```typescript
 enum Weekday {
 	Monday,
 	Tuesday,
@@ -321,7 +321,7 @@ We already explained the `Tristate[Tristate["False"] = 0] = "False";` portion. N
 
 This means that you can split (and extend) an enum definition across multiple files. For example below we have split the definition for `Color` into two blocks
 
-```ts
+```typescript
 enum Color {
     Red,
     Green,

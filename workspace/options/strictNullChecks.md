@@ -2,7 +2,7 @@
 
 By default `null` and `undefined` are assignable to all types in TypeScript e.g.
 
-```ts
+```typescript
 let foo: number = 123;
 foo = null; // Okay
 foo = undefined; // Okay
@@ -12,14 +12,14 @@ This is modelled after how a lot of people write JavaScript. However, like all t
 
 In strict null checking mode, `null` and `undefined` are different:
 
-```ts
+```typescript
 let foo = undefined;
 foo = null; // NOT Okay
 ```
 
 Let's say we have a `Member` interface:
 
-```ts
+```typescript
 interface Member {
   name: string,
   age?: number
@@ -30,7 +30,7 @@ Not every `Member` will provide their age, so `age` is an optional property, mea
 
 `undefined` is the root of all evil. It often leads to runtime errors. It is easy to write code that will throw `Error` at runtime:
 
-```ts
+```typescript
 getMember()
   .then(member: Member => {
     const stringifyAge = member.age.toString() // Cannot read property 'toString' of undefined
@@ -39,7 +39,7 @@ getMember()
 
 But in strict null checking mode, this error will be caught at compile time:
 
-```ts
+```typescript
 getMember()
   .then(member: Member => {
     const stringifyAge = member.age.toString() // Object is possibly 'undefined'
@@ -52,7 +52,7 @@ getMember()
 
 A new `!` post-fix expression operator may be used to assert that its operand is **non-null and non-undefined** in contexts where the type checker is unable to conclude that fact. For example:
 
-```ts
+```typescript
 // Compiled with --strictNullChecks
 function validateEntity(e?: Entity) {
     // Throw exception if e is null or invalid entity
@@ -71,7 +71,7 @@ function processEntity(e?: Entity) {
 
 We have placed an exclamation mark (!) after the use of the globalString variable on line 8, which has now become globalString!. This will tell the compiler that we are overriding its type-checking rules and are willing to let it use the globalString variable even though it thinks it has not been assigned.
 
-```ts
+```typescript
 // Declare a variable named "globalString" with the type of "string"
 var globalString: string;
 
@@ -92,7 +92,7 @@ function setGlobalString(value: string) {
 
 TypeScript will also complain about properties in classes not being initialized e.g.:
 
-```ts
+```typescript
 class C {
   foo: number; // OKAY as assigned in constructor
   bar: string = "hello"; // OKAY as has property initializer
@@ -105,7 +105,7 @@ class C {
 
 You can use the definite assignment assertion postfixed to the property name to tell TypeScript that you are initializing it somewhere other than the constructor e.g.
 
-```ts
+```typescript
 class C {
   foo!: number;
   // ^
@@ -123,7 +123,7 @@ class C {
 
 You can also use this assertion with simple variable declarations e.g.:
 
-```ts
+```typescript
 let a: number[]; // No assertion
 let b!: number[]; // Assert
 

@@ -3,7 +3,7 @@ Also called `function *`, generators allow you to create functions whose executi
 
 Here is a simple example of a generator function that generates an *infinite* list of whole numbers.
 
-```ts
+```typescript
 function* wholeNumbers() {
     var current = 0;
     while(true) {
@@ -14,7 +14,7 @@ function* wholeNumbers() {
 
 The `yield` contextual keyword is used to return control from a generator (effectively pausing function execution) along with an optional value (here `current`). You can get access to this value using the `iterator`'s `.next()` member function, this is shown below:
 
-```ts
+```typescript
 function* wholeNumbers() {
     var current = 0;
     while(true) {
@@ -33,7 +33,7 @@ Now that you have seen `function*`, `yield` and `.next()` we can dig deeper.
 #### Catching Errors
 Any errors thrown (intentionally using `throw` or unintentionally due to error) from the generator can be caught using `try/catch` just like normal function executions. This is demonstrated below:
 
-```ts
+```typescript
 function* wholeNumbers() {
     var current = 0;
     while(true) {

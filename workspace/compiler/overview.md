@@ -13,7 +13,7 @@ Each of these get their own unique files in the source. These parts will be expl
 ## Syntax vs. Semantics
 Just because something is *syntactically* correct doesn't mean it is *semantically* correct. Consider the following piece of TypeScript code which although *syntactically* valid is *semantically* wrong
 
-```ts
+```typescript
 var foo: number = "not a number";
 ```
 

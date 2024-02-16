@@ -10,7 +10,7 @@ Key motivation for these : You change one thing and everything else just updates
 
 If you want to move a class around, you might be tempted to do the following:
 
-```ts
+```typescript
 class Foo { }
 var Bar = Foo;
 var bar: Bar; // ERROR: cannot find name 'Bar'
@@ -18,7 +18,7 @@ var bar: Bar; // ERROR: cannot find name 'Bar'
 
 This is an error because `var` only copied the `Foo` into the *variable* declaration space and you therefore cannot use `Bar` as a type annotation. The proper way is to use the `import` keyword. Note that you can only use the `import` keyword in such a way if you are using *namespaces* or *modules* (more on these later):
 
-```ts
+```typescript
 namespace importing {
     export class Foo { }
 }
@@ -33,7 +33,7 @@ This `import` trick only works for things that are *both type and variable*.
 
 You can actually use a variable in a type annotation using the `typeof` operator. This allows you to tell the compiler that one variable is the same type as another. Here is an example to demonstrate this:
 
-```ts
+```typescript
 var foo = 123;
 var bar: typeof foo; // `bar` has the same type as `foo` (here `number`)
 bar = 456; // Okay
@@ -44,7 +44,7 @@ bar = '789'; // ERROR: Type `string` is not `assignable` to type `number`
 
 You can traverse into any non-nullable object type to retrieve the type of a property:
 
-```ts
+```typescript
 class Foo {
   foo: number; // some member whose type we want to capture
 }
@@ -54,7 +54,7 @@ let bar: Foo['foo']; // `bar` has type `number`
 
 Alternatively, similar to capturing the type of a variable, you just declare a variable purely for type capturing purposes:
 
-```ts
+```typescript
 // Purely to capture type
 declare let _foo: Foo;
 
@@ -66,7 +66,7 @@ let bar: typeof _foo.foo; // `bar` has type `number`
 
 Lots of JavaScript libraries and frameworks work off of raw JavaScript strings. You can use `const` variables to capture their type e.g.
 
-```ts
+```typescript
 // Capture both the *type* _and_ *value* of magic string:
 const foo = "Hello World";
 
@@ -84,7 +84,7 @@ In this example `bar` has the literal type `"Hello World"`. We cover this more i
 
 The `keyof` operator lets you capture the key names of a type. E.g. you can use it to capture the key names of a variable by first grabbing its type using `typeof`:
 
-```ts
+```typescript
 const colors = {
   red: 'reddish',
   blue: 'bluish'

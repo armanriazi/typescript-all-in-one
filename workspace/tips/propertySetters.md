@@ -4,7 +4,7 @@ Prefer explicit set/get functions (e.g. `setBar` and `getBar` functions) over se
 
 Consider the following code:
 
-```ts
+```typescript
 foo.bar = {
     a: 123,
     b: 456
@@ -13,7 +13,7 @@ foo.bar = {
 
 In the presence of setter/getters:
 
-```ts
+```typescript
 class Foo {
     a: number;
     b: number;

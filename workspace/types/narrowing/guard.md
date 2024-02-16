@@ -5,7 +5,7 @@ We have already seen how [literal types](./literal-types.md.md) help change and 
 
 A type guard is an expression that performs a check on our type and then **guarantees that type within its scope**. Let’s rewrite our previous function with a type guard as follows:
 
-```ts
+```typescript
 // Declare a function called addWithTypeGuard that takes in two parameters, arg1 and arg2, with types of string or number
 function addWithTypeGuard(
   arg1: string | number,
@@ -50,7 +50,7 @@ Type Guards allow you to narrow down the type of an object within a conditional 
 [[typeof]]
 TypeScript is aware of the usage of the JavaScript `instanceof` and `typeof` operators. If you use these in a conditional block, TypeScript will understand the type of the variable to be different within that conditional block. Here is a quick example where TypeScript realizes that a particular function does not exist on `string` and points out what was probably a user typo:
 
-```ts
+```typescript
 function doSomething(x: number | string) {
     if (typeof x === 'string') { // Within the block TypeScript knows that `x` must be a string
         console.log(x.subtr(1)); // Error, 'subtr' does not exist on `string`
@@ -65,7 +65,7 @@ function doSomething(x: number | string) {
 [[instanceof]]
 Here is an example with a class and `instanceof`:
 
-```ts
+```typescript
 class Foo {
     foo = 123;
     common = '123';
@@ -97,7 +97,7 @@ doStuff(new Bar());
 
 TypeScript even understands `else` so when an `if` narrows out one type it knows that within the else *it's definitely not that type*. Here is an example:
 
-```ts
+```typescript
 class Foo {
     foo = 123;
 }
@@ -126,7 +126,7 @@ doStuff(new Bar());
 [[in]]
 The `in` operator does a safe check for the existence of a property on an object and can be used as a type guard. E.g. 
 
-```ts
+```typescript
 interface A {
   x: number;
 }
@@ -150,13 +150,13 @@ function doStuff(q: A | B) {
 
 Types do not flow into the function parameters if it cannot be inferred from an assignment. For example in the following case the compiler does not know the type of `foo` so it cannot infer the type of `a` or `b`.
 
-```ts
+```typescript
 const foo = (a,b) => { /* do something */ };
 ```
 
 However, if `foo` was typed the function parameters type can be inferred (`a`,`b` are both inferred to be of type `number` in the example below).
 
-```ts
+```typescript
 type TwoNumberFunction = (a: number, b: number) => void;
 const foo: TwoNumberFunction = (a, b) => { /* do something */ };
 ```
@@ -165,7 +165,7 @@ const foo: TwoNumberFunction = (a, b) => { /* do something */ };
 
 Although TypeScript can generally infer the return type of a function, it might not be what you expect. For example here function `foo` has a return type of `any`.
 
-```ts
+```typescript
 function foo(a: number, b: number) {
     return a + addOne(b);
 }
@@ -204,7 +204,7 @@ const r2 = data.filter(isValid); // The type is fine now string[], by using the 
 
 JavaScript doesn't have very rich runtime introspection support built in. When you are using just plain JavaScript Objects (using structural typing to your advantage), you do not even have access to `instanceof` or `typeof`. For these cases you can create *User Defined Type Guard functions*. These are just functions that return `someArgumentName is SomeType`. Here is an example:
 
-```ts
+```typescript
 /**
  * Just some interfaces
  */

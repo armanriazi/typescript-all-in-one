@@ -3,7 +3,7 @@
 
 You can use `===` / `==` / `!==` / `!=` to distinguish between literal values
 
-```ts
+```typescript
 type TriState = 'yes' | 'no' | 'unknown';
 
 function logOutState(state:TriState) {
@@ -19,7 +19,7 @@ function logOutState(state:TriState) {
 
 This even works when you have literal types in a union. You can check the value of a shared property name to discriminate the union e.g. 
 
-```ts
+```typescript
 type Foo = {
   kind: 'foo', // Literal type 
   foo: number

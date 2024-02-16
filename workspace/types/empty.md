@@ -36,7 +36,7 @@ By utilizing `any` type, you are indicating to the TypeScript compiler that valu
 
 The `any` type holds a special place in the TypeScript type system. It gives you an escape hatch from the type system to **tell the compiler to bugger off**. `any` is compatible with **any and all** types in the type system. This means that **anything can be assigned to it** and **it can be assigned to anything**. This is demonstrated in the example below:
 
-```ts
+```typescript
 var power: any;
 
 // Takes any and all types
@@ -63,7 +63,7 @@ value = 7; // Valid
 
 In TypeScript, the `unknown` type represents a value that is of an unknown type. Unlike `any` type, which allows for any type of value, `unknown` requires a type check or assertion before it can be used in a specific way so **no operations are permitted on an `unknown` without first asserting or narrowing to a more specific type.**
 
-```ts
+```typescript
 // Declare a variable of type any with a string value
 let a: any = "test";
 
@@ -76,7 +76,7 @@ aNumber = a; // Ok
 
 Next:
 
-```ts
+```typescript
 // Declare a variable of type unknown with a string value
 let u: unknown = "an unknown";
 
@@ -91,13 +91,13 @@ aNumber2 = u; // Skip. Not Ok
 aNumber2 = <number>u; // Ok
 ```
 
-```ts
+```typescript
 const isString = (value: unknown): value is string => typeof value === 'string';
 ```
 
 Next 
 
-```ts
+```typescript
 type Options = {
     [prop: string]: unknown;
     a?: string;
@@ -109,7 +109,7 @@ fn({ c: 'c' }); // Valid
 
 using unknown as a **double assertion type**
 
-```ts
+```typescript
 function handler(event: Event) {
     let element = event as unknown as HTMLElement; // Okay, fix compiler complain!
 }
@@ -148,7 +148,7 @@ The difference between the two, however, is that a variable of type unknown canâ
 
 How they are treated by the type system depends on the `strictNullChecks` compiler flag (we cover this flag later). When in `strictNullCheck:false`, the `null` and `undefined` JavaScript literals are effectively treated by the type system the same as something of type `any`. These literals can be assigned to any other type. This is demonstrated in the below example:
 
-```ts
+```typescript
 var num: number;
 var str: string;
 
@@ -192,7 +192,7 @@ valid array element : 789
 
 For example an awful function like this:
 
-```ts
+```typescript
 function toInt(str: string) {
   return str ? parseInt(str) : undefined;
 }
@@ -200,7 +200,7 @@ function toInt(str: string) {
 
 can be much better written like this:
 
-```ts
+```typescript
 function toInt(str: string): { valid: boolean, int?: number } {
   const int = parseInt(str);
   if (isNaN(int)) {
@@ -216,7 +216,7 @@ function toInt(str: string): { valid: boolean, int?: number } {
 
 Because TypeScript gives you the opportunity to *document* your structures separately from values instead of stuff like:
 
-```ts
+```typescript
 function foo(){
   // if Something
   return {a:1,b:2};
@@ -227,7 +227,7 @@ function foo(){
 
 you should use a type annotation:
 
-```ts
+```typescript
 function foo():{a:number,b?:number}{
   // if Something
   return {a:1,b:2};
@@ -240,7 +240,7 @@ function foo():{a:number,b?:number}{
 
 The JSON standard has support for encoding `null` but not `undefined`. When JSON-encoding an object with an attribute that is `null`, the attribute will be included with its null value, whereas an attribute with an `undefined` value will be excluded entirely.
 
-```ts
+```typescript
 JSON.stringify({willStay: null, willBeGone: undefined}); // {"willStay":null}
 ```
 
@@ -275,7 +275,7 @@ JavaScript (and by extension TypeScript) has two bottom types : `null` and `unde
 - [x] Something hasn't been **initialized** : `undefined`.
 - [x] Something is **currently unavailable**: `null`.
 
-```ts
+```typescript
 // Both null and undefined are only `==` to themselves and each other:
 console.log(null == null); // true (of course)
 console.log(undefined == undefined); // true (of course)
@@ -289,7 +289,7 @@ console.log(false == undefined); // false
 ```
 Recommend `== null` to check for both `undefined` or `null`. You generally don't want to make a distinction between the two.
 
-```ts
+```typescript
 function foo(arg: string | null | undefined) {
   if (arg != null) {
     // arg must be a string as `!=` rules out both null and undefined. 
@@ -303,7 +303,7 @@ Remember how I said you should use `== null`? Of course you do (cause I just sai
 
 So to check if a variable is defined or not at a **global** level you normally **use `typeof`**:
 
-```ts
+```typescript
 if (typeof someglobal !== 'undefined') {
   // someglobal is now safe to use
   console.log(someglobal);
@@ -314,7 +314,7 @@ if (typeof someglobal !== 'undefined') {
 
 In general, it is a good idea to check that a particular variable is not either null or undefined before using it, as this can lead to errors.
 
-```ts
+```typescript
 function nullishCheck(a: number | undefined | null) {
     // Check if the passed variable 'a' is either undefined or null
     // If it is, then print 'undefined or null'
@@ -336,7 +336,7 @@ nullishCheck(undefined);
 
 TypeScript is smart enough to rule out both `null` and `undefined` with a `== null` / `!= null` check. For example:
 
-```ts
+```typescript
 function foo(a?: number | null) {
   if (a == null) return;
 
@@ -377,7 +377,7 @@ The never type is used in TypeScript to denote this bottom type. Cases when it o
 - [x] A function **never returns** (e.g. if the function body has while(true){})
 - [x] A function **always throws** (e.g. in function foo(){throw new Error('Not Implemented')} the return type of foo is never)
 
-```ts
+```typescript
 let foo: never = 123; // Error: Type number is not assignable to never
 
 // Okay as the function's return type is `never`
@@ -450,7 +450,7 @@ const move = (direction: Direction) => {
 
 Use `:void` to signify that a function does not have a return type:
 
-```ts
+```typescript
 function log(message): void {
     console.log(message);
 }
@@ -459,7 +459,7 @@ As soon as someone tells you that never is returned when a function never exits 
 
 A function that returns nothing returns a Unit void. However, a function that never returns (or always throws) returns never. void is something that can be assigned (without strictNullChecking) but never can never be assigned to anything other than never.
 
-```ts
+```typescript
 // Inferred return type: void
 function failDeclaration(message: string) {
   throw new Error(message);

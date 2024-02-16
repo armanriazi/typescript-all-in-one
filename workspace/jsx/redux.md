@@ -5,7 +5,7 @@ A popular library that makes use of this is redux.
 
 Here is the [*gist of redux*](https://github.com/reactjs/redux#the-gist) with TypeScript type annotations added:
 
-```ts
+```typescript
 import { createStore } from 'redux'
 
 type Action

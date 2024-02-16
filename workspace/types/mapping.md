@@ -2,7 +2,7 @@
 
 `>tags:` [[Map]] [[Macro]]
 
-```ts
+```typescript
 type PREFIX<Type> = {
     [Property in keyof Type as `prefix_${string &
         Property}`]: () => Type[Property];
@@ -23,7 +23,7 @@ Add in the keyof keyword, and we can create new types based on the properties of
 
 `>tags:` [[Important]] [[map]]
 
-```ts
+```typescript
 interface IAbRequired {
   a: number;
   b: string;
@@ -50,7 +50,7 @@ Using mapped types that transform properties is seen as so fundamental that thei
 
 The WeakType type alias that we created earlier is actually called Partial, which can be seen from the type definition in lib.es5.d.ts as follows:
 
-```ts
+```typescript
 /**
  * Make all properties in T optional
  */
@@ -59,7 +59,7 @@ type Partial<T> = {
 };
 ```
 
-```ts
+```typescript
 /**
  * Make all properties in T required
  */
@@ -68,7 +68,7 @@ type Required<T> = {
 };
 ```
 
-```ts
+```typescript
 /**
  * Make all properties in T readonly
  */
@@ -81,7 +81,7 @@ type Readonly<T> = {
 
 The Pick mapped type is used to construct a type based on a subset of properties of another type.
 
-```ts
+```typescript
 interface IAbc {
   a: number;
   b: string;
@@ -106,7 +106,7 @@ It is almost the opposite of the Pick mapped type and uses a **provided list of 
 
 Consider the following example:
 
-```ts
+```typescript
 type RecordedCd = Record<"c" | "d", number>;
 
 // Declare a variable of type RecordedCd and assign it an object with properties "c" and "d"

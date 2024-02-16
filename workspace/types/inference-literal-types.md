@@ -18,7 +18,7 @@ The TypeScript compiler analyzes the value or expression and determines its type
 
 Quite commonly you get an error like `Type string is not assignable to type "foo"`. The following example demonstrates this.
 
-```ts
+```typescript
 function iTakeFoo(foo: 'foo') { }
 const test = {
   someProp: 'foo'
@@ -28,7 +28,7 @@ iTakeFoo(test.someProp); // Error: Argument of type string is not assignable to 
 
 This is because `test` is inferred to be of type `{someProp: string}`. The fix here is to use a simple type assertion to tell TypeScript the literal you want it to infer as shown below: 
 
-```ts
+```typescript
 function iTakeFoo(foo: 'foo') { }
 const test = {
   someProp: 'foo' as 'foo'
@@ -38,7 +38,7 @@ iTakeFoo(test.someProp); // Okay!
 
 or use a type annotation that helps TypeScript infer the correct thing at the point of declaration: 
 
-```ts
+```typescript
 function iTakeFoo(foo: 'foo') { }
 type Test = {
   someProp: 'foo',
@@ -72,7 +72,7 @@ As you can see the code throws an error when passing o.x to fn as X is a narrowe
 
 We can solve this issue by using type assertion using const or the X type:
 
-```ts
+```typescript
 let oo = {
     x: 'a' as X,// as const,
 };
@@ -80,7 +80,7 @@ console.log(fn(oo.x));
 ```
 
 <!-- skip -->
-```ts
+```typescript
 type X = 'a' | 'b';
 
 let o = {

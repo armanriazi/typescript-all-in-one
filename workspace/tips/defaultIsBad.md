@@ -2,7 +2,7 @@
 
 Consider you have a file `foo.ts` with the following contents:
 
-```ts
+```typescript
 class Foo {
 }
 export default Foo;
@@ -10,7 +10,7 @@ export default Foo;
 
 You would import it (in `bar.ts`) using ES6 syntax as follows:
 
-```ts
+```typescript
 import Foo from "./foo";
 ```
 
@@ -20,13 +20,13 @@ There are a few maintainability concerns here:
 
 For this reason I recommend simple exports + destructured import. E.g. `foo.ts`:
 
-```ts
+```typescript
 export class Foo {
 }
 ```
 And then:
 
-```ts
+```typescript
 import { Foo } from "./foo";
 ```
 
@@ -64,14 +64,14 @@ Re-exporting is common for the root `index` file in npm packages, and forces you
 ### Dynamic Imports
 Default exports expose themselves badly named as `default` in dynamic `import`s e.g. 
 
-```ts
+```typescript
 const HighCharts = await import('https://code.highcharts.com/js/es-modules/masters/highcharts.src.js');
 HighCharts.default.chart('container', { ... }); // Notice `.default`
 ```
 
 Much nicer with named exports: 
 
-```ts
+```typescript
 const {HighCharts} = await import('https://code.highcharts.com/js/es-modules/masters/highcharts.src.js');
 HighCharts.chart('container', { ... }); // Notice `.default`
 ```
@@ -81,14 +81,14 @@ HighCharts.chart('container', { ... }); // Notice `.default`
 
 Can be one statement for function / class e.g. 
 
-```ts
+```typescript
 export default function foo() {
 }
 ```
 
 Can be one statement for *non named / type annotated* objects e.g.: 
 
-```ts
+```typescript
 export default {
   notAFunction: 'Yeah, I am not a function or a class',
   soWhat: 'The export is now *removed* from the declaration'
@@ -96,7 +96,7 @@ export default {
 ```
 
 But needs two statements otherwise:
-```ts
+```typescript
 // If you need to name it (here `foo`) for local use OR need to annotate type (here `Foo`)
 const foo: Foo = {
   notAFunction: 'Yeah, I am not a function or a class',

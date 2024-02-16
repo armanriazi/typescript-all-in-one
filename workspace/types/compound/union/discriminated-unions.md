@@ -4,7 +4,7 @@ If you have a class with a [*literal member*](./literal-types.md) then you can u
 
 As an example consider the union of a `Square` and `Rectangle`, here we have a member `kind` that exists on both union members and is of a particular *literal type*:
 
-```ts
+```typescript
 interface Square {
     kind: "square";
     size: number;
@@ -20,7 +20,7 @@ type Shape = Square | Rectangle;
 
 If you use a type guard style check (`==`, `===`, `!=`, `!==`) or `switch` on the *discriminant property* (here `kind`) TypeScript will realize that the object must be of the type that has that specific literal and do a type narrowing for you :)
 
-```ts
+```typescript
 function area(s: Shape) {
     if (s.kind === "square") {
         // Now TypeScript *knows* that `s` must be a square ;)
@@ -38,7 +38,7 @@ function area(s: Shape) {
 ### Exhaustive Checks
 Quite commonly you want to make sure that all members of a union have some code(action) against them.
 
-```ts
+```typescript
 interface Square {
     kind: "square";
     size: number;
@@ -62,7 +62,7 @@ type Shape = Square | Rectangle | Circle;
 
 As an example of where stuff goes bad:
 
-```ts
+```typescript
 function area(s: Shape) {
     if (s.kind === "square") {
         return s.size * s.size;
@@ -76,7 +76,7 @@ function area(s: Shape) {
 
 You can do that by simply adding a fall through and making sure that the inferred type in that block is compatible with the `never` type. For example if you add the exhaustive check you get a nice error:
 
-```ts
+```typescript
 function area(s: Shape) {
     if (s.kind === "square") {
         return s.size * s.size;
@@ -93,7 +93,7 @@ function area(s: Shape) {
 
 That forces you to handle this new case : 
 
-```ts
+```typescript
 function area(s: Shape) {
     if (s.kind === "square") {
         return s.size * s.size;
@@ -115,7 +115,7 @@ function area(s: Shape) {
 ### Switch
 TIP: of course you can also do it in a `switch` statement:
 
-```ts
+```typescript
 function area(s: Shape) {
     switch (s.kind) {
         case "square": return s.size * s.size;
@@ -133,7 +133,7 @@ function area(s: Shape) {
 
 `>tags:` [[Error_NullChecks]] [[Error_Return]] If using ***strictNullChecks** and doing exhaustive checks, TypeScript might complain "not all code paths return a value". You can silence that by simply returning the `_exhaustiveCheck` variable (of type `never`). So:
 
-```ts
+```typescript
 function area(s: Shape) {
     switch (s.kind) {
         case "square": return s.size * s.size;
@@ -149,7 +149,7 @@ function area(s: Shape) {
 ### Throw in exhaustive checks
 You can write a function that takes a `never` (and therefore can only be called with a variable that is inferred as `never`) and then throws an error if its body ever executes: 
 
-```ts
+```typescript
 function assertNever(x:never): never {
     throw new Error('Unexpected value. Should have been never.');
 }
@@ -157,7 +157,7 @@ function assertNever(x:never): never {
 
 Example use with the area function: 
 
-```ts
+```typescript
 interface Square {
     kind: "square";
     size: number;
@@ -185,14 +185,14 @@ Say you have a data structure of the form:
 
 `>tags:` [[DTO]] [[Versioning]]
 
-```ts
+```typescript
 type DTO = {
   name: string
 }
 ```
 And after you have a bunch of `DTO`s you realize that `name` was a poor choice. You can add versioning retrospectively by creating a new *union* with *literal number* (or string if you want) of DTO. Mark the version 0 as `undefined` and if you have *strictNullChecks* enabled it will just work out: 
 
-```ts
+```typescript
 type DTO = 
 | { 
    version: undefined, // version 0
@@ -215,7 +215,7 @@ type DTO =
 
  Example usage of such a DTO:
 
-```ts
+```typescript
 function printDTO(dto:DTO) {
   if (dto.version == null) {
       console.log(dto.name);

@@ -208,7 +208,7 @@ And that's it. You are now module lookup experts (not a small feat!).
 You can declare a module *globally* for your project by using `declare module 'somePath'` and then imports will resolve *magically* to that path
 
 e.g.
-```ts
+```typescript
 // global.d.ts
 declare module 'foo' {
   // Some variable declarations
@@ -217,7 +217,7 @@ declare module 'foo' {
 ```
 
 and then:
-```ts
+```typescript
 // anyOtherTsFileInYourProject.ts
 import * as foo from 'foo';
 // TypeScript assumes (without doing any lookup) that
@@ -228,7 +228,7 @@ import * as foo from 'foo';
 ### `import/require` for importing type only
 The following statement:
 
-```ts
+```typescript
 import foo = require('foo');
 ```
 
@@ -242,7 +242,7 @@ You can pick and choose so that only *the type information* is loaded and no run
 If you do not use the imported name in the variable declaration space then the import is completely removed from the generated JavaScript. This is best explained with examples. Once you understand this we will present you with use cases.
 
 #### Example 1
-```ts
+```typescript
 import foo = require('foo');
 ```
 will generate the JavaScript:
@@ -253,7 +253,7 @@ will generate the JavaScript:
 That's right. An *empty* file as foo is not used.
 
 #### Example 2
-```ts
+```typescript
 import foo = require('foo');
 var bar: foo;
 ```
@@ -264,7 +264,7 @@ var bar;
 This is because `foo` (or any of its properties e.g. `foo.bas`) is never used as a variable.
 
 #### Example 3
-```ts
+```typescript
 import foo = require('foo');
 var bar = foo;
 ```
@@ -279,7 +279,7 @@ This is because `foo` is used as a variable.
 ### Use case: Lazy loading
 Type inference needs to be done *upfront*. This means that if you want to use some type from a file `foo` in a file `bar` you will have to do:
 
-```ts
+```typescript
 import foo = require('foo');
 var bar: foo.SomeType;
 ```
@@ -287,7 +287,7 @@ However, you might want to only load the file `foo` at runtime under certain con
 
 As an example, consider the following `commonjs` based code where we only load a module `'foo'` on a certain function call:
 
-```ts
+```typescript
 import foo = require('foo');
 
 export function loadFoo() {
@@ -298,7 +298,7 @@ export function loadFoo() {
 ```
 
 A similar sample in `amd` (using requirejs) would be:
-```ts
+```typescript
 import foo = require('foo');
 
 export function loadFoo() {
@@ -321,7 +321,7 @@ Similar to the lazy loading use case certain module loaders (commonjs/node and a
 
 Sometimes you want to load a file just for the side effect (e.g. the module might register itself with some library like [CodeMirror addons](https://codemirror.net/doc/manual.html#addons) etc.). However, if you just do a `import/require` the transpiled JavaScript will not contain a dependency on the module and your module loader (e.g. webpack) might completely ignore the import. In such cases you can use a `ensureImport` variable to ensure that the compiled JavaScript takes a dependency on the module e.g.:
 
-```ts
+```typescript
 import foo = require('./foo');
 import bar = require('./bar');
 import bas = require('./bas');

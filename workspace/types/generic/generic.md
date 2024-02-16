@@ -12,7 +12,7 @@ The key motivation for generics is to document meaningful type dependencies betw
 
 Many algorithms and data structures in computer science do not depend on the *actual type* of the object. However, you still want to enforce a constraint between various variables. A simple toy example is a function that takes a list of items and returns a reversed list of items. The constraint here is between what is passed in to the function and what is returned by the function:
 
-```ts
+```typescript
 function reverse<T>(items: T[]): T[] {
     var toreturn = [];
     for (let i = items.length - 1; i >= 0; i--) {
@@ -35,7 +35,7 @@ reversed = [1, 2];     // Okay
 
 Here you are basically saying that the function `reverse` takes an array (`items: T[]`) of *some* type `T` (notice the type parameter in `reverse<T>`) and returns an array of type `T` (notice `: T[]`). Because the `reverse` function returns items of the same type as it takes, TypeScript knows the `reversed` variable is also of type `number[]` and will give you Type safety. Similarly if you pass in an array of `string[]` to the reverse function the returned result is also an array of `string[]` and you get similar type safety as shown below:
 
-```ts
+```typescript
 var strArr = ['1', '2'];
 var reversedStrs = reverse(strArr);
 
@@ -44,7 +44,7 @@ reversedStrs = [1, 2]; // Error!
 
 In fact JavaScript arrays already have a `.reverse` function and TypeScript does indeed use generics to define its structure:
 
-```ts
+```typescript
 interface Array<T> {
  reverse(): T[];
  // ...
@@ -53,7 +53,7 @@ interface Array<T> {
 
 This means that you get type safety when calling `.reverse` on any array as shown below:
 
-```ts
+```typescript
 var numArr = [1, 2];
 var reversedNums = numArr.reverse();
 
@@ -164,7 +164,7 @@ process(3.14159); // 3.14
 
 Consider the simple `Queue` (first in, first out) data structure implementation. A simple one in TypeScript / JavaScript looks like:
 
-```ts
+```typescript
 class Queue {
   private data = [];
   push(item) { this.data.push(item); }
@@ -174,7 +174,7 @@ class Queue {
 
 One issue with this implementation is that it allows people to add *anything* to the queue and when they pop it - it can be *anything*. This is shown below, where someone can push a `string` onto the queue while the usage actually assumes that only `numbers` were pushed in:
 
-```ts
+```typescript
 class Queue {
   private data = [];
   push(item) { this.data.push(item); }
@@ -192,7 +192,7 @@ console.log(queue.pop().toPrecision(1)); // RUNTIME ERROR
 
 One solution (and in fact the only one in languages that don't support generics) is to go ahead and create *special* classes just for these constraints. E.g. a quick and dirty number queue:
 
-```ts
+```typescript
 class QueueNumber extends Queue {
   push(item: number) { super.push(item); }
   pop(): number { return this.data.shift(); }
@@ -207,7 +207,7 @@ queue.push("1"); // ERROR : cannot push a string. Only numbers allowed
 
 Of course this can quickly become painful e.g. if you want a string queue you have to go through all that effort again. What you really want is a way to say that whatever the type is of the stuff getting *pushed* it should be the same for whatever gets *popped*. This is done easily with a *generic* parameter (in this case, at the class level):
 
-```ts
+```typescript
 /** A class definition with a generic parameter */
 class Queue<T> {
   private data = [];
@@ -225,7 +225,7 @@ queue.push("1"); // ERROR : cannot push a string. Only numbers allowed
 
 Another example that we have already seen is that of a *reverse* function, here the constraint is between what gets passed into the function and what the function returns:
 
-```ts
+```typescript
 function reverse<T>(items: T[]): T[] {
     var toreturn = [];
     for (let i = items.length - 1; i >= 0; i--) {
@@ -248,7 +248,7 @@ reversed = [1, 2];     // Okay
 
 In this section you have seen examples of generics being defined *at class level* and at *function level*. One minor addition worth mentioning is that you can have generics created just for a member function. As a toy example consider the following where we move the `reverse` function into a `Utility` class:
 
-```ts
+```typescript
 class Utility {
   reverse<T>(items: T[]): T[] {
       var toreturn = [];
@@ -267,13 +267,13 @@ class Utility {
 
 Consider the function: 
 
-```ts
+```typescript
 declare function parse<T>(name: string): T;
 ```
 
 In this case you can see that the type `T` is only used in one place. So there is no constraint *between* members. This is equivalent to a type assertion in terms of type safety:
 
-```ts
+```typescript
 declare function parse(name: string): any;
 
 const something = parse('something') as TypeOfSomething;
@@ -283,7 +283,7 @@ Generics used *only once* are no better than an assertion in terms of type safet
 
 A more obvious example is a function that loads a json response. It returns a promise of *whatever type you pass in*:
 
-```ts
+```typescript
 const getJSON = <T>(config: {
     url: string,
     headers?: { [key: string]: string },
@@ -301,7 +301,7 @@ const getJSON = <T>(config: {
 
 Note that you still have to explicitly annotate what you want, but the `getJSON<T>` signature `(config) => Promise<T>` saves you a few key strokes (you don't need to annotate the return type of `loadUsers` as it can be inferred):
 
-```ts
+```typescript
 type LoadUsersResponse = {
   users: {
     name: string;
@@ -317,13 +317,13 @@ Also `Promise<T>` as a return value is definitely better than alternatives like 
 
 Another example is where a generic is only used as an argument: 
 
-```ts
+```typescript
 declare function send<T>(arg: T): void;
 ```
 
 Here the generic `T` can be used to annote the type that you want the argument to match e.g. 
 
-```ts
+```typescript
 send<Something>({
   x:123,
   // Also you get autocomplete  

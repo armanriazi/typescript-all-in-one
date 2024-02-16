@@ -6,7 +6,7 @@ Generate the literal type union using `keyof typeof`. Here is a complete example
 
 `>tags:` #Important [[Inference]] [[Literal]] [[Type]] [[Enum]]
 
-```ts
+```typescript
 /** Utility function to create a K:V from a list of strings */
 function strEnum<T extends string>(o: Array<T>): {[K in T]: K} {
   return o.reduce((res, key) => {

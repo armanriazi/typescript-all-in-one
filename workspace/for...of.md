@@ -1,7 +1,7 @@
 ### for...of
 A common error experienced by beginning JavaScript developers is that `for...in` for an array does not iterate over the array items. Instead it iterates over the *keys* of the object passed in. This is demonstrated in the below example. Here you would expect `9,2,5` but you get the indexes `0,1,2`:
 
-```ts
+```typescript
 var someArray = [9, 2, 5];
 for (var item in someArray) {
     console.log(item); // 0,1,2
@@ -10,7 +10,7 @@ for (var item in someArray) {
 
 This is one of the reasons why `for...of` exists in TypeScript (and ES6). The following iterates over the array correctly logging out the members as expected:
 
-```ts
+```typescript
 var someArray = [9, 2, 5];
 for (var item of someArray) {
     console.log(item); // 9,2,5
@@ -19,7 +19,7 @@ for (var item of someArray) {
 
 Similarly TypeScript has no trouble going through a string character by character using `for...of`:
 
-```ts
+```typescript
 var hello = "is it me you're looking for?";
 for (var char of hello) {
     console.log(char); // is it me you're looking for?
@@ -28,7 +28,7 @@ for (var char of hello) {
 
 #### JS Generation
 For pre ES6 targets TypeScript will generate the standard `for (var i = 0; i < list.length; i++)` kind of loop. For example here's what gets generated for our previous example:
-```ts
+```typescript
 var someArray = [9, 2, 5];
 for (var item of someArray) {
     console.log(item);
@@ -47,7 +47,7 @@ You can see that using `for...of` makes *intent* clearer and also decreases the 
 If you are not targeting ES6 or above, the generated code assumes the property `length` exists on the object and that the object can be indexed via numbers e.g. `obj[2]`. So it is only supported on `string` and `array` for these legacy JS engines.
 
 If TypeScript can see that you are not using an array or a string it will give you a clear error *"is not an array type or a string type"*;
-```ts
+```typescript
 let articleParagraphs = document.querySelectorAll("article > p");
 // Error: Nodelist is not an array type or a string type
 for (let paragraph of articleParagraphs) {

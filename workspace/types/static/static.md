@@ -2,7 +2,7 @@
 
 TypeScript has static members. To access the static members of a class, you can use the class name followed by a dot, without the need to create an object.
 
-```ts
+```typescript
 class OfficeWorker {
     static memberCount: number = 0;
 

@@ -16,7 +16,7 @@ How does async work?
 This function takes a callback function as a parameter.
 we are using two callback functions, namely afterWait and executeAfterTimeout, there is only one asynchronous call in this example.This asynchronous call is the call to the setTimeout function.
 
-```ts
+```typescript
 function delayedResponseWithCallback(callback: () => void) {
     function executeAfterTimeout() {
       console.log(`5. executeAfterTimeout()`);
@@ -57,7 +57,7 @@ what is known as callback hell, where we have so many callbacks that are nested 
 
 e.g.,
 
-```ts
+```typescript
 // Import the 'fs' module and use it to read the contents of different text files.
 import * as fs from "fs";
 // The 'readFile' function is used to read the contents of the first text file, 'test1.txt'.
@@ -112,7 +112,7 @@ The Promise mechanism also allows us to **chain multiple asynchronous calls** on
 
 Note: A Promise-based asynchronous call is also referred to as being thenable, meaning that we can attach a then function to the original function call.
 
-```ts
+```typescript
 // Use the promises version of the fs module to read test1.txt
 fs.promises.readFile("./test1.txt")
   // Once test1.txt is read, log the contents to the console and then read test2.txt
@@ -152,7 +152,7 @@ We can clearly see from the output the sequence of events that our code is execu
 
 Consider the following function definition:
 
-```ts
+```typescript
 // This function takes two arguments, both of which are functions.
 function fnDelayedPromise(
     resolve: () => void, // This function will be called when the promise is resolved.
@@ -196,7 +196,7 @@ errorPromise().then(() => { })
 
 As a thought experiment imagine the following: a way to tell the JavaScript runtime to pause the executing of code on the `await` keyword when used on a promise and resume *only* once (and if) the promise returned from the function is settled:
 
-```ts
+```typescript
 // Not actual code. A thought experiment
 async function foo() {
     try {
@@ -228,7 +228,7 @@ This is exactly what generators allowed us to do! The thought experiment *is act
 
 You don't have to understand this, but it's fairly simple if you've [read up on generators](../generators). The function `foo` can be simply wrapped up as follows:
 
-```ts
+```typescript
 const foo = wrapToReturnPromise(function* () {
     try {
         var val = yield getMeAPromise();
@@ -246,7 +246,7 @@ where the `wrapToReturnPromise` just executes the generator function to get the 
 
 `Callbacks`
 
-```ts
+```typescript
 function usingCallbacks() {
  function afterCallbackSuccess() {
  // execute when the callback succeeds
@@ -262,7 +262,7 @@ function usingCallbacks() {
 
 `Promise`
 
-```ts
+```typescript
 function usingPromises() {
  delayedPromise().then(
  () => {
@@ -279,7 +279,7 @@ function usingPromises() {
 
 `Async-Await`
 
-```ts
+```typescript
 async function usingAsync() {
  try {
  await delayedPromise();
@@ -299,7 +299,7 @@ It was only supported for **target es6** transpiling directly to **ES6 generator
 
 Let's see this example and take a look at this code to figure out how TypeScript async / await notation works: 
 
-```ts
+```typescript
 function delay(milliseconds: number, count: number): Promise<number> {
     return new Promise<number>(resolve => {
             setTimeout(() => {

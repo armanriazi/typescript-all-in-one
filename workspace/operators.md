@@ -34,7 +34,7 @@ console.log(`globalString = ${globalString!}`);
 ```
 // Alternative way
 
-```ts
+```typescript
 // Declare a variable named "globalString" with the type of "string" and with a definite assignment assertion operator (!) 
 var globalString!: string;
 ```

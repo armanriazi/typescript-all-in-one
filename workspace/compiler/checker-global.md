@@ -1,7 +1,7 @@
 ### Global Namespace Merging
 Within `initializeTypeChecker` the following code exists:
 
-```ts
+```typescript
 // Initialize global symbol table
 forEach(host.getSourceFiles(), file => {
     if (!isExternalModule(file)) {

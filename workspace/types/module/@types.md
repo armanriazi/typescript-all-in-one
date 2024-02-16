@@ -36,7 +36,7 @@ This means that you can use these projects in a very interactive and exploratory
 
 If you want you can build on this basic definition and provide more information to help protect you from errors:
 
-```ts
+```typescript
 declare var $: {
     (selector:string): any;
 };
@@ -68,7 +68,7 @@ However, for *libraries*  (like `jquery`) I generally **recommend using modules*
 
 After installation, no special configuration is required really. You just use it like a module e.g.:
 
-```ts
+```typescript
 import * as $ from "jquery";
 
 // Use $ at will in this module :)
@@ -81,13 +81,13 @@ A major design goal of TypeScript was to make it possible for you to safely and 
 
 As a quick example of how you would author your own declaration file, consider a trivial example of [jquery](https://jquery.com/). By default (as is to be expected of good JS code) TypeScript expects you to declare (i.e. use `var` somewhere) before you use a variable
 
-```ts
+```typescript
 $('.awesome').show(); // Error: cannot find name `$`
 ```
 
 > As a quick fix *you can tell TypeScript* that there is indeed something called `$`:
 
-```ts
+```typescript
 declare var $: any;
 $('.awesome').show(); // Okay!
 ```

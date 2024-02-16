@@ -1,7 +1,7 @@
 ## Variables
 For example to tell TypeScript about the [`process` variable](https://nodejs.org/api/process.html) you *can* do:
 
-```ts
+```typescript
 declare var process: any;
 ```
 
@@ -9,13 +9,13 @@ declare var process: any;
 
 This allows you to use the `process` variable without TypeScript complaining:
 
-```ts
+```typescript
 process.exit();
 ```
 
 We recommend using an interface wherever possible e.g.:
 
-```ts
+```typescript
 interface Process {
     exit(code?: number): void;
 }
@@ -24,7 +24,7 @@ declare var process: Process;
 
 This allows other people to *extend* the nature of these global variables while still telling TypeScript about such modifications. E.g. consider the following case where we add an `exitWithLogging` function to process for our amusement:
 
-```ts
+```typescript
 interface Process {
     exitWithLogging(code?: number): void;
 }

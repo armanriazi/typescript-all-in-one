@@ -23,7 +23,7 @@ The `parseSourceFile` not only primes the state for the Parser but also primes t
 Before we dig too deep into the parser internals, here is a sample code that uses the TypeScript's parser to get the AST of a source file (using `ts.createSourceFile`), and then print it.
 
 `code/compiler/parser/runParser.ts`
-```ts
+```typescript
 import * as ts from "ntypescript";
 
 function printAllChildren(node: ts.Node, depth = 0) {
@@ -42,7 +42,7 @@ printAllChildren(sourceFile);
 
 This will print out the following:
 
-```ts
+```typescript
 SourceFile 0 14
 ---- SyntaxList 0 14
 -------- VariableStatement 0 14

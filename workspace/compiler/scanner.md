@@ -11,7 +11,7 @@ There is a *singleton* `scanner` created in `parser.ts` to avoid the cost of cre
 Here is a *simplied* version of the actual code in the parser that you can run demonstrating this concept:
 
 `code/compiler/scanner/runScanner.ts`
-```ts
+```typescript
 import * as ts from "ntypescript";
 
 // TypeScript has a singleton scanner
@@ -54,7 +54,7 @@ SemicolonToken
 After you call `scan` the scanner updates its local state (position in the scan, current token details etc). The scanner provides a bunch of utility functions to get the current scanner state. In the below sample we create a scanner and then use it to identify the tokens as well as their positions in the code.
 
 `code/compiler/scanner/runScannerWithPosition.ts`
-```ts
+```typescript
 // Sample usage
 initializeState(`
 var foo = 123;

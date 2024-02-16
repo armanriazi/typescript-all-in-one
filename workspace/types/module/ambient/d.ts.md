@@ -5,11 +5,11 @@ The purpose of a declaration file is to tell the TypeScript **compiler ahead of 
 
 You can tell TypeScript that you are trying to describe code that exists elsewhere (e.g. written in JavaScript/CoffeeScript/The runtime environment like the browser or Node.js) using the `declare` keyword. As a quick example:
 
-```ts
+```typescript
 foo = 123; // Error: `foo` is not defined
 ```
 vs.
-```ts
+```typescript
 declare var foo: any;
 foo = 123; // allowed
 ```

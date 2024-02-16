@@ -144,7 +144,7 @@ Now here is an example react component and test:
 
 * `checkboxWithLabel.tsx`:
 
-    ```ts
+    ```typescript
     import * as React from 'react';
 
     export class CheckboxWithLabel extends React.Component<{
@@ -180,7 +180,7 @@ Now here is an example react component and test:
 
 * `checkboxWithLabel.test.tsx`:
 
-    ```ts
+    ```typescript
     import * as React from 'react';
     import { shallow } from 'enzyme';
     import { CheckboxWithLabel } from './checkboxWithLabel';

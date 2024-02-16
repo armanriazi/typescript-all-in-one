@@ -5,7 +5,7 @@ The main objective of the spread operator is to *spread* the elements of an arra
 #### Apply
 A common use case is to spread an array into the function arguments. Previously you would need to use `Function.prototype.apply`:
 
-```ts
+```typescript
 function foo(x, y, z) { }
 var args = [0, 1, 2];
 foo.apply(null, args);
@@ -13,7 +13,7 @@ foo.apply(null, args);
 
 Now you can do this simply by prefixing the arguments with `...` as shown below:
 
-```ts
+```typescript
 function foo(x, y, z) { }
 var args = [0, 1, 2];
 foo(...args);
@@ -24,7 +24,7 @@ Here we are *spreading* the `args` array into positional `arguments`.
 #### Destructuring
 We've already seen one usage of this in *destructuring*:
 
-```ts
+```typescript
 var [x, y, ...remaining] = [1, 2, 3, 4];
 console.log(x, y, remaining); // 1,2,[3,4]
 ```
@@ -33,7 +33,7 @@ The motivation here is to simply make it easy for you to capture the remaining e
 #### Array Assignment
 The spread operator allows you to easily place an *expanded version* of an array into another array. This is demonstrated in the example below:
 
-```ts
+```typescript
 var list = [1, 2];
 list = [...list, 3, 4];
 console.log(list); // [1,2,3,4]
@@ -41,7 +41,7 @@ console.log(list); // [1,2,3,4]
 
 You can put the expanded array in at any position, and get the effect you'd expect:
 
-```ts
+```typescript
 var list = [1, 2];
 list = [0, ...list, 4];
 console.log(list); // [0,1,2,4]
@@ -50,7 +50,7 @@ console.log(list); // [0,1,2,4]
 #### Object spread
 You can also spread an object into another object. A common use case is to simply add a property to an object without mutating the original:
 
-```ts
+```typescript
 const point2D = {x: 1, y: 2};
 /** Create a new object by using all the point2D props along with z */
 const point3D = {...point2D, z: 3};
@@ -58,7 +58,7 @@ const point3D = {...point2D, z: 3};
 
 For objects, the order of where you put the spread matters.  This works something like `Object.assign`, and does what you'd expect: what comes first is 'overridden' by what comes later:
 
-```ts
+```typescript
 const point2D = {x: 1, y: 2};
 const anotherPoint3D = {x: 5, z: 4, ...point2D};
 console.log(anotherPoint3D); // {x: 1, y: 2, z: 4}
@@ -68,7 +68,7 @@ console.log(yetAnotherPoint3D); // {x: 5, y: 2, z: 4}
 
 Another common use case is a simple shallow extend:
 
-```ts
+```typescript
 const foo = {a: 1, b: 2, c: 0};
 const bar = {c: 1, d: 2};
 /** Merge foo and bar */

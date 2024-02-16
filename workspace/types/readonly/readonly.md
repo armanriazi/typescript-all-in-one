@@ -1,6 +1,6 @@
 Is it possible to prevent writing on a property by using the modifier readonlywhich makes sure that the property cannot be re-written but does not provide any guarantee of total immutability:
 
-```ts
+```typescript
 interface Y {
     readonly a: number;
 }
@@ -20,7 +20,7 @@ type K = {
 
 TypeScript's type system allows you to mark individual properties on an interface as `readonly`. This allows you to work in a functional way (unexpected mutation is bad):
 
-```ts
+```typescript
 function foo(config: {
     readonly bar: number,
     readonly bas: number
@@ -35,7 +35,7 @@ foo(config);
 
 Of course you can use `readonly` in `interface` and `type` definitions as well e.g.:
 
-```ts
+```typescript
 type Foo = {
     readonly bar: number;
     readonly bas: number;
@@ -50,7 +50,7 @@ foo.bar = 456; // Error: Left-hand side of assignment expression cannot be a con
 
 You can even declare a class property as `readonly`. You can initialize them at the point of declaration or in the constructor as shown below:
 
-```ts
+```typescript
 class Foo {
     readonly bar = 1; // OK
     readonly baz: string;
@@ -63,7 +63,7 @@ class Foo {
 ## Readonly
 There is a type `Readonly` that takes a type `T` and marks all of its properties as `readonly` using mapped types. Here is a demo that uses it in practice: 
 
-```ts
+```typescript
 type Foo = {
   bar: number;
   bas: number;
@@ -82,7 +82,7 @@ fooReadonly.bar = 456; // ERROR: bar is readonly
 
 E.g. [CodeMirror editor has an option `readOnly`](https://codemirror.net/doc/manual.html#option_readOnly) that can either be a `boolean` or the literal string `"nocursor"` (effective valid values `true,false,"nocursor"`).  It can be declared as:
 
-```ts
+```typescript
 readOnly: boolean | 'nocursor';
 ```
 
@@ -91,7 +91,7 @@ readOnly: boolean | 'nocursor';
 #### ReactJS
 One library that loves immutability is ReactJS, you *could* mark your `Props` and `State` to be immutable e.g.:
 
-```ts
+```typescript
 interface Props {
     readonly foo: number;
 }
@@ -109,7 +109,7 @@ export class Something extends React.Component<Props,State> {
 
 You do not need to, however, as the type definitions for React mark these as `readonly` already (by internally wrapping the passed in generic types with the `Readonly` type mentioned above).
 
-```ts
+```typescript
 export class Something extends React.Component<{ foo: number }, { baz: number }> {
   // You can rest assured no one is going to do
   someMethod() {
@@ -123,7 +123,7 @@ export class Something extends React.Component<{ foo: number }, { baz: number }>
 
 You can even mark index signatures as readonly:
 
-```ts
+```typescript
 /**
  * Declaration
  */
@@ -141,7 +141,7 @@ foo[0] = 456;          // Error (mutating): Readonly
 
 This is great if you want to use native JavaScript arrays in an *immutable* fashion. In fact TypeScript ships with a `ReadonlyArray<T>` interface to allow you to do just that:
 
-```ts
+```typescript
 let foo: ReadonlyArray<number> = [1, 2, 3];
 console.log(foo[0]);   // Okay
 foo.push(4);           // Error: `push` does not exist on ReadonlyArray as it mutates the array
@@ -151,7 +151,7 @@ foo = foo.concat([4]); // Okay: create a copy
 #### Automatic Inference
 In some cases the compiler can automatically infer a particular item to be readonly e.g. within a class if you have a property that only has a getter but no setter, it is assumed readonly e.g.:
 
-```ts
+```typescript
 class Person {
     firstName: string = "John";
     lastName: string = "Doe";
@@ -178,7 +178,7 @@ person.fullName = "Dear Reader"; // Error! fullName is readonly
 2. the property can be modified because of aliasing
 
 
-```ts
+```typescript
 let foo: { readonly bar: number;} = {
         bar: 123
 };
@@ -193,7 +193,7 @@ console.log(foo.bar); // 456!
 
 Basically `readonly` ensures that a property *cannot be modified by me*, but if you give it to someone that doesn't have that guarantee (allowed for type compatibility reasons) they can modify it. Of course if `iMutateFoo` said that they do not mutate `foo.bar` the compiler would correctly flag it as an error as shown:
 
-```ts
+```typescript
 interface Foo {
     readonly bar: number;
 }

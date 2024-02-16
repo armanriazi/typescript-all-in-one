@@ -6,7 +6,7 @@ Here is an example:
 
 [[Error_TS2683]]
 
-```ts
+```typescript
 function foo() {
   console.log(this);
 }
@@ -18,7 +18,7 @@ function foo() {
  error TS2683: 'this' implicitly has type 'any' because it does not have a type annotation.
 ```
 
-```ts
+```typescript
 foo(); // logs out the global e.g. `window` in browsers
 let bar = {
   foo

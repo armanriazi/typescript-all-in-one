@@ -4,7 +4,7 @@ There is a utility function `ts.forEachChild` that allows you to visit all the c
 
 Here is simplified snippet of the source code to demonstrate how it functions:
 
-```ts
+```typescript
 
 export function forEachChild<T>(node: Node, cbNode: (node: Node) => T, cbNodeArray?: (nodes: Node[]) => T): T {
         if (!node) {
@@ -27,7 +27,7 @@ Basically, it checks `node.kind` and based on that assumes an interface offered 
 
 E.g. here is a function that prints the verbose `AST` of a node:
 
-```ts
+```typescript
 function printAllChildren(node: ts.Node, depth = 0) {
     console.log(new Array(depth+1).join('----'), ts.syntaxKindToName(node.kind), node.pos, node.end);
     depth++;

@@ -8,34 +8,34 @@ Syntactically these are strings that use backticks ( i.e. \` ) instead of single
 #### String Interpolation
 Another common use case is when you want to generate some string out of some static strings + some variables. For this you would need some *templating logic* and this is where *template strings* originally got their name from. They have since been officially renamed to *template literals*. Here's how you would potentially generate an html string previously:
 
-```ts
+```typescript
 var lyrics = 'Never gonna give you up';
 var html = '<div>' + lyrics + '</div>';
 ```
 Now with template literals you can just do:
 
-```ts
+```typescript
 var lyrics = 'Never gonna give you up';
 var html = `<div>${lyrics}</div>`;
 ```
 
 Note that any placeholder inside the interpolation (`${` and `}`) is treated as a JavaScript expression and evaluated as such e.g. you can do fancy math.
 
-```ts
+```typescript
 console.log(`1 and 1 make ${1 + 1}`);
 ```
 
 #### Multiline Literals
 Ever wanted to put a newline in a JavaScript string? Perhaps you wanted to embed some lyrics? You would have needed to *escape the literal newline* using our favorite escape character `\`, and then put a new line into the string manually `\n` at the next line. This is shown below:
 
-```ts
+```typescript
 var lyrics = "Never gonna give you up \
 \nNever gonna let you down";
 ```
 
 With TypeScript you can just use a template string:
 
-```ts
+```typescript
 var lyrics = `Never gonna give you up
 Never gonna let you down`;
 ```
@@ -48,7 +48,7 @@ You can place a function (called a `tag`) before the template string and it gets
 
 Here is an example where we have a tag function (named `htmlEscape`) that escapes the html from all the placeholders:
 
-```ts
+```typescript
 var say = "a bird in hand > two in the bush";
 var html = htmlEscape `<div> I would just like to say : ${say}</div>`;
 

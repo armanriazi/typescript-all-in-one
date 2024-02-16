@@ -16,7 +16,7 @@ With these changes in place, any TypeScript code that uses these functions will 
 
 ## Nested namespaces and a function
 
-```ts
+```typescript
 // This code declares a TypeScript module with nested namespaces and a function
 declare module FirstNamespace {
     module SecondNamespace {
@@ -34,7 +34,7 @@ FirstNamespace.SecondNamespace.ThirdNamespace.log("test");
 
 As always let's look at examples of this file being used in action:
 
-```ts
+```typescript
 var foo = 123;
 var bar = foo.toString();
 ```
@@ -42,7 +42,7 @@ This code type checks fine *because* the `toString` function is defined in `lib.
 
 If you use the same sample code with the `noLib` option you get a type check error:
 
-```ts
+```typescript
 var foo = 123;
 var bar = foo.toString(); // ERROR: Property 'toString' does not exist on type 'number'.
 ```
@@ -55,12 +55,12 @@ The contents of `lib.d.ts` are primarily a bunch of *variable* declarations e.g.
 The simplest way to read the documentation and type annotations of global stuff is to type in code *that you know works* e.g. `Math.floor` and then F12 (go to definition) using your IDE (VSCode has great support for this).
 
 Let's look at a sample *variable* declaration, e.g. `window` is defined as:
-```ts
+```typescript
 declare var window: Window;
 ```
 That is just a simple `declare var` followed by the variable name (here `window`) and an interface for a type annotation (here the `Window` interface). These variables generally point to some global *interface* e.g. here is a small sample of the (actually quite massive) `Window` interface:
 
-```ts
+```typescript
 interface Window extends EventTarget, WindowTimers, WindowSessionStorage, WindowLocalStorage, WindowConsole, GlobalEventHandlers, IDBEnvironment, WindowBase64 {
     animationStartTime: number;
     applicationCache: ApplicationCache;
@@ -84,7 +84,7 @@ Here are a few example cases where we add stuff to `window`, `Math`, `Date`:
 
 Just add stuff to the `Window` interface e.g.:
 
-```ts
+```typescript
 interface Window {
     helloWorld(): void;
 }
@@ -92,7 +92,7 @@ interface Window {
 
 This will allow you to use it in a *type safe* manner:
 
-```ts
+```typescript
 // Add it at runtime
 window.helloWorld = () => console.log('hello world');
 // Call it
@@ -104,14 +104,14 @@ window.helloWorld('gracius'); // Error: Supplied parameters do not match the sig
 #### Example `Math`
 The global variable `Math` is defined in `lib.d.ts` as (again, use your dev tools to navigate to definition):
 
-```ts
+```typescript
 /** An intrinsic object that provides basic mathematics functionality and constants. */
 declare var Math: Math;
 ```
 
 i.e. the variable `Math` is an instance of the `Math` interface. The `Math` interface is defined as:
 
-```ts
+```typescript
 interface Math {
     E: number;
     LN10: number;
@@ -121,7 +121,7 @@ interface Math {
 
 This means that if you want to add stuff to the `Math` global variable you just need to add it to the `Math` global interface, e.g. consider the [`seedrandom` project](https://www.npmjs.com/package/seedrandom) which adds a `seedrandom` function to the global `Math` object. This can be declared quite easily:
 
-```ts
+```typescript
 interface Math {
     seedrandom(seed?: string);
 }
@@ -129,7 +129,7 @@ interface Math {
 
 And then you can just use it:
 
-```ts
+```typescript
 Math.seedrandom();
 // or
 Math.seedrandom("Any string you want!");
@@ -139,12 +139,12 @@ Math.seedrandom("Any string you want!");
 
 If you look at the definition of the `Date` *variable* in `lib.d.ts` you will find:
 
-```ts
+```typescript
 declare var Date: DateConstructor;
 ```
 The interface `DateConstructor` is similar to what you have seen before with `Math` and `Window` in that it contains members you can use off of the `Date` global variable e.g. `Date.now()`. In addition to these members it contains *construct* signatures which allow you to create `Date` instances (e.g. `new Date()`). A snippet of the `DateConstructor` interface is shown below:
 
-```ts
+```typescript
 interface DateConstructor {
     new (): Date;
     // ... other construct signatures
@@ -156,7 +156,7 @@ interface DateConstructor {
 
 Consider the project [`datejs`](https://github.com/abritinthebay/datejs). DateJS adds members to both the `Date` global variable and `Date` instances. Therefore a TypeScript definition for this library would look like ([BTW the community has already written this for you in this case](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/datejs/index.d.ts)):
 
-```ts
+```typescript
 /** DateJS Public Static Methods */
 interface DateConstructor {
     /** Gets a date that is set to the current date. The time is set to the start of the day (00:00 or 12:00 AM) */
@@ -173,7 +173,7 @@ interface Date {
 ```
 This allows you to do stuff like the following in a TypeSafe manner:
 
-```ts
+```typescript
 var today = Date.today();
 var todayAfter1second = today.addMilliseconds(1000);
 ```
@@ -182,7 +182,7 @@ var todayAfter1second = today.addMilliseconds(1000);
 
 If you look inside `lib.d.ts` for string you will find stuff similar to what we saw for `Date` (`String` global variable, `StringConstructor` interface, `String` interface). One thing of note though is that the `String` interface also impacts string *literals* as demonstrated in the below code sample:
 
-```ts
+```typescript
 
 interface String {
     endsWith(suffix: string): boolean;
@@ -203,7 +203,7 @@ Similar variables and interfaces exist for other things that have both static an
 
 We recommended creating a `global.d.ts` for maintainability reasons. However, you can break into the *global namespace* from within *a file module* if you desire so. This is done using `declare global { /*global namespace here*/ }`. E.g. the previous example can also be done as:
 
-```ts
+```typescript
 // Ensure this is treated as a module.
 export {};
 

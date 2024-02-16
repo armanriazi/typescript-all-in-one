@@ -2,7 +2,7 @@
 
 The best thing that JavaScript ever got was closures. A function in JavaScript has access to any variables defined in the outer scope. Closures are best explained with examples:
 
-```ts
+```typescript
 function outerFunction(arg:String) {
     var variableInOuterFunction = arg;
 
@@ -21,7 +21,7 @@ You can see that the inner function has access to a variable (variableInOuterFun
 
 Now the awesome part: The inner function can access the variables from the outer scope *even after the outer function has returned*. This is because the variables are still bound in the inner function and not dependent on the outer function. Again let's look at an example:
 
-```ts
+```typescript
 function outerFunction(arg) {
     var variableInOuterFunction = arg;
     return function() {
@@ -38,7 +38,7 @@ innerFunction(); // logs hello closure!
 ### Reason why it's awesome
 It allows you to compose objects easily e.g. the revealing module pattern:
 
-```ts
+```typescript
 function createCounter() {
     let val = 0;
     return {
@@ -56,7 +56,7 @@ console.log(counter.getVal()); // 2
 
 At a high level it is also what makes something like Node.js possible.
 
-```ts
+```typescript
 // Pseudo code to explain the concept
 server.on(function handler(req, res) {
     loadData(req.id).then(function(data) {

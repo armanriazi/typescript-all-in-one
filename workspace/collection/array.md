@@ -1,6 +1,6 @@
 TypeScript provides dedicated type syntax for arrays to make it easier for you to annotate and document your code. The syntax is basically postfixing `[]` to any valid type annotation (e.g. `:boolean[]`). It allows you to safely do any array manipulation that you would normally do and protects you from errors like assigning a member of the wrong type.  This is demonstrated below:
 
-```ts
+```typescript
 var boolArray: boolean[];
 
 boolArray = [true, false];
@@ -18,19 +18,19 @@ boolArray = [true, 'false']; // Error!
 
 Creating an empty array is super easy: 
 
-```ts
+```typescript
 const foo: string[] = [];
 ```
 
 If you want an array to loop over: 
 
-```ts
+```typescript
 [...new Array(6)]; 
 ```
 
 If you want to create an array pre-filled with some content use the ES6 `Array.prototype.fill`: 
 
-```ts
+```typescript
 const foo: string[] = new Array(3).fill('');
 console.log(foo); // ['','',''];
 ```
@@ -39,7 +39,7 @@ If you want to create an array of a predefined length with calls you can use the
 
 `>tags:` #Loop_Over [[Array]] #Map [[Important]] #Triple_Dot
 
-```ts
+```typescript
 const someNumbers = [...new Array(3)].map((_,i) => i * 10);
 console.log(someNumbers); // [0,10,20];
 ```

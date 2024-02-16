@@ -12,7 +12,7 @@ The `?` annotation can be used before a function argument or member of an interf
 ## Function Overloads
 The JavaScript runtime does not have runtime support for function overloading. There can be only a single function body for any given name in scope. However, people do support function overloading by utilizing the highly dynamic nature of JavaScript e.g. a getter and a setter:
 
-```ts
+```typescript
 var _value;
 function getOrSet(value) {
     if (value === undefined) {
@@ -28,7 +28,7 @@ console.log(getOrSet()); // get : 1
 
 Such implementation can be captured by the TypeScript's type system by providing function signatures before the function implementation:
 
-```ts
+```typescript
 var _value;
 function getOrSet(): number;
 function getOrSet(value: number);
@@ -46,7 +46,7 @@ console.log(getOrSet()); // get : 1
 
 Note that when you define function overloads this way, *the last signature is actually not callable*. You have to provide it however, to help the implementer of the function be aware of the consequences of his overload signatures. For example, in the following example the function with the signature `function callMe(v1?: any, v2?: any): any` is not open to public use:
 
-```ts
+```typescript
 function callMe(): number;
 function callMe(v1: number);
 function callMe(v1: string, v2: number);

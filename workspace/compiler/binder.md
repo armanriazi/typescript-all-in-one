@@ -1,7 +1,7 @@
 ## Binder
 Most JavaScript transpilers out there are simpler than TypeScript because they provide little in the way of code analysis. The typical JavaScript transpilers only have the following flow:
 
-```ts
+```typescript
 SourceCode ~~Scanner~~> Tokens ~~Parser~~> AST ~~Emitter~~> JavaScript
 ```
 
@@ -10,7 +10,7 @@ While the above architecture is true as a simplified understanding of TypeScript
 ### Symbol
 Symbols connect declaration nodes in the AST to other declarations contributing to the same entity. Symbols are the basic building blocks of the Semantic system. The symbol constructor is defined in `core.ts` (and `binder` actually uses the `objectAllocator.getSymbolConstructor` to get its hands on it). Here is the symbol constructor:
 
-```ts
+```typescript
 function Symbol(flags: SymbolFlags, name: string) {
     this.flags = flags;
     this.name = name;

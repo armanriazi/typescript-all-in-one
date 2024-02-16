@@ -28,12 +28,12 @@ Key Sections:
 > Reason: Conventional JavaScript
 
 **Bad**
-```ts
+```typescript
 var FooVar;
 function BarFunc() { }
 ```
 **Good**
-```ts
+```typescript
 var fooVar;
 function barFunc() { }
 ```
@@ -44,11 +44,11 @@ function barFunc() { }
 > Reason: This is actually fairly conventional in standard JavaScript.
 
 **Bad**
-```ts
+```typescript
 class foo { }
 ```
 **Good**
-```ts
+```typescript
 class Foo { }
 ```
 * Use `camelCase` of class members and methods
@@ -56,14 +56,14 @@ class Foo { }
 > Reason: Naturally follows from variable and function naming convention.
 
 **Bad**
-```ts
+```typescript
 class Foo {
     Bar: number;
     Baz() { }
 }
 ```
 **Good**
-```ts
+```typescript
 class Foo {
     bar: number;
     baz() { }
@@ -84,12 +84,12 @@ class Foo {
 > Reason: Unconventional. `lib.d.ts` defines important interfaces without an `I` (e.g. Window, Document etc).
 
 **Bad**
-```ts
+```typescript
 interface IFoo {
 }
 ```
 **Good**
-```ts
+```typescript
 interface Foo {
 }
 ```
@@ -112,12 +112,12 @@ interface Foo {
 > Reason: Convention followed by the TypeScript team. Namespaces are effectively just a class with static members. Class names are `PascalCase` => Namespace names are `PascalCase`
 
 **Bad**
-```ts
+```typescript
 namespace foo {
 }
 ```
 **Good**
-```ts
+```typescript
 namespace Foo {
 }
 ```
@@ -129,12 +129,12 @@ namespace Foo {
 > Reason: Similar to Class. Is a Type.
 
 **Bad**
-```ts
+```typescript
 enum color {
 }
 ```
 **Good**
-```ts
+```typescript
 enum Color {
 }
 ```
@@ -144,13 +144,13 @@ enum Color {
 > Reason: Convention followed by TypeScript team i.e. the language creators e.g `SyntaxKind.StringLiteral`. Also helps with translation (code generation) of other languages into TypeScript.
 
 **Bad**
-```ts
+```typescript
 enum Color {
     red
 }
 ```
 **Good**
-```ts
+```typescript
 enum Color {
     Red
 }
@@ -163,22 +163,22 @@ enum Color {
 > Reason: these values are commonly used to keep a consistent structure between values. In TypeScript you use *types* to denote the structure
 
 **Bad**
-```ts
+```typescript
 let foo = { x: 123, y: undefined };
 ```
 **Good**
-```ts
+```typescript
 let foo: { x: number, y?: number } = { x:123 };
 ```
 
 * Use `undefined` in general (do consider returning an object like `{valid:boolean, value?:Foo}` instead)
 
 **Bad**
-```ts
+```typescript
 return null;
 ```
 **Good**
-```ts
+```typescript
 return undefined;
 ```
 
@@ -187,33 +187,33 @@ return undefined;
 > Reason: It is conventional in Node.js e.g. `error` is `null` for NodeBack style callbacks.
 
 **Bad**
-```ts
+```typescript
 cb(undefined)
 ```
 **Good**
-```ts
+```typescript
 cb(null)
 ```
 
 * Use *truthy* check for **objects** being `null` or `undefined`
 
 **Bad**
-```ts
+```typescript
 if (error === null)
 ```
 **Good**
-```ts
+```typescript
 if (error)
 ```
 
 * Use `== null` / `!= null` (not `===` / `!==`) to check for `null` / `undefined` on primitives as it works for both `null`/`undefined` but not other falsy values (like `''`, `0`, `false`) e.g.
 
 **Bad**
-```ts
+```typescript
 if (error !== null) // does not rule out undefined
 ```
 **Good**
-```ts
+```typescript
 if (error != null) // rules out both null and undefined
 ```
 
@@ -223,7 +223,7 @@ The TypeScript compiler ships with a very nice formatting language service. What
 Use [`tsfmt`](https://github.com/vvakame/typescript-formatter) to automatically format your code on the command line. Also, your IDE (atom/vscode/vs/sublime) already has formatting support built-in.
 
 Examples:
-```ts
+```typescript
 // Space before type i.e. foo:<space>string
 const foo: string = "hello";
 ```

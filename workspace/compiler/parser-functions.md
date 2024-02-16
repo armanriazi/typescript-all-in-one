@@ -13,7 +13,7 @@ One of the most significant `parseFoo` style functions (a concept we cover next)
 
 The parser has a bunch of `parserFoo` functions with bodies that create `Foo` nodes. These are generally called (from other parser functions) at a time where a `Foo` node is expected. A typical sample of this process is the `parseEmptyStatement()` function which is used to parse out empty statements like `;;;;;;`. Here is the function in its entirety
 
-```ts
+```typescript
 function parseEmptyStatement(): Statement {
     let node = <Statement>createNode(SyntaxKind.EmptyStatement);
     parseExpected(SyntaxKind.SemicolonToken);

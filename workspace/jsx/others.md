@@ -19,7 +19,7 @@ The new factory name will be used to call `createElement` functions.
 
 ### Example
 
-```ts
+```typescript
 import {jsxFactory} from "jsxFactory";
 
 var div = <div>Hello JSX!</div>

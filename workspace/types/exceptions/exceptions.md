@@ -179,7 +179,7 @@ catch(e) {
 
 But now if you need to pass stuff from the first task to the second one the code becomes messy: (notice `foo` mutation requiring `let` + explicit need for annotating it because it cannot be inferred from the return of `runTask1`):
 
-```ts
+```typescript
 let foo: number; // Notice use of `let` and explicit type annotation
 try {
   foo = runTask1();
@@ -199,7 +199,7 @@ catch(e) {
 
 Consider the function:
 
-```ts
+```typescript
 function validate(value: number) {
   if (value < 0 || value > 100) throw new Error('Invalid value');
 }
@@ -207,7 +207,7 @@ function validate(value: number) {
 
 Using `Error` for such cases is a bad idea as it is not represented in the type definition for the validate function (which is `(value:number) => void`). Instead a better way to create a validate method would be:
 
-```ts
+```typescript
 function validate(value: number): {error?: string} {
   if (value < 0 || value > 100) return {error:'Invalid value'};
 }

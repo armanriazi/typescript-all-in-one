@@ -14,12 +14,12 @@ Lovingly called the *fat arrow* (because `->` is a thin arrow and `=>` is a fat 
 1. It lexically captures the meaning of `arguments`
 
 For a language that claims to be functional, in JavaScript you tend to be typing `function` quite a lot. The fat arrow makes it simple for you to create a function
-```ts
+```typescript
 var inc = (x)=>x+1;
 ```
 `this` has traditionally been a pain point in JavaScript. As a wise man once said "I hate JavaScript as it tends to lose the meaning of `this` all too easily". Fat arrows fix it by capturing the meaning of `this` from the surrounding context. Consider this pure JavaScript class:
 
-```ts
+```typescript
 function Person(age) {
     this.age = age;
     this.growOld = function() {
@@ -32,7 +32,7 @@ setTimeout(person.growOld,1000);
 setTimeout(function() { console.log(person.age); },2000); // 1, should have been 2
 ```
 If you run this code in the browser `this` within the function is going to point to `window` because `window` is going to be what executes the `growOld` function. Fix is to use an arrow function:
-```ts
+```typescript
 function Person(age) {
     this.age = age;
     this.growOld = () => {
@@ -45,7 +45,7 @@ setTimeout(person.growOld,1000);
 setTimeout(function() { console.log(person.age); },2000); // 2
 ```
 The reason why this works is the reference to `this` is captured by the arrow function from outside the function body. This is equivalent to the following JavaScript code (which is what you would write yourself if you didn't have TypeScript):
-```ts
+```typescript
 function Person(age) {
     this.age = age;
     var _this = this;  // capture this
@@ -59,7 +59,7 @@ setTimeout(person.growOld,1000);
 setTimeout(function() { console.log(person.age); },2000); // 2
 ```
 Note that since you are using TypeScript you can be even sweeter in syntax and combine arrows with classes:
-```ts
+```typescript
 class Person {
     constructor(public age:number) {}
     growOld = () => {
@@ -76,13 +76,13 @@ setTimeout(function() { console.log(person.age); },2000); // 2
 
 #### Tip: Arrow Function Need
 Beyond the terse syntax, you only *need* to use the fat arrow if you are going to give the function to someone else to call. Effectively:
-```ts
+```typescript
 var growOld = person.growOld;
 // Then later someone else calls it:
 growOld();
 ```
 If you are going to call it yourself, i.e.
-```ts
+```typescript
 person.growOld();
 ```
 then `this` is going to be the correct calling context (in this example `person`).
@@ -94,7 +94,7 @@ In fact if you want `this` *to be the calling context* you should *not use the a
 #### Tip: Arrow functions with libraries that use `this`
 Many libraries do this e.g. `jQuery` iterables (one example https://api.jquery.com/jquery.each/) will use `this` to pass you the object that it is currently iterating over. In this case if you want to access the library passed `this` as well as the surrounding context just use a temp variable like `_self` like you would in the absence of arrow functions.
 
-```ts
+```typescript
 let _self = this;
 something.each(function() {
     console.log(_self); // the lexically scoped value
@@ -105,7 +105,7 @@ something.each(function() {
 #### Tip: Arrow functions and inheritance
 Arrow functions as properties on classes work fine with inheritance: 
 
-```ts
+```typescript
 class Adder {
     constructor(public a: number) {}
     add = (b: number): number => {
@@ -124,7 +124,7 @@ console.log(child.callAdd(123)); // 246
 
 However, they do not work with the `super` keyword when you try to override the function in a child class. Properties go on `this`. Since there is only one `this` such functions cannot participate in a call to `super` (`super` only works on prototype members). You can easily get around it by creating a copy of the method before overriding it in the child.
 
-```ts
+```typescript
 class Adder {
     constructor(public a: number) {}
     // This function is now safe to pass around
@@ -147,7 +147,7 @@ class ExtendedAdder extends Adder {
 
 Sometimes you need a function that just returns a simple object literal. However, something like
 
-```ts
+```typescript
 // WRONG WAY TO DO IT
 var foo = () => {
     bar: 123
@@ -159,7 +159,7 @@ is parsed as a *block* containing a *JavaScript Label* by JavaScript runtimes (c
 
 You can fix it by surrounding the object literal with `()`:
 
-```ts
+```typescript
 // Correct 🌹
 var foo = () => ({
     bar: 123

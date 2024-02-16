@@ -55,7 +55,7 @@ error TS2839: This condition will always return 'false' since JavaScript compare
 
 [[Library_Deep-Equal]]
 
-```ts
+```typescript
 import * as deepEqual from "deep-equal";
 
 console.log(deepEqual({a:123},{a:123})); // True
@@ -63,7 +63,7 @@ console.log(deepEqual({a:123},{a:123})); // True
 
 However, quite commonly you don't need deep checks and all you really need is to check by some `id` e.g. 
 
-```ts
+```typescript
 type IdDisplay = {
   id: string,
   display: string

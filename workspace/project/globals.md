@@ -15,7 +15,7 @@ Nevertheless, if you have beginner TypeScript developers you can give them a `gl
 
 Another use case for a `global.d.ts` file is to declare compile-time constants that are being injected into the source code by Webpack via the standard [DefinePlugin](https://webpack.js.org/plugins/define-plugin/) plugin.
 
-```ts
+```typescript
 declare const BUILD_MODE_PRODUCTION: boolean; // can be used for conditional compiling
 declare const BUILD_VERSION: string;
 ```

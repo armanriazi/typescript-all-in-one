@@ -2,7 +2,7 @@
 
 We said that the bulk of the `emitter.ts` is the local function `emitJavaScript` (we showed the initialization routine of this function before). It basically sets up a bunch of locals and hits off to `emitSourceFile`. The following is a revisiting of the function, this time focusing on `SourceMap` stuff:
 
-```ts
+```typescript
 function emitJavaScript(jsFilePath: string, root?: SourceFile) {
 
     // STUFF ........... removed
@@ -65,7 +65,7 @@ function emitJavaScript(jsFilePath: string, root?: SourceFile) {
 
 The important function call here : `initializeEmitterWithSourceMaps` which is a function local to `emitJavaScript` that overrides some locals that were already defined here. At the bottom of `initializeEmitterWithSourceMaps` you will notice the overriding:
 
-```ts
+```typescript
     // end of `initializeEmitterWithSourceMaps`
 
     writeEmittedFiles = writeJavaScriptAndSourceMapFile;

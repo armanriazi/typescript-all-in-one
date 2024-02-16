@@ -22,7 +22,7 @@ Function | Description
 
 As an example, imagine this portion of a source file:
 
-```ts
+```typescript
 debugger;/*hello*/
     //bye
   /*hi*/    function
@@ -40,7 +40,7 @@ Nodes have what is called a "token start" and a "full start".
 
 AST nodes have an API for `getStart` and `getFullStart`. In the following example:
 
-```ts
+```typescript
 debugger;/*hello*/
     //bye
   /*hi*/    function

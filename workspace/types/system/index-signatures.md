@@ -4,7 +4,7 @@ An `Object` in JavaScript (and hence TypeScript) can be accessed with a **string
 
 Here is a quick example:
 
-```ts
+```typescript
 let foo: any = {};
 foo['Hello'] = 'World';
 console.log(foo['Hello']); // World
@@ -12,7 +12,7 @@ console.log(foo['Hello']); // World
 
 We store a string `"World"` under the key `"Hello"`. Remember we said it can store any JavaScript **object**, so lets store a class instance just to show the concept:
 
-```ts
+```typescript
 class Foo {
   constructor(public message: string){};
   log(){
@@ -27,7 +27,7 @@ foo['Hello'].log(); // World
 
 Also remember that we said that it can be accessed with a **string**. If you pass any other object to the index signature the JavaScript runtime actually calls `.toString` on it before getting the result. This is demonstrated below:
 
-```ts
+```typescript
 let obj = {
   toString(){
     console.log('toString called')
@@ -45,7 +45,7 @@ Note that `toString` will get called whenever the `obj` is used in an index posi
 
 Arrays are slightly different. For `number` indexing JavaScript VMs will try to optimise (depending on things like is it actually an array and do the structures of items stored match etc.). So `number` should be considered as a valid object accessor in its own right (distinct from `string`). Here is a simple array example:
 
-```ts
+```typescript
 let foo = ['World'];
 console.log(foo[0]); // World
 ```
@@ -56,7 +56,7 @@ So that's JavaScript. Now let's look at TypeScript's graceful handling of this c
 
 First off, because JavaScript *implicitly* calls `toString` on any object index signature, TypeScript will give you an error to prevent beginners from shooting themselves in the foot (I see users shooting themselves in the foot when using JavaScript all the time on stackoverflow):
 
-```ts
+```typescript
 let obj = {
   toString(){
     return 'Hello'
@@ -74,7 +74,7 @@ foo[obj.toString()] = 'World';
 
 The reason for forcing the user to be explicit is because the default `toString` implementation on an object is pretty awful, e.g. on v8 it always returns `[object Object]`:
 
-```ts
+```typescript
 let obj = {message:'Hello'}
 let foo: any = {};
 
@@ -92,7 +92,7 @@ Of course `number` is supported because
 
 Point 2 is shown below:
 
-```ts
+```typescript
 console.log((1).toString()); // 1
 console.log((2).toString()); // 2
 ```
@@ -107,7 +107,7 @@ Quick note: `symbols` are also valid and supported by TypeScript. But let's not 
 
 So we've been using `any` to tell TypeScript to let us do whatever we want. We can actually specify an *index* signature explicitly. E.g. say you want to make sure that anything that is stored in an object using a string conforms to the structure `{message: string}`. This can be done with the declaration `{ [index:string] : {message: string} }`. This is demonstrated below:
 
-```ts
+```typescript
 let foo:{ [index:string] : {message: string} } = {};
 
 /**
@@ -135,7 +135,7 @@ Of course `number` indexes are also supported e.g. `{ [count: number] : SomeOthe
 
 As soon as you have a `string` index signature, all explicit members must also conform to that index signature. This is shown below:
 
-```ts
+```typescript
 /** Okay */
 interface Foo {
   [key:string]: number;
@@ -152,7 +152,7 @@ interface Bar {
 
 This is to provide safety so that any string access gives the same result:
 
-```ts
+```typescript
 interface Foo {
   [key:string]: number;
   x: number;
@@ -171,7 +171,7 @@ foo[x]; // number
 
 An index signature can require that index strings be members of a union of literal strings by using *Mapped Types* e.g.:
 
-```ts
+```typescript
 type Index = 'a' | 'b' | 'c'
 type FromIndex = { [k in Index]?: number }
 
@@ -187,7 +187,7 @@ This is often used together with `keyof typeof` to capture vocabulary types, des
 
 The specification of the vocabulary can be deferred generically:
 
-```ts
+```typescript
 type FromSomeIndex<K extends string> = { [key in K]: number }
 ```
 
@@ -197,7 +197,7 @@ This is not a common use case, but TypeScript compiler supports it nonetheless.
 
 However, it has the restriction that the `string` indexer is more strict than the `number` indexer. This is intentional e.g. to allow typing stuff like:
 
-```ts
+```typescript
 interface ArrStr {
   [key: string]: string | number; // Must accommodate all members
 
@@ -214,7 +214,7 @@ interface ArrStr {
 
 Quite commonly in the JS community you will see APIs that abuse string indexers. e.g. a common pattern among CSS in JS libraries:
 
-```ts
+```typescript
 interface NestedCSS {
   color?: string;
   [selector: string]: string | NestedCSS | undefined;
@@ -230,7 +230,7 @@ const example: NestedCSS = {
 
 Try not to mix string indexers with *valid* values this way. E.g. a typo in the padding will remain uncaught:
 
-```ts
+```typescript
 const failsSilently: NestedCSS = {
   colour: 'red', // No error as `colour` is a valid string selector
 }
@@ -238,7 +238,7 @@ const failsSilently: NestedCSS = {
 
 Instead separate out the nesting into its own property e.g. in a name like `nest` (or `children` or `subnodes` etc.):
 
-```ts
+```typescript
 interface NestedCSS {
   color?: string;
   nest?: {
@@ -266,7 +266,7 @@ Sometimes you need to combine properties into the index signature. This is not a
 
 However, if you are modeling *existing JavaScript* you can get around it with an intersection type. The following shows an example of the error you will encounter without using an intersection:
 
-```ts
+```typescript
 type FieldState = {
   value: string
 }
@@ -279,7 +279,7 @@ type FormState = {
 
 Here is the workaround using an intersection type:
 
-```ts
+```typescript
 type FieldState = {
   value: string
 }
@@ -291,7 +291,7 @@ type FormState =
 
 Note that even though you can declare it to model existing JavaScript, you cannot create such an object using TypeScript:  
 
-```ts
+```typescript
 type FieldState = {
   value: string
 }

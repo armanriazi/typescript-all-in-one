@@ -71,7 +71,8 @@ You can customize the compiler options using `compilerOptions`:
     "downlevelIteration": true,            /* Provide full support for iterables in 'for-of', spread, and destructuring when targeting 'ES5' or 'ES3'. */
     "isolatedModules": true,               /* Transpile each file as a separate module (similar to 'ts.transpileModule'). */
                                               
-    /* Strict Type-Checking Options */        
+    /* Strict Type-Checking Options */     
+    /// As an example, these strict options can determine if a variable could be undefined at the time of use or if the variable itself is never used.   
     "strict": true,                        /* Enable all strict type-checking options. */
     "noImplicitAny": true,                 /* Raise error on expressions and declarations with an implied 'any' type. For new projects use TypeScript configuration **noImplicitAny** which enables TypeScript to issue errors where any is used or inferred. */
     "strictNullChecks": true,              /* Enable strict null checks. */
@@ -138,7 +139,7 @@ We can turn this option on by uncommenting it in the tsconfig.js file as follows
 
 For example:
 
-```ts
+```typescript
 // Interface defining filterable object
 interface IFilterable {
   name?: string;
@@ -161,7 +162,7 @@ function filterUndefined<T extends IFilterable>
 
 Generated declaration file
 
-```ts
+```typescript
 // Interface defining filterable object
 interface IFilterable {
   name?: string;
@@ -172,6 +173,22 @@ declare function filterUndefined<T extends IFilterable>(input: Array<T>): Array<
 
 // Caption: Declare function signature to filter undefined values in an array of filterable objects based on name property.
 
+```
+
+
+### Subdirectory tsconfig.json
+Let’s take a look at the tsconfig.json file in the sub1 directory:
+
+```typescript
+{
+ "extends": "../tsconfig", // point to the parent config file
+ "compilerOptions": {
+ /* Strict Type-Checking Options */
+ "outDir": "../dist",
+ "allowJs": true,
+ "strict": false
+ }
+}
 ```
 
 #### strict
@@ -185,7 +202,259 @@ The "strict" property enables stronger guarantees and enhances type safety. It i
 
 #### strictNullChecks
 
-`strictNullChecks` is a TypeScript compiler option that enforces strict null checking. When this option is enabled, variables and parameters can only be assigned `null` or `undefined` if they have been explicitly declared to be of that type using the union type `null` | `undefined`. If a variable or parameter is not explicitly declared as nullable, TypeScript will generate an error to prevent potential runtime errors.
+`strictNullChecks` is a TypeScript compiler option that enforces strict null checking. When this option is enabled, variables and parameters can only be assigned `null` or `undefined` if they have been explicitly declared to be of that type using the union type `null` | `undefined`. If a variable or parameter is not explicitly declared as nullable, TypeScript will generate an error to prevent potential runtime errors. 
+This means that when the variable is actually used if it **has not been properly initialized**, the compiler will generate an error message.
+
+```typescript
+let a: number;
+let b = a;
+```
+
+`>tags:` [[Error_TS2454]] [[Error_strictNullChecks]]
+
+```md
+error TS2454: Variable 'a' is used before being assigned.
+```
+
+`> Solution:`
+
+```typescript
+let a: number | undefined;
+let b = a;
+```
+
+### strictPropertyInitialization 
+
+The strictPropertyInitialization compiler option will check that all properties within a class have been initialized correctly.
+
+The concept is similar to the strictNullChecks option that we just discussed, but it extends into class properties.
+
+Note: In order to use the strictPropertyInitialization option, we also need to enable the strictNullChecks option at the same time, or the compiler will return an error stating this.
+
+Consider the following class definition:
+
+`>tags:` [[Error_ TS2564]] [[Error_strictPropertyInitialization]] [[Error_constructor]]
+
+```typescript
+class WithoutInit {
+    a: number;
+    b: string;
+}
+```
+
+
+`> Solution:`
+
+Firstly, we can use a type union, as we did with strictNullChecks, as follows:
+
+```typescript
+class WithoutInit {
+    a: number | undefined;
+    b: string | undefined;
+}
+```
+OR:
+
+```typescript
+class WithoutInit {
+    a!: number;
+    b!: string;
+}
+```
+
+OR:
+
+```typescript
+class WithoutInit {
+    a: number = 1;
+    b: string = "test";
+}
+```
+
+OR:
+
+```typescript
+class WithoutInit {
+    a: number;
+    b: string;
+    constructor(a: number) {
+        this.a = a;
+        this.b = "test";
+    }
+}
+```
+
+### strictBindCallApply 
+JavaScript provides the bind, call, and apply functions that are used to override the value of the this variable inside a function. When using the bind, call, and apply functions, we essentially provide a particular version of the object that the function should use as the value for this and then invoke the function with the parameters it requires. The strictBindCallApply option ensures that we provide these function parameters with the correct types.
+
+
+### strictFunctionTypes
+
+When we define types in TypeScript and then attempt to assign them to each other, the compiler makes sure that the types are consistent. Unfortunately, this strict typing rule did not apply correctly in some circumstances when dealing with functions.
+
+The strictFunctionTypes option corrects this behavior.
+
+`>tags:` [[Error_TS2322]] [[Error_TS2345]] [[Error_strictFunctionTypes]] 
+
+```typescript
+// Error TS2322
+let numberOrString: number | string;
+let numberOnly: number = numberOrString;
+//OR Error TS2345
+function withCallback(
+    fn: (a: number | string) => void
+) {
+    fn("test");
+}
+function withNumberOnly(a: number) {
+    console.log(`a : ${a}`);
+}
+withCallback(withNumberOnly);
+```
+### no Keys
+
+There are also a number of compiler options that are prefixed with the word `no`. These options are similar to the strict options in that they further **guard our code** *against things like unused parameters, implicit returns, and implicit any.*
+
+In this lesson, we will take a look at these compiler options and how they can detect potential errors within our code. These parameters are similar in nature to strict parameters in that they can be turned on or off and can be introduced into a code base gradually.
+
+Note: *If the strict compiler option has been set to true, then all of these options will be enabled as well.*
+
+`>tags:` [[Error_TS5055]] [[Error_noImplicitAny]]
+
+```ts
+declare function testImplicityAny();
+//OR
+function testNoParamType(value) { }
+
+class TestAny {
+    id;
+}
+```
+
+`> Solution:`
+
+```ts
+declare function testImplicityAny(): void;
+//
+function testNoParamType(value: string) { }
+
+class TestAny {
+    id : any;
+}
+```
+
+### The noUnusedLocals and noUnusedParameters options
+
+The noUnusedLocals and noUnusedParameter compiler options are used to detect variables or parameters that are not used and are, therefore, superfluous.
+
+`>tags:` [[Error_TS5055]] [[Error_noUnusedLocals]] [[Error_noUnusedParameters]]
+
+Consider the following code:
+
+```ts
+function testFunction(input: string): boolean {
+    let test;
+    return false;
+}
+```
+
+When we run the code, we can see that the compiler is detecting that we have an unused parameter and that we have an unused local variable.
+
+- The parameter named input of type string is defined in the function definition but is never actually used within the function body.
+
+- In a similar manner, the variable named test is defined within the function body, but it is never assigned a value and is also never used.
+
+Note that while this is a trivial example and we can clearly see that these local variables and parameters are never used in this code, it may not be so easily spotted in a larger code base or larger functions, so it is best left for the compiler to find these unused variables for us.
+
+### The noImplicitReturns option#
+
+If a function has declared that it will return a value, then the noImplicitReturns compiler option will ensure that it does.
+Running the compiler, however, with the noImplicitReturns option set to true will now generate an error. We can see the compiler is detecting that the isLargeNumber function may not return a value if the false code path is taken.
+
+`>tags:` [[Error_TS5055]] [[Error_noImplicitReturns]]
+
+Consider the following code:
+
+```ts
+function isLargeNumber(value: number): boolean {
+    if (value > 1_000_000)
+        return true;
+}
+
+console.log(`isLargeNumber(1) : ${isLargeNumber(1)}`);
+```
+
+`> Solution:`
+
+```ts
+function isLargeNumber(value: number): boolean {
+    if (value > 1_000_000)
+        return true;
+    return false;
+}
+```
+
+### noFallthroughCasesInSwitch 
+The TypeScript compiler option named noFallthroughCasesInSwitch is used to trap a particular logic error within switch statements.
+
+Consider the following code:
+
+```ts
+    switch (value) {
+        case SwitchEnum.ONE:
+            returnValue = "One";
+            break; //comment this line will expose an error
+        case SwitchEnum.TWO:
+            returnValue = "Two";
+    }
+```
+
+### noImplicitThis 
+The noImplicitThis compiler option is used to detect logic errors when the this variable is accessed incorrectly.
+
+`>tags:` [[Error_TS5055]] [[Error_noImplicitThis]]
+
+Consider the following code:
+
+```ts
+class NoImplicitThisClass {
+    id: number = 1;
+    printAfterWait() {
+        let callback = function () {
+            console.log(`this.id : ${this.id}`);
+        }
+        setTimeout(callback, 1000);
+    }
+}
+
+let classInstance = new NoImplicitThisClass();
+classInstance.printAfterWait();
+```
+
+The compiler correctly identifies that our reference to this.id within the callback function is not referencing the this property of the NoImplicitThisClass class. The this property within the callback function, therefore, has a type of any, hence the error.
+
+There are two ways that we could correct this code.
+- Using a callback function
+
+```ts
+class NoImplicitThisClass {
+    id: number = 1;
+    printAfterWait() {
+    let callback = function (_this) {
+        console.log(`this.id : ${_this.id}`);
+    }
+    setTimeout(callback, 1000, this);
+    }
+```
+
+- Using an arrow function
+
+```ts
+    let callback = () => {
+        console.log(`this.id : ${this.id}`);
+    }
+    setTimeout(callback, 1000);
+```
 
 #### module
 

@@ -1,6 +1,6 @@
 #### What's up with the IIFE
 The js generated for the class could have been:
-```ts
+```typescript
 function Point(x, y) {
     this.x = x;
     this.y = y;
@@ -12,7 +12,7 @@ Point.prototype.add = function (point) {
 
 The reason it's wrapped in an Immediately-Invoked Function Expression (IIFE) i.e.
 
-```ts
+```typescript
 (function () {
 
     // BODY
@@ -23,7 +23,7 @@ The reason it's wrapped in an Immediately-Invoked Function Expression (IIFE) i.e
 
 has to do with inheritance. It allows TypeScript to capture the base class as a variable `_super` e.g.
 
-```ts
+```typescript
 var Point3D = (function (_super) {
     __extends(Point3D, _super);
     function Point3D(x, y, z) {
@@ -42,7 +42,7 @@ Notice that the IIFE allows TypeScript to easily capture the base class `Point` 
 
 ### `__extends`
 You will notice that as soon as you inherit a class TypeScript also generates the following function:
-```ts
+```typescript
 var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -68,7 +68,7 @@ After having tutored many people about this I find the following explanation to 
 
 All objects in JavaScript contain a `__proto__` member. This member is often not accessible in older browsers (sometimes documentation refers to this magical property as `[[prototype]]`). It has one objective: If a property is not found on an object during lookup (e.g. `obj.property`) then it is looked up at `obj.__proto__.property`. If it is still not found then `obj.__proto__.__proto__.property` till either: *it is found* or *the latest `.__proto__` itself is null*. This explains why JavaScript is said to support *prototypal inheritance* out of the box. This is shown in the following example, which you can run in the chrome console or Node.js:
 
-```ts
+```typescript
 var foo = {}
 
 // setup on foo as well as foo.__proto__
@@ -84,7 +84,7 @@ console.log(foo.bar); // undefined
 
 Cool so you understand `__proto__`. Another useful fact is that all `function`s in JavaScript have a property called `prototype` and that it has a member `constructor` pointing back to the function. This is shown below:
 
-```ts
+```typescript
 function Foo() { }
 console.log(Foo.prototype); // {} i.e. it exists and is not undefined
 console.log(Foo.prototype.constructor === Foo); // Has a member called `constructor` pointing back to the function
@@ -92,7 +92,7 @@ console.log(Foo.prototype.constructor === Foo); // Has a member called `construc
 
 Now let's look at *effect of `new` on `this` inside the called function*. Basically `this` inside the called function is going to point to the newly created object that will be returned from the function. It's simple to see if you mutate a property on `this` inside the function:
 
-```ts
+```typescript
 function Foo() {
     this.bar = 123;
 }
@@ -104,7 +104,7 @@ console.log(newFoo.bar); // 123
 
 Now the only other thing you need to know is that calling `new` on a function assigns the `prototype` of the function to the `__proto__` of the newly created object that is returned from the function call. Here is the code you can run to completely understand it:
 
-```ts
+```typescript
 function Foo() { }
 
 var foo = new Foo();
@@ -114,7 +114,7 @@ console.log(foo.__proto__ === Foo.prototype); // True!
 
 That's it. Now look at the following straight out of `__extends`. I've taken the liberty to number these lines:
 
-```ts
+```typescript
 1  function __() { this.constructor = d; }
 2   __.prototype = b.prototype;
 3   d.prototype = new __();
@@ -128,7 +128,7 @@ But wait, we wanted `d.prototype.__proto__` i.e. just the proto changed and main
 
 The significance is that it allows you to add member functions to a child class and inherit others from the base class. This is demonstrated by the following simple example:
 
-```ts
+```typescript
 function Animal() { }
 Animal.prototype.walk = function () { console.log('walk') };
 

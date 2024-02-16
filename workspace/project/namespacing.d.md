@@ -2,7 +2,7 @@
 
 Let’s take a look at the first version of a declaration file for our ErrorHelper JavaScript class in the file named globals.d.ts:
 
-```ts
+```typescript
 declare module ErrorHelper {
  function containsErrors(response: any): boolean; // checks if response contains any errors
  function trace(message: any): void; // logs a message for debugging purposes
@@ -16,7 +16,7 @@ This module declaration is acting as a namespace, meaning that we need to refere
 
 Note that even though we have declared the two functions that are available on the ErrorHelper class, we are still missing some crucial information about them.
 
-```ts
+```typescript
 // This code defines TypeScript interfaces and a module for error handling
 
 interface IResponse {

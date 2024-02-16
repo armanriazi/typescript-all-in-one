@@ -7,7 +7,7 @@ The reason why it's important to have classes in JavaScript as a first class ite
 
 `Finally JavaScript developers can *have `class`*. Here we have a basic class called Point:`
 
-```ts
+```typescript
 class Point {
     x: number;
     y: number;
@@ -27,7 +27,7 @@ var p3 = p1.add(p2); // {x:10,y:30}
 
 This class generates the following JavaScript on ES5 emit:
 
-```ts
+```typescript
 var Point = (function () {
     function Point(x, y) {
         this.x = x;
@@ -42,7 +42,7 @@ var Point = (function () {
 This is a fairly idiomatic traditional JavaScript class pattern now as a first class language construct.
 
 
-```ts
+```typescript
 class Foo {}; 
 var someVar = Foo; //variable space declaretion
 var someOtherVar = 123; //Valid
@@ -74,7 +74,7 @@ const child = new Child(); // [Function: Child]
 ### Inheritance
 Classes in TypeScript (like other languages) support *single* inheritance using the `extends` keyword as shown below:
 
-```ts
+```typescript
 class Point3D extends Point {
     z: number;
     constructor(x: number, y: number, z: number) {
@@ -94,7 +94,7 @@ Note that you override parent member functions easily (here we override `add`) a
 ### Statics
 TypeScript classes support `static` properties that are shared by all instances of the class. A natural place to put (and access) them is on the class itself and that is what TypeScript does:
 
-```ts
+```typescript
 class Something {
     static instances = 0;
     constructor() {
@@ -124,7 +124,7 @@ If an access modifier is not specified it is implicitly `public` as that matches
 Note that at runtime (in the generated JS) these have no significance but will give you compile time errors if you use them incorrectly. An example of each is shown below:
 
 
-```ts
+```typescript
 class FooBase {
     public x: number;
     private y: number;
@@ -155,7 +155,7 @@ In TypeScript, constructors can be marked as private or protected, which restric
 `Private Constructors:`
 An experimental proposal to the ECMAScript standard introduces the concept of a private field by using the hash (#) symbol before a property name.
 
-```ts
+```typescript
 // Class 'ClassES6Private' defines a private property '#id' of type number
 class ClassES6Private {
   // Property '#id' is a private field and can only be accessed within the class
@@ -216,7 +216,7 @@ The `public` modifier provides unrestricted access to the class member, allowing
 
 * `abstract` **classes** cannot be directly instantiated. Instead the user must create some `class` that inherits from the `abstract class`.
 
-```ts
+```typescript
 abstract class FooCommand {}
 
 class BarCommand extends FooCommand {}
@@ -228,7 +228,7 @@ const barCommand = new BarCommand(); // You can create an instance of a class th
 
 * `abstract` **members** cannot be directly accessed and a child class must provide the functionality.
 
-```ts
+```typescript
 abstract class FooCommand {
   abstract execute(): string;
 }
@@ -253,7 +253,7 @@ An abstract class can have methods with implementation but an interface can’t.
 
 The class does not need to have a constructor. e.g. the following is perfectly fine. 
 
-```ts
+```typescript
 class Foo {}
 var foo = new Foo();
 ```
@@ -262,7 +262,7 @@ var foo = new Foo();
 
 Having a member in a class and initializing it like below:
 
-```ts
+```typescript
 class Foo {
     x: number;
     constructor(x:number) {
@@ -272,7 +272,7 @@ class Foo {
 ```
 is such a common pattern that TypeScript provides a shorthand where you can prefix the member with an *access modifier* and it is automatically declared on the class and copied from the constructor. So the previous example can be re-written as (notice `public x:number`):
 
-```ts
+```typescript
 class Foo {
     constructor(public x:number) {
     }
@@ -282,7 +282,7 @@ class Foo {
 ### Property initializer
 This is a nifty feature supported by TypeScript (from ES7 actually). You can initialize any member of the class outside the class constructor, useful to provide default (notice `members = []`)
 
-```ts
+```typescript
 class Foo {
     members = [];  // Initialize directly
     add(x) {

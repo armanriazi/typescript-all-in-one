@@ -7,7 +7,7 @@ There are a few patterns that have emerged in the community. I cover them in dec
 
 This pattern uses generics and literal types: 
 
-```ts
+```typescript
 /** Generic Id type */
 type Id<T extends string> = {
   type: T,
@@ -43,7 +43,7 @@ The workaround involves:
 
 This is demonstrated below where the structure of the types is just a string:
 
-```ts
+```typescript
 // FOO
 enum FooIdBrand { _ = "" };
 type FooId = FooIdBrand & string;
@@ -84,7 +84,7 @@ The workaround involves the following:
 
 This is demonstrated below:
 
-```ts
+```typescript
 // FOO
 interface FooId extends String {
     _fooIdBrand: string; // To prevent type errors

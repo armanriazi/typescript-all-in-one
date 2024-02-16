@@ -2,7 +2,7 @@
 
 Just use a chain of fat arrow functions:
 
-```ts
+```typescript
 // A curried function
 let add = (x: number) => (y: number) => x + y;
 

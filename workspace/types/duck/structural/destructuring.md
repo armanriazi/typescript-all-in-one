@@ -1,7 +1,7 @@
 
 Work with destructuring, akin objects:
 
-```ts
+```typescript
 let foo = {
     a: 123,
     b: 456
@@ -12,7 +12,7 @@ let {a} = foo;
 
 and arrays:
 
-```ts
+```typescript
 const bar = [1, 2];
 let [a, b] = bar;
 // a = "hello"; // Would Error: cannot assign `string` to a `number`
@@ -20,7 +20,7 @@ let [a, b] = bar;
 
 And if the function parameter can be inferred, so can its destructured properties. For example here we destructure the argument into its `a`/`b` members.
 
-```ts
+```typescript
 type Adder = (numbers: { a: number, b: number }) => number;
 function iTakeAnAdder(adder: Adder) {
     return adder({ a: 1, b: 2 });

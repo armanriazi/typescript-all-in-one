@@ -25,7 +25,7 @@ React can either render HTML tags (strings) or React components. The JavaScript 
 
 An HTML Tag `foo` is to be of the type `JSX.IntrinsicElements.foo`. These types are already defined for all the major tags in a file `react-jsx.d.ts` which we had you install as a part of the setup. Here is a sample of the  the contents of the file:
 
-```ts
+```typescript
 declare module JSX {
     interface IntrinsicElements {
         a: React.HTMLAttributes;
@@ -42,7 +42,7 @@ declare module JSX {
 
 You can define function components simply with the `React.FunctionComponent` interface e.g.
 
-```ts
+```typescript
 type Props = {
   foo: string;
 }
@@ -57,7 +57,7 @@ const MyComponent: React.FunctionComponent<Props> = (props) => {
 
 As of [@types/react PR #46643](https://github.com/DefinitelyTyped/DefinitelyTyped/pull/46643), you can use a new `React.VoidFunctionComponent` or `React.VFC` type if you wish to declare that a component does not take `children`. This is an interim solution until the next major version of the type defs (where VoidFunctionComponent will be deprecated and FunctionComponent will by default accept no children).
 
-```ts
+```typescript
 type Props = { 
   foo: string 
 }
@@ -77,7 +77,7 @@ Components are type checked based on the `props` property of the component. This
 
 The `react.d.ts` file defines the `React.Component<Props,State>` class which you should extend in your own class providing your own `Props` and `State` interfaces. This is demonstrated below:
 
-```ts
+```typescript
 type Props = {
   foo: string;
 }
@@ -94,7 +94,7 @@ class MyComponent extends React.Component<Props, {}> {
 
 React can render a few things like `JSX` or `string`. These are all consolidated into the type `React.ReactNode` so use it for when you want to accept renderables e.g.
 
-```ts
+```typescript
 type Props = {
   header: React.ReactNode;
   body: React.ReactNode;
@@ -132,7 +132,7 @@ const bar: React.ReactElement<MyAwesomeComponent> = <NotMyAwesomeComponent />; /
 
 The type `React.Component<Props>` consolidates `React.ComponentClass<P> | React.StatelessComponent<P>` so you can accept *something* that takes type `Props` and renders it using JSX e.g.
 
-```ts
+```typescript
 const X: React.Component<Props> = foo; // from somewhere
 
 // Render X with some props:
@@ -143,7 +143,7 @@ const X: React.Component<Props> = foo; // from somewhere
 
 It works exactly as expected. Here is an example:
 
-```ts
+```typescript
 /** A generic component */
 type SelectProps<T> = { items: T[] }
 class Select<T> extends React.Component<SelectProps<T>, any> { }
@@ -156,26 +156,26 @@ const Form = () => <Select<string> items={['a','b']} />;
 
 Something like the following works fine:
 
-```ts
+```typescript
 function foo<T>(x: T): T { return x; }
 ```
 
 However, using an arrow generic function will not:
 
-```ts
+```typescript
 const foo = <T>(x: T) => x; // ERROR : unclosed `T` tag
 ```
 
 **Workaround**: Use `extends` on the generic parameter to hint the compiler that it's a generic, e.g.:
 
-```ts
+```typescript
 const foo = <T extends unknown>(x: T) => x;
 ```
 
 ### React Tip: Strongly Typed Refs 
 You basically initialize a variable as a union of the ref and `null` and then initialize it as as callback  e.g. 
 
-```ts
+```typescript
 class Example extends React.Component {
   example() {
     // ... something
@@ -196,7 +196,7 @@ class Use {
 
 And the same with ref's for native elements e.g. 
 
-```ts
+```typescript
 class FocusingInput extends React.Component<{ value: string, onChange: (value: string) => any }, {}>{
   input: HTMLInputElement | null = null;
     

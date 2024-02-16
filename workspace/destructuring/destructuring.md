@@ -7,7 +7,7 @@ TypeScript supports the following forms of Destructuring (literally named after 
 
 It is easy to think of destructuring as an inverse of *structuring*. The method of *structuring* in JavaScript is the object literal:
 
-```ts
+```typescript
 var foo = {
     bar: {
         bas: 123
@@ -19,7 +19,7 @@ Without the awesome *structuring* support built into JavaScript, creating new ob
 ## Object Destructuring
 Destructuring is useful because it allows you to do in a single line, what would otherwise require multiple lines. Consider the following case:
 
-```ts
+```typescript
 var rect = { x: 0, y: 10, width: 15, height: 20 };
 
 // Destructuring assignment
@@ -34,7 +34,7 @@ Here in the absence of destructuring you would have to pick off `x,y,width,heigh
 
 To assign an extracted variable to a new variable name you can do the following:
 
-```ts
+```typescript
 // structure
 const obj = {"some property": "some value"};
 
@@ -45,7 +45,7 @@ console.log(someProperty === "some value"); // true
 
 Additionally you can get *deep* data out of a structure using destructuring. This is shown in the following example:
 
-```ts
+```typescript
 var foo = { bar: { bas: 123 } };
 var {bar: {bas}} = foo; // Effectively `var bas = foo.bar.bas;`
 ```
@@ -53,12 +53,12 @@ var {bar: {bas}} = foo; // Effectively `var bas = foo.bar.bas;`
 ## Object Destructuring with rest
 You can pick up any number of elements from an object and get *an object* of the remaining elements using object destructuring with rest.
 
-```ts
+```typescript
 var {w, x, ...remaining} = {w: 1, x: 2, y: 3, z: 4};
 console.log(w, x, remaining); // 1, 2, {y:3,z:4}
 ```
 A common use case is also to ignore certain properties. For example:
-```ts
+```typescript
 // Example function
 function goto(point2D: {x: number, y: number}) {
   // Imagine some code that might break
@@ -75,7 +75,7 @@ goto(point2D);
 ## Array Destructuring
 A common programming question: "How to swap two variables without using a third one?". The TypeScript solution:
 
-```ts
+```typescript
 var x = 1, y = 2;
 [x, y] = [y, x];
 console.log(x, y); // 2,1
@@ -85,14 +85,14 @@ Note that array destructuring is effectively the compiler doing the `[0], [1], .
 ### Array Destructuring with rest
 You can pick up any number of elements from an array and get *an array* of the remaining elements using array destructuring with rest.
 
-```ts
+```typescript
 var [x, y, ...remaining] = [1, 2, 3, 4];
 console.log(x, y, remaining); // 1, 2, [3,4]
 ```
 
 ### Array Destructuring with ignores
 You can ignore any index by simply leaving its location empty i.e. `, ,` in the left hand side of the assignment. For example:
-```ts
+```typescript
 var [x, , ...remaining] = [1, 2, 3, 4];
 console.log(x, remaining); // 1, [3,4]
 ```
@@ -100,7 +100,7 @@ console.log(x, remaining); // 1, [3,4]
 ## JS Generation
 The JavaScript generation for non ES6 targets simply involves creating temporary variables, just like you would have to do yourself without native language support for destructuring e.g.
 
-```ts
+```typescript
 var x = 1, y = 2;
 [x, y] = [y, x];
 console.log(x, y); // 2,1

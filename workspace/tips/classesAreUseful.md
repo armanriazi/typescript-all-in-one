@@ -2,7 +2,7 @@
 
 It is very common to have the following structure:
 
-```ts
+```typescript
 function foo() {
     let someProperty;
 
@@ -25,7 +25,7 @@ This is known as the *revealing module pattern* and quite common in JavaScript (
 
 If you use [*file modules* (which you really should as global scope is bad)](../project/modules.md) then *your file is effectively the same*. However, there are too many cases where people will write code like the following:
 
-```ts
+```typescript
 let someProperty;
 
 function foo() {
@@ -45,7 +45,7 @@ export function someMethod() {
 
 Even though I am not a big fan of inheritance *I do find that letting people use classes helps them organize their code better*. The same developer would intuitively write the following:
 
-```ts
+```typescript
 class Foo {
     public someProperty;
 

@@ -4,6 +4,8 @@
 
 The community has, over time, built a number of command-line tools to help with this, including **tsd, typings, and NuGet extensions**.
 
+ Airbnb recently went through the process of converting their existing React-based JavaScript projects to TypeScript, and have published an opensource project named **ts-migrate** to help other teams do the same thing.
+
 Note: This popularity has also meant that the TypeScript team itself has included a tool for searching for types on their [website](https://www.typescriptlang.org/dt/search?search=) named Type Search. Here, we can search for type declaration files and, as can be seen in the help text, declaration files that are either bundled or in the Definitely Typed repository.
 
 - [x] Declaration files, including:
@@ -56,7 +58,7 @@ TypeScript will immediately start TypeChecking your code and your original JavaS
 
 > `Sample of writing declaration file` projects of typescript-all-in-one-> Ref.to ErrorHelper, ReadME
 
-```ts
+```typescript
 var foo = 123;
 var bar = 'hey';
 
@@ -65,7 +67,7 @@ bar = foo; // ERROR: cannot assign a number to a string
 
 Even though the **error is valid** (and in most cases the inferred information will be better than what the original authors of different portions of the code bases imagined), your focus will probably be writing new code in TypeScript while progressively updating the old code base. Here you can suppress this error with a type assertion as shown below:
 
-```ts
+```typescript
 var foo = 123;
 var bar = 'hey';
 
@@ -74,7 +76,7 @@ bar = foo as any; // Okay!
 
 In other places you might want to annotate something as `any` e.g.:
 
-```ts
+```typescript
 function foo() {
     return 1;
 }
@@ -84,7 +86,7 @@ bar = foo(); // ERROR: cannot assign a number to a string
 
 Suppressed:
 
-```ts
+```typescript
 function foo(): any { // Added `any`
     return 1;
 }
@@ -101,13 +103,13 @@ You can change your JavaScript to TypeScript, but you can't change the whole wor
 
 Consider the case of `jquery`, you can create a *trivial* definition for it quite easily:
 
-```ts
+```typescript
 declare var $: any;
 ```
 
 Sometimes you might want to add an explicit annotation on something (e.g. `JQuery`) and you need something in **type declaration space**. You can do that quite easily using the `type` keyword:
 
-```ts
+```typescript
 declare type JQuery = any;
 declare var $: JQuery;
 ```
@@ -121,13 +123,13 @@ Again, a high quality `jquery.d.ts` exists at [DefinitelyTyped](https://github.c
 
 Similar to global variable declaration you can declare a global module quite easily. E.g. for `jquery` if you want to use it as a module (https://www.npmjs.com/package/jquery) you can write the following yourself: 
 
-```ts
+```typescript
 declare module "jquery";
 ```
 
 And then you can import it in your file as needed: 
 
-```ts
+```typescript
 import * as $ from "jquery";
 ```
 
@@ -136,7 +138,7 @@ import * as $ from "jquery";
 
 You can even allow import of any file e.g. `.css` files (if you are using something like webpack style loaders or css modules) with a simple `*` style declaration (ideally in a [`global.d.ts` file](../project/globals.md)): 
 
-```ts
+```typescript
 declare module "*.css";
 ```
 
@@ -144,7 +146,7 @@ Now people can `import * as foo from "./some/file.css";`
 
 Similarly if you are using html templates (e.g. angular) you can: 
 
-```ts
+```typescript
 declare module "*.html";
 ```
 

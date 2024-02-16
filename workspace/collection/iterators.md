@@ -61,7 +61,7 @@ for (const num of generator) {
 Iterator itself is not a TypeScript or ES6 feature, Iterator is a Behavioral Design Pattern common for Object oriented programming languages. It is, generally, an object which implements the following interface:
 
 
-```ts
+```typescript
 interface Iterator<T> {
     next(value?: any): IteratorResult<T>;
     return?(value?: any): IteratorResult<T>;
@@ -74,7 +74,7 @@ which belongs to the object.
 
 The `IteratorResult` is simply a `value`+`done` pair: 
 
-```ts
+```typescript
 interface IteratorResult<T> {
     done: boolean;
     value: T;
@@ -83,7 +83,7 @@ interface IteratorResult<T> {
 
 Imagine that there's an object of some frame, which includes the list of components of which this frame consists. With Iterator interface it is possible to retrieve components from this frame object like below:
 
-```ts
+```typescript
 class Component {
   constructor (public name: string) {}
 }
@@ -125,7 +125,7 @@ Again. Iterator itself is not a TypeScript feature, this code could work without
 
 Ok, Nice, but could be more helpful. ES6 defines the *iterable protocol* which includes the [Symbol.iterator] `symbol` if the Iterable interface is implemented:
 
-```ts
+```typescript
 //...
 class Frame implements Iterable<Component> {
 
@@ -162,7 +162,7 @@ for (let cmp of frame) {
 
 Unfortunately `frame.next()` won't work with this pattern and it also looks a bit clunky. IterableIterator interface to the rescue!
 
-```ts
+```typescript
 //...
 class Frame implements IterableIterator<Component> {
 
@@ -199,7 +199,7 @@ The typical example is a Fibonacci sequence:
 
 `>tags:` [[Important]] [[Fib]] [[Fibonacci]] [[IterableIterator]] [[Iterator]] [[Symbol]]
 
-```ts
+```typescript
 class Fib implements IterableIterator<number> {
 
   protected fn1 = 0;

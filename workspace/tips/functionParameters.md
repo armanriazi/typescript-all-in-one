@@ -4,7 +4,7 @@ If you have a function that takes too many parameters, or parameters of the same
 
 Consider the following function:
 
-```ts
+```typescript
 function foo(flagA: boolean, flagB: boolean) {
   // your awesome function body 
 }
@@ -14,7 +14,7 @@ With such a function definition it's quite easy to invoke it incorrectly e.g. `f
 
 Instead, convert the function to take an object: 
 
-```ts
+```typescript
 function foo(config: {flagA: boolean, flagB: boolean}) {
   const {flagA, flagB} = config;
   // your awesome function body 

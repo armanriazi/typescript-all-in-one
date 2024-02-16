@@ -9,7 +9,7 @@ are simple you can train your brain to recognize safe / unsafe code (it happened
 
 Types of a variable are inferred by definition.
 
-```ts
+```typescript
 let foo = 123; // foo is a `number`
 let bar = "Hello"; // bar is a `string`
 foo = bar; // Error: cannot assign `string` to a `number`
@@ -21,7 +21,7 @@ This is an example of types flowing from right to left.
 
 The return type is inferred by the return statements e.g. the following function is inferred to return a `number`.
 
-```ts
+```typescript
 function add(a: number, b: number) {
     return a + b;
 }
@@ -33,14 +33,14 @@ This is an example of types flowing bottom out.
 
 The type of function parameters / return values can also be inferred by assignment e.g. here we say that `foo` is an `Adder`, that makes `number` the type of `a` and `b`.
 
-```ts
+```typescript
 type Adder = (a: number, b: number) => number;
 let foo: Adder = (a, b) => a + b;
 ```
 
 This fact can be demonstrated by the below code which raises an error as you would hope:
 
-```ts
+```typescript
 type Adder = (a: number, b: number) => number;
 let foo: Adder = (a, b) => {
     a = "hello"; // Error: cannot assign `string` to a `number`
@@ -52,7 +52,7 @@ This is an example of types flowing from left to right.
 
 The same *assignment* style type inference works if you create a function for a callback argument. After all an `argument -> parameter`is just another form of variable assignment.
 
-```ts
+```typescript
 type Adder = (a: number, b: number) => number;
 function iTakeAnAdder(adder: Adder) {
     return adder(1, 2);

@@ -44,19 +44,24 @@
     "allowJs":true,
     "declaration": false,   
     "declarationMap": false,  
+    "noImplicitThis": true, 
     "preserveConstEnums": true,
     "sourceMap": false,    
     "incremental": false,
-    "strictNullChecks": true, 
     "noEmit": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "esModuleInterop": true,     
     "preserveSymlinks": true,      
     "experimentalDecorators":true,
     "emitDecoratorMetadata" : true,
     "strict": true,   
+    "strictNullChecks": true,
     "forceConsistentCasingInFileNames" : true,
     "skipLibCheck": true,
+    "noUnusedLocals": true,    
+    "noUnusedParameters": true,  
+    "strictBindCallApply": true,
+    "noFallthroughCasesInSwitch": true,
     "lib": [
       "dom",
       "es6"
@@ -141,18 +146,39 @@
     //"forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
 
     /* Type Checking */
-    //"strict": true,                                      /* Enable all strict type-checking options. */
+    //"strict": true,
+                                          /* Enable all strict type-checking options. */
+    /*
+    When a type has not been specified for a property, parameter, or function return type, the TypeScript compiler will automatically assume that it is of type any. In strict mode, this will generate an error.
+    */
     // "noImplicitAny": true,                            /* Enable error reporting for expressions and declarations with an implied 'any' type. */
+    
     // "strictNullChecks": true,                         /* When type checking, take into account 'null' and 'undefined'. */
     // "strictFunctionTypes": true,                      /* When assigning functions, check to ensure parameters and the return values are subtype-compatible. */
+    
+    /*When using the bind, call, and apply functions, we essentially provide a particular version of the object that the function should use as the value for this and then invoke the function with the parameters it requires. The strictBindCallApply option ensures that we provide these function parameters with the correct types.*/
     // "strictBindCallApply": true,                      /* Check that the arguments for 'bind', 'call', and 'apply' methods match the original function. */
+    
     // "strictPropertyInitialization": true,             /* Check for class properties that are declared but not set in the constructor. */
+    /*
+    Solution:
+    Using a callback function
+    Using an arrow function
+    Ref.To Closure-ex4
+    */
     // "noImplicitThis": true,                           /* Enable error reporting when 'this' is given the type 'any'. */
     // "useUnknownInCatchVariables": true,               /* Default catch clause variables as 'unknown' instead of 'any'. */
     // "alwaysStrict": true,                             /* Ensure 'use strict' is always emitted. */
+    /*
+    The noUnusedLocals and noUnusedParameter compiler options are used to detect variables or parameters that are not used and are, therefore, superfluous.
+    */
     // "noUnusedLocals": true,                           /* Enable error reporting when local variables aren't read. */
     // "noUnusedParameters": true,                       /* Raise an error when a function parameter isn't read. */
+
     // "exactOptionalPropertyTypes": true,               /* Interpret optional property types as written, rather than adding 'undefined'. */
+    /*
+    If a function has declared that it will return a value, then the noImplicitReturns compiler option will ensure that it does.
+    */
     // "noImplicitReturns": true,                        /* Enable error reporting for codepaths that do not explicitly return in a function. */
     // "noFallthroughCasesInSwitch": true,               /* Enable error reporting for fallthrough cases in switch statements. */
     // "noUncheckedIndexedAccess": true,                 /* Add 'undefined' to a type when accessed using an index. */
