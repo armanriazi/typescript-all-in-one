@@ -36,12 +36,14 @@
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
     //    "keyofStringsOnly" : true, //Deprecated
-    "allowJs":true,
     "removeComments": true,
     "target": "ES6",
     "module": "Node16",  
     "moduleResolution": "Node16",
     "outDir": "dist",  
+    "allowJs":true,
+    "declaration": false,   
+    "declarationMap": false,  
     "preserveConstEnums": true,
     "sourceMap": false,    
     "incremental": false,

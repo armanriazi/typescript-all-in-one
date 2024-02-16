@@ -123,6 +123,57 @@ The "target" property is used to specify which version of JavaScript ECMAScript 
 
 The "lib" property is used to specify which library files to include at compilation time. TypeScript automatically includes APIs for features specified in the "target" property, but it is possible to omit or pick specific libraries for particular needs. For instance, if you are working on a server project, you could exclude the "DOM" library, which is useful only in a browser environment.
 
+### The declaration option
+
+The final TypeScript compilation option that we will discuss here is the declaration option, which will generate declaration files from our source TypeScript or our source JavaScript files.
+
+We can turn this option on by uncommenting it in the tsconfig.js file as follows:
+
+```json
+    "outDir": "dist",  
+    "allowJs":true,
+    "declaration": true,   
+    "declarationMap": true,
+```    
+
+For example:
+
+```ts
+// Interface defining filterable object
+interface IFilterable {
+  name?: string;
+}
+
+// Function to filter undefined values in an array of filterable objects
+function filterUndefined<T extends IFilterable>
+  (input: Array<T>): Array<T> 
+{
+  let output: Array<T> = [];
+  for (let item of input) {
+    // Check if name property exists and is not null or undefined
+    if (item.name?.length) {
+      output.push(item);
+    }
+  }
+  return output;
+}
+```
+
+Generated declaration file
+
+```ts
+// Interface defining filterable object
+interface IFilterable {
+  name?: string;
+}
+
+// Function signature to filter undefined values in an array of filterable objects
+declare function filterUndefined<T extends IFilterable>(input: Array<T>): Array<T>;
+
+// Caption: Declare function signature to filter undefined values in an array of filterable objects based on name property.
+
+```
+
 #### strict
 
 The "strict" property enables stronger guarantees and enhances type safety. It is advisable to always include this property in your project's tsconfig.json file. Enabling the "strict" property allows TypeScript to:

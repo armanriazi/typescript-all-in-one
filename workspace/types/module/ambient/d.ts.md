@@ -22,3 +22,7 @@ If a file has the extension `.d.ts` then each root level definition must have th
 
 **Ambient declarations is a promise that you are making with the compiler**. If these do not exist at runtime and you try to use them, things will break without warning.
 **Ambient declarations are like docs. If the source changes the docs need to be kept updated**. So you might have new behaviours that work at runtime but no one's updated the ambient declaration and hence you get compiler errors.
+
+### Auto-generating declaration type files
+
+Ref.to The declaration option of file [tsconfig](../../../project/tsconfig.md)

@@ -33,6 +33,24 @@ Let us discuss a few of these points further.
 
 Note that all JavaScript is *valid* TypeScript. That is to say that if you give the TypeScript compiler some JavaScript -> the JavaScript emitted by the TypeScript compiler will behave exactly the same as the original JavaScript. This means that changing the extension from `.js` to `.ts` will not adversely affect your codebase.
 
+### The declaration option
+
+The final TypeScript compilation option that we will discuss here is the declaration option, which will generate declaration files from our source TypeScript or our source JavaScript files.
+
+We can turn this option on by uncommenting it in the tsconfig.js file as follows:
+
+```json
+{
+ "compilerOptions": {
+ "target": "es5",
+ "module": "commonjs",
+ "allowJs": true,
+ "declaration": true,
+ ... other options
+ }
+}
+```
+
 ### Suppressing Errors
 TypeScript will immediately start TypeChecking your code and your original JavaScript code *might not be as neat as you thought it was* and hence you get diagnostic errors. Many of these errors you can suppress with using `any` e.g.:
 
