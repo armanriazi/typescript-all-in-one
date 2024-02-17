@@ -133,8 +133,155 @@ Notes:
 - [x] Jest provides the global `test` function.
 - [x] Jest comes prebuilt with assertions in the form of the global `expect`.
 
-### Example async
 
+### Test setup and teardown
+
+The beforeEach function is being called before each of these tests, and it resets the value of the count property back to 0 every time.
+
+```ts
+/// test setup and teardown
+class GlobalCounter {
+    count: number = 0;
+    increment(): void {
+      this.count++;
+    }
+   }
+describe("test setup and teardown", () => {
+  
+    let globalCounter: GlobalCounter;
+    beforeAll(() => {
+      globalCounter = new GlobalCounter();
+    });
+    
+    beforeEach(() => {
+      globalCounter.count = 0;
+    });
+    
+    afterEach(() => {
+      console.log(`globalCounter.count =
+      ${globalCounter.count}`);
+    });
+  
+    it("should increment", () => {
+        globalCounter.increment();
+        expect(globalCounter.count).toEqual(1);
+    });
+
+    it("should increment twice", () => {
+        globalCounter.increment();
+        globalCounter.increment();
+        expect(globalCounter.count).toEqual(2);
+    });
+  });
+  
+```
+
+## Data-Driven Test
+
+To use data-driven tests in TypeScript to run the same test multiple times with different input values. Data-driven tests are a convenient way of writing unit tests where the only real change to a series of tests is either an input or a resulting value, but the body of the test itself remains the same.
+
+```ts
+
+function testUsing<T>
+    (values: T[], func: Function) {
+    for (let value of values) {
+        func.apply(Object, [value]);
+    }
+}
+//....
+```
+
+### Jest Mocks and Spies
+To use Jest mocks and spies to test that functions are called with the **correct arguments.**
+When writing a test for our initialize function, we would want to ensure that all of the calls to REST services were called. **To ensure that functions are called, we use Jest mocks or Jest spies.**
+
+```ts
+//...
+it("should call testFunction with argument using mock", () => {
+  let mock = jest.fn();
+  
+  let myCallbackClass = new MyCallbackClass();
+  myCallbackClass.executeCallback("argument_1", mock);
+  expect(mock).toHaveBeenCalledWith("argument_1");
+});
+```
+
+Spy:
+
+```ts
+//...
+it("should call testSpiedFunction", () => {
+  let mySpiedClass = new MySpiedClass();
+  const testFunctionSpy = jest.spyOn(mySpiedClass, "testSpiedFunction");
+  mySpiedClass.testFunction();
+  expect(testFunctionSpy).toHaveBeenCalled();
+});
+```
+
+Spy Sample two:
+
+Here, we have used the mockImplementation function on our spy to provide an implementation of the function that will be called during the test. This mock implementation will log a message to the console showing that it will be called instead of the class method.
+
+When we run the test, we can see that the mock implementation of the testFunction method was invoked instead of the actual implementation of the testFunction method.
+ If we want to override the body of the method and not allow the body of the method to be invoked, then we need to provide a mock implementation.
+
+ This distinction of whether or not the body of the method is invoked is extremely important when writing tests. As an example, let’s assume that a method will connect to a database, run a query, and return results. In this instance, we do not want the body of the method to be run, as we do not have a database instance to connect to. We want to mock out any interactions with a database completely. In these cases, we will need to provide a mock implementation.
+
+```ts
+it("should call mock of testFunction", () => {
+    let mySpiedClass = new MySpiedClass();
+    const testFunctionSpy = jest.spyOn(
+    mySpiedClass, 'testFunction')
+    .mockImplementation(() => {
+    console.log(`mockImplementation called`);
+    });
+    mySpiedClass.testFunction();
+    expect(testFunctionSpy).toHaveBeenCalled();
+   });
+```
+
+Returning values(Ref.To example test_ex15.spec.ts) from mock implementations means that we can simulate any sort of external interaction with other systems within our tests. We can mock out calls to a database or calls to a REST endpoint and inject standard values that we can test against.
+
+### Example async
+This often presents problems in our unit testing, where we need to wait for an asynchronous event to complete before we can continue with our test.
+
+```ts
+class MockAsync {
+  executeSlowFunction(complete: (value: string) => void) {
+    setTimeout(() => {
+      complete(`completed`);
+    }, 1000);
+  }
+}
+describe("failing async tests", () => {
+  it("should wait for callback to complete", () => {
+    let mockAsync = new MockAsync();
+    console.log(`1. calling executeSlowFunction`);
+    let returnedValue!: string;
+    mockAsync.executeSlowFunction((value: string) => {
+      console.log(`2. complete called`);
+      returnedValue = value;
+    });
+    console.log(`3. checking return value`);
+    expect(returnedValue).toBe("completed");
+  });
+});
+
+```
+
+`> Output:`
+
+```ts
+failing async tests › should wait for callback to complete
+```
+Our test is also failing, as the expected value of the returnedValue variable should be "completed", but is, in fact, undefined.
+
+What is causing this test to fail is the fact that the test itself is not waiting for 1 second for the executeSlowFunction function to call the complete callback. What we really need is a way to signal to our test that it should only execute the test expectation once the asynchronous call has completed.
+
+The **done function** can be passed in as an argument in any beforeAll, beforeEach, or it function and will allow our *asynchronous test to wait for the done function to be called before continuing.*
+
+
+Next Example:
 Jest has built-in async/await support. e.g.
 
 ```js
@@ -146,6 +293,34 @@ test('basic again', async () => {
   expect(sum(1, 2)).toBe(3);
 }, 1000 /* optional timeout */);
 ```
+
+Next Example:
+
+```ts
+class AsyncWithPromise {
+  delayedPromise(): Promise<string> {
+    return new Promise<string>(
+      (resolve: (str: string) => void, reject: (str: string) => void) => {
+        setTimeout(() => {
+          console.log(`2. returning success`);
+          resolve("success");
+        }, 1000);
+      }
+    );
+  }
+}
+describe("async test", () => {
+  it("should wait 1 second for promise to resolve", async () => {
+    let asyncWithPromise = new AsyncWithPromise();
+    console.log(`1. calling delayedPromise`);
+    let returnValue = await asyncWithPromise.delayedPromise();
+    console.log(`3. after await`);
+    expect(returnValue).toEqual("success");
+  });
+});
+
+```
+
 
 ### Example enzyme
 
