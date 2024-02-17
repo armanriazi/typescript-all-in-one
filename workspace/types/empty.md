@@ -1,3 +1,14 @@
+## The billion-dollar mistake
+
+The expression comes from Thomas Hoare, a famous and influential computer scientist who introduced null references to ALGOL in 1965. Many years later he admitted that it was a mistake, as it resulted in “innumerable errors, vulnerabilities, and system crashes, which have probably caused a billion dollars of pain and damage in the last forty years.”
+
+What does it mean in the context of JavaScript and TypeScript?
+
+`Uncaught TypeError: Cannot read property 'foo' of undefined`
+
+Are you familiar with this error message? I bet you are. It occurs whenever you’re trying to access a property or method of an object that you think is present, but turns out to not be there.
+
+There are two ways of representing empty values in JavaScript - null and undefined. This kind of error can occur in both cases. strictNullChecks enables you to detect such mistakes at compile-time. It is an invaluable help and, when done properly, can lead to the complete eradication of this class of runtime bugs.
 
 ## any
 
@@ -132,6 +143,23 @@ const add = (a: unknown, b: unknown): number | undefined =>
     typeof a === 'number' && typeof b === 'number' ? a + b : undefined;
 console.log(add(1, 2)); // 3
 console.log(add('x', 2)); // undefined
+```
+
+When trying to get rid of the any instances from your codebase, you might run into situations where you actually have no way of knowing the type of some value. This is especially true when the value is “external”, meaning it’s returned by a backend endpoint or is deserialized from local storage. In such cases, it’s a good idea to type such value as unknown instead of any.
+
+```ts
+interface Article {
+    title: string;
+    body: string;
+}
+
+fetch("http://example.com")
+  .then(response => response.json())
+  .then((body: unknown) => {
+    const article = body as Article;
+    // we need to cast, otherwise we'd get an error
+    console.log(article.title);
+  });
 ```
 
 ### any vs unknown

@@ -13,6 +13,37 @@ greet(); // Hello, Anonymous!
 greet('John'); // Hello, John!
 ```
 
+### ! character
+Non-null assertion operators are simply a way of telling the compiler, trust me, I’m absolutely sure that this optional value is in fact never empty. Syntactically, you can express this by postfixing the optional value with a ! character. So developer will gauranty the code. ! means unsafe code.
+
+```ts
+interface Person {
+    hello(): void;
+}
+
+function sayHello(person: Person | undefined) {
+    person!.hello(); // no errors!
+}
+```
+One possible valid use-case for non-null assertion operators is when you are working with classes and you have the strictPropertyInitialization flag enabled.
+
+```ts
+class CounterService {
+    counter: number | undefined;
+
+    increase() {
+        if (this.counter !== undefined) {
+            this.counter += 1;
+            this.printCounter();
+        }
+    }
+
+    private printCounter() {
+        console.log(this.counter!.toLocaleString());
+    }
+}
+```
+
 ### Optional Chaining
 purpose of optional chaining in TypeScript is to access properties on an object that may or may not exist.
 The optional chaining operator `?.` works like the regular dot operator (`.`) for accessing properties or methods. However, it gracefully handles null or undefined values by terminating the expression and returning `undefined`, instead of throwing an error.

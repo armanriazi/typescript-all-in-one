@@ -223,10 +223,13 @@ let a: number | undefined;
 let b = a;
 ```
 
+### strictNullChecks 
+Back to strictNullChecks. The definition says that when the flag is not enabled, null and undefined values are in the domain of every type. In other words, null and undefined values belong to sets corresponding to every type. It means we can have null , undefined in domain types of string, number, or pipes. but when strictNullChecks to be true, it means null, undefined are known singleton type so they will categorize in different type of string, number, or pipes.
+
 ### strictPropertyInitialization 
 
 The strictPropertyInitialization compiler option will check that all properties within a class have been initialized correctly.
-
+Ensure non-undefined class properties are initialized in the constructor.
 The concept is similar to the strictNullChecks option that we just discussed, but it extends into class properties.
 
 Note: In order to use the strictPropertyInitialization option, we also need to enable the strictNullChecks option at the same time, or the compiler will return an error stating this.
@@ -340,6 +343,16 @@ function testNoParamType(value: string) { }
 
 class TestAny {
     id : any;
+}
+```
+
+### noImplicitAny 
+
+In the example below, the **return type of getName is inferred as any**. This means that you can break type safety not only inside the function but also in the places it’s being used.
+
+```ts
+function getName(person) {
+  return person.name;
 }
 ```
 
