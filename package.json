@@ -19,7 +19,7 @@
     "echo": "echo \"Error: no test specified\" && exit 1",
     "test": "jest -o",
     "test-init": "jest --init",
-    "test-watch": "jest --watch  --verbose",
+    "test-watch": "jest --watchAll  --verbose",
     "test-cov": "jest --coverage",
     "lint": "ts-node lint",
     "lint:md": "markdownlint \"./*.md\" markdownlint \"../*.md\"",

@@ -13,6 +13,9 @@ Install the following using npm:
 ```bash
 npm install jest --save-dev
 #npm i jest @types/jest ts-jest typescript -D
+pnpm install ts-jest --save-dev
+pnpm ts-jest config:init
+pnpm install typescript --save-dev
 ```
 
 Explanation:
@@ -179,6 +182,7 @@ describe("test setup and teardown", () => {
 ## Data-Driven Test
 
 To use data-driven tests in TypeScript to run the same test multiple times with different input values. Data-driven tests are a convenient way of writing unit tests where the only real change to a series of tests is either an input or a resulting value, but the body of the test itself remains the same.
+Data-driven tests dosen't check the database integration of an application.
 
 ```ts
 
@@ -407,13 +411,46 @@ test('CheckboxWithLabel changes the text after click', () => {
 });
 ```
 
+## jsdom Library
+
+Jest uses a library named jsdom to allow for testing HTML elements and interactions. The jsdom is not an actual browser; it is a library that implements the JavaScript DOM API, and can, therefore, simulate a full-blown browser experience. The benefit of using jsdom is in the speed at which we can run our tests and the fact that we do not have to provide an environment that can run a full browser.
+
+```bash
+pnpm install jsdom --save-dev
+pnpm install @types/jsdom --save-dev
+pnpm install jquery
+pnpm install @types/jquery --save-dev
+```
+
+### Checking DOM updates
+With jsdom and jquery installed, we can write a test that checks whether the DOM has been updated. Consider the following code:
+
+```ts
+function setTestDiv(text: string) {
+  $("#test_div").html(`<p>${text}</p>`);
+}
+```
+
+Test function with jsdom and jQuery
+
+```ts
+it("should set text on div", () => {
+  document.body.innerHTML = `<div id="test_div"></div>`;
+  let htmlElement = $("#test_div");
+  expect(htmlElement.length).toBeGreaterThan(0);
+  setTestDiv("Hello World");
+  expect(htmlElement.html()).toContain("Hello World");
+});
+```
+We can use this sort of technique for other DOM events, including onchange, onfocus, ondrag, or anything else. Having the ability to construct snippets of HTML and test them is a very powerful feature of Jest and jsdom. We can fill in forms, click on the “submit”, “cancel”, or “OK” buttons, and generally simulate user interaction with our application.
+
 ## Reasons why we like jest
 
 > [For details on these features see jest website](http://facebook.github.io/jest/)
 
-* Built-in assertion library.
-* Great TypeScript support.
-* Very reliable test watcher.
-* Snapshot testing.
-* Built-in coverage reports.
-* Built-in async/await support.
+- [x] Built-in assertion library.
+- [x] Great TypeScript support.
+- [x] Very reliable test watcher.
+- [x] Snapshot testing.
+- [x] Built-in coverage reports.
+- [x] Built-in async/await support.
