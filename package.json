@@ -14,18 +14,18 @@
     "build": "tsc -p ./src",
     "ts-watch": "tsc --watch",
     "build:live": "nodemon --watch 'src/**/*.ts' --exec \"ts-node\" src/index.ts",
-    "format": "ts-node format",    
+    "format": "ts-node format",
     "compile": "ts-node compile",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "ts-node lint",
     "lint:md": "markdownlint \"./*.md\" markdownlint \"../*.md\"",
     "check": "pnpm run lint:md && pnpm run format && pnpm run compile",
     "ts-node-check": "ts-node -p -e '\"Hello world!\"'",
-    "ts-node-esm":"ts-node --esm",
-    "ts-node":"ts-node -P ./",
-    "ts-node-showconfig":"ts-node --showConfig",
-    "ts-node-transpile":"ts-node -T",
-    "ts-node-typeCheck":"ts-node --typeCheck",
+    "ts-node-esm": "ts-node --esm",
+    "ts-node": "ts-node -P ./",
+    "ts-node-showconfig": "ts-node --showConfig",
+    "ts-node-transpile": "ts-node -T",
+    "ts-node-typeCheck": "ts-node --typeCheck",
     "ts-node-compiler-host": "ts-node -H",
     "ts-node-pretty": "ts-node --pretty",
     "ts-node-scope": "ts-node --scopeDir <path/to/directory>"
@@ -49,6 +49,8 @@
   "dependencies": {
     "@types/big.js": "^6.2.2",
     "big.js": "^6.2.1",
-    "cd": "^0.3.3"
+    "cd": "^0.3.3",
+    "rxjs": "^7.8.1",
+    "underscore": "^1.13.6"
   }
 }
