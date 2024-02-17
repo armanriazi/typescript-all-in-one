@@ -16,7 +16,11 @@
     "build:live": "nodemon --watch 'src/**/*.ts' --exec \"ts-node\" src/index.ts",
     "format": "ts-node format",
     "compile": "ts-node compile",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "echo": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest -o",
+    "test-init": "jest --init",
+    "test-watch": "jest --watch  --verbose",
+    "test-cov": "jest --coverage",
     "lint": "ts-node lint",
     "lint:md": "markdownlint \"./*.md\" markdownlint \"../*.md\"",
     "check": "pnpm run lint:md && pnpm run format && pnpm run compile",
@@ -29,6 +33,9 @@
     "ts-node-compiler-host": "ts-node -H",
     "ts-node-pretty": "ts-node --pretty",
     "ts-node-scope": "ts-node --scopeDir <path/to/directory>"
+  },
+  "jest": {
+    "verbose": true
   },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.2",
