@@ -101,7 +101,7 @@
   * [Map](collection/map.md)        <!--completed-->    
   * [Iterators](collection/iterators.md)  <!--completed-->    
   * [Generators](collection/generators.md)  <!--completed-->    
-* [OOP](oop/oop.md)  
+* [Object Orianted Programming](oop/oop.md)  
   * [Generic](types/generic/generic.md)    
   * [Class](oop/class.md)    
   * [Interfaces](oop/interfaces.md)    

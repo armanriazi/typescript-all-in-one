@@ -278,11 +278,11 @@ THREE :: D -> E
 COMBINED :: A -> E
 ```
 
-This can’t be combined, so we give function TWO a value B, which returns a new function for us to use: FUNCTION_RETURNED_BY_TWO :: C -> D.
+This can’t be combined, so we give function TWO a value B, which returns a new function for us to use: `FUNCTION_RETURNED_BY_TWO :: C -> D`.
 
 This fits perfectly. Currying can be a huge help when composing functions with input and output values that are mismatched. We give what we can, and the rest will be filled in later. Consequently, a function’s final argument is often the data we’re operating on, while earlier arguments consist of things like configuration and dependencies. This is because we’ll usually already know what those configurations or dependencies will be. However, we only know what the data looks like when we receive it.
 
 
-![Curried Functions](../../assets/images/curried_functions.png){ width=200 height=100 align=center }
+![Curried Functions](../../assets/images/curried_functions.png)
 
-Note: Though they occasionally get in the way, types are generally very useful when composing functions. If a function expects type A and we instead feed it a function that returns A, it will complain. Meanwhile, JavaScript accepts everything we throw at it and crashes at runtime. In our example(fp-ex15.ts), try using userTypeLens (line 3) instead of the partially applied variant userTypeLensDefaultNone (line 7). JavaScript now returns { allow: false }, despite receiving an admin.
+Note: Though they occasionally get in the way, types are generally very useful when composing functions. If a function expects type A and we instead feed it a function that returns A, it will complain. Meanwhile, JavaScript accepts everything we throw at it and crashes at runtime. In our example(fp-ex15.ts), try using `userTypeLens` (line 3) instead of the partially applied variant `userTypeLensDefaultNone` (line 7). JavaScript now returns `{ allow: false }`, despite receiving an admin.
