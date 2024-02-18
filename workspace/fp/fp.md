@@ -1,9 +1,11 @@
 ## Functional Programming
 In any programming language, functions are said to be **first-class citizens** if they can be treated like any other variable. For instance, they can be passed as an argument to other functions, can be returned by another function, and can be assigned as a value to a variable.
 
+`first-class citizens`
+Functions can be treated as ordinary values. They can be passed in as parameters, returned from other functions, and so on.
 What are not the advantages of types? Types make code compilation faster.
 
-In functional programming, we write programs by letting objects interact with each other is a myth.
+`> Note:` In functional programming, we write programs by letting objects interact with each other is a myth.
 
 What are the advantages of functional programming?
 
@@ -71,7 +73,7 @@ Algebraic data types (ADTs) in functional programming can be extremely useful. W
 
 
 ## Pure Function
-A pure function is one with a result that’s based solely on the input it receives. So, as long as the input doesn’t change, the output doesn’t change either. This means that it has **no side effects**.
+A pure function is one with a result that’s based solely on the input it receives. So, as long as the input doesn’t change, the output doesn’t change either. This means that it has **no side effects**. **So A pure function is not a function that always returns a value.**
 
 ## Referential Transparency
 A related concept, referential transparency, also helps us in coding. It means that we can replace a function call with the value it produces. 
@@ -199,7 +201,7 @@ For those with Linux experience, this type of composition is similar to the Unix
 
 ## What is currying?
 
-Currying involves **converting** the function, **combining** multiple arguments into a series of functions that are executed one after another.
+Currying involves **converting** the function, **combining** multiple arguments into a series of functions that are executed one after another. In other word, process changes a function with multiple arguments into multiple functions that take a single argument and **return the next function.**
 
 Whenever we feed it an argument, we can write a function that returns another function that also accepts an argument and returns a function. **This continues to happen until the final argument is passed**. When that happens, the code block executes. This is called currying, and it’s very popular in functional languages like Haskell and F#. The following code snippet is a boilerplate example of currying:
 
@@ -350,6 +352,8 @@ console.log(getOrElse(() => 'no value present')(upperCasedEmpty));
 
 #### The chain function
 
+The chain function can **combine and flatten monads** in fp-ts.
+
 ```ts
 import {chain, getOrElse, none, some} from "fp-ts/lib/Option";
 const upperCaseSam = (name) => name === 'Sam' ? some(name.toUpperCase()) : none;
@@ -369,8 +373,52 @@ Instead, we used chain, which **flattened out the containers after receiving the
 `Note:`
 Why is **flattening** so useful? 
 
-While monads offer a lot of useful behavior, nesting offers no additional advantages. It just produces more repetitive code because we’d have to unwrap the value multiple times. So, it’s best to get rid of the additional wrappings.
+While monads offer a lot of useful behavior, nesting offers no additional advantages. It just produces more repetitive code because we’d have to unwrap the value multiple times. So, it’s best **to get rid of the additional wrappings.**
 
 That leaves us with an outer Option that contains an empty none Option. Consequently, our chain decides that this result, once flattened, is equal to none. The empty Option infects all of the outer ones. It signifies a missing value, no matter how many times we wrap it with Option.
 
 ### Advantages of Monads
+#### Combining effects and purity
+Monads exist to handle effects. As discussed earlier, functional programming likes purity. However, **effects such as writing to a database or calling some API ruin this purity.** *This is because the call might work one moment and fail the next, making our results unpredictable.* **This is where monads are helpful. Because they act as containers**, they can store effective behavior. For example, we have monads just for storing effects, typically called IO monads.
+
+Furthermore, with map, we can create functions that further transform the value saved in our container. Here comes the important thing, at least from a functional programming perspective. That is, the IO monad doesn’t create an effect until it’s called. This means that everything is pure until we call the program containing the IO monad(s). With this, effects and purity are combined.
+
+> *monads make our type system more powerful because they offer more information about what a function is doing.*
+> *In short, more behavior is made explicit, and this information helps create better and safer programs.*
+
+Monads help us be more explicit about what a function will do and return. For example:
+
+- [x] If a function has an effect, it’s wrapped in an IO monad.
+- [x] If a function is async, it’s wrapped in an Async or Task monad (both these names and others are used).
+- [x] If the function has a failure path, an Either monad will be used.
+- [x] If some value might not exist inside the function, Option monad will be used.
+- [x] If a function does two or more of the things mentioned above, we’ll use monad transformers.
+
+`Note:`
+Monad transformers are basically monads stacked on top of each other, combining all the useful qualities of the underlying elements.
+
+
+**The newtype-ts library** is a helper library for fp-ts that **offers a NonZeroInteger type** that gives non-zero values. This is also akin to design by contract, a prominent part of the Eiffel programming language. An interface in this language is described as a contract, which the interface must obey. This includes preconditions, postconditions, side effects, and other factors.
+
+
+#### Better composition
+**Monads also help with composition**. Because every **monad has map and chain functions, we can use them to transform values in a flow or pipeline** similar to the one we saw earlier with our compose helper. This is also possible with Promises and the then() function. However, with monads, everything will compose better. Plus, we can use different types of monads together to create more powerful functionality. In addition, the difference between chain and map makes what’s happening underneath more explicit. If we see a chain for the asynchronous task, another asynchronous process occurs in the function that we passed in.
+
+
+
+## Either
+Either (alternatively called **Result in**, for example, F#) **is a monad** we often use as an alternative **for exception handling**. It contains either (hence the name) a left or a right value. No further processing occurs if the value is left and you call map or chain. Similar to Option’s none, it just sits there and does nothing. The difference is that we can still retrieve the value originally entered there. This is why we often use Either for error handling. If something goes wrong, stop processing by placing a value (preferably an error message) on the left. **If everything is fine, use right to do things with the value we have**.
+
+Each function is short and simple. The first function simply checks if the fields are present. If they are, we pass back the event wrapped in an Either (right because everything is OK). If not, we place an appropriate **error message in left**. The other two functions have other parameters, but similar checks. We could extract some common behavior, but that doesn’t seem worthwhile yet.
+
+Our application will have to use all these checks. We have several options to combine them. The first is perhaps the most simple. Apply one check and then use chain to apply the others one by one.
+
+### When to use Either
+We already mentioned why we should use validation. Now, let’s see when we should use Either. Either has the advantage of being a bit simpler, so **if we only have to do a few validations**, it might work equally well. 
+*Suppose we have a check that takes a bit of calculating, say, a synchronous password verification. ​​If we can reject invalid requests* **before** *we have to run this expensive verification*, we can save time and money. 
+This would not be the case with Validation.
+
+Another reason to use Either, which seems to be a lot less common, is **when we have a few exclusive failure modes** *that take widely different paths*. 
+*For example,* **our success path returns a 2xx, but our failure paths are a 3xx, a 4xx, or 5xx (i.e., redirects, bad requests, and server errors).**
+
+`Remember:` Either doesn’t have to be used exclusively as an alternative for exception handling.

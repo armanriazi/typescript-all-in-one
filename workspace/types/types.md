@@ -1,5 +1,4 @@
 
-**Type inference** is the automatic deduction of the data types of specific expressions in a programming language, usually done at compile time.
 
 # Types as Sets
 
@@ -49,6 +48,8 @@ Interfaces are a way of defining custom types. Using interfaces allows us to cov
 In short, avoid the any type at any cost.
 
 # Inferred typing
+**Type inference** is the automatic deduction of the data types of specific expressions in a programming language, usually done at compile time.
+ As a bonus, statically typed languages can offer better performance, especially for long-running applications.
 Is a feature of TypeScript that allows the type of a variable or expression to be **determined based on the context** The process of determining the type of a variable **based on its value**. in which it appears rather than being explicitly specified with a type annotation.
 `as` keyword in a type assertion
 It provides a way to override the inferred type of a variable.

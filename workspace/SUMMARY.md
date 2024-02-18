@@ -112,6 +112,7 @@
     * [Observer](oop/designpatterns/observer/observer.md)           
     * [Singleton](oop/designpatterns/singleton/singleton.md)  
 * [Functional Programming](fp/fp.md)        
+  * [A Sample Project](fp/project1.md)        
 * [Errors in TypeScript](errors/main.md)
   * [Common Errors](errors/common-errors.md)  <!--completed-->  
   * [Type Conversion](types/conversion.md)  <!--completed-->  
