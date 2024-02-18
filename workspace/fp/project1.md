@@ -1,5 +1,8 @@
 
-`tsconfig.json`
+# Project of UserResponse
+We will have three file here. You only need to remove md describtions and then put it in three ts file.
+
+## tsconfig.json
 
 ```json
 {
@@ -17,7 +20,7 @@
 }
 ```
 
-`Domain.ts`
+## domain.ts
 
 ```ts
 import {iso, Newtype} from "newtype-ts";
@@ -27,7 +30,9 @@ import * as O from "fp-ts/lib/Option";
 ```
 
 ```md
-Note: We often use the Event suffix for incoming data with the AWS Lambda computing platform because Lambdas are run in response to events. In that case, the above would be UserRegistrationEvent. DTO (Data Transfer Object) is another nice suffix, signifying that this is untrusted, outside information. We’re still on the edge of our domain/application, and transformations must happen before this DTO becomes a trusted object within our domain.
+Note: We often use the Event suffix for incoming data with the AWS Lambda computing platform because Lambdas are run in response to events. In that case, the above would be UserRegistrationEvent. 
+DTO (Data Transfer Object) is another nice suffix, signifying that this is untrusted, outside information.
+We’re still on the edge of our domain/application, and **transformations must happen before this DTO becomes a trusted object within our domain.**
 ```
 
 ```ts
@@ -38,7 +43,20 @@ export type UserRegistrationDto = {
     sex: string,
     country: string,
 };
+```
 
+```md
+We should try to change the DTO properties into something more limited and, therefore, easier for the compiler to work with. This is common practice in Domain-Driven Design (DDD). 
+We change information from the outside into something suitable for use within the domain. Similarly, anything returned to the outside world is again transformed to be useful to outside parties, in addition to ourselves. 
+Let’s take a look at the following example. Although we need to add an extra bit of code, the types we created are powerful.
+
+Before moving on, we should mention that both Gender and Region are called Sum types in functional programming. 
+This is a kind of Algebraic Data Type (ADT). Sum types limit the type option to a list of exclusive choices. We can only pick one choice. We’re either children or adults, employed or unemployed. 
+A boolean is an example of a sum type with two choices, true or false.
+```
+
+```ts
+// user registration dto from before
 // first attempt at modeling the user = identical to incoming event. the below is better. restricting to valid values
 export type Gender = 'M' | 'F' | 'X';
 
@@ -70,7 +88,12 @@ export type User = {
     gender: Gender,
     region: Region,
 };
+```
 
+```md
+```
+
+```
 export type FieldsNotEmpty = (e: UserRegistrationDto)
     => E.Either<string, UserRegistrationDto>;
 export type ValidateAge = FieldsNotEmpty;
@@ -92,7 +115,7 @@ export type Response = {
 ```
 
 
-`main.ts`
+## main.ts
 
 ```ts
 import {prismPositiveInteger} from "newtype-ts/lib/PositiveInteger";
@@ -232,7 +255,7 @@ function flow(u: UserRegistrationDto) {
 console.log(flow(exampleEvent));
 ```
 
-`Output:`
+## Output
 
 ```md
 {
