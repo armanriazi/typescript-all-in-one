@@ -258,6 +258,8 @@ COMBINED :: A -> D
 
 ### Function with multiple parameter values
 
+`Example of currying:`
+
 ```ts
 const TWO = (first) => (second) => {
     if(first && second) {
@@ -284,5 +286,7 @@ This fits perfectly. Currying can be a huge help when composing functions with i
 
 
 ![Curried Functions](../../assets/images/curried_functions.png)
+
+![Curried Functions](https://armanriazi.github.io/typescript-all-in-one/assets/images/curried_functions.png)
 
 Note: Though they occasionally get in the way, types are generally very useful when composing functions. If a function expects type A and we instead feed it a function that returns A, it will complain. Meanwhile, JavaScript accepts everything we throw at it and crashes at runtime. In our example(fp-ex15.ts), try using `userTypeLens` (line 3) instead of the partially applied variant `userTypeLensDefaultNone` (line 7). JavaScript now returns `{ allow: false }`, despite receiving an admin.
