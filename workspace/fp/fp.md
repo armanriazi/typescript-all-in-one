@@ -287,8 +287,6 @@ This fits perfectly. Currying can be a huge help when composing functions with i
 
 ![Curried Functions](../assets/images/curried_functions.png)
 
-![Curried Functions](https://armanriazi.github.io/typescript-all-in-one/assets/images/curried_functions.png)
-
 Note: Though they occasionally get in the way, types are generally very useful when composing functions. If a function expects type A and we instead feed it a function that returns A, it will complain. Meanwhile, JavaScript accepts everything we throw at it and crashes at runtime. In our example(fp-ex15.ts), try using `userTypeLens` (line 3) instead of the partially applied variant `userTypeLensDefaultNone` (line 7). JavaScript now returns `{ allow: false }`, despite receiving an admin.
 
 ## Problems with Currying and Composition
@@ -306,3 +304,38 @@ const doubled = compose(doubleIt, givesAPromise);
 console.log(doubled(2)); // Output NaN 
 ```
  How do we fix it? If we want to write pure JavaScript, we could use then(), which is provided by Promise, to retrieve a result to work with. This is certainly not a bad idea. However, we might run into some limits and, more generally, our entire program will have to use Promises everywhere.
+
+## What are monads?
+How can we avoid exceptions? How will we handle error cases without them? If Promises aren’t ideal for asynchronous behavior, what should we use instead? Enter the dreaded monads!
+In several functional languages, putting the `value inside the monad is called return`. But, because return is a keyword in JavaScript, we’ll find various other words for it, like `of`.
+
+- [x] Monads can be compared to a container.
+- [x] The various constructors for monads in fp-ts are called lifting functions.
+
+## Functors
+
+We have a value inside a container. What does that get us? Well, monads have several functions that influence or change that value. For example, the monad function map takes a function that might be applied to the value inside the container. Why do we say “might”?
+
+`Note:`
+Technically, monads only define bind, chain, or flatmap methods, but not a map, which is part of the definition of a Functor. However, monads are functors, so our current explanation is good enough.
+
+
+![Curried Functions](../assets/images/functor.png)
+
+### Option monad
+
+An example might make things easier to understand. Let’s take a look at the Option monad from fp-ts.
+
+#### The map function
+
+
+```ts
+import {getOrElse, map, none, some} from "fp-ts/lib/Option";
+const upperCaseIt = (value: string) => value.toUpperCase();
+const optionWithAString = some('a value');
+const optionEmpty = none;
+const upperCased = map(upperCaseIt)(optionWithAString);
+const upperCasedEmpty = map(upperCaseIt)(optionEmpty);
+console.log(getOrElse(() => 'no value present')(upperCased));
+console.log(getOrElse(() => 'no value present')(upperCasedEmpty));
+```
