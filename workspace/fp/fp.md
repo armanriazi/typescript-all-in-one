@@ -285,8 +285,24 @@ This can’t be combined, so we give function TWO a value B, which returns a new
 This fits perfectly. Currying can be a huge help when composing functions with input and output values that are mismatched. We give what we can, and the rest will be filled in later. Consequently, a function’s final argument is often the data we’re operating on, while earlier arguments consist of things like configuration and dependencies. This is because we’ll usually already know what those configurations or dependencies will be. However, we only know what the data looks like when we receive it.
 
 
-![Curried Functions](../../assets/images/curried_functions.png)
+![Curried Functions](../assets/images/curried_functions.png)
 
 ![Curried Functions](https://armanriazi.github.io/typescript-all-in-one/assets/images/curried_functions.png)
 
 Note: Though they occasionally get in the way, types are generally very useful when composing functions. If a function expects type A and we instead feed it a function that returns A, it will complain. Meanwhile, JavaScript accepts everything we throw at it and crashes at runtime. In our example(fp-ex15.ts), try using `userTypeLens` (line 3) instead of the partially applied variant `userTypeLensDefaultNone` (line 7). JavaScript now returns `{ allow: false }`, despite receiving an admin.
+
+## Problems with Currying and Composition
+
+### Asynchronous actions
+Now, we know how to compose functions to create our software. We also know how currying can help with functions that don’t naturally fit together because they have the wrong types or number of parameters. However, we’ll still have some issues with TypeScript and JavaScript. The most important issue might be that a lot happens asynchronously. Take a look at the following code snippet:
+
+```ts
+const compose = (...fns) => (...args) => {
+    return fns.reduceRight((res, fn) => [fn.call(null, ...res)], args)[0];
+};
+const givesAPromise = (num) => Promise.resolve(num);
+const doubleIt = (num) => num * 2;
+const doubled = compose(doubleIt, givesAPromise);
+console.log(doubled(2)); // Output NaN 
+```
+ How do we fix it? If we want to write pure JavaScript, we could use then(), which is provided by Promise, to retrieve a result to work with. This is certainly not a bad idea. However, we might run into some limits and, more generally, our entire program will have to use Promises everywhere.
