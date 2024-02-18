@@ -314,10 +314,10 @@ In several functional languages, putting the `value inside the monad is called r
 
 ## Functors
 
-We have a value inside a container. What does that get us? Well, monads have several functions that influence or change that value. For example, the monad function map takes a function that might be applied to the value inside the container. Why do we say “might”?
+We have a value inside a container. What does that get us? Well, monads have several functions that influence or change that value. For example, the monad function map takes a function that might be applied to the value inside the container. Why do we say “might”? (Please attention to line 4 of follow example)
 
 `Note:`
-Technically, monads only define bind, chain, or flatmap methods, but not a map, which is part of the definition of a Functor. However, monads are functors, so our current explanation is good enough.
+Technically, **monads only define bind, chain, or flatmap methods**, *but not a map*, which is part of the definition of a Functor. However, monads are functors, so our current explanation is good enough.
 
 
 ![Curried Functions](../assets/images/functor.png)
@@ -329,13 +329,48 @@ An example might make things easier to understand. Let’s take a look at the Op
 #### The map function
 
 
+`Line 4:` We can also tell Option that we don’t currently have any values to give to it (hence the name Option). It can have a value, **but it might not**. So, we tell it that we have nothing by passing none, a constant representing an empty Optional.
+
+`Line 5:` Now, we call map and pass it the function we defined in line 2 as a first argument. The second argument is the value we created in line 3.
+
+`Line 7:` Here, we log the value contained inside the monad. Because it’s wrapped inside our container, we need a helper to get it out. The getOrElse function retrieves the value or uses the function we pass in as the first argument as a fallback if the Option turns out to be empty. If empty, our fallback returns the string with no value present. Here, the result will be A VALUE. The function passed to map in line 5 converts the original value passed in line 3 to uppercase.
+
 ```ts
 import {getOrElse, map, none, some} from "fp-ts/lib/Option";
 const upperCaseIt = (value: string) => value.toUpperCase();
 const optionWithAString = some('a value');
 const optionEmpty = none;
-const upperCased = map(upperCaseIt)(optionWithAString);
+const upperCased = map(upperCaseIt)(optionWithAString); //Line 5
 const upperCasedEmpty = map(upperCaseIt)(optionEmpty);
-console.log(getOrElse(() => 'no value present')(upperCased));
+console.log(getOrElse(() => 'no value present')(upperCased)); //Line 7
 console.log(getOrElse(() => 'no value present')(upperCasedEmpty));
 ```
+
+**Option gives us a way out. It offers us the ability to apply functions to values without worrying about how null will make it crash**. If the value is missing, null or undefined, for example, our code will sit there, do nothing, and give back the same none value.
+
+#### The chain function
+
+```ts
+import {chain, getOrElse, none, some} from "fp-ts/lib/Option";
+const upperCaseSam = (name) => name === 'Sam' ? some(name.toUpperCase()) : none;
+const optionWithNameSam = some('Sam');
+const optionWithNameSmith = some('Smith');
+const upperCasedName = chain(upperCaseSam)(optionWithNameSam);
+const noneUpperCasedName = chain(upperCaseSam)(optionWithNameSmith);
+console.log(getOrElse(() => 'no value present')(upperCasedName));
+console.log(getOrElse(() => 'no value present')(noneUpperCasedName));
+```
+
+`Line 5:` We apply the function defined at line 2 to the Option defined on line 3. Line 6: We apply the function defined at line 2 to the Option defined on line 4.
+
+`Line 8:` This prints no value present to the console. This is the default value. Therefore, our Option will be none. We had a container with the value Sam, and we applied a function to that inner value that returned another container with SAM inside it, defined as Option<Option<string>>. At least, this is what we would’ve gotten if we used map. 
+Instead, we used chain, which **flattened out the containers after receiving the results of the function. So, Option<Option<string>> became Option<string>.**
+
+`Note:`
+Why is **flattening** so useful? 
+
+While monads offer a lot of useful behavior, nesting offers no additional advantages. It just produces more repetitive code because we’d have to unwrap the value multiple times. So, it’s best to get rid of the additional wrappings.
+
+That leaves us with an outer Option that contains an empty none Option. Consequently, our chain decides that this result, once flattened, is equal to none. The empty Option infects all of the outer ones. It signifies a missing value, no matter how many times we wrap it with Option.
+
+### Advantages of Monads
