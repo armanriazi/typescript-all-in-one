@@ -322,7 +322,7 @@ We have a value inside a container. What does that get us? Well, monads have sev
 Technically, **monads only define bind, chain, or flatmap methods**, *but not a map*, which is part of the definition of a Functor. However, monads are functors, so our current explanation is good enough.
 
 
-![Curried Functions](../assets/images/functor.png)
+![Functor](../assets/images/functor.png)
 
 ### Option monad
 
@@ -397,6 +397,8 @@ Monads help us be more explicit about what a function will do and return. For ex
 `Note:`
 Monad transformers are basically monads stacked on top of each other, combining all the useful qualities of the underlying elements.
 
+`Note:`
+For the following, remember that monads are functors and get their map from Functor. If you’re unfamiliar with functors, just replace “functor” with “monad” in the explanation.
 
 **The newtype-ts library** is a helper library for fp-ts that **offers a NonZeroInteger type** that gives non-zero values. This is also akin to design by contract, a prominent part of the Eiffel programming language. An interface in this language is described as a contract, which the interface must obey. This includes preconditions, postconditions, side effects, and other factors.
 
@@ -422,3 +424,116 @@ Another reason to use Either, which seems to be a lot less common, is **when we 
 *For example,* **our success path returns a 2xx, but our failure paths are a 3xx, a 4xx, or 5xx (i.e., redirects, bad requests, and server errors).**
 
 `Remember:` Either doesn’t have to be used exclusively as an alternative for exception handling.
+
+##### Either vs. Validation
+Suppose we receive data from a frontend where a user has just filled in their information. A situation where the user fixes their errors one at a time instead of just getting back a list of all problems might not be ideal. This might lead to user frustration and additional calls to our backend because the data is resubmitted multiple times. This is why Validation can be a useful alternative to Either.
+
+![Either](../assets/images/either.png)
+
+To demonstrate its potential, we’ll rewrite our three checks… The first thing we’ll need is a semigroup for an array of strings. We’ll pass it to the getValidation helper from Either.
+
+```ts
+//helper function
+import * as E from 'fp-ts/lib/Either';
+import {getSemigroup} from 'fp-ts/lib/NonEmptyArray'
+
+const applicativeValidation = E.getValidation(getSemigroup<string>());
+```
+
+A semigroup is a way of combining two values of the same type. The function is called concat. The product of two numbers, for example, is a semigroup where concat is the multiple of the two number values. The sum of two numbers is also a semigroup where the numbers are combined by addition.
+
+
+```ts
+// Validation functions
+import {NonEmptyArray} from 'fp-ts/lib/NonEmptyArray'; // additional import
+
+type Validation = (e: UserRegistrationDto) 
+    => E.Either<NonEmptyArray<string>, UserRegistrationDto>; 
+
+const fieldsNotEmptyV: Validation = (e) => {
+    return e.firstName && e.lastName && e.age && e.sex && e.country ?
+        E.right(e) : E.left(['Not all required fields were filled in.']);
+}; 
+
+const validateAgeV: Validation = (e) => {
+    return e.age >= 18 && e.age < 150 ?
+        E.right(e) : E.left([`Received an invalid age of ${e.age}`]);
+}; 
+
+const validateGenderV: Validation = (e) => {
+    return e.sex === 'M' || e.sex === 'F' || e.sex === 'X' ?
+        E.right(e) : E.left([`Received an invalid sex ${e.sex}`]);
+}; 
+```
+
+Regards to above, 
+- Lines 3-4: Create a type to save some repetitive work.
+- Lines 6-19: These functions are similar to those we previously wrote, except we wrap our left in an array. Instead of rewriting our code, we could have created a helper that wraps the string in an array. To do that, Either offers mapLeft, which only transforms left values. We added a V suffix to our function names for clarity.
+
+The pipe is very similar to our earlier one as well.
+
+```ts
+import {pipe} from "fp-ts/lib/pipeable";
+import {sequenceT} from "fp-ts/lib/Apply"; 
+
+const result = pipe(
+    exampleEvent,
+    e => sequenceT(applicativeValidation)(
+        fieldsNotEmptyV(e),
+        validateAgeV(e),
+        validateGenderV(e),
+    ), 
+    E.map(([first]) => first), 
+);
+console.log(result)
+```
+
+`Note:` In the functional world, traverse and sequence handle lists (by which we mean anything iterable, so not limited to a List type) of elements. **The sequence function can be used to “swap” the list and monad.** For example, we can go from a list of optionals to an optional list (but only if none of the optionals contain empty values). The traverse function is similar but applies a function to each element in the list.
+
+
+## What is lifting?
+
+According to Bartosz Milewski’s lectures on category theory, lifting actually comes from the representation of the relation between a Functor and an ordinary mapping of functions, as follows:
+
+Fa ->  Fb   (3)
+
+^       ^
+|       |   (2)
+
+a  ->   b   (1)
+
+
+The transformation of a value we call a into a different value b is represented by an arrow from left to right, shown by (1).
+The up arrows shown by (2) signify a value transformation into a Functor, explaining the F that appears just before the character. We saw earlier that monads in many languages have a function to put a value inside a monad. So, the up arrow would be something like Option.of(a) in practice.
+With the horizontal arrow, shown by (3), we’re dealing with transformations between Functors. A Functor with value a is changed into a Functor containing a value b.
+
+`Relation between a Functor and an ordinary mapping of functions:`
+
+![Relation between a Functor and an ordinary mapping of functions](../assets/images/relation_functor_mapping.png)
+
+All of this comes from category theory, where we deal with Objects and Morphisms. The former are the letters, the latter are the arrows between them. So, with a -> b, the arrow is a morphism from object a to b. Once applied to functional programming, the objects are types, and the arrows are functions. The horizontal arrows show functions transforming one value into another, and below are just ordinary values. At the same time, we see Functors wrapping those same values above. Now, lifting is simply moving from function (1) to function (3) and is called lifting because of the convention that requires us to write the version with the Functors above the normal one! We move up into the realm of Functors. Functional programming languages provide specific functions for this action. In PureScript, these are called lift with a suffix indicating the number of arguments the lifted function takes. For example, lift2 lifts a function of two arguments.
+
+We can use this because we currently have a function that works with values, not Functors or monads, that is., createUser. The functions that create the parameters we need produce monads, though. So, we lift our createUser function, and if functions that generate parameters don’t return a monad, we wrap them in one.
+
+A simple example in PureScript would look like this:
+
+```ts
+firstValue :: Maybe String
+firstValue = Just "a" 
+
+secondValue :: Maybe String
+secondValue = Just "b" 
+
+needsLifting :: String -> String -> String
+needsLifting a b = a <> b 
+
+doesNotWork = needsLifting firstValue secondValue 
+
+getLiftResult = lift2 needsLifting firstValue secondValue 
+```
+Let’s look at the explanation of the above code:
+
+Lines 2 and 5: Let’s suppose these are the results from some other functions, and they return Maybe values (which is the name for an Option in PureScript).
+Line 8: This function works with normal values, taking Strings as input and producing the concatenated version.
+Line 10: When we do this, our compiler complains that it expects a String and gets a Maybe string, which isn’t the same. If we were to wrap it in one, the compiler would start complaining about the second parameter.
+Line 12: Here, we start with lift2 and give it a function to lift and the required number of parameters (two) wrapped in a functor, and everything compiles. The function returns the result, wrapped in another Maybe, because the function has been lifted into the world of functors.
