@@ -167,3 +167,123 @@ In summary, choose pure functions for reliable behavior when using streams. The 
 Recursion is another way that functional programming deals with repetition and avoiding loops. Recursion means **solving a problem by breaking it up into smaller problems**.
 
 Recursion often leads to elegant solutions for complicated problems. However, it’s not frequently used in mainstream languages like JavaScript because the **repeated function calls cause the stack to grow**, possibly resulting in a stack overflow. In this course, we’ll mainly use **higher-order functions to solve problems involving repetition.**
+
+
+## Higher-order functions and composition
+
+**The composition order (right to left)** is probably inspired by mathematics. That is, if we have an f(g(x)) function, we first calculate g(x) and pass the result, y, to the outer function, f(y).
+
+Abstraction makes the program cleaner, shorter, and reusable.
+
+we created new functionality out of existing functions, similar to what we did with map and filter. The composition has several nice qualities to it. For one, we don’t have to change our existing functions. Instead, our new functionality is created out of existing code
+
+```ts
+const compose = (...fns) => (...args) => {
+    return fns.reduceRight((res, fn) => [fn.call(null, ...res)], args)[0];
+};
+
+const coolName = (name) => `${name} a.k.a. King`;
+const yelling = (name) => name.toUpperCase();
+const yellingACoolerName = compose(yelling, coolName);
+const result = yellingACoolerName('sam'); //Line 10
+console.log(result); //Output: SAM A.K.A. KING
+```
+
+Line 10: We start with a reduceRight on our array of functions. First up is coolName, which receives the sam parameter as the preliminary result. The function is called and adds a cool suffix to the name. Next, our reduce starts working on the yelling function. It, too, receives a preliminary result, which is the name with the suffix that was just added. It returns this parameter in uppercase.
+
+`Note:`
+For those with Linux experience, this type of composition is similar to the Unix Philosophy of piping. That is, to work with small programs that do one thing well and use pipes to combine them to form larger functionality. As those familiar with Bash will know, the versatility and power of piping, using only basic Unix components, is impressive.
+
+### Information hiding using composition
+**We can also use composition for information hiding**. For example, we could decide to only expose yellingACoolerName, hiding the functions it’s made of. Because we don’t use classes, modules provide our most important means of hiding information.
+
+## What is currying?
+
+Currying involves **converting** the function, **combining** multiple arguments into a series of functions that are executed one after another.
+
+Whenever we feed it an argument, we can write a function that returns another function that also accepts an argument and returns a function. **This continues to happen until the final argument is passed**. When that happens, the code block executes. This is called currying, and it’s very popular in functional languages like Haskell and F#. The following code snippet is a boilerplate example of currying:
+
+```ts
+const decrypt = (m) => `{ "userType": "admin", "message": "${m}" }`;
+const userTypeLens = (fallback) => (userInfo) => userInfo.userType || fallback;
+const auth = (type) => type === 'admin' ? ({ allow: true }) : ({ allow: false }); //Line 3
+const userTypeLensDefaultNone = userTypeLens('none'); //Line 7
+const compose = (...fns) => (...args) => {
+    return fns.reduceRight((res, fn) => [fn.call(null, ...res)], args)[0];
+};
+
+//Remember to read from right to left or bottom to top
+const authAnswer = compose(
+    JSON.stringify,
+    auth,
+    userTypeLensDefaultNone,
+    JSON.parse,
+    decrypt,
+);
+
+console.log(authAnswer('a message'));
+```
+
+Line 3: Here, we retrieve a field from the incoming argument, userInfo, and return a fallback if the field is missing. Lenses in functional programming are used to retrieve or change data in a data structure. They make it easy to modify a single value within immutable, complicated structures. Real lenses such as “monocle-ts” are more complicated than this example.
+
+Line 7: We fill in our fallback value, which is the string none.
+
+`Note:`
+Closely linked to **currying is the partial application**, which feeds a functioning part of the arguments it needs at a given time and calls the function with the remaining arguments later. Python has a function called partial that can help us accomplish the same result.
+
+
+#### Why is currying useful?
+Currying allows us to **add configurations or dependencies to a function** at one point and call it at a later time. We ensure that our function has everything it needs to run correctly. It merely has to wait for the final input data for execution. Furthermore, currying can make our code easier to understand when dealing with functions that take many arguments. There’s another reason for currying in the composition context. In our example above, each function we use inside the authAnswer requires one argument. Conveniently, all our functions return one value, namely a string, boolean, or an object, making them easy to compose.
+
+## Combining Currying and Composition
+
+Learn how to use currying and composition together for functions that take multiple arguments.
+
+### Function with one parameter value
+
+Composing is easy when we have a scenario like this:
+
+- [x] Function ONE accepts a parameter of type A and returns a value of type B.
+- [x] Function TWO accepts a parameter of type B and returns a value of type C.
+- [x] Function THREE accepts a parameter of type C and returns a value of type D.
+
+Note: In a Haskell or F# type of notation, the signatures of the functions above will be as follows:
+
+```md
+ONE :: A -> B
+TWO :: B -> C
+THREE :: C -> D
+COMBINED :: A -> D
+```
+
+### Function with multiple parameter values
+
+```ts
+const TWO = (first) => (second) => {
+    if(first && second) {
+        return 'ok';
+    }
+    throw Error('Did not receive two params!');
+}
+const twoWhichWeWillPassToThree = TWO('first argument already given');
+console.log(twoWhichWeWillPassToThree('giving second argument'));
+```
+
+Rewriting the above, we have:
+
+```md
+ONE :: A -> C
+TWO :: B -> C -> D
+THREE :: D -> E
+COMBINED :: A -> E
+```
+
+This can’t be combined, so we give function TWO a value B, which returns a new function for us to use: FUNCTION_RETURNED_BY_TWO :: C -> D.
+
+This fits perfectly. Currying can be a huge help when composing functions with input and output values that are mismatched. We give what we can, and the rest will be filled in later. Consequently, a function’s final argument is often the data we’re operating on, while earlier arguments consist of things like configuration and dependencies. This is because we’ll usually already know what those configurations or dependencies will be. However, we only know what the data looks like when we receive it.
+
+
+<figure markdown>
+![Curried Functions](../../assets/images/curried_functions.png){ width=200 height=100 align=center }
+<figcaption>Forest fire detection and monitoring [32].</figcaption>
+</figure>
