@@ -3,6 +3,8 @@
 - [x] Caret ^
 - [x] Angle Braket <>
 - [x] Exclamation mark (!) 
+- [x] Ternary operator (?:)
+- [x] We can use **backticks** to make printing less complex.e.g., `return `We received ${one}, also ${two}``
 - [x] Spread Object,Cloning object properties with spread syntax ...
 - [x] Actually, double exclamation !! is not an operator. It’s just the char! repeated twice. A useful notation to make code more readable. Because we could also write Boolean(value) with the same effect. !!false === false, Boolean(false) === false // they really equals to each other.
 # OE

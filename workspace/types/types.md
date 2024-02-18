@@ -1,4 +1,6 @@
 
+**Type inference** is the automatic deduction of the data types of specific expressions in a programming language, usually done at compile time.
+
 # Types as Sets
 
 In TypeScript, a type is a set of possible values. This set is also referred to as the domain of the type. Each value of a type can be viewed as an element in a set. A type establishes the constraints that every element in the set must satisfy to be considered a member of that set.

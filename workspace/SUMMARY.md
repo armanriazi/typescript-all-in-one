@@ -100,7 +100,7 @@
   * [Array](collection/array.md)    <!--completed-->    
   * [Map](collection/map.md)        <!--completed-->    
   * [Iterators](collection/iterators.md)  <!--completed-->    
-  * [Generators](collection/generators.md)  <!--completed-->  
+  * [Generators](collection/generators.md)  <!--completed-->    
 * [OOP](oop/oop.md)  
   * [Generic](types/generic/generic.md)    
   * [Class](oop/class.md)    
@@ -110,7 +110,8 @@
   * [Design Patterns](oop/designpatterns.md)  
     * [Decorators](oop/designpatterns/decorator/decorator.md)               
     * [Observer](oop/designpatterns/observer/observer.md)           
-    * [Singleton](oop/designpatterns/singleton/singleton.md)    
+    * [Singleton](oop/designpatterns/singleton/singleton.md)  
+* [Functional Programming](fp/fp.md)        
 * [Errors in TypeScript](errors/main.md)
   * [Common Errors](errors/common-errors.md)  <!--completed-->  
   * [Type Conversion](types/conversion.md)  <!--completed-->  
