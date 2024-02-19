@@ -9,7 +9,6 @@
   * [Equality](javascript/equality_condition.md) <!--completed-->
   * [References](javascript/references.md) <!--completed-->
   * [this](javascript/this.md) <!--completed-->
-  * [Closure](javascript/closure.md) <!--completed-->
   * [Number](javascript/number.md) <!--completed-->
   * [Truthy](javascript/truthy.md) <!--completed-->
 * [QuickStarts](quick/quick.md)  <!--completed-->
@@ -26,8 +25,7 @@
 * [Future JavaScript Now](future-javascript.md) 
   * [Template Strings](types/string/template-strings.md)  <!--completed-->  
   * [Classes](classes.md)
-    * [Classes Emit](classes-emit.md)
-  * [Arrow Functions](arrow-functions.md)
+    * [Classes Emit](classes-emit.md)  
   * [Rest Parameters](rest-parameters.md)
   * [Spread Operator](spread-operator.md)
   * [for...of](for...of.md)  
@@ -111,8 +109,14 @@
     * [Decorators](oop/designpatterns/decorator/decorator.md)               
     * [Observer](oop/designpatterns/observer/observer.md)           
     * [Singleton](oop/designpatterns/singleton/singleton.md)  
-* [Functional Programming](fp/fp.md)        
+* [Functional Programming](fp/fp.md)          
+  * [Function parameters](tips/functionParameters.md)  
+  * [Arrow Functions](arrow-functions.md)
+  * [Closure](javascript/closure.md) <!--completed-->
+  * [Stateful Functions](tips/statefulFunctions.md)
+  * [Currying](tips/currying.md)
   * [A Sample Project](fp/project1.md)        
+    * [Problem Statemet](fp/project1-problemstatemet.md)          
 * [Errors in TypeScript](errors/main.md)
   * [Common Errors](errors/common-errors.md)  <!--completed-->  
   * [Type Conversion](types/conversion.md)  <!--completed-->  
@@ -130,11 +134,9 @@
   * [ESLint](tools/eslint.md)
   * [Changelog](tools/changelog.md)
 * [TIPs](tips/main.md)
-  * [String Based Enums](tips/stringEnums.md)
-  * [Nominal Typing](tips/nominalTyping.md)
-  * [Stateful Functions](tips/statefulFunctions.md)
-  * [Currying](tips/currying.md)
   * [Type Instantiation](tips/typeInstantiation.md)
+  * [String Based Enums](tips/stringEnums.md)
+  * [Nominal Typing](tips/nominalTyping.md)  
   * [Lazy Object Literal Initialization](tips/lazyObjectLiteralInitialization.md)
   * [Classes are Useful](tips/classesAreUseful.md)
   * [Avoid Export Default](tips/defaultIsBad.md)
@@ -142,7 +144,6 @@
   * [`outFile` caution](tips/outFile.md)
   * [JQuery tips](tips/jquery.md)
   * [static constructors](tips/staticConstructor.md)  
-  * [Function parameters](tips/functionParameters.md)
   * [Build Toggles](tips/build-toggles.md)
   * [Barrel](tips/barrel.md)  
   * [Typesafe Event Emitter](tips/typed-event.md)

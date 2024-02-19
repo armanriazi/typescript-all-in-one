@@ -22,11 +22,13 @@ We will have three file here. You only need to remove md describtions and then p
 
 ## domain.ts
 
+
 ```ts
 import {iso, Newtype} from "newtype-ts";
 import {PositiveInteger} from "newtype-ts/lib/PositiveInteger";
 import * as E from "fp-ts/lib/Either";
 import * as O from "fp-ts/lib/Option";
+
 ```
 
 
@@ -34,8 +36,17 @@ Note: We often use the Event suffix for incoming data with the AWS Lambda comput
 DTO (Data Transfer Object) is another nice suffix, signifying that this is untrusted, outside information.
 We’re still on the edge of our domain/application, and **transformations must happen before this DTO becomes a trusted object within our domain.**
 
+We create a User return BasicUser (the TypeScript compiler will already complain about its return) and make addStatus return the real user.
+One annoying thing is that we added an optional field that might make using User more difficult. Another approach would be to change the existing type to something like BasicUser or UnvalidatedUser, subsequently reintroducing the User type, but this time with a required customer type as shown below:
 
 ```ts
+export type BasicUser = {
+    firstName: FirstName,
+    lastName: LastName,
+    age: PositiveInteger,
+    gender: Gender,
+    region: Region,
+};
 export type UserRegistrationDto = {
     firstName: string,
     lastName: string,
@@ -97,12 +108,14 @@ export const lastNameIso = iso<LastName>();
 Now, we start using both the two newtypes we defined and the built-in PositiveInteger. Now, if we try to pass an ordinary string to our User’s name fields, the compiler will reject them. Only newtypes are good enough for our fancy type!
 
 ```ts
+export type CustomerType = 'Normal' | 'VIP'; 
 export type User = {
     firstName: FirstName,
     lastName: LastName,
     age: PositiveInteger,
     gender: Gender,
     region: Region,
+    customerType?: CustomerType, 
 };
 ```
 
@@ -112,7 +125,7 @@ export type FieldsNotEmpty = (e: UserRegistrationDto)
     => E.Either<string, UserRegistrationDto>;
 export type ValidateAge = FieldsNotEmpty;
 export type ValidateGender = FieldsNotEmpty;
-
+export type ValidateNotGerman = FieldsNotEmpty;
 export type CreateUser = (f: FirstName,
                           l: LastName,
                           a: PositiveInteger,
@@ -126,12 +139,16 @@ export type Response = {
     message: string,
 };
 
+
 ```
 
 
 ## main.ts
+We could’ve used a lens from monocle-ts to change the field. Lenses are pure getters and setters that make it easy to change or retrieve a property from a structure.
 
 ```ts
+ 
+import {Lens} from 'monocle-ts'
 import {prismPositiveInteger} from "newtype-ts/lib/PositiveInteger";
 import * as E from 'fp-ts/lib/Either';
 import * as O from 'fp-ts/lib/Option';
@@ -157,6 +174,24 @@ const countryMappings: Record<string, Region> = {
     Germany: europe,
     China: other,
 };
+const addStatus = (u: User): User => ({
+    ...u,
+    customerType: u.gender !== 'M' ? 'VIP' : 'Normal',
+});
+type AlternativeUser = {
+    firstName: FirstName,
+    lastName: LastName,
+    gender: Gender,
+    additionalInfo: {
+        personalInfo: {
+            age: PositiveInteger,
+            region: Region,
+        },
+        otherInfo: {
+            customerType?: CustomerType,
+        }
+    }
+}; 
 ```
 
 In our case, left (or error) is a string, so we need a semigroup that can combine two strings. There are multiple options, like creating a new string from the concatenation of the two input strings. That said, we’ll change the signature of our functions and start using a string array as our left, which is why we need a **semigroup that can combine arrays**. Luckily, there is a **built-in method for that, which we just imported from the NonEmptyArray module**. See below:
@@ -181,6 +216,19 @@ const createUser: CreateUser = (firstName, lastName, age, gender, region) => ({
 const findRegion: FindRegion = (country) => {
     return countryMappings[country] ? O.some(countryMappings[country]) : O.none;
 };
+const validateNotGerman: ValidateNotGerman = (e) => {
+    return e.country !== 'Germany' ?
+        E.right(e) : E.left("We don't like your kind around here");
+};
+const customerTypeLensAlt = Lens.fromPath<AlternativeUser>()(
+    ['additionalInfo', 'otherInfo', 'customerType']); 
+
+const addStatusAlt = (u: AlternativeUser) => {
+    const modified = customerTypeLensAlt
+        .modify(c => c ? c : u.gender !== 'M' ? 'VIP' : 'Normal');
+    return modified(u);
+};
+console.log(addStatusAlt({gender: 'M', additionalInfo: { otherInfo: {} }} as AlternativeUser))
 ```
 
 There are several ways of writing this piece of code. We do another validation that tells TypeScript that the string is indeed of type Gender. If the string doesn’t match one of the Gender values, we return none. Alternatively, we could’ve gone for type assertions (sex as Gender) because, at this point, we’re pretty sure we have the right kind of string.
@@ -280,6 +328,7 @@ The userResponse function builds our user. It logs a message, which is a stand-i
 
 ```ts
 function userResponse(u: UserRegistrationDto) {
+    // almost everything is the same as before
     return pipe(
         u,
         e => sequenceForOption(
@@ -290,6 +339,7 @@ function userResponse(u: UserRegistrationDto) {
             findRegion(e.country),
         ),
         O.map(([f, l, a, g, c]) => createUser(f, l, a, g, c)),
+        O.map(addStatus), 
         O.map(u => {
             console.log(`Created ${JSON.stringify(u)}. Could now save in db`);
             return createdResponse(`Created ${JSON.stringify(u)}`);
@@ -307,6 +357,7 @@ function flow(u: UserRegistrationDto) {
         fieldsNotEmpty(u),
         E.chain(validateAge),
         E.chain(validateGender),
+        E.chain(validateNotGerman),
         E.map(userResponse),
         E.getOrElse(badRequest),
     );
