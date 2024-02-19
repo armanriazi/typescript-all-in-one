@@ -31,7 +31,6 @@ import * as O from "fp-ts/lib/Option";
 
 ```
 
-
 Note: We often use the Event suffix for incoming data with the AWS Lambda computing platform because Lambdas are run in response to events. In that case, the above would be UserRegistrationEvent. 
 DTO (Data Transfer Object) is another nice suffix, signifying that this is untrusted, outside information.
 We’re still on the edge of our domain/application, and **transformations must happen before this DTO becomes a trusted object within our domain.**

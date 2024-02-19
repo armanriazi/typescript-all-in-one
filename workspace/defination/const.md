@@ -64,6 +64,7 @@ if (true) {
 
 ## Deep immutability
 A `const` works with object literals as well, as far as protecting the variable *reference* is concerned:
+What can you do in Typescript to ensure that a property isn’t mutated?Add readonly
 
 ```typescript
 const foo = { bar: 123 };

@@ -538,3 +538,409 @@ Line 8: This function works with normal values, taking Strings as input and prod
 Line 10: When we do this, our compiler complains that it expects a String and gets a Maybe string, which isn’t the same. If we were to wrap it in one, the compiler would start complaining about the second parameter.
 Line 12: Here, we start with lift2 and give it a function to lift and the required number of parameters (two) wrapped in a functor, and everything compiles. The function returns the result, wrapped in another Maybe, because the function has been lifted into the world of functors.
 
+## TaskEither vs. Task
+
+TaskEither is a monad transformer provided by fp-ts. It’s actually a monad Transformer. We already mentioned how we can stack monads on top of each other to combine their effects. That helps us understand why Either reference is there. What about Task? We haven’t seen that one before!
+
+Task is a monad for asynchronous non-failing calls. A Promise is easily converted into a Task. Simply create a function that returns a Promise. That’s it!
+
+```ts
+const thisIsATask: T.Task<number> = () => Promise.resolve(42);
+```
+
+This monad is useful because it’s a monad. We can perform all kinds of transformations, like with any other monad:
+
+```ts
+// result is still T.Task<number>
+const result = pipe(
+    thisIsATask,
+    T.map(n => n + 1) // after getting back the result, we increase it by 1
+);
+```
+
+Similarly, we can use chain to combine multiple Tasks. That means we now have the power of monads along with their composability and ease of use for the common asynchronous Node functionality. Eventually, when we actually need the results, we call the Task as a function and it returns the Promise it contains.
+We’re now creating a Task and telling our code to perform a map on it when it’s run. It doesn’t start running, though. We can test this by adding a console.log statement. Nothing prints.
+
+```ts
+// now result is Promise<number>
+const asTask: T.Task<number> = () => {
+    return new Promise((resolve) => {
+        console.log('Doing stuff')
+        return resolve(42);
+    });
+};
+
+const result = pipe(
+    thisIsATask,
+    T.map(n => n + 1)
+);
+```
+
+Before we continue, let’s take a small detour. As we mentioned several times before, functional programming tries to keep everything pure and thus easy to reason with. Side effects and I/O ruin this condition because they add impurity to our program. If our function uses I/O, it gives different results, despite having the same input. For instance, if we call the Lambda we’re monitoring more frequently, we get back a different sum. This is why FP does the best it can and moves all this content to the edge. So, despite what we might be expecting, this is pure because nothing is actually happening. There’s no asynchronous behavior (that is, a Promise) being run.
+
+At some point, we’ll actually have to run the Task. Otherwise, why did we create it? That said, FP leaves this responsibility to the application’s user. Do we actually want to get things done? In that case, simply invoke the function and we’ll be responsible for the result!
+
+`Notice` that the logging appears. As a result, the program we’re writing will be pure and free of side effects. That is, it will be pure until, at the final step, we invoke the function to get back a Promise that contains the results we desperately desire. On a high level, we’re describing what we want the code to do. When it’s run, an interpreter decides what must actually happen. It decides whether it needs side effects. If the interpreter is a mock one, it might not need any side effects! Real interpreters probably will, though.
+
+### Combining Task and Either
+
+Let’s return to the subject at hand. We know what a Task is and we already knew Either. What’s their combined power? That answer is simple.That is, handling asynchronous tasks that might fail. Instead of writing a try or catch, we use the TaskEither monad and it either returns an error when the catch is triggered, or gives back our result. Our call to AWS can definitely fail, for example, if we made a mistake in the function’s name.
+
+Here’s the first function from our file again:
+
+```ts
+const getMetricInfo = (between: Between, fun: string) => 
+    (metric: Metric): TE.TaskEither<string, StatsResult> => {
+
+    const paramsForCW = generateCWMetricStatisticsParams(metric, between);
+    const metricToStatsResult = metricsToStatsResult(fun, metric); //return -> next code block
+```
+
+### TaskEither’s map
+
+Next, we use TaskEither’s map to transform the output StatsResult type we defined earlier. Finally, but importantly, we start the flow by feeding in the function name, fun. Without that function call, nothing would happen. We’d merely have a function waiting for an argument.
+
+Because flow is simply a compose in a different order, we also know why we partially applied our functions earlier. That is, only one parameter is passed to the next function, but two of our functions required three parameters! We gave them the two we already had, knowing that the flow would deliver the third and final parameter.
+
+Note that we originally wrote the flow above like this:
+
+```ts
+    return flow(
+        paramsForCW,
+        p => TE.tryCatch(() => getCWMetrics(p), String),
+        TE.map(metricToStatsResult)
+    )(fun);
+};
+```
+
+We can see that the call takes a Between, the function name, and a metric name. It returns a TaskEither, with the error as a string (the left) and the successful result as a StatsResult. What about paramsForCW and metricToStatsResult? Both are partially applied functions. The parameter generation function has received a metric name and between but is still missing a function name. The metricToStatsResult function has the function and metric names but is waiting for the output of the Cloudwatch call. So, both const values are functions waiting for just one more parameter. We’ve used this technique of partially applying before, in our introduction, when we were demonstrating composing.
+
+Furthermore, flow is a helper from the fp-ts library for composing functions. It’s actually just compose, but applied from left to right. It starts generating parameters, passing those to our cloudwatch function, which is inside a TaskEither constructor (lifting function) tryCatch. The latter eventually runs what we pass in (that is, our Promise-generating cloudwatch function) and in the case of failure, it uses the constructor we gave as a second argument to build an error. Here we pass the String constructor to get the error as a string. Note that tryCatch actually requires a Lazy<Promise> as the first parameter. In practice, this simply means that we pass in a function that returns a Promise. This is because that is effectively lazy, that is, not evaluated immediately.
+
+#### Eager or Lazy
+Programming languages can be sorted by their type of evaluation, eager or lazy, with Haskell as one example of the latter. Essentially, in a lazy language, something is only evaluated when necessary. This might seem more complex, but it has its advantages. For one, there are potential performance gains because what isn’t needed is never evaluated (Java developers can compare this with Hibernate’s eager vs. lazy fetch modes). Another advantage is the ability to work with infinities, for example, taking the first five elements of an infinite list. Our program would never come to an end if we had to evaluate the entire list! A lazy language, on the other hand, just evaluates the first five elements, which is all it needs at that point, and returns those.
+
+### Continue of TaskEither’s map
+Though we like this version because we could further abstract away the tryCatch as a utility with a predetermined error constructor, this isn’t actually pure because a Promise is created as soon as our function is called. The previous code, on the other hand, was lazy. By postponing creation, it stayed pure.
+
+Also, we may be wondering about the map with metricToStatsResult. Is this the right location for that transformation? Isn’t the goal of this module just to get information out of Cloudwatch? This is a valid point. On the other hand, in this way, AWS types remain an implementation detail, invisible to whoever uses the entrypoint functions. Although in that case, to be entirely consistent we should also remove Datapoints from the returned type. Removing Datapoints is a possible improvement.
+
+On to the second entrypoint function.
+
+```ts
+export const retrieveMetrics = (between: Between, metrics: readonly Metric[]) => 
+    (fun: string): TE.TaskEither<string, StatsResult[]> => {
+        return A.array.sequence(TE.taskEither)
+            (metrics.map(getMetricInfo(between, fun)));
+};
+```
+
+First, note the export. This function is exported and is the real entrypoint of our gateway module. Because the code is a bit dense, the body has been split into two lines. The signature should be obvious by this point. The parameters are similar to those we gave to the other function, except we’re now expecting an array of metrics instead of a single one. All metrics we desire can now be passed into this function. Similarly, the return has changed into an array of StatsResult. To get a slightly better result, we could’ve created a StatsResults (note the final s) as an alias for this array.
+
+### The array.sequence function
+
+What does A.array.sequence from the Array module do? The naming might be a giveaway. That is, it runs one or more functions of the type given as the first argument, in this case TaskEither in parallel. This is similar to running a Promise.all but as a monad, it’s even easier to use. We have abstracted away all the difficulties of parallelism.
+
+The second argument is the array of TaskEithers. We want to run the function for retrieving metrics once for every metric (three times in total). To avoid some typing, we can use partial application and pass in getMetricInfo with two out of three arguments already provided. This means we can use point-free style without passing in the metric name explicitly inside the map. If we prefer to be explicit, though, we can replace that last line with metrics.map(m => getMetricInfo(between, fun)(m)).
+
+That’s it. We’re all caught up and have finished creating our entrypoint for retrieving all relevant metric information from Cloudwatch. This is more of a real example than that of our previous chapter, but we’re still writing in the same style, using short, understandable functions that combine to form larger functionality. This time, though, we spread them out over more modules.
+
+Moreover, we were able to keep much of our code pure despite the fact that the application’s core functionality involves retrieving information from external services, which is an impure process. Our new Task and TaskEither monads (Transformer) helped us control this potentially dangerous type of code.
+
+## The DataPoints interface
+
+If everything goes well, we now have a TaskEither returning a StatsResult array, with each element of the array containing information for a different type of metric (one will, for example, contain data for errors). We’re ignoring the error path for now. So, how do we transform our individual StatsResult elements to an output useful to us (a developer keeping an eye on their applications)? Simple: we’ll use small, composable, and pure functions. We already have a folder and file called transformers, so why not add it all in there?
+
+First, we want the total sum of every individual metric. For clarity’s sake, we’ll dissect the AWS Datapoints type we’re currently returning within StatsResult:
+
+`Note:`
+If a library has types that it wants to expose to its users, these are typically contained inside a file ending with d.ts. This provides the name of the Cloudwatch types, say cloudwatch.d.ts.
+
+```ts
+export type Datapoints = Datapoint[];
+
+export interface Datapoint {
+    Timestamp?: Timestamp;
+    Sum?: DatapointValue;
+    Average?: DatapointValue;
+    // other values
+};
+
+export type DatapointValue = number;
+```
+
+Our Datapoints value is an array of Datapoint. Each Datapoint contains the Sum information we want to extract, which is a DatapointValue, itself an alias for number. Note that because we set the Period parameter quite high early on, it’s possible that there’s only one number present within the array. This could help us avoid a lot of work. We can’t be sure of this, however, and assuming this status might create bugs if another user changes either the period or timeframe. We’re assuming it to be a few hours, but what if someone changes it to a few days? In that case, the probability of an array with multiple elements is very high. So, we’ll assume that there might be more than one Datapoint and thus more than one Sum.
+
+Now that we know what our type looks like, we add a new type that we want to create out of our current ones:
+
+```ts
+export type StatsSumResult = {
+    readonly functionName: string,
+    readonly metric: Metric,
+    readonly sum: number,
+}
+```
+
+As we can see, types.ts is the same as before, but now the sum is just one number. We should write a function that consolidates Sum elements into a single number.
+
+```ts
+import {fold, monoidSum} from "fp-ts/Monoid";
+
+export const statsResultToStatsSumResult =
+    (results: readonly StatsResult[]): StatsSumResult[] => {
+        return results.map(b => ({
+            functionName: b.functionName,
+            metric: b.metric,
+            sum: fold(monoidSum)(b.data.map(d => d.Sum)),
+        }));
+    };
+```
+
+This is a seemingly simple function, Because it mostly just maps our current array to a new one of type StatsSumResult. We might ask what a fold is, though. What is monoidSum? Is that similar to a monad?
+
+Remember the semigroup from an earlier chapter? As a quick reminder, a semigroup provides a way of combining two values of the same type, resulting in a single value of that type. A product, which combines two numbers using multiplication, is an example. Monoids are semigroups with the addition of an empty value, a starting element. That starting value is neutral, which means that it doesn’t care what other value we combine it with. It will simply give back the other value as a result. The monoid for Product would have 1 as its empty value or starter (7 * 1 = 7), while Sum would have 0 (7 + 0 = 7). The monoidSum function is simply a utility function from fp-ts, providing a monoid sum out of the box.
+
+> `NOTE:` Monoid is not a synonym for Semigroup.
+> `NOTE:` What’s one thing monoids and monads have in common? They’re composable.
+
+The functional world likes monoids because they’re composable. If we create a monoid for combining strings and another for combining numbers, we can use them as components when we want to handle more complex structures that contain those primitives. No additional logic is required. We’ll see an example of this later. As an additional plus, operations on monoids can be made parallel with relative ease. Take sum as an example, with values between one and four. We can add those numbers in one go, or we could sum 1 + 2 (=3) and 3 + 4 (=7) in a first phase, adding the results of those calculations in a second phase, 3 + 7.
+
+### What’s fold?
+Fold is very similar to reduce, which you might know from JavaScript or other languages. It’s a function that takes a starting element and a function (so it’s another one of those higher-order functions) that knows how to combine the accumulated value with values from a list or array, which are fed in one by one. If we want to get the sum, this function would add the current element of the array to the accumulated value. Fold and reduce are very versatile. We can easily create functions like filter or map with reduce. Try it!
+
+`Note:` Fold and reduce are often used together with an array, which is why we give that as an example. We can also fold monoids and monads! Also, note that we’ll often encounter a fold left and a fold right, differing only in starting element (left side of the array, or the right) and direction.
+
+Now we know what the above code does. It uses a fold to reduce the given array with monoidSum. This means that it will start with 0 and combine elements through addition.
+
+Because we now have a type we can work with, let’s think about what we want to show our application users. We’d like to display the health of the Labda. As mentioned earlier, we’ll do this with a status, which can take three different values, namely OK, WARN, and ERR. This is good for a brief overview of the situation. For more details, we’ll also add a message that can contain further information.
+
+```ts
+export type Status = 'OK' | 'WARN' | 'ERR';
+
+export type ReducedStats = {
+    readonly status: Status,
+    readonly message: string,
+}
+```
+
+As usual, we limit our status to the types we specified because that makes the field easier to work with. Messages aren’t as easy to limit in value, so we’ll let the message be a string.
+
+#### Transforming StatsSumResult=> ReducedStats
+
+The next big piece of the puzzle is a function to transform a single StatsSumResult into a ReducedStats.
+
+```ts
+const statsSumToStatusAndMessage = (invokes: number) => (s: StatsSumResult) => {
+    let status: Status = 'OK'; //2
+    let message = ''; 
+
+    switch (s.metric) {
+        case 'Invocations': {
+            status = invokes === 0 ? 'WARN' : 'OK'; //7
+            message = invokes === 0 ? 'not invoked' : 'invokes ok'; 
+        }
+            break;
+        case 'Errors': {
+            const percentage = invokes !== 0 ? s.sum / invokes * 100 : 0; //12
+            status = percentage >= 5 ? 'ERR' : 'OK';
+            message = percentage >= 5 ? 'throwing errors' : 'no errors';
+        }
+            break;
+        case 'Throttles': {
+            const percentage = invokes !== 0 ? s.sum / invokes * 100 : 0; //18
+            status = percentage >= 1 ? 'WARN' : 'OK'; (4)
+            message = percentage >= 1 ? 'being throttled' : 'no throttles'; 
+        }
+            break;
+        default:
+            const _exhaustiveCheck: never = s.metric; //24
+            return _exhaustiveCheck; 
+    }
+
+    return { //28
+        status, message,
+    } 
+};
+```
+
+
+Lines 2–3: We start with an empty message and an OK status, which can be overwritten by the switch that follows. We have to tell TypeScript that status has the Status type, or it will assume that this is a string, which downstream code doesn’t accept. Ideally, the compiler would notice that only three possible values, matching those of our type, appear in this piece of code and would conclude that this is equivalent to Status. TypeScript isn’t there yet. Also, because Status doesn’t have an empty string value, we can’t initialize it as such. So, we start with the reasonable default of ‘OK’.
+Lines 7–8: We’re using a switch to check each possible value for Metric, so (to recall from earlier in this chapter) we have three in total. This is the closest we can get to the power of pattern matching in other functional languages. Notice how, when we get an Invocations, we already have the answer ready. This is because we need the number of invocations in the Errors and Throttles cases as well, so we added it as the first parameter to this function.
+Line 12: Here, we handle Error and report an error when they exceed five percent of the total invocations of the function. This is why we take the sum, divide by the invokes, multiply by 100, and check the percentage we get. If there are no invocations, there won’t be any errors, either. In that case, we return a 0. Note that the five percent threshold is a magic number and we might want to make this configurable. That’s quite easy to do through Lambda environment variables, which we’ll use later in this chapter for getting the function name. If we don’t think these values will change often, another approach could be to move the values to the constants file.
+Lines 18–20: This is similar to the errors, except here we give back a warning when we have one percent (or more) throttles.We only give a warning here, though, not an error status. An occasional throttle is nothing unusual.
+Lines 24–25: This is an exhaustiveness check, which we’ve already encountered once before. Say we had a fourth metric, called MagicInvocations, invocations of our Lambda that come out of nowhere. If MagicInvocations was a possible Metric type value, this default would try to assign it to _exhaustiveCheck, which has type never. We can’t assign something to never. So, this check throws a warning at compile time if we add a metric but forget to handle it. Do note that an IDE might not understand this and might advise us to remove or change this default case in a way that will stop it from working.
+Lines 28–30: We passed through the switch, so status and message now have the correct values, which we can return.
+
+`Notice` that we’re mutating two variables within this function. Isn’t that a horrible mistake? While a different approach that doesn’t mutate variables might turn out cleaner, the important thing to note is that we’re only mutating local variables. This function creates and manipulates variables, which means that we won’t run into any issues with this mutability. If the golden rule is to avoid mutation, remember to limit the scope of any variable mutation you end up doing. Global variables, as we know, are bad. Unexposed mutation within a function is acceptable.
+
+Now we can produce a bunch of messages and strings. We actually just want to output one status and one message. How do we combine them? Well, how about using fold and a monoid? How would we go about combining two statuses? Clearly, if B says that everything’s OK and B says that there’s a warning, we want there to be a warning! Similarly, we prefer an error to a warning. So, we get the following:
+
+```ts
+import {fold, monoidSum} from "fp-ts/Monoid";
+
+const statusMonoid: Monoid<Status> = {
+    concat: (x, y) =>
+        x === 'ERR' || y === 'ERR' ? 'ERR'
+            : (x === 'WARN' || y === 'WARN' ? 'WARN' : 'OK'),
+    empty: 'OK'
+};
+```
+
+The monoid has a concat and an empty. Remember that the empty value is always overwritten by any other value. Here, the empty is OK because we always prefer a warning or an error to that value. The concat is written somewhat densely, but it shows what we just said, namely that error > warning > ok.
+
+Now a monoid for the messages:
+
+```ts
+const messageMonoid: Monoid<string> = {
+    concat: (x, y) => (x + ' ' + y).trim(),
+    empty: '',
+};
+```
+
+It’s not perfect, but it’s good enough. The empty string will be overwritten by other values and we can combine two strings by appending. As we said earlier, monoids have a nice quality that they’re composable. We’ll use the fp-ts library to accomplish this.
+
+```ts
+import { getStructMonoid } from 'fp-ts/lib/Monoid'
+
+const ReducedStatsMonoid: Monoid<ReducedStats> = getStructMonoid({
+    status: statusMonoid,
+    message: messageMonoid
+});
+```
+
+Using getStructMonoid, we say that the monoid for ReducedStats uses the two primitives above for its fields. The rest happens automatically. Now let’s bring everything together.
+
+```ts
+export const statsReducer = (results: readonly StatsSumResult[]): ReducedStats => {
+    const invocations = results
+        .filter(m => m.metric === 'Invocations')
+        .map(m => m.sum)
+        .shift() || 0; //5
+    
+    const singleStatsSumMapper = statsSumToStatusAndMessage(invocations); 
+
+    return fold(ReducedStatsMonoid)
+        (results.map(singleStatsSumMapper)); //10
+};
+```
+
+Lines 5–7: We saw earlier that our statsSumToStatusAndMessage needs the number of invocations, so we retrieve those. If the value isn’t present in our array, shift returns undefined and we return 0 instead. We could’ve also used the ?? operator from TypeScript, but in this case, both are equally valid.
+Line 10: Next, we give the monoid we just wrote to fold and pass in all our StatsSumResult mapped to ReducedStats. The fold function reduces those to a single status and message. It’s another nice example of the way FP allows us to write code at a higher level of abstraction. We merely say that we want the ReducedStats to be reduced into a single value. How this is done is none of our concern.
+
+`Note:`
+There are other equally valid ways to reduce the stats to a status plus message. Examples include forEach, map, and reduce. But this was a nice opportunity to show monoids in action.
+
+#### Returning results
+The last thing we want to do in regards to transforming is to give results back to the outside world. So, just in case someone puts us behind an AWS API Gateway and uses REST calls, we’ll add a status code and related fields.
+
+```ts
+type StatusCode = 200; 
+
+export type HttpResult = {
+    readonly statusCode: StatusCode,
+    readonly body: string,
+    readonly headers: Record<string, string>,
+}; 
+```
+
+
+Line 1: For now, we’ll define only one relevant code for the case when everything goes well.
+Lines 3–7: We’ll give back an http status code, the results in the body, and headers (which might be needed for protocols such as Cross-Origin Resource Sharing, or CORS).
+
+To go from our reduced stats to httpResultFromStats requires only a little work.
+
+```ts
+export const httpResultFromStats = (result: ReducedStats): HttpResult => ({
+    statusCode: 200,
+    body: JSON.stringify(result),
+    headers: {
+        'Access-Control-Allow-Origin': '*'
+    }
+});
+```
+
+Note that when we return this from a Lambda, AWS knows how to interpret these values. It sees statusCode as a http status code. Similarly, everything inside headers is added as headers to the response. In case we decide to talk with browsers, we’re allowing every origin to call us, which adds security. With that, we’ve come to the end of our happy flow. Apart from error handling, which turns out to be quite easy, a few pieces are still missing. Going way back to our Cloudwatch entrypoint, we see that we need a Between type and a function name. Where do those two come from?
+
+
+## Synchronous Behavior and IO
+
+We’ll ignore the function name for now and focus on how to create the Between. It should be clear that there are problems with purity when it comes to getting the start and end times because we want to show a certain range in regard to the current time. Consider the last three hours of metrics, for example. This means that the function for getting our Between returns different values depending on when it was invoked, which is impure behavior. How will we wrap it? In a Task? We could do that, but this is synchronous behavior, for which the IO monad is ideally suited. Similarly, IO is also what we normally use to wrap our logging, which is, after all, another synchronous side effect.
+
+As noted, in a hybrid language like TypeScript (which allows other styles of programming besides FP),we can decide for ourselves which effects are important enough that we want to keep an eye on them. That decision comes down to whether the correct program behavior depends on the effect, in this case, logging. In most cases it won’t, but what if our console output is used by another program as input? In the latter case, our output is an essential part of our application and should be treated with the utmost care. So, if you like debugging with console statements and all that logging is temporary, go ahead and take advantage of the flexibility of JavaScript, which doesn’t force us to wrap logging in a monad. If we’re capturing some important logs but our application doesn’t depend on them, that seems acceptable as well. On the other hand, in some rare cases (like the first one we discussed), avoiding IO might prove to be a mistake.
+
+### Defining constants
+
+As with several other potentially configurable values, we’ll keep it simple and only check for the last three hours. We’ll add these values to our constants.
+
+If we were to make a lot of these values (error percentage, function name, times) configurable, how would we go about passing them to so many functions? Won’t that become complicated? Part of the answer will be to gather them in a Config type, meaning that we only need to pass in one clearly defined value. If many functions need them, we’d use the Reader monad, which we’ll discuss later.
+
+```ts
+const ONE_HOUR_EPOCH_MILLI = 60 * 60 * 1000;
+export const THREE_HOURS_EPOCH_MILLI = 3 * ONE_HOUR_EPOCH_MILLI;
+```
+
+### Creating a function to get Between
+
+Now, we create our function to get a Between wrapped in an IO. First, create a new file called time.ts in util (the same folder in which the constants are located).
+
+```ts
+import {Between} from "./types";
+import {THREE_HOURS_EPOCH_MILLI} from "./constants";
+
+export const dateToBetween = (curr: Date): Between => ({
+    startTime: new Date(Number(curr) - THREE_HOURS_EPOCH_MILLI),
+    endTime: curr,
+}); 
+```
+
+
+Lines 4–7: Creating a Between based on an incoming value is pure. Given a certain date (say, January 1, 2020), it returns the same Between every time! We extract pure from the impure and put the latter in a separate function.
+
+We want to pass on both the function name and this between value. To do that, we add a type for configuration.
+
+```ts
+export type Config = {
+    between: Between,
+    functionName: string,
+};
+```
+
+To keep things simple, functionName is just a string. Now we’ll create a config.ts file, again in the util folder:
+
+```ts
+import {io, IO, map} from "fp-ts/IO";
+import {Between, Config} from "./types";
+import {create} from "fp-ts/Date";
+import {dateToBetween} from "./time";
+import {pipe} from "fp-ts/pipeable";
+import {sequenceT} from "fp-ts/Apply";
+
+const addToConfig = (between: Between, functionName: string) => ({ //8
+    between,
+    functionName,
+}); 
+
+export const generateConfig = (): IO<Config> => {
+    return pipe(
+        sequenceT(io)(
+            map(dateToBetween)(create), //16
+            () => process.env.FUNCTION_NAME,
+        ), 
+        map(([a, b]) => addToConfig(a, b)), 
+    );
+};
+```
+
+Lines 8–11: A pure function for creating our config.
+Line 16: A helper from the fp-ts library, create (according to GitHub sources) “Returns the current Date” wrapped in an IO monad.
+Line 17: This means we have to lift it into the config. Similarly, we get the function name from our environment (more on that later), so we create an IO for that too. We could use IO.of() to do that, but because IO is simply a function returning a value, we do that instead.
+Line 19: Next, we use map to retrieve the two values and pass them to our pure addToConfig.
+
+To summarize, we used two small pure functions and some glue from fp-ts `to create our functionality.
+
+
+## Where to go from here
+
+If you’ve been skimming this course and it piqued your interest, you might consider going through it again in more detail. See if you understand everything and if you can write the code yourself. Note that fp-ts is still in active development, which might necessitate some changes (for example, StateReaderTaskEither’s evalState method has become deprecated). To learn more about the fundamentals of functional programming, you should probably look into some real FP languages like Haskell or Clojure. If you want to get into the action with TypeScript, try some of the things you learned here in a pet project. You might throw in some AWS services now that you know how to create them out of a simple YAML file. If everything goes well, you could use FP next time a greenfield project comes along at work.
+
+Finally, if any of the other generic subjects briefly mentioned in this course (like DDD or TDD) weren’t familiar to you, go check them out! The great curse and blessing of IT is that there’s always more to discover about any topic. So, to quote Werner Vogels, now go explore!

@@ -115,8 +115,12 @@
   * [Closure](javascript/closure.md) <!--completed-->
   * [Stateful Functions](tips/statefulFunctions.md)
   * [Currying](tips/currying.md)
-  * [A Sample Project](fp/project1.md)        
+  * [A Sample Project 1](fp/project1.md)        
     * [Problem Statemet](fp/project1-problemstatemet.md)          
+  * [A Sample Project 2](fp/project2.md)        
+    * [Problem Statemet](fp/project2-problemstatemet.md)              
+  * [Additional](fp/fp-additional.md)      
+  * [Appendix](fp/appendix.md)    
 * [Errors in TypeScript](errors/main.md)
   * [Common Errors](errors/common-errors.md)  <!--completed-->  
   * [Type Conversion](types/conversion.md)  <!--completed-->  
