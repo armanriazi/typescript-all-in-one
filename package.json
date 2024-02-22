@@ -34,12 +34,10 @@
     "ts-node-pretty": "ts-node --pretty",
     "ts-node-scope": "ts-node --scopeDir <path/to/directory>"
   },
-  "jest": {
-    "verbose": true
-  },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.2",
     "@types/fs-extra": "^11.0.4",
+    "@types/jest": "^29.5.12",
     "@types/marked": "^5.0.2",
     "@types/node": "^20.11.0",
     "@types/prettier": "^2.7.3",
@@ -50,6 +48,7 @@
     "marked": "^5.1.2",
     "nodemon": "^3.0.2",
     "prettier": "^3.2.2",
+    "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   },
@@ -57,6 +56,8 @@
     "@types/big.js": "^6.2.2",
     "big.js": "^6.2.1",
     "cd": "^0.3.3",
+    "fast-check": "^3.15.1",
+    "jest": "^29.7.0",
     "rxjs": "^7.8.1",
     "underscore": "^1.13.6"
   }

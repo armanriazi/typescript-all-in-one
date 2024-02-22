@@ -185,7 +185,6 @@ To use data-driven tests in TypeScript to run the same test multiple times with 
 Data-driven tests dosen't check the database integration of an application.
 
 ```ts
-
 function testUsing<T>
     (values: T[], func: Function) {
     for (let value of values) {
@@ -245,6 +244,48 @@ it("should call mock of testFunction", () => {
 ```
 
 Returning values(Ref.To example test_ex15.spec.ts) from mock implementations means that we can simulate any sort of external interaction with other systems within our tests. We can mock out calls to a database or calls to a REST endpoint and inject standard values that we can test against.
+
+#### Jest Writing a parameterized test
+
+```ts
+function squared(input: number): number {
+    return input * input;
+}
+
+describe('this is our test suite', () => {
+    [1, 5, 10, 100].forEach(num =>
+        it(`should multiply ${num}`, () => {
+            const result = squared(num);
+
+            expect(result).toEqual(num * num);
+        }));
+});
+```
+
+### Property-based testing
+
+```ts
+import * as fc from 'fast-check'
+function product(first: number, second: number) {
+    return first * second;
+}
+
+describe('product tests', () => {
+    it('should multiply the given numbers', () => {
+        const randomFirst: fc.Arbitrary<number> = fc.integer(); 
+        const randomSecond: fc.Arbitrary<number> = fc.integer(); 
+
+        fc.assert(
+            fc.property(randomFirst, randomSecond, (first, second) => {
+                const result = product(first, second);
+                
+                expect(result).toBe(first * second);
+            })
+        ); 
+    });
+});
+
+```
 
 ### Example async
 This often presents problems in our unit testing, where we need to wait for an asynchronous event to complete before we can continue with our test.
