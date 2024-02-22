@@ -11,3 +11,4 @@ const yellingACoolerName = compose(yelling, coolName);
 const result = yellingACoolerName('sam');
 
 console.log(result);
+
