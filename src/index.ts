@@ -57,4 +57,5 @@ aNumber = a;
 console.log(`${aNumber}`);
 
 
-
+let prices = [20, 5, 50, 35, 60, 10];
+console.log(prices.length);
