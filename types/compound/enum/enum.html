@@ -1,0 +1,483 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Enums - TypeScript-All-In-One(A.R)</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../../favicon.svg">
+        <link rel="shortcut icon" href="../../../favicon.png">
+        <link rel="stylesheet" href="../../../css/variables.css">
+        <link rel="stylesheet" href="../../../css/general.css">
+        <link rel="stylesheet" href="../../../css/chrome.css">
+        <link rel="stylesheet" href="../../../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../../highlight.css">
+        <link rel="stylesheet" href="../../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../../AboutMe.html"><strong aria-hidden="true">1.</strong> About Me</a></li><li class="chapter-item expanded "><a href="../../../TypeScript.html"><strong aria-hidden="true">2.</strong> Getting Started</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../styleguide/styleguide.html"><strong aria-hidden="true">2.1.</strong> StyleGuide</a></li><li class="chapter-item "><a href="../../../configuration/configuration.html"><strong aria-hidden="true">2.2.</strong> Configuration</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../configuration/cli.html"><strong aria-hidden="true">2.2.1.</strong> CLI</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../../javascript/recap.html"><strong aria-hidden="true">3.</strong> JavaScript</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../javascript/equality_condition.html"><strong aria-hidden="true">3.1.</strong> Equality</a></li><li class="chapter-item "><a href="../../../javascript/references.html"><strong aria-hidden="true">3.2.</strong> References</a></li><li class="chapter-item "><a href="../../../javascript/this.html"><strong aria-hidden="true">3.3.</strong> this</a></li><li class="chapter-item "><a href="../../../javascript/number.html"><strong aria-hidden="true">3.4.</strong> Number</a></li><li class="chapter-item "><a href="../../../javascript/truthy.html"><strong aria-hidden="true">3.5.</strong> Truthy</a></li></ol></li><li class="chapter-item expanded "><a href="../../../quick/quick.html"><strong aria-hidden="true">4.</strong> QuickStarts</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../quick/quick.html"><strong aria-hidden="true">4.1.</strong> Node Browser Lib</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../quick/nodejs.html"><strong aria-hidden="true">4.1.1.</strong> Node.js QuickStart</a></li><li class="chapter-item "><a href="../../../quick/browser.html"><strong aria-hidden="true">4.1.2.</strong> Browser QuickStart</a></li><li class="chapter-item "><a href="../../../quick/library.html"><strong aria-hidden="true">4.1.3.</strong> Library QuickStart</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../../defination/defination.html"><strong aria-hidden="true">5.</strong> Var_Let_Const_Readonly_Static</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../defination/let.html"><strong aria-hidden="true">5.1.</strong> let</a></li><li class="chapter-item "><a href="../../../defination/var.html"><strong aria-hidden="true">5.2.</strong> var</a></li><li class="chapter-item "><a href="../../../defination/const.html"><strong aria-hidden="true">5.3.</strong> const</a></li><li class="chapter-item "><a href="../../../types/readonly/readonly.html"><strong aria-hidden="true">5.4.</strong> readonly</a></li><li class="chapter-item "><a href="../../../types/static/static.html"><strong aria-hidden="true">5.5.</strong> static</a></li></ol></li><li class="chapter-item expanded "><a href="../../../future-javascript.html"><strong aria-hidden="true">6.</strong> Future JavaScript Now</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../types/string/template-strings.html"><strong aria-hidden="true">6.1.</strong> Template Strings</a></li><li class="chapter-item "><a href="../../../classes.html"><strong aria-hidden="true">6.2.</strong> Classes</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../classes-emit.html"><strong aria-hidden="true">6.2.1.</strong> Classes Emit</a></li></ol></li><li class="chapter-item "><a href="../../../rest-parameters.html"><strong aria-hidden="true">6.3.</strong> Rest Parameters</a></li><li class="chapter-item "><a href="../../../spread-operator.html"><strong aria-hidden="true">6.4.</strong> Spread Operator</a></li><li class="chapter-item "><a href="../../../for...of.html"><strong aria-hidden="true">6.5.</strong> for...of</a></li><li class="chapter-item "><a href="../../../promise.html"><strong aria-hidden="true">6.6.</strong> Promise</a></li><li class="chapter-item "><a href="../../../async/async.html"><strong aria-hidden="true">6.7.</strong> Async Await</a></li></ol></li><li class="chapter-item expanded "><a href="../../../project/project.html"><strong aria-hidden="true">7.</strong> Project</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../types/migrating.html"><strong aria-hidden="true">7.1.</strong> JS Migration Guide</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../project/tsconfig.html"><strong aria-hidden="true">7.1.1.</strong> tsconfig.json</a></li><li class="chapter-item "><a href="../../../project/files.html"><strong aria-hidden="true">7.1.2.</strong> Which Files?</a></li></ol></li><li class="chapter-item "><a href="../../../project/declarationspaces.html"><strong aria-hidden="true">7.2.</strong> Declaration Spaces</a></li><li class="chapter-item "><a href="../../../project/modules.html"><strong aria-hidden="true">7.3.</strong> Modules</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../project/external-modules.html"><strong aria-hidden="true">7.3.1.</strong> File Module Details</a></li><li class="chapter-item "><a href="../../../project/globals.html"><strong aria-hidden="true">7.3.2.</strong> global.d</a></li><li class="chapter-item "><a href="../../../project/namespacing.d.html"><strong aria-hidden="true">7.3.3.</strong> namespacing.d</a></li></ol></li><li class="chapter-item "><a href="../../../project/namespaces.html"><strong aria-hidden="true">7.4.</strong> Namespaces</a></li><li class="chapter-item "><a href="../../../project/dynamic-import-expressions.html"><strong aria-hidden="true">7.5.</strong> Dynamic Import Expressions</a></li></ol></li><li class="chapter-item expanded "><a href="../../../types/types.html"><strong aria-hidden="true">8.</strong> TypeScript's Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../options/intro.html"><strong aria-hidden="true">8.1.</strong> Type Checking</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../options/noImplicitAny.html"><strong aria-hidden="true">8.1.1.</strong> noImplicitAny</a></li><li class="chapter-item "><a href="../../../options/strictNullChecks.html"><strong aria-hidden="true">8.1.2.</strong> strictNullChecks</a></li></ol></li><li class="chapter-item "><a href="../../../types/primitive/primitive.html"><strong aria-hidden="true">8.2.</strong> Primitive</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../types/empty.html"><strong aria-hidden="true">8.2.1.</strong> Empty</a></li><li class="chapter-item "><a href="../../../types/wrapper/wrapper.html"><strong aria-hidden="true">8.2.2.</strong> Wrapper</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../types/wrapper/wrapper_objects.html"><strong aria-hidden="true">8.2.2.1.</strong> Object</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../../types/compound/compound.html"><strong aria-hidden="true">8.3.</strong> Compound</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../types/compound/union/union.html"><strong aria-hidden="true">8.3.1.</strong> Union</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../types/compound/union/discriminated-unions.html"><strong aria-hidden="true">8.3.1.1.</strong> Discriminated-unions</a></li></ol></li><li class="chapter-item expanded "><a href="../../../types/compound/enum/enum.html" class="active"><strong aria-hidden="true">8.3.2.</strong> Enums</a></li><li class="chapter-item "><a href="../../../types/compound/tuple/tuple.html"><strong aria-hidden="true">8.3.3.</strong> Tuple</a></li></ol></li><li class="chapter-item "><a href="../../../types/generic/generic.html"><strong aria-hidden="true">8.4.</strong> Generic</a></li><li class="chapter-item "><a href="../../../types/type-assertion.html"><strong aria-hidden="true">8.5.</strong> Type Assertion</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../types/mapping.html"><strong aria-hidden="true">8.5.1.</strong> Type Mapping</a></li></ol></li><li class="chapter-item "><a href="../../../types/freshness.html"><strong aria-hidden="true">8.6.</strong> Freshness</a></li><li class="chapter-item "><a href="../../../types/type-inference.html"><strong aria-hidden="true">8.7.</strong> Type Inference</a></li><li class="chapter-item "><a href="../../../types/duck/duck.html"><strong aria-hidden="true">8.8.</strong> Duck Type</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../types/duck/structural/structural.html"><strong aria-hidden="true">8.8.1.</strong> Structuring</a></li><li class="chapter-item "><a href="../../../types/duck/structural/destructuring.html"><strong aria-hidden="true">8.8.2.</strong> Destructuring</a></li></ol></li><li class="chapter-item "><a href="../../../types/narrowing/narrowing.html"><strong aria-hidden="true">8.9.</strong> Narrowing</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../types/narrowing/guard.html"><strong aria-hidden="true">8.9.1.</strong> Guard</a></li><li class="chapter-item "><a href="../../../types/narrowing/assertion-fn.html"><strong aria-hidden="true">8.9.2.</strong> AssertionFN</a></li><li class="chapter-item "><a href="../../../types/narrowing/widening.html"><strong aria-hidden="true">8.9.3.</strong> Widening</a></li></ol></li><li class="chapter-item "><a href="../../../types/literal/literal-types.html"><strong aria-hidden="true">8.10.</strong> Literal Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../types/inference-literal-types.html"><strong aria-hidden="true">8.10.1.</strong> Inference Literal</a></li><li class="chapter-item "><a href="../../../types/enum-literal-type.html"><strong aria-hidden="true">8.10.2.</strong> Enum Literal</a></li><li class="chapter-item "><a href="../../../types/inference-literal-gurad-type.html"><strong aria-hidden="true">8.10.3.</strong> Inference Gurad Literal</a></li></ol></li><li class="chapter-item "><a href="../../../types/builtin/builtin.html"><strong aria-hidden="true">8.11.</strong> Built-in</a></li><li class="chapter-item "><a href="../../../types/covariance_contravariance/covariance_contravariance.html"><strong aria-hidden="true">8.12.</strong> Covariance &amp; Contravariance</a></li><li class="chapter-item "><a href="../../../types/recursive/recursive.html"><strong aria-hidden="true">8.13.</strong> Recursive</a></li><li class="chapter-item "><a href="../../../types/exceptions/exceptions.html"><strong aria-hidden="true">8.14.</strong> Exception Handling</a></li><li class="chapter-item "><a href="../../../types/patterns/patterns.html"><strong aria-hidden="true">8.15.</strong> Patterns</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../types/patterns/intersection/intersection.html"><strong aria-hidden="true">8.15.1.</strong> Intersection</a></li><li class="chapter-item "><a href="../../../types/patterns/power/power.html"><strong aria-hidden="true">8.15.2.</strong> Power</a></li><li class="chapter-item "><a href="../../../types/patterns/satisfies/satisfies.html"><strong aria-hidden="true">8.15.3.</strong> Satisfies</a></li><li class="chapter-item "><a href="../../../types/patterns/manipulation/manipulation.html"><strong aria-hidden="true">8.15.4.</strong> Manipulation</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../types/patterns/manipulation/conditional.html"><strong aria-hidden="true">8.15.4.1.</strong> Conditionally</a></li><li class="chapter-item "><a href="../../../types/patterns/manipulation/transform-mapping.html"><strong aria-hidden="true">8.15.4.2.</strong> Transform Mapping</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../../types/module/@types.html"><strong aria-hidden="true">8.16.</strong> @types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../types/module/ambient/intro.html"><strong aria-hidden="true">8.16.1.</strong> Ambient Declarations</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../types/module/ambient/d.ts.html"><strong aria-hidden="true">8.16.1.1.</strong> Declaration Files</a></li><li class="chapter-item "><a href="../../../types/module/ambient/variables.html"><strong aria-hidden="true">8.16.1.2.</strong> Variables</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../../types/exchange/exchange-types.html"><strong aria-hidden="true">8.17.</strong> Ex/Import of Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../types/lib.d.ts.html"><strong aria-hidden="true">8.17.1.</strong> lib.d.ts</a></li><li class="chapter-item "><a href="../../../types/functions.html"><strong aria-hidden="true">8.17.2.</strong> Functions</a></li><li class="chapter-item "><a href="../../../types/callable.html"><strong aria-hidden="true">8.17.3.</strong> Callable</a></li><li class="chapter-item "><a href="../../../types/type-compatibility.html"><strong aria-hidden="true">8.17.4.</strong> Type Compatibility</a></li><li class="chapter-item "><a href="../../../types/system/index-signatures.html"><strong aria-hidden="true">8.17.5.</strong> Index Signatures</a></li><li class="chapter-item "><a href="../../../types/moving-types.html"><strong aria-hidden="true">8.17.6.</strong> Moving Types</a></li><li class="chapter-item "><a href="../../../types/mixins.html"><strong aria-hidden="true">8.17.7.</strong> Mixins</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../../collection/collection.html"><strong aria-hidden="true">9.</strong> Collection</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../collection/array.html"><strong aria-hidden="true">9.1.</strong> Array</a></li><li class="chapter-item "><a href="../../../collection/map.html"><strong aria-hidden="true">9.2.</strong> Map</a></li><li class="chapter-item "><a href="../../../collection/iterators.html"><strong aria-hidden="true">9.3.</strong> Iterators</a></li><li class="chapter-item "><a href="../../../collection/generators.html"><strong aria-hidden="true">9.4.</strong> Generators</a></li></ol></li><li class="chapter-item expanded "><a href="../../../oop/oop.html"><strong aria-hidden="true">10.</strong> Object Orianted Programming</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../types/generic/generic.html"><strong aria-hidden="true">10.1.</strong> Generic</a></li><li class="chapter-item "><a href="../../../oop/class.html"><strong aria-hidden="true">10.2.</strong> Class</a></li><li class="chapter-item "><a href="../../../oop/interfaces.html"><strong aria-hidden="true">10.3.</strong> Interfaces</a></li><li class="chapter-item "><a href="../../../oop/inheritance.html"><strong aria-hidden="true">10.4.</strong> Inheritance</a></li><li class="chapter-item "><a href="../../../oop/polymorphism.html"><strong aria-hidden="true">10.5.</strong> Polymorphism</a></li><li class="chapter-item "><a href="../../../oop/designpatterns.html"><strong aria-hidden="true">10.6.</strong> Design Patterns</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../oop/designpatterns/decorator/decorator.html"><strong aria-hidden="true">10.6.1.</strong> Decorators</a></li><li class="chapter-item "><a href="../../../oop/designpatterns/observer/observer.html"><strong aria-hidden="true">10.6.2.</strong> Observer</a></li><li class="chapter-item "><a href="../../../oop/designpatterns/singleton/singleton.html"><strong aria-hidden="true">10.6.3.</strong> Singleton</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../../fp/fp.html"><strong aria-hidden="true">11.</strong> Functional Programming</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../tips/functionParameters.html"><strong aria-hidden="true">11.1.</strong> Function parameters</a></li><li class="chapter-item "><a href="../../../arrow-functions.html"><strong aria-hidden="true">11.2.</strong> Arrow Functions</a></li><li class="chapter-item "><a href="../../../javascript/closure.html"><strong aria-hidden="true">11.3.</strong> Closure</a></li><li class="chapter-item "><a href="../../../tips/statefulFunctions.html"><strong aria-hidden="true">11.4.</strong> Stateful Functions</a></li><li class="chapter-item "><a href="../../../tips/currying.html"><strong aria-hidden="true">11.5.</strong> Currying</a></li><li class="chapter-item "><a href="../../../fp/project1.html"><strong aria-hidden="true">11.6.</strong> A Sample Project 1</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../fp/project1-problemstatemet.html"><strong aria-hidden="true">11.6.1.</strong> Problem Statemet</a></li></ol></li><li class="chapter-item "><a href="../../../fp/project2.html"><strong aria-hidden="true">11.7.</strong> A Sample Project 2</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../fp/project2-problemstatemet.html"><strong aria-hidden="true">11.7.1.</strong> Problem Statemet</a></li></ol></li><li class="chapter-item "><a href="../../../fp/fp-additional.html"><strong aria-hidden="true">11.8.</strong> Additional</a></li><li class="chapter-item "><a href="../../../fp/appendix.html"><strong aria-hidden="true">11.9.</strong> Appendix</a></li></ol></li><li class="chapter-item expanded "><a href="../../../errors/main.html"><strong aria-hidden="true">12.</strong> Errors in TypeScript</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../errors/common-errors.html"><strong aria-hidden="true">12.1.</strong> Common Errors</a></li><li class="chapter-item "><a href="../../../types/conversion.html"><strong aria-hidden="true">12.2.</strong> Type Conversion</a></li><li class="chapter-item "><a href="../../../errors/interpreting-errors.html"><strong aria-hidden="true">12.3.</strong> Interpreting Errors</a></li></ol></li><li class="chapter-item expanded "><a href="../../../testing/intro.html"><strong aria-hidden="true">13.</strong> Testing</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../testing/jest.html"><strong aria-hidden="true">13.1.</strong> Jest</a></li><li class="chapter-item "><a href="../../../testing/cypress.html"><strong aria-hidden="true">13.2.</strong> Cypress</a></li></ol></li><li class="chapter-item expanded "><a href="../../../jsx/tsx.html"><strong aria-hidden="true">14.</strong> JSX</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../jsx/react.html"><strong aria-hidden="true">14.1.</strong> React</a></li><li class="chapter-item "><a href="../../../jsx/redux.html"><strong aria-hidden="true">14.2.</strong> Redux</a></li><li class="chapter-item "><a href="../../../jsx/others.html"><strong aria-hidden="true">14.3.</strong> Non React JSX</a></li></ol></li><li class="chapter-item expanded "><a href="../../../tools/intro.html"><strong aria-hidden="true">15.</strong> Tools</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../tools/prettier.html"><strong aria-hidden="true">15.1.</strong> Prettier</a></li><li class="chapter-item "><a href="../../../tools/husky.html"><strong aria-hidden="true">15.2.</strong> Husky</a></li><li class="chapter-item "><a href="../../../tools/eslint.html"><strong aria-hidden="true">15.3.</strong> ESLint</a></li><li class="chapter-item "><a href="../../../tools/changelog.html"><strong aria-hidden="true">15.4.</strong> Changelog</a></li></ol></li><li class="chapter-item expanded "><a href="../../../tips/main.html"><strong aria-hidden="true">16.</strong> TIPs</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../tips/typeInstantiation.html"><strong aria-hidden="true">16.1.</strong> Type Instantiation</a></li><li class="chapter-item "><a href="../../../tips/stringEnums.html"><strong aria-hidden="true">16.2.</strong> String Based Enums</a></li><li class="chapter-item "><a href="../../../tips/nominalTyping.html"><strong aria-hidden="true">16.3.</strong> Nominal Typing</a></li><li class="chapter-item "><a href="../../../tips/lazyObjectLiteralInitialization.html"><strong aria-hidden="true">16.4.</strong> Lazy Object Literal Initialization</a></li><li class="chapter-item "><a href="../../../tips/classesAreUseful.html"><strong aria-hidden="true">16.5.</strong> Classes are Useful</a></li><li class="chapter-item "><a href="../../../tips/defaultIsBad.html"><strong aria-hidden="true">16.6.</strong> Avoid Export Default</a></li><li class="chapter-item "><a href="../../../tips/propertySetters.html"><strong aria-hidden="true">16.7.</strong> Limit Property Setters</a></li><li class="chapter-item "><a href="../../../tips/outFile.html"><strong aria-hidden="true">16.8.</strong> outFile caution</a></li><li class="chapter-item "><a href="../../../tips/jquery.html"><strong aria-hidden="true">16.9.</strong> JQuery tips</a></li><li class="chapter-item "><a href="../../../tips/staticConstructor.html"><strong aria-hidden="true">16.10.</strong> static constructors</a></li><li class="chapter-item "><a href="../../../tips/build-toggles.html"><strong aria-hidden="true">16.11.</strong> Build Toggles</a></li><li class="chapter-item "><a href="../../../tips/barrel.html"><strong aria-hidden="true">16.12.</strong> Barrel</a></li><li class="chapter-item "><a href="../../../tips/typed-event.html"><strong aria-hidden="true">16.13.</strong> Typesafe Event Emitter</a></li></ol></li><li class="chapter-item expanded "><a href="../../../compiler/overview.html"><strong aria-hidden="true">17.</strong> TypeScript Compiler Internals</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../compiler/program.html"><strong aria-hidden="true">17.1.</strong> Program</a></li><li class="chapter-item "><a href="../../../compiler/ast.html"><strong aria-hidden="true">17.2.</strong> AST</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../compiler/ast-tip-children.html"><strong aria-hidden="true">17.2.1.</strong> TIP: Visit Children</a></li><li class="chapter-item "><a href="../../../compiler/ast-tip-syntaxkind.html"><strong aria-hidden="true">17.2.2.</strong> TIP: SyntaxKind enum</a></li><li class="chapter-item "><a href="../../../compiler/ast-trivia.html"><strong aria-hidden="true">17.2.3.</strong> Trivia</a></li></ol></li><li class="chapter-item "><a href="../../../compiler/scanner.html"><strong aria-hidden="true">17.3.</strong> Scanner</a></li><li class="chapter-item "><a href="../../../compiler/parser.html"><strong aria-hidden="true">17.4.</strong> Parser</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../compiler/parser-functions.html"><strong aria-hidden="true">17.4.1.</strong> Parser Functions</a></li></ol></li><li class="chapter-item "><a href="../../../compiler/binder.html"><strong aria-hidden="true">17.5.</strong> Binder</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../compiler/binder-functions.html"><strong aria-hidden="true">17.5.1.</strong> Binder Functions</a></li><li class="chapter-item "><a href="../../../compiler/binder-declarations.html"><strong aria-hidden="true">17.5.2.</strong> Binder Declarations</a></li><li class="chapter-item "><a href="../../../compiler/binder-container.html"><strong aria-hidden="true">17.5.3.</strong> Binder Container</a></li><li class="chapter-item "><a href="../../../compiler/binder-symboltable.html"><strong aria-hidden="true">17.5.4.</strong> Binder SymbolTable</a></li><li class="chapter-item "><a href="../../../compiler/binder-diagnostics.html"><strong aria-hidden="true">17.5.5.</strong> Binder Error Reporting</a></li></ol></li><li class="chapter-item "><a href="../../../compiler/checker.html"><strong aria-hidden="true">17.6.</strong> Checker</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../compiler/checker-global.html"><strong aria-hidden="true">17.6.1.</strong> Checker Diagnostics</a></li><li class="chapter-item "><a href="../../../compiler/checker-diagnostics.html"><strong aria-hidden="true">17.6.2.</strong> Checker Error Reporting</a></li></ol></li><li class="chapter-item "><a href="../../../compiler/emitter.html"><strong aria-hidden="true">17.7.</strong> Emitter</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../compiler/emitter-functions.html"><strong aria-hidden="true">17.7.1.</strong> Emitter Functions</a></li><li class="chapter-item "><a href="../../../compiler/emitter-sourcemaps.html"><strong aria-hidden="true">17.7.2.</strong> Emitter SourceMaps</a></li></ol></li><li class="chapter-item "><a href="../../../compiler/contributing.html"><strong aria-hidden="true">17.8.</strong> Contributing</a></li></ol></li><li class="chapter-item expanded "><a href="../../../GLOSSARY.html"><strong aria-hidden="true">18.</strong> GLOSSARY</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">TypeScript-All-In-One(A.R)</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/armanriazi/typescript-all-in-one/tree/main/workspace" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/armanriazi/typescript-all-in-one/edit/main/workspace/./workspace//types/compound/enum/enum.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <ul>
+<li><a href="#enums">Enums</a></li>
+<li><a href="#number-enums-and-numbers">Number Enums and numbers</a></li>
+<li><a href="#number-enums-and-strings">Number Enums and strings</a></li>
+<li><a href="#changing-the-number-associated-with-a-number-enum">Changing the number associated with a number enum</a></li>
+<li><a href="#enums-are-open-ended">Enums are open ended</a></li>
+<li><a href="#number-enums-as-flags">Number Enums as flags</a></li>
+<li><a href="#string-enums">String Enums</a></li>
+<li><a href="#const-enums">Const enums</a></li>
+<li><a href="#enum-with-static-functions">Enum with static functions</a></li>
+</ul>
+<h3 id="enums"><a class="header" href="#enums">Enums</a></h3>
+<p>An enum is a way to organize a collection of related values. Many other programming languages (C/C#/Java) have an <code>enum</code> data type but JavaScript does not. However, TypeScript does. Here is an example definition of a TypeScript enum:</p>
+<pre><code class="language-typescript">enum CardSuit {
+	Clubs,
+	Diamonds,
+	Hearts,
+	Spades
+}
+
+// Sample usage
+var card = CardSuit.Clubs;
+
+// Safety
+card = &quot;not a member of card suit&quot;; // Error : string is not assignable to type `CardSuit`
+</code></pre>
+<p>These enums values are <code>number</code>s so I’ll call them Number Enums from hence forth.</p>
+<h2 id="enums-1"><a class="header" href="#enums-1">Enums</a></h2>
+<p>In TypeScript, an <code>enum</code> is a set of named constant values.</p>
+<pre><code class="language-typescript">enum Color {
+    Red = '#ff0000',
+    Green = '#00ff00',
+    Blue = '#0000ff',
+}
+</code></pre>
+<p>Note: TypeScript allows the usage of heterogeneous Enums where string and numeric members can coexist.</p>
+<h3 id="constant-enums"><a class="header" href="#constant-enums">Constant enums</a></h3>
+<p>A constant enum in TypeScript is a special type of Enum where all the values are known at compile time and are inlined wherever the enum is used, resulting in more efficient code.</p>
+<pre><code class="language-typescript">const enum Language {
+    English = 'EN',
+    Spanish = 'ES',
+}
+console.log(Language.English);
+</code></pre>
+<p>Will be compiled into:</p>
+<pre><code class="language-js">console.log('EN' /- [x] Language.English */);
+</code></pre>
+<p><code>&gt;tags:</code> [[Important]] [[Hardcode]] [[Enum]]
+Const Enums have hardcoded values, erasing the Enum, which can be more efficient in self-contained libraries but is generally not desirable. Also, Const enums cannot have computed members.</p>
+<h4 id="number-enums-and-numbers"><a class="header" href="#number-enums-and-numbers">Number Enums and Numbers</a></h4>
+<p>TypeScript enums are number based. This means that numbers can be assigned to an instance of the enum, and so can anything else that is compatible with <code>number</code>.</p>
+<pre><code class="language-typescript">enum Color {
+    Red,
+    Green,
+    Blue
+}
+var col = Color.Red;
+col = 0; // Effectively same as Color.Red
+</code></pre>
+<h4 id="number-enums-and-strings"><a class="header" href="#number-enums-and-strings">Number Enums and Strings</a></h4>
+<p>Before we look further into enums let’s look at the JavaScript that it generates, here is a sample TypeScript:</p>
+<pre><code class="language-typescript">enum Tristate {
+    False,
+    True,
+    Unknown
+}
+</code></pre>
+<p>generates the following JavaScript:</p>
+<pre><code class="language-js">var Tristate;
+(function (Tristate) {
+    Tristate[Tristate[&quot;False&quot;] = 0] = &quot;False&quot;;
+    Tristate[Tristate[&quot;True&quot;] = 1] = &quot;True&quot;;
+    Tristate[Tristate[&quot;Unknown&quot;] = 2] = &quot;Unknown&quot;;
+})(Tristate || (Tristate = {}));
+</code></pre>
+<p>let’s focus on the line <code>Tristate[Tristate[&quot;False&quot;] = 0] = &quot;False&quot;;</code>. Within it <code>Tristate[&quot;False&quot;] = 0</code> should be self explanatory, i.e. sets <code>&quot;False&quot;</code> member of <code>Tristate</code> variable to be <code>0</code>. Note that in JavaScript the assignment operator returns the assigned value (in this case <code>0</code>). Therefore the next thing executed by the JavaScript runtime is <code>Tristate[0] = &quot;False&quot;</code>. This means that you can use the <code>Tristate</code> variable to convert a string version of the enum to a number or a number version of the enum to a string. This is demonstrated below:</p>
+<pre><code class="language-typescript">enum Tristate {
+    False,
+    True,
+    Unknown
+}
+console.log(Tristate[0]); // &quot;False&quot;
+console.log(Tristate[&quot;False&quot;]); // 0
+console.log(Tristate[Tristate.False]); // &quot;False&quot; because `Tristate.False == 0`
+</code></pre>
+<h4 id="changing-the-number-associated-with-a-number-enum"><a class="header" href="#changing-the-number-associated-with-a-number-enum">Changing the number associated with a Number Enum</a></h4>
+<p>By default enums are <code>0</code> based and then each subsequent value increments by 1 automatically. As an example consider the following:</p>
+<pre><code class="language-typescript">enum Color {
+    Red,     // 0
+    Green,   // 1
+    Blue     // 2
+}
+</code></pre>
+<p>However, you can change the number associated with any enum member by assigning to it specifically. This is demonstrated below where we start at 3 and start incrementing from there:</p>
+<pre><code class="language-typescript">enum Color {
+    DarkRed = 3,  // 3
+    DarkGreen,    // 4
+    DarkBlue      // 5
+}
+console.log(`${Color.DarkGreen}`); // 4
+</code></pre>
+<blockquote>
+<p>TIP: I quite commonly initialize the first enum with <code> = 1</code> as it allows me to do a safe truthy check on an enum value.</p>
+</blockquote>
+<h4 id="number-enums-as-flags"><a class="header" href="#number-enums-as-flags">Number Enums as flags</a></h4>
+<p>One excellent use of enums is the ability to use enums as <code>Flags</code>. Flags allow you to check if a certain condition from a set of conditions is true. Consider the following example where we have a set of properties about animals:</p>
+<pre><code class="language-typescript">enum AnimalFlags {
+    None           = 0,
+    HasClaws       = 1 &lt;&lt; 0, // Result 1
+    CanFly         = 1 &lt;&lt; 1, // Result 2
+    EatsFish       = 1 &lt;&lt; 2, // Result 4
+    Endangered     = 1 &lt;&lt; 3 // Result 8
+}
+</code></pre>
+<p>Here we are using the left shift operator to move <code>1</code> around a certain level of bits to come up with bitwise disjoint numbers <code>0001</code>, <code>0010</code>, <code>0100</code> and <code>1000</code> (these are decimals <code>1</code>,<code>2</code>,<code>4</code>,<code>8</code> if you are curious). The bitwise operators <code>|</code> (or) / <code>&amp;</code> (and) / <code>~</code> (not) are your best friends when working with flags and are demonstrated below:</p>
+<pre><code class="language-typescript">enum AnimalFlags {
+    None           = 0,
+    HasClaws       = 1 &lt;&lt; 0,
+    CanFly         = 1 &lt;&lt; 1,
+}
+type Animal = {
+    flags: AnimalFlags
+}
+
+function printAnimalAbilities(animal: Animal) {
+    var animalFlags = animal.flags;
+    if (animalFlags &amp; AnimalFlags.HasClaws) {
+        console.log('animal has claws');
+    }
+    if (animalFlags &amp; AnimalFlags.CanFly) {
+        console.log('animal can fly');
+    }
+    if (animalFlags == AnimalFlags.None) {
+        console.log('nothing');
+    }
+}
+
+let animal: Animal = { flags: AnimalFlags.None };
+printAnimalAbilities(animal); // nothing
+animal.flags |= AnimalFlags.HasClaws;
+printAnimalAbilities(animal); // animal has claws
+animal.flags &amp;= ~AnimalFlags.HasClaws;
+printAnimalAbilities(animal); // nothing
+animal.flags |= AnimalFlags.HasClaws | AnimalFlags.CanFly;
+printAnimalAbilities(animal); // animal has claws, animal can fly
+</code></pre>
+<p>Here:</p>
+<ul>
+<li>we used <code>|=</code> to add flags</li>
+<li>a combination of <code>&amp;=</code> and <code>~</code> to clear a flag</li>
+<li><code>|</code> to combine flags</li>
+</ul>
+<blockquote>
+<p>Note: you can combine flags to create convenient shortcuts within the enum definition e.g. <code>EndangeredFlyingClawedFishEating</code> below:</p>
+</blockquote>
+<pre><code class="language-typescript">enum AnimalFlags {
+	None           = 0,
+    HasClaws       = 1 &lt;&lt; 0,
+    CanFly         = 1 &lt;&lt; 1,
+    EatsFish       = 1 &lt;&lt; 2,
+    Endangered     = 1 &lt;&lt; 3,
+
+	EndangeredFlyingClawedFishEating = HasClaws | CanFly | EatsFish | Endangered,
+}
+</code></pre>
+<h4 id="string-enums"><a class="header" href="#string-enums">String Enums</a></h4>
+<p>We’ve only looked at enums where the member values are <code>number</code>s. You are actually allowed to have enum members with string values as well. e.g. </p>
+<pre><code class="language-typescript">export enum EvidenceTypeEnum {
+  UNKNOWN = '',
+  PASSPORT_VISA = 'passport_visa',
+  PASSPORT = 'passport',
+  SIGHTED_STUDENT_CARD = 'sighted_tertiary_edu_id',
+  SIGHTED_KEYPASS_CARD = 'sighted_keypass_card',
+  SIGHTED_PROOF_OF_AGE_CARD = 'sighted_proof_of_age_card',
+}
+</code></pre>
+<p>These can be easier to deal with and debug as they provide meaningful / debuggable string values. </p>
+<p>You can use these values to do simple string comparisons. e.g. </p>
+<pre><code class="language-typescript">// Where `someStringFromBackend` will be '' | 'passport_visa' | 'passport' ... etc.
+const value = someStringFromBackend as EvidenceTypeEnum; 
+
+// Sample use in code
+if (value === EvidenceTypeEnum.PASSPORT){
+    console.log('You provided a passport');
+    console.log(value); // `passport`
+}
+</code></pre>
+<h4 id="const-enums"><a class="header" href="#const-enums">Const Enums</a></h4>
+<p>If you have an enum definition like the following:</p>
+<pre><code class="language-typescript">enum Tristate {
+    False,
+    True,
+    Unknown
+}
+
+var lie = Tristate.False;
+</code></pre>
+<p>The line <code>var lie = Tristate.False</code> is compiled to the JavaScript <code>var lie = Tristate.False</code> (yes, output is same as input). This means that at execution the runtime will need to lookup <code>Tristate</code> and then <code>Tristate.False</code>. To get a performance boost here you can mark the <code>enum</code> as a <code>const enum</code>. This is demonstrated below:</p>
+<pre><code class="language-typescript">const enum Tristate {
+    False,
+    True,
+    Unknown
+}
+
+var lie = Tristate.False;
+</code></pre>
+<p>generates the JavaScript:</p>
+<pre><code class="language-js">var lie = 0;
+</code></pre>
+<p>i.e. the compiler:</p>
+<ol>
+<li><em>Inlines</em> any usages of the enum (<code>0</code> instead of <code>Tristate.False</code>).</li>
+<li>Does not generate any JavaScript for the enum definition (there is no <code>Tristate</code> variable at runtime) as its usages are inlined.</li>
+</ol>
+<h5 id="const-enum-preserveconstenums"><a class="header" href="#const-enum-preserveconstenums">Const enum preserveConstEnums</a></h5>
+<p>Inlining has obvious performance benefits. The fact that there is no <code>Tristate</code> variable at runtime is simply the compiler helping you out by not generating JavaScript that is not actually used at runtime. However, you might want the compiler to still generate the JavaScript version of the enum definition for stuff like <em>number to string</em> or <em>string to number</em> lookups as we saw. In this case you can use the compiler flag <code>--preserveConstEnums</code> and it will still generate the <code>var Tristate</code> definition so that you can use <code>Tristate[&quot;False&quot;]</code> or <code>Tristate[0]</code> manually at runtime if you want. This does not impact <em>inlining</em> in any way.</p>
+<h3 id="enum-with-static-functions"><a class="header" href="#enum-with-static-functions">Enum with static functions</a></h3>
+<p>You can use the declaration <code>enum</code> + <code>namespace</code> merging to add static methods to an enum. The following demonstrates an example where we add a static member <code>isBusinessDay</code> to an enum <code>Weekday</code>:</p>
+<pre><code class="language-typescript">enum Weekday {
+	Monday,
+	Tuesday,
+	Wednesday,
+	Thursday,
+	Friday,
+	Saturday,
+	Sunday
+}
+namespace Weekday {
+	export function isBusinessDay(day: Weekday) {
+		switch (day) {
+			case Weekday.Saturday:
+			case Weekday.Sunday:
+				return false;
+			default:
+				return true;
+		}
+	}
+}
+
+const mon = Weekday.Monday;
+const sun = Weekday.Sunday;
+console.log(Weekday.isBusinessDay(mon)); // true
+console.log(Weekday.isBusinessDay(sun)); // false
+</code></pre>
+<h4 id="enums-are-open-ended"><a class="header" href="#enums-are-open-ended">Enums are open ended</a></h4>
+<blockquote>
+<p>NOTE: open ended enums are only relevant if you are not using modules. You should be using modules. Hence this section is last.</p>
+</blockquote>
+<p>Here is the generated JavaScript for an enum shown again:</p>
+<pre><code class="language-js">var Tristate;
+(function (Tristate) {
+    Tristate[Tristate[&quot;False&quot;] = 0] = &quot;False&quot;;
+    Tristate[Tristate[&quot;True&quot;] = 1] = &quot;True&quot;;
+    Tristate[Tristate[&quot;Unknown&quot;] = 2] = &quot;Unknown&quot;;
+})(Tristate || (Tristate = {}));
+</code></pre>
+<p>We already explained the <code>Tristate[Tristate[&quot;False&quot;] = 0] = &quot;False&quot;;</code> portion. Now notice the surrounding code <code>(function (Tristate) { /*code here */ })(Tristate || (Tristate = {}));</code> specifically the <code>(Tristate || (Tristate = {}));</code> portion. This basically captures a local variable <code>TriState</code> that will either point to an already defined <code>Tristate</code> value or initialize it with a new empty <code>{}</code> object.</p>
+<p>This means that you can split (and extend) an enum definition across multiple files. For example below we have split the definition for <code>Color</code> into two blocks</p>
+<pre><code class="language-typescript">enum Color {
+    Red,
+    Green,
+    Blue
+}
+
+enum Color {
+    DarkRed = 3,
+    DarkGreen,
+    DarkBlue
+}
+</code></pre>
+<p>Note that you <em>should</em> reinitialize the first member (here <code>DarkRed = 3</code>) in a continuation of an enum to get the generated code not clobber values from a previous definition (i.e. the <code>0</code>, <code>1</code>, … so on values). TypeScript will warn you if you don’t anyways (error message <code>In an enum with multiple declarations, only one declaration can omit an initializer for its first enum element.</code>).</p>
+<h3 id="computed-members"><a class="header" href="#computed-members">Computed members</a></h3>
+<pre><code class="language-typescript">// Computed members
+enum Color {
+    Red = 1,
+    Green = Math.pow(2, 2),
+    Blue = Math.floor(Math.random() - [x] 3) + 1,
+}
+console.log(Color.Blue); // random number generated at run time
+</code></pre>
+<p>Enums are denoted by unions comprising their member types. The values of each member can be determined through constant or non-constant expressions, with members possessing constant values being assigned literal types. To illustrate, consider the declaration of type E and its subtypes E.A, E.B, and E.C. In this case, E represents the union E.A | E.B | E.C.</p>
+<pre><code class="language-typescript">const identity = (value: number) =&gt; value;
+
+enum E {
+    A = 2 - [x] 5, // Numeric literal
+    B = 'bar', // String literal
+    C = identity(42), // Opaque computed
+}
+
+console.log(E.C); //42
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../../types/compound/union/discriminated-unions.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../../../types/compound/tuple/tuple.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../../types/compound/union/discriminated-unions.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../../../types/compound/tuple/tuple.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_line_numbers = true;
+        </script>
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../../../ace.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../../editor.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../../mode-rust.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../../theme-dawn.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../../theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>

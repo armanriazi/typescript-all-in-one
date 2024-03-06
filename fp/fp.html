@@ -1,0 +1,882 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Functional Programming - TypeScript-All-In-One(A.R)</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../AboutMe.html"><strong aria-hidden="true">1.</strong> About Me</a></li><li class="chapter-item expanded "><a href="../TypeScript.html"><strong aria-hidden="true">2.</strong> Getting Started</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../styleguide/styleguide.html"><strong aria-hidden="true">2.1.</strong> StyleGuide</a></li><li class="chapter-item "><a href="../configuration/configuration.html"><strong aria-hidden="true">2.2.</strong> Configuration</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../configuration/cli.html"><strong aria-hidden="true">2.2.1.</strong> CLI</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../javascript/recap.html"><strong aria-hidden="true">3.</strong> JavaScript</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../javascript/equality_condition.html"><strong aria-hidden="true">3.1.</strong> Equality</a></li><li class="chapter-item "><a href="../javascript/references.html"><strong aria-hidden="true">3.2.</strong> References</a></li><li class="chapter-item "><a href="../javascript/this.html"><strong aria-hidden="true">3.3.</strong> this</a></li><li class="chapter-item "><a href="../javascript/number.html"><strong aria-hidden="true">3.4.</strong> Number</a></li><li class="chapter-item "><a href="../javascript/truthy.html"><strong aria-hidden="true">3.5.</strong> Truthy</a></li></ol></li><li class="chapter-item expanded "><a href="../quick/quick.html"><strong aria-hidden="true">4.</strong> QuickStarts</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../quick/quick.html"><strong aria-hidden="true">4.1.</strong> Node Browser Lib</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../quick/nodejs.html"><strong aria-hidden="true">4.1.1.</strong> Node.js QuickStart</a></li><li class="chapter-item "><a href="../quick/browser.html"><strong aria-hidden="true">4.1.2.</strong> Browser QuickStart</a></li><li class="chapter-item "><a href="../quick/library.html"><strong aria-hidden="true">4.1.3.</strong> Library QuickStart</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../defination/defination.html"><strong aria-hidden="true">5.</strong> Var_Let_Const_Readonly_Static</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../defination/let.html"><strong aria-hidden="true">5.1.</strong> let</a></li><li class="chapter-item "><a href="../defination/var.html"><strong aria-hidden="true">5.2.</strong> var</a></li><li class="chapter-item "><a href="../defination/const.html"><strong aria-hidden="true">5.3.</strong> const</a></li><li class="chapter-item "><a href="../types/readonly/readonly.html"><strong aria-hidden="true">5.4.</strong> readonly</a></li><li class="chapter-item "><a href="../types/static/static.html"><strong aria-hidden="true">5.5.</strong> static</a></li></ol></li><li class="chapter-item expanded "><a href="../future-javascript.html"><strong aria-hidden="true">6.</strong> Future JavaScript Now</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/string/template-strings.html"><strong aria-hidden="true">6.1.</strong> Template Strings</a></li><li class="chapter-item "><a href="../classes.html"><strong aria-hidden="true">6.2.</strong> Classes</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../classes-emit.html"><strong aria-hidden="true">6.2.1.</strong> Classes Emit</a></li></ol></li><li class="chapter-item "><a href="../rest-parameters.html"><strong aria-hidden="true">6.3.</strong> Rest Parameters</a></li><li class="chapter-item "><a href="../spread-operator.html"><strong aria-hidden="true">6.4.</strong> Spread Operator</a></li><li class="chapter-item "><a href="../for...of.html"><strong aria-hidden="true">6.5.</strong> for...of</a></li><li class="chapter-item "><a href="../promise.html"><strong aria-hidden="true">6.6.</strong> Promise</a></li><li class="chapter-item "><a href="../async/async.html"><strong aria-hidden="true">6.7.</strong> Async Await</a></li></ol></li><li class="chapter-item expanded "><a href="../project/project.html"><strong aria-hidden="true">7.</strong> Project</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/migrating.html"><strong aria-hidden="true">7.1.</strong> JS Migration Guide</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../project/tsconfig.html"><strong aria-hidden="true">7.1.1.</strong> tsconfig.json</a></li><li class="chapter-item "><a href="../project/files.html"><strong aria-hidden="true">7.1.2.</strong> Which Files?</a></li></ol></li><li class="chapter-item "><a href="../project/declarationspaces.html"><strong aria-hidden="true">7.2.</strong> Declaration Spaces</a></li><li class="chapter-item "><a href="../project/modules.html"><strong aria-hidden="true">7.3.</strong> Modules</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../project/external-modules.html"><strong aria-hidden="true">7.3.1.</strong> File Module Details</a></li><li class="chapter-item "><a href="../project/globals.html"><strong aria-hidden="true">7.3.2.</strong> global.d</a></li><li class="chapter-item "><a href="../project/namespacing.d.html"><strong aria-hidden="true">7.3.3.</strong> namespacing.d</a></li></ol></li><li class="chapter-item "><a href="../project/namespaces.html"><strong aria-hidden="true">7.4.</strong> Namespaces</a></li><li class="chapter-item "><a href="../project/dynamic-import-expressions.html"><strong aria-hidden="true">7.5.</strong> Dynamic Import Expressions</a></li></ol></li><li class="chapter-item expanded "><a href="../types/types.html"><strong aria-hidden="true">8.</strong> TypeScript's Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../options/intro.html"><strong aria-hidden="true">8.1.</strong> Type Checking</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../options/noImplicitAny.html"><strong aria-hidden="true">8.1.1.</strong> noImplicitAny</a></li><li class="chapter-item "><a href="../options/strictNullChecks.html"><strong aria-hidden="true">8.1.2.</strong> strictNullChecks</a></li></ol></li><li class="chapter-item "><a href="../types/primitive/primitive.html"><strong aria-hidden="true">8.2.</strong> Primitive</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/empty.html"><strong aria-hidden="true">8.2.1.</strong> Empty</a></li><li class="chapter-item "><a href="../types/wrapper/wrapper.html"><strong aria-hidden="true">8.2.2.</strong> Wrapper</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/wrapper/wrapper_objects.html"><strong aria-hidden="true">8.2.2.1.</strong> Object</a></li></ol></li></ol></li><li class="chapter-item "><a href="../types/compound/compound.html"><strong aria-hidden="true">8.3.</strong> Compound</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/compound/union/union.html"><strong aria-hidden="true">8.3.1.</strong> Union</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/compound/union/discriminated-unions.html"><strong aria-hidden="true">8.3.1.1.</strong> Discriminated-unions</a></li></ol></li><li class="chapter-item "><a href="../types/compound/enum/enum.html"><strong aria-hidden="true">8.3.2.</strong> Enums</a></li><li class="chapter-item "><a href="../types/compound/tuple/tuple.html"><strong aria-hidden="true">8.3.3.</strong> Tuple</a></li></ol></li><li class="chapter-item "><a href="../types/generic/generic.html"><strong aria-hidden="true">8.4.</strong> Generic</a></li><li class="chapter-item "><a href="../types/type-assertion.html"><strong aria-hidden="true">8.5.</strong> Type Assertion</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/mapping.html"><strong aria-hidden="true">8.5.1.</strong> Type Mapping</a></li></ol></li><li class="chapter-item "><a href="../types/freshness.html"><strong aria-hidden="true">8.6.</strong> Freshness</a></li><li class="chapter-item "><a href="../types/type-inference.html"><strong aria-hidden="true">8.7.</strong> Type Inference</a></li><li class="chapter-item "><a href="../types/duck/duck.html"><strong aria-hidden="true">8.8.</strong> Duck Type</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/duck/structural/structural.html"><strong aria-hidden="true">8.8.1.</strong> Structuring</a></li><li class="chapter-item "><a href="../types/duck/structural/destructuring.html"><strong aria-hidden="true">8.8.2.</strong> Destructuring</a></li></ol></li><li class="chapter-item "><a href="../types/narrowing/narrowing.html"><strong aria-hidden="true">8.9.</strong> Narrowing</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/narrowing/guard.html"><strong aria-hidden="true">8.9.1.</strong> Guard</a></li><li class="chapter-item "><a href="../types/narrowing/assertion-fn.html"><strong aria-hidden="true">8.9.2.</strong> AssertionFN</a></li><li class="chapter-item "><a href="../types/narrowing/widening.html"><strong aria-hidden="true">8.9.3.</strong> Widening</a></li></ol></li><li class="chapter-item "><a href="../types/literal/literal-types.html"><strong aria-hidden="true">8.10.</strong> Literal Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/inference-literal-types.html"><strong aria-hidden="true">8.10.1.</strong> Inference Literal</a></li><li class="chapter-item "><a href="../types/enum-literal-type.html"><strong aria-hidden="true">8.10.2.</strong> Enum Literal</a></li><li class="chapter-item "><a href="../types/inference-literal-gurad-type.html"><strong aria-hidden="true">8.10.3.</strong> Inference Gurad Literal</a></li></ol></li><li class="chapter-item "><a href="../types/builtin/builtin.html"><strong aria-hidden="true">8.11.</strong> Built-in</a></li><li class="chapter-item "><a href="../types/covariance_contravariance/covariance_contravariance.html"><strong aria-hidden="true">8.12.</strong> Covariance &amp; Contravariance</a></li><li class="chapter-item "><a href="../types/recursive/recursive.html"><strong aria-hidden="true">8.13.</strong> Recursive</a></li><li class="chapter-item "><a href="../types/exceptions/exceptions.html"><strong aria-hidden="true">8.14.</strong> Exception Handling</a></li><li class="chapter-item "><a href="../types/patterns/patterns.html"><strong aria-hidden="true">8.15.</strong> Patterns</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/patterns/intersection/intersection.html"><strong aria-hidden="true">8.15.1.</strong> Intersection</a></li><li class="chapter-item "><a href="../types/patterns/power/power.html"><strong aria-hidden="true">8.15.2.</strong> Power</a></li><li class="chapter-item "><a href="../types/patterns/satisfies/satisfies.html"><strong aria-hidden="true">8.15.3.</strong> Satisfies</a></li><li class="chapter-item "><a href="../types/patterns/manipulation/manipulation.html"><strong aria-hidden="true">8.15.4.</strong> Manipulation</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/patterns/manipulation/conditional.html"><strong aria-hidden="true">8.15.4.1.</strong> Conditionally</a></li><li class="chapter-item "><a href="../types/patterns/manipulation/transform-mapping.html"><strong aria-hidden="true">8.15.4.2.</strong> Transform Mapping</a></li></ol></li></ol></li><li class="chapter-item "><a href="../types/module/@types.html"><strong aria-hidden="true">8.16.</strong> @types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/module/ambient/intro.html"><strong aria-hidden="true">8.16.1.</strong> Ambient Declarations</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/module/ambient/d.ts.html"><strong aria-hidden="true">8.16.1.1.</strong> Declaration Files</a></li><li class="chapter-item "><a href="../types/module/ambient/variables.html"><strong aria-hidden="true">8.16.1.2.</strong> Variables</a></li></ol></li></ol></li><li class="chapter-item "><a href="../types/exchange/exchange-types.html"><strong aria-hidden="true">8.17.</strong> Ex/Import of Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/lib.d.ts.html"><strong aria-hidden="true">8.17.1.</strong> lib.d.ts</a></li><li class="chapter-item "><a href="../types/functions.html"><strong aria-hidden="true">8.17.2.</strong> Functions</a></li><li class="chapter-item "><a href="../types/callable.html"><strong aria-hidden="true">8.17.3.</strong> Callable</a></li><li class="chapter-item "><a href="../types/type-compatibility.html"><strong aria-hidden="true">8.17.4.</strong> Type Compatibility</a></li><li class="chapter-item "><a href="../types/system/index-signatures.html"><strong aria-hidden="true">8.17.5.</strong> Index Signatures</a></li><li class="chapter-item "><a href="../types/moving-types.html"><strong aria-hidden="true">8.17.6.</strong> Moving Types</a></li><li class="chapter-item "><a href="../types/mixins.html"><strong aria-hidden="true">8.17.7.</strong> Mixins</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../collection/collection.html"><strong aria-hidden="true">9.</strong> Collection</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../collection/array.html"><strong aria-hidden="true">9.1.</strong> Array</a></li><li class="chapter-item "><a href="../collection/map.html"><strong aria-hidden="true">9.2.</strong> Map</a></li><li class="chapter-item "><a href="../collection/iterators.html"><strong aria-hidden="true">9.3.</strong> Iterators</a></li><li class="chapter-item "><a href="../collection/generators.html"><strong aria-hidden="true">9.4.</strong> Generators</a></li></ol></li><li class="chapter-item expanded "><a href="../oop/oop.html"><strong aria-hidden="true">10.</strong> Object Orianted Programming</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/generic/generic.html"><strong aria-hidden="true">10.1.</strong> Generic</a></li><li class="chapter-item "><a href="../oop/class.html"><strong aria-hidden="true">10.2.</strong> Class</a></li><li class="chapter-item "><a href="../oop/interfaces.html"><strong aria-hidden="true">10.3.</strong> Interfaces</a></li><li class="chapter-item "><a href="../oop/inheritance.html"><strong aria-hidden="true">10.4.</strong> Inheritance</a></li><li class="chapter-item "><a href="../oop/polymorphism.html"><strong aria-hidden="true">10.5.</strong> Polymorphism</a></li><li class="chapter-item "><a href="../oop/designpatterns.html"><strong aria-hidden="true">10.6.</strong> Design Patterns</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../oop/designpatterns/decorator/decorator.html"><strong aria-hidden="true">10.6.1.</strong> Decorators</a></li><li class="chapter-item "><a href="../oop/designpatterns/observer/observer.html"><strong aria-hidden="true">10.6.2.</strong> Observer</a></li><li class="chapter-item "><a href="../oop/designpatterns/singleton/singleton.html"><strong aria-hidden="true">10.6.3.</strong> Singleton</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../fp/fp.html" class="active"><strong aria-hidden="true">11.</strong> Functional Programming</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../tips/functionParameters.html"><strong aria-hidden="true">11.1.</strong> Function parameters</a></li><li class="chapter-item "><a href="../arrow-functions.html"><strong aria-hidden="true">11.2.</strong> Arrow Functions</a></li><li class="chapter-item "><a href="../javascript/closure.html"><strong aria-hidden="true">11.3.</strong> Closure</a></li><li class="chapter-item "><a href="../tips/statefulFunctions.html"><strong aria-hidden="true">11.4.</strong> Stateful Functions</a></li><li class="chapter-item "><a href="../tips/currying.html"><strong aria-hidden="true">11.5.</strong> Currying</a></li><li class="chapter-item "><a href="../fp/project1.html"><strong aria-hidden="true">11.6.</strong> A Sample Project 1</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../fp/project1-problemstatemet.html"><strong aria-hidden="true">11.6.1.</strong> Problem Statemet</a></li></ol></li><li class="chapter-item "><a href="../fp/project2.html"><strong aria-hidden="true">11.7.</strong> A Sample Project 2</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../fp/project2-problemstatemet.html"><strong aria-hidden="true">11.7.1.</strong> Problem Statemet</a></li></ol></li><li class="chapter-item "><a href="../fp/fp-additional.html"><strong aria-hidden="true">11.8.</strong> Additional</a></li><li class="chapter-item "><a href="../fp/appendix.html"><strong aria-hidden="true">11.9.</strong> Appendix</a></li></ol></li><li class="chapter-item expanded "><a href="../errors/main.html"><strong aria-hidden="true">12.</strong> Errors in TypeScript</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../errors/common-errors.html"><strong aria-hidden="true">12.1.</strong> Common Errors</a></li><li class="chapter-item "><a href="../types/conversion.html"><strong aria-hidden="true">12.2.</strong> Type Conversion</a></li><li class="chapter-item "><a href="../errors/interpreting-errors.html"><strong aria-hidden="true">12.3.</strong> Interpreting Errors</a></li></ol></li><li class="chapter-item expanded "><a href="../testing/intro.html"><strong aria-hidden="true">13.</strong> Testing</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../testing/jest.html"><strong aria-hidden="true">13.1.</strong> Jest</a></li><li class="chapter-item "><a href="../testing/cypress.html"><strong aria-hidden="true">13.2.</strong> Cypress</a></li></ol></li><li class="chapter-item expanded "><a href="../jsx/tsx.html"><strong aria-hidden="true">14.</strong> JSX</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../jsx/react.html"><strong aria-hidden="true">14.1.</strong> React</a></li><li class="chapter-item "><a href="../jsx/redux.html"><strong aria-hidden="true">14.2.</strong> Redux</a></li><li class="chapter-item "><a href="../jsx/others.html"><strong aria-hidden="true">14.3.</strong> Non React JSX</a></li></ol></li><li class="chapter-item expanded "><a href="../tools/intro.html"><strong aria-hidden="true">15.</strong> Tools</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../tools/prettier.html"><strong aria-hidden="true">15.1.</strong> Prettier</a></li><li class="chapter-item "><a href="../tools/husky.html"><strong aria-hidden="true">15.2.</strong> Husky</a></li><li class="chapter-item "><a href="../tools/eslint.html"><strong aria-hidden="true">15.3.</strong> ESLint</a></li><li class="chapter-item "><a href="../tools/changelog.html"><strong aria-hidden="true">15.4.</strong> Changelog</a></li></ol></li><li class="chapter-item expanded "><a href="../tips/main.html"><strong aria-hidden="true">16.</strong> TIPs</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../tips/typeInstantiation.html"><strong aria-hidden="true">16.1.</strong> Type Instantiation</a></li><li class="chapter-item "><a href="../tips/stringEnums.html"><strong aria-hidden="true">16.2.</strong> String Based Enums</a></li><li class="chapter-item "><a href="../tips/nominalTyping.html"><strong aria-hidden="true">16.3.</strong> Nominal Typing</a></li><li class="chapter-item "><a href="../tips/lazyObjectLiteralInitialization.html"><strong aria-hidden="true">16.4.</strong> Lazy Object Literal Initialization</a></li><li class="chapter-item "><a href="../tips/classesAreUseful.html"><strong aria-hidden="true">16.5.</strong> Classes are Useful</a></li><li class="chapter-item "><a href="../tips/defaultIsBad.html"><strong aria-hidden="true">16.6.</strong> Avoid Export Default</a></li><li class="chapter-item "><a href="../tips/propertySetters.html"><strong aria-hidden="true">16.7.</strong> Limit Property Setters</a></li><li class="chapter-item "><a href="../tips/outFile.html"><strong aria-hidden="true">16.8.</strong> outFile caution</a></li><li class="chapter-item "><a href="../tips/jquery.html"><strong aria-hidden="true">16.9.</strong> JQuery tips</a></li><li class="chapter-item "><a href="../tips/staticConstructor.html"><strong aria-hidden="true">16.10.</strong> static constructors</a></li><li class="chapter-item "><a href="../tips/build-toggles.html"><strong aria-hidden="true">16.11.</strong> Build Toggles</a></li><li class="chapter-item "><a href="../tips/barrel.html"><strong aria-hidden="true">16.12.</strong> Barrel</a></li><li class="chapter-item "><a href="../tips/typed-event.html"><strong aria-hidden="true">16.13.</strong> Typesafe Event Emitter</a></li></ol></li><li class="chapter-item expanded "><a href="../compiler/overview.html"><strong aria-hidden="true">17.</strong> TypeScript Compiler Internals</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../compiler/program.html"><strong aria-hidden="true">17.1.</strong> Program</a></li><li class="chapter-item "><a href="../compiler/ast.html"><strong aria-hidden="true">17.2.</strong> AST</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../compiler/ast-tip-children.html"><strong aria-hidden="true">17.2.1.</strong> TIP: Visit Children</a></li><li class="chapter-item "><a href="../compiler/ast-tip-syntaxkind.html"><strong aria-hidden="true">17.2.2.</strong> TIP: SyntaxKind enum</a></li><li class="chapter-item "><a href="../compiler/ast-trivia.html"><strong aria-hidden="true">17.2.3.</strong> Trivia</a></li></ol></li><li class="chapter-item "><a href="../compiler/scanner.html"><strong aria-hidden="true">17.3.</strong> Scanner</a></li><li class="chapter-item "><a href="../compiler/parser.html"><strong aria-hidden="true">17.4.</strong> Parser</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../compiler/parser-functions.html"><strong aria-hidden="true">17.4.1.</strong> Parser Functions</a></li></ol></li><li class="chapter-item "><a href="../compiler/binder.html"><strong aria-hidden="true">17.5.</strong> Binder</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../compiler/binder-functions.html"><strong aria-hidden="true">17.5.1.</strong> Binder Functions</a></li><li class="chapter-item "><a href="../compiler/binder-declarations.html"><strong aria-hidden="true">17.5.2.</strong> Binder Declarations</a></li><li class="chapter-item "><a href="../compiler/binder-container.html"><strong aria-hidden="true">17.5.3.</strong> Binder Container</a></li><li class="chapter-item "><a href="../compiler/binder-symboltable.html"><strong aria-hidden="true">17.5.4.</strong> Binder SymbolTable</a></li><li class="chapter-item "><a href="../compiler/binder-diagnostics.html"><strong aria-hidden="true">17.5.5.</strong> Binder Error Reporting</a></li></ol></li><li class="chapter-item "><a href="../compiler/checker.html"><strong aria-hidden="true">17.6.</strong> Checker</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../compiler/checker-global.html"><strong aria-hidden="true">17.6.1.</strong> Checker Diagnostics</a></li><li class="chapter-item "><a href="../compiler/checker-diagnostics.html"><strong aria-hidden="true">17.6.2.</strong> Checker Error Reporting</a></li></ol></li><li class="chapter-item "><a href="../compiler/emitter.html"><strong aria-hidden="true">17.7.</strong> Emitter</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../compiler/emitter-functions.html"><strong aria-hidden="true">17.7.1.</strong> Emitter Functions</a></li><li class="chapter-item "><a href="../compiler/emitter-sourcemaps.html"><strong aria-hidden="true">17.7.2.</strong> Emitter SourceMaps</a></li></ol></li><li class="chapter-item "><a href="../compiler/contributing.html"><strong aria-hidden="true">17.8.</strong> Contributing</a></li></ol></li><li class="chapter-item expanded "><a href="../GLOSSARY.html"><strong aria-hidden="true">18.</strong> GLOSSARY</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">TypeScript-All-In-One(A.R)</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/armanriazi/typescript-all-in-one/tree/main/workspace" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/armanriazi/typescript-all-in-one/edit/main/workspace/./workspace//fp/fp.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="functional-programming"><a class="header" href="#functional-programming">Functional Programming</a></h2>
+<p>In any programming language, functions are said to be <strong>first-class citizens</strong> if they can be treated like any other variable. For instance, they can be passed as an argument to other functions, can be returned by another function, and can be assigned as a value to a variable.</p>
+<p><code>first-class citizens</code>
+Functions can be treated as ordinary values. They can be passed in as parameters, returned from other functions, and so on.
+What are not the advantages of types? Types make code compilation faster.</p>
+<p><code>&gt; Note:</code> In functional programming, we write programs by letting objects interact with each other is a myth.</p>
+<p>What are the advantages of functional programming?</p>
+<ul>
+<li><input disabled="" type="checkbox" checked=""/>
+Functional programming helps us deal with parallel programming.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Functional programming makes managing complex applications easier.</li>
+</ul>
+<p>To write functional code in JavaScript, we can turn to <strong>libraries such as Lodash, Ramda, or Folktale.</strong>
+We’ve already discussed Ramda Ramda and Folktale, but unfortunately, they’re insufficient. Ramda lacks the extremely useful concept of monads, on which several more advanced functional programming techniques are based. Folktale is a small library with some of the essential monads, but it has very few other features. It lacks some more powerful functional programming features like monad transformers. Another disadvantage of Folktale is that the library hasn’t received much support during the last few years.</p>
+<p>Instead, we’ll use a TypeScript library called <strong>fp-ts</strong>. It has several advantages:</p>
+<ul>
+<li><input disabled="" type="checkbox" checked=""/>
+It’s written in TypeScript.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+It has many stars on GitHub.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+It’s actively maintained.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+It has powerful monads.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+It has an ecosystem of libraries that add even more functionality.</li>
+</ul>
+<h3 id="statement-vs-expression"><a class="header" href="#statement-vs-expression">Statement vs Expression</a></h3>
+<p>What is the difference between a statement and an expression?
+An expression always produces a value; a statement does not.</p>
+<h2 id="setup"><a class="header" href="#setup">Setup</a></h2>
+<p>However, be sure to set the target property in tsconfig.json no lower than es6. Later on, we will use webpack to build our output and show the tsconfig.json file that goes with that setup.</p>
+<pre><code class="language-bash">pnpm i --save fp-ts@~2.8.6
+</code></pre>
+<h2 id="closure"><a class="header" href="#closure">Closure</a></h2>
+<p>Closures can be used to <strong>hide information</strong> from other functions.
+The behaviour depicted in the code snippet below is called closure. With closures, the inner function has access to all the information available in the outer function. This is why the value of the parameter outer is still available when we call ourInnerFunction that was returned from withInnerFunction.
+The functions receiving or returning other functions are called <strong>higher-order functions</strong>.</p>
+<pre><code class="language-ts">function withInnerFunction(outer) {
+    return function ourInnerFunction(inner) {
+        console.log(`Outer function received ${outer}, inner got ${inner}`);
+    };
+}
+
+const returnedFunction = withInnerFunction('a');
+
+// some time later in our program, we actually need to call returnedFunction 
+returnedFunction('b');
+</code></pre>
+<p>To:</p>
+<pre><code class="language-ts">const withInnerFunction = (outer) =&gt; (inner) =&gt; console.log(`Outer function received ${outer}, inner ${inner}`);
+const returnedFunction = withInnerFunction('a');
+returnedFunction('b');
+</code></pre>
+<p>This is interesting because it allows us to pass additional information that might <strong>serve as an environment or state into our function.</strong> Closures and first-class functions allow for more interesting behavior such <strong>as creating factories for building functions, keeping parameter lists short, reducing code duplication, and so on</strong>. Furthermore, <em>closures are the only way to make a variable private in JavaScript because we can circumvent all the other methods.</em></p>
+<p>Note: Arrow functions are essentially the same as functions defined using the function keyword, except when it comes to the this keyword. However, we will not use the this keyword in this course.</p>
+<h3 id="adts--pipes"><a class="header" href="#adts--pipes">ADTs | Pipes</a></h3>
+<p>Algebraic data types (ADTs) in functional programming can be extremely useful. We’ll discuss them in detail later on. However, in TypeScript, we can use <strong>discriminating unions (also called tagged unions) to get sum types</strong>. These sum types are a category of ADTs, and creating them does require a bit of ceremony, though. In a language like Haskell, we can make very powerful pattern matching on sum types. There are libraries in the fp-ts ecosystem that try to add some of this power to TypeScript, e.g., <strong>morphic-ts</strong>. However, TypeScript can already do some cool things with these unions.
+Product types is a kind of ADTs that allow us to easily model subtypes that have different properties, occusionally, the need for optional values or (boolean) flags.</p>
+<h2 id="pure-function"><a class="header" href="#pure-function">Pure Function</a></h2>
+<p>A pure function is one with a result that’s based solely on the input it receives. So, as long as the input doesn’t change, the output doesn’t change either. This means that it has <strong>no side effects</strong>. <strong>So A pure function is not a function that always returns a value.</strong></p>
+<h2 id="referential-transparency"><a class="header" href="#referential-transparency">Referential Transparency</a></h2>
+<p>A related concept, referential transparency, also helps us in coding. It means that we can replace a function call with the value it produces. </p>
+<pre><code class="language-ts">function biggerProgram() {
+    const result = addOne(5);
+    return result * 2;
+}
+</code></pre>
+<h2 id="immutability"><a class="header" href="#immutability">Immutability</a></h2>
+<p>Immutability is another frequently mentioned element of functional programming. <strong>Instead of changing our existing data structures, we create new data structures</strong> whenever we change any information. This makes reasoning easier. No other process could’ve changed the array we just received from our function because it’s an entirely new data structure! We can see another obvious advantage of immutability in parallel programming. In the words of Adam Smith, “Threads coming together with mutable data ends in a conspiracy against your sanity”.</p>
+<p>Note: Even when we’re not doing any fancy parallel programming, some easily <strong>missed mutability bugs can waste our time</strong>. For instance, <em>let’s assume we have arrays of the const type, and we’re using shift to get the first element of those arrays. The usage of shift mutates our arrays in place. Such bugs can cause problems within our program.</em></p>
+<p><strong>Performance may suffer in some cases</strong>, especially when our language isn’t written for immutability. As always, this is a matter of trade-offs. Is excellent performance essential, or is the combination of a lack of bugs, easier maintenance, and decent performance acceptable?</p>
+<p>Note: <strong>JavaScript, sadly, wasn’t written with immutability in mind</strong>. Therefore, several <em>libraries offer to add immutable data structures.</em> It’s better to have the language handle everything for us, though, despite the loss of immutability.</p>
+<h2 id="declarative-programming-style"><a class="header" href="#declarative-programming-style">Declarative programming style</a></h2>
+<p>Functional programming tries to lift this behavior to a higher level of <strong>abstraction</strong>. Whenever possible, the low-level behavior is left to the computer.
+First, functional programming offers a more <strong>declarative</strong> style of programming. Object-oriented programming has an <strong>imperative</strong> feel because our program consists of a list of instructions to execute (or objects to execute). 
+Declarative: I want a dinner with chicken.
+Imperative: Kitchen -&gt; Open Fridge -&gt;  Removing Chicken from Fridge -&gt; Dinner on the table.</p>
+<p>Declarative example:</p>
+<pre><code class="language-ts">const exampleArray = [1, 2, 3, 4];
+
+function addOneToEach(arr) {
+    for(let i = 0; i &lt; arr.length; i++) {
+        arr[i] = arr[i] + 1; //mutable data structures
+    }
+    return arr;
+}
+
+console.log(addOneToEach(exampleArray));
+</code></pre>
+<p>Imperative example:</p>
+<pre><code class="language-ts">const exampleArray = [1, 2, 3, 4];
+
+function fpAddOneToEach(arr) {
+    return arr.map(el =&gt; el + 1); // add 1 to each element of array, immutable data structures
+}
+
+console.log(fpAddOneToEach(exampleArray));
+</code></pre>
+<p><strong>Another advantage of higher-order functions is that they often use immutable data structures</strong>. 
+<strong>The loop in the first example above, on the other hand, mutates the existing array and is error prone(imperative)</strong></p>
+<p>Note: Modify the second code snippet above and include the loop version (from the first example), followed by the functional programming version (from the second example). Notice how the functional programming version now returns [3, 4, 5, 6] instead of [2, 3, 4, 5]. This is because the exampleArray has been modified by the loop version.</p>
+<h2 id="tacit-programming"><a class="header" href="#tacit-programming">Tacit programming</a></h2>
+<p>Recall composition and our addOne function from an earlier example. Using it within map is trivial, as shown below.</p>
+<pre><code class="language-ts">const exampleArray = [1, 2, 3, 4];
+
+function addOne(el) {
+    return el + 1;
+}
+
+function fpAddOneToEach(arr) {
+    return arr.map(addOne);
+}
+
+console.log(fpAddOneToEach(exampleArray));
+</code></pre>
+<p>The above is called <strong>point-free style or tacit programming</strong>. The function we passed in expects one argument, and map produces one. We don’t have to write <code>el =&gt; addOne(el)</code> because JavaScript knows it has to pass the incoming value to the function.</p>
+<p>So, with <strong>higher-order functions like filter and map</strong>, <em>we only have to write logic that filters or transforms a single element. The rest is handled by the higher-order function</em>. 
+We know how to increment a single value, and we can now handle arrays without writing any additional code!</p>
+<p>Additionally, in functional languages, maps are available for more than just arrays, further extending the usefulness of this function. Because functions like <strong>map and filter are more abstract</strong> and less bound to specifics, they can be applied in many situations. They work with any kind of array we throw at them. In contrast, the object methods only know how to do things for one specific class. </p>
+<p><code>The corresponding Javadoc mentions the following:</code></p>
+<ul>
+<li><input disabled="" type="checkbox" checked=""/>
+Stream pipeline results may be <strong>nondeterministic or incorrect</strong> if the behavioral parameters to the <strong>stream operations are stateful</strong>.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Side effects in behavioral parameters to stream operations are, in general, discouraged, as they can often lead to unwitting violations of the statelessness requirement, as well as other thread-safety hazards.</li>
+</ul>
+<p>In summary, choose pure functions for reliable behavior when using streams. The Javadoc notes in several locations that this is also a requirement for parallelism, for reasons that are no longer a mystery. That is, pure functions behave in a predictable fashion. However, with side effects and mutations, the result might be unpredictable.</p>
+<h2 id="recursion"><a class="header" href="#recursion">Recursion</a></h2>
+<p>Recursion is another way that functional programming deals with repetition and avoiding loops. Recursion means <strong>solving a problem by breaking it up into smaller problems</strong>.</p>
+<p>Recursion often leads to elegant solutions for complicated problems. However, it’s not frequently used in mainstream languages like JavaScript because the <strong>repeated function calls cause the stack to grow</strong>, possibly resulting in a stack overflow. In this course, we’ll mainly use <strong>higher-order functions to solve problems involving repetition.</strong></p>
+<h2 id="higher-order-functions-and-composition"><a class="header" href="#higher-order-functions-and-composition">Higher-order functions and composition</a></h2>
+<p><strong>The composition order (right to left)</strong> is probably inspired by mathematics. That is, if we have an f(g(x)) function, we first calculate g(x) and pass the result, y, to the outer function, f(y).</p>
+<p>Abstraction makes the program cleaner, shorter, and reusable.</p>
+<p>we created new functionality out of existing functions, similar to what we did with map and filter. The composition has several nice qualities to it. For one, we don’t have to change our existing functions. Instead, our new functionality is created out of existing code</p>
+<pre><code class="language-ts">const compose = (...fns) =&gt; (...args) =&gt; {
+    return fns.reduceRight((res, fn) =&gt; [fn.call(null, ...res)], args)[0];
+};
+
+const coolName = (name) =&gt; `${name} a.k.a. King`;
+const yelling = (name) =&gt; name.toUpperCase();
+const yellingACoolerName = compose(yelling, coolName);
+const result = yellingACoolerName('sam'); //Line 10
+console.log(result); //Output: SAM A.K.A. KING
+</code></pre>
+<p>Line 10: We start with a reduceRight on our array of functions. First up is coolName, which receives the sam parameter as the preliminary result. The function is called and adds a cool suffix to the name. Next, our reduce starts working on the yelling function. It, too, receives a preliminary result, which is the name with the suffix that was just added. It returns this parameter in uppercase.</p>
+<p><code>Note:</code>
+For those with Linux experience, this type of composition is similar to the Unix Philosophy of piping. That is, to work with small programs that do one thing well and use pipes to combine them to form larger functionality. As those familiar with Bash will know, the versatility and power of piping, using only basic Unix components, is impressive.</p>
+<h3 id="information-hiding-using-composition"><a class="header" href="#information-hiding-using-composition">Information hiding using composition</a></h3>
+<p><strong>We can also use composition for information hiding</strong>. For example, we could decide to only expose yellingACoolerName, hiding the functions it’s made of. Because we don’t use classes, modules provide our most important means of hiding information.</p>
+<h2 id="what-is-currying"><a class="header" href="#what-is-currying">What is currying?</a></h2>
+<p>Currying involves <strong>converting</strong> the function, <strong>combining</strong> multiple arguments into a series of functions that are executed one after another. In other word, process changes a function with multiple arguments into multiple functions that take a single argument and <strong>return the next function.</strong></p>
+<p>Whenever we feed it an argument, we can write a function that returns another function that also accepts an argument and returns a function. <strong>This continues to happen until the final argument is passed</strong>. When that happens, the code block executes. This is called currying, and it’s very popular in functional languages like Haskell and F#. The following code snippet is a boilerplate example of currying:</p>
+<pre><code class="language-ts">const decrypt = (m) =&gt; `{ &quot;userType&quot;: &quot;admin&quot;, &quot;message&quot;: &quot;${m}&quot; }`;
+const userTypeLens = (fallback) =&gt; (userInfo) =&gt; userInfo.userType || fallback;
+const auth = (type) =&gt; type === 'admin' ? ({ allow: true }) : ({ allow: false }); //Line 3
+const userTypeLensDefaultNone = userTypeLens('none'); //Line 7
+const compose = (...fns) =&gt; (...args) =&gt; {
+    return fns.reduceRight((res, fn) =&gt; [fn.call(null, ...res)], args)[0];
+};
+
+//Remember to read from right to left or bottom to top
+const authAnswer = compose(
+    JSON.stringify,
+    auth,
+    userTypeLensDefaultNone,
+    JSON.parse,
+    decrypt,
+);
+
+console.log(authAnswer('a message'));
+</code></pre>
+<p>Line 3: Here, we retrieve a field from the incoming argument, userInfo, and return a fallback if the field is missing. Lenses in functional programming are used to retrieve or change data in a data structure. They make it easy to modify a single value within immutable, complicated structures. Real lenses such as “monocle-ts” are more complicated than this example.</p>
+<p>Line 7: We fill in our fallback value, which is the string none.</p>
+<p><code>Note:</code>
+Closely linked to <strong>currying is the partial application</strong>, which feeds a functioning part of the arguments it needs at a given time and calls the function with the remaining arguments later. Python has a function called partial that can help us accomplish the same result.</p>
+<h4 id="why-is-currying-useful"><a class="header" href="#why-is-currying-useful">Why is currying useful?</a></h4>
+<p>Currying allows us to <strong>add configurations or dependencies to a function</strong> at one point and call it at a later time. We ensure that our function has everything it needs to run correctly. It merely has to wait for the final input data for execution. Furthermore, currying can make our code easier to understand when dealing with functions that take many arguments. There’s another reason for currying in the composition context. In our example above, each function we use inside the authAnswer requires one argument. Conveniently, all our functions return one value, namely a string, boolean, or an object, making them easy to compose.</p>
+<h2 id="combining-currying-and-composition"><a class="header" href="#combining-currying-and-composition">Combining Currying and Composition</a></h2>
+<p>Learn how to use currying and composition together for functions that take multiple arguments.</p>
+<h3 id="function-with-one-parameter-value"><a class="header" href="#function-with-one-parameter-value">Function with one parameter value</a></h3>
+<p>Composing is easy when we have a scenario like this:</p>
+<ul>
+<li><input disabled="" type="checkbox" checked=""/>
+Function ONE accepts a parameter of type A and returns a value of type B.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Function TWO accepts a parameter of type B and returns a value of type C.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Function THREE accepts a parameter of type C and returns a value of type D.</li>
+</ul>
+<p>Note: In a Haskell or F# type of notation, the signatures of the functions above will be as follows:</p>
+<pre><code class="language-md">ONE :: A -&gt; B
+TWO :: B -&gt; C
+THREE :: C -&gt; D
+COMBINED :: A -&gt; D
+</code></pre>
+<h3 id="function-with-multiple-parameter-values"><a class="header" href="#function-with-multiple-parameter-values">Function with multiple parameter values</a></h3>
+<p><code>Example of currying:</code></p>
+<pre><code class="language-ts">const TWO = (first) =&gt; (second) =&gt; {
+    if(first &amp;&amp; second) {
+        return 'ok';
+    }
+    throw Error('Did not receive two params!');
+}
+const twoWhichWeWillPassToThree = TWO('first argument already given');
+console.log(twoWhichWeWillPassToThree('giving second argument'));
+</code></pre>
+<p>Rewriting the above, we have:</p>
+<pre><code class="language-md">ONE :: A -&gt; C
+TWO :: B -&gt; C -&gt; D
+THREE :: D -&gt; E
+COMBINED :: A -&gt; E
+</code></pre>
+<p>This can’t be combined, so we give function TWO a value B, which returns a new function for us to use: <code>FUNCTION_RETURNED_BY_TWO :: C -&gt; D</code>.</p>
+<p>This fits perfectly. Currying can be a huge help when composing functions with input and output values that are mismatched. We give what we can, and the rest will be filled in later. Consequently, a function’s final argument is often the data we’re operating on, while earlier arguments consist of things like configuration and dependencies. This is because we’ll usually already know what those configurations or dependencies will be. However, we only know what the data looks like when we receive it.</p>
+<p><img src="../assets/images/curried_functions.png" alt="Curried Functions" /></p>
+<p>Note: Though they occasionally get in the way, types are generally very useful when composing functions. If a function expects type A and we instead feed it a function that returns A, it will complain. Meanwhile, JavaScript accepts everything we throw at it and crashes at runtime. In our example(fp-ex15.ts), try using <code>userTypeLens</code> (line 3) instead of the partially applied variant <code>userTypeLensDefaultNone</code> (line 7). JavaScript now returns <code>{ allow: false }</code>, despite receiving an admin.</p>
+<h2 id="problems-with-currying-and-composition"><a class="header" href="#problems-with-currying-and-composition">Problems with Currying and Composition</a></h2>
+<h3 id="asynchronous-actions"><a class="header" href="#asynchronous-actions">Asynchronous actions</a></h3>
+<p>Now, we know how to compose functions to create our software. We also know how currying can help with functions that don’t naturally fit together because they have the wrong types or number of parameters. However, we’ll still have some issues with TypeScript and JavaScript. The most important issue might be that a lot happens asynchronously. Take a look at the following code snippet:</p>
+<pre><code class="language-ts">const compose = (...fns) =&gt; (...args) =&gt; {
+    return fns.reduceRight((res, fn) =&gt; [fn.call(null, ...res)], args)[0];
+};
+const givesAPromise = (num) =&gt; Promise.resolve(num);
+const doubleIt = (num) =&gt; num * 2;
+const doubled = compose(doubleIt, givesAPromise);
+console.log(doubled(2)); // Output NaN 
+</code></pre>
+<p>How do we fix it? If we want to write pure JavaScript, we could use then(), which is provided by Promise, to retrieve a result to work with. This is certainly not a bad idea. However, we might run into some limits and, more generally, our entire program will have to use Promises everywhere.</p>
+<h2 id="what-are-monads"><a class="header" href="#what-are-monads">What are monads?</a></h2>
+<p>How can we avoid exceptions? How will we handle error cases without them? If Promises aren’t ideal for asynchronous behavior, what should we use instead? Enter the dreaded monads!
+In several functional languages, putting the <code>value inside the monad is called return</code>. But, because return is a keyword in JavaScript, we’ll find various other words for it, like <code>of</code>.</p>
+<ul>
+<li><input disabled="" type="checkbox" checked=""/>
+Monads can be compared to a container.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+The various constructors for monads in fp-ts are called lifting functions.</li>
+</ul>
+<h2 id="functors"><a class="header" href="#functors">Functors</a></h2>
+<p>We have a value inside a container. What does that get us? Well, monads have several functions that influence or change that value. For example, the monad function map takes a function that might be applied to the value inside the container. Why do we say “might”? (Please attention to line 4 of follow example)</p>
+<p><code>Note:</code>
+Technically, <strong>monads only define bind, chain, or flatmap methods</strong>, <em>but not a map</em>, which is part of the definition of a Functor. However, monads are functors, so our current explanation is good enough.</p>
+<p><img src="../assets/images/functor.png" alt="Functor" /></p>
+<h3 id="option-monad"><a class="header" href="#option-monad">Option monad</a></h3>
+<p>An example might make things easier to understand. Let’s take a look at the Option monad from fp-ts.</p>
+<h4 id="the-map-function"><a class="header" href="#the-map-function">The map function</a></h4>
+<p><code>Line 4:</code> We can also tell Option that we don’t currently have any values to give to it (hence the name Option). It can have a value, <strong>but it might not</strong>. So, we tell it that we have nothing by passing none, a constant representing an empty Optional.</p>
+<p><code>Line 5:</code> Now, we call map and pass it the function we defined in line 2 as a first argument. The second argument is the value we created in line 3.</p>
+<p><code>Line 7:</code> Here, we log the value contained inside the monad. Because it’s wrapped inside our container, we need a helper to get it out. The getOrElse function retrieves the value or uses the function we pass in as the first argument as a fallback if the Option turns out to be empty. If empty, our fallback returns the string with no value present. Here, the result will be A VALUE. The function passed to map in line 5 converts the original value passed in line 3 to uppercase.</p>
+<pre><code class="language-ts">import {getOrElse, map, none, some} from &quot;fp-ts/lib/Option&quot;;
+const upperCaseIt = (value: string) =&gt; value.toUpperCase();
+const optionWithAString = some('a value');
+const optionEmpty = none;
+const upperCased = map(upperCaseIt)(optionWithAString); //Line 5
+const upperCasedEmpty = map(upperCaseIt)(optionEmpty);
+console.log(getOrElse(() =&gt; 'no value present')(upperCased)); //Line 7
+console.log(getOrElse(() =&gt; 'no value present')(upperCasedEmpty));
+</code></pre>
+<p><strong>Option gives us a way out. It offers us the ability to apply functions to values without worrying about how null will make it crash</strong>. If the value is missing, null or undefined, for example, our code will sit there, do nothing, and give back the same none value.</p>
+<h4 id="the-chain-function"><a class="header" href="#the-chain-function">The chain function</a></h4>
+<p>The chain function can <strong>combine and flatten monads</strong> in fp-ts.</p>
+<pre><code class="language-ts">import {chain, getOrElse, none, some} from &quot;fp-ts/lib/Option&quot;;
+const upperCaseSam = (name) =&gt; name === 'Sam' ? some(name.toUpperCase()) : none;
+const optionWithNameSam = some('Sam');
+const optionWithNameSmith = some('Smith');
+const upperCasedName = chain(upperCaseSam)(optionWithNameSam);
+const noneUpperCasedName = chain(upperCaseSam)(optionWithNameSmith);
+console.log(getOrElse(() =&gt; 'no value present')(upperCasedName));
+console.log(getOrElse(() =&gt; 'no value present')(noneUpperCasedName));
+</code></pre>
+<p><code>Line 5:</code> We apply the function defined at line 2 to the Option defined on line 3. Line 6: We apply the function defined at line 2 to the Option defined on line 4.</p>
+<p><code>Line 8:</code> This prints no value present to the console. This is the default value. Therefore, our Option will be none. We had a container with the value Sam, and we applied a function to that inner value that returned another container with SAM inside it, defined as Option&lt;Option<string>&gt;. At least, this is what we would’ve gotten if we used map. 
+Instead, we used chain, which <strong>flattened out the containers after receiving the results of the function. So, Option&lt;Option<string>&gt; became Option<string>.</strong></p>
+<p><code>Note:</code>
+Why is <strong>flattening</strong> so useful? </p>
+<p>While monads offer a lot of useful behavior, nesting offers no additional advantages. It just produces more repetitive code because we’d have to unwrap the value multiple times. So, it’s best <strong>to get rid of the additional wrappings.</strong></p>
+<p>That leaves us with an outer Option that contains an empty none Option. Consequently, our chain decides that this result, once flattened, is equal to none. The empty Option infects all of the outer ones. It signifies a missing value, no matter how many times we wrap it with Option.</p>
+<h3 id="advantages-of-monads"><a class="header" href="#advantages-of-monads">Advantages of Monads</a></h3>
+<h4 id="combining-effects-and-purity"><a class="header" href="#combining-effects-and-purity">Combining effects and purity</a></h4>
+<p>Monads exist to handle effects. As discussed earlier, functional programming likes purity. However, <strong>effects such as writing to a database or calling some API ruin this purity.</strong> <em>This is because the call might work one moment and fail the next, making our results unpredictable.</em> <strong>This is where monads are helpful. Because they act as containers</strong>, they can store effective behavior. For example, we have monads just for storing effects, typically called IO monads.</p>
+<p>Furthermore, with map, we can create functions that further transform the value saved in our container. Here comes the important thing, at least from a functional programming perspective. That is, the IO monad doesn’t create an effect until it’s called. This means that everything is pure until we call the program containing the IO monad(s). With this, effects and purity are combined.</p>
+<blockquote>
+<p><em>monads make our type system more powerful because they offer more information about what a function is doing.</em>
+<em>In short, more behavior is made explicit, and this information helps create better and safer programs.</em></p>
+</blockquote>
+<p>Monads help us be more explicit about what a function will do and return. For example:</p>
+<ul>
+<li><input disabled="" type="checkbox" checked=""/>
+If a function has an effect, it’s wrapped in an IO monad.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+If a function is async, it’s wrapped in an Async or Task monad (both these names and others are used).</li>
+<li><input disabled="" type="checkbox" checked=""/>
+If the function has a failure path, an Either monad will be used.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+If some value might not exist inside the function, Option monad will be used.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+If a function does two or more of the things mentioned above, we’ll use monad transformers.</li>
+</ul>
+<p><code>Note:</code>
+Monad transformers are basically monads stacked on top of each other, combining all the useful qualities of the underlying elements.</p>
+<p><code>Note:</code>
+For the following, remember that monads are functors and get their map from Functor. If you’re unfamiliar with functors, just replace “functor” with “monad” in the explanation.</p>
+<p><strong>The newtype-ts library</strong> is a helper library for fp-ts that <strong>offers a NonZeroInteger type</strong> that gives non-zero values. This is also akin to design by contract, a prominent part of the Eiffel programming language. An interface in this language is described as a contract, which the interface must obey. This includes preconditions, postconditions, side effects, and other factors.</p>
+<h4 id="better-composition"><a class="header" href="#better-composition">Better composition</a></h4>
+<p><strong>Monads also help with composition</strong>. Because every <strong>monad has map and chain functions, we can use them to transform values in a flow or pipeline</strong> similar to the one we saw earlier with our compose helper. This is also possible with Promises and the then() function. However, with monads, everything will compose better. Plus, we can use different types of monads together to create more powerful functionality. In addition, the difference between chain and map makes what’s happening underneath more explicit. If we see a chain for the asynchronous task, another asynchronous process occurs in the function that we passed in.</p>
+<h2 id="either"><a class="header" href="#either">Either</a></h2>
+<p>Either (alternatively called <strong>Result in</strong>, for example, F#) <strong>is a monad</strong> we often use as an alternative <strong>for exception handling</strong>. It contains either (hence the name) a left or a right value. No further processing occurs if the value is left and you call map or chain. Similar to Option’s none, it just sits there and does nothing. The difference is that we can still retrieve the value originally entered there. This is why we often use Either for error handling. If something goes wrong, stop processing by placing a value (preferably an error message) on the left. <strong>If everything is fine, use right to do things with the value we have</strong>.</p>
+<p>Each function is short and simple. The first function simply checks if the fields are present. If they are, we pass back the event wrapped in an Either (right because everything is OK). If not, we place an appropriate <strong>error message in left</strong>. The other two functions have other parameters, but similar checks. We could extract some common behavior, but that doesn’t seem worthwhile yet.</p>
+<p>Our application will have to use all these checks. We have several options to combine them. The first is perhaps the most simple. Apply one check and then use chain to apply the others one by one.</p>
+<h3 id="when-to-use-either"><a class="header" href="#when-to-use-either">When to use Either</a></h3>
+<p>We already mentioned why we should use validation. Now, let’s see when we should use Either. Either has the advantage of being a bit simpler, so <strong>if we only have to do a few validations</strong>, it might work equally well. 
+<em>Suppose we have a check that takes a bit of calculating, say, a synchronous password verification. ​​If we can reject invalid requests</em> <strong>before</strong> <em>we have to run this expensive verification</em>, we can save time and money. 
+This would not be the case with Validation.</p>
+<p>Another reason to use Either, which seems to be a lot less common, is <strong>when we have a few exclusive failure modes</strong> <em>that take widely different paths</em>. 
+<em>For example,</em> <strong>our success path returns a 2xx, but our failure paths are a 3xx, a 4xx, or 5xx (i.e., redirects, bad requests, and server errors).</strong></p>
+<p><code>Remember:</code> Either doesn’t have to be used exclusively as an alternative for exception handling.</p>
+<h5 id="either-vs-validation"><a class="header" href="#either-vs-validation">Either vs. Validation</a></h5>
+<p>Suppose we receive data from a frontend where a user has just filled in their information. A situation where the user fixes their errors one at a time instead of just getting back a list of all problems might not be ideal. This might lead to user frustration and additional calls to our backend because the data is resubmitted multiple times. This is why Validation can be a useful alternative to Either.</p>
+<p><img src="../assets/images/either.png" alt="Either" /></p>
+<p>To demonstrate its potential, we’ll rewrite our three checks… The first thing we’ll need is a semigroup for an array of strings. We’ll pass it to the getValidation helper from Either.</p>
+<pre><code class="language-ts">//helper function
+import * as E from 'fp-ts/lib/Either';
+import {getSemigroup} from 'fp-ts/lib/NonEmptyArray'
+
+const applicativeValidation = E.getValidation(getSemigroup&lt;string&gt;());
+</code></pre>
+<p>A semigroup is a way of combining two values of the same type. The function is called concat. The product of two numbers, for example, is a semigroup where concat is the multiple of the two number values. The sum of two numbers is also a semigroup where the numbers are combined by addition.</p>
+<pre><code class="language-ts">// Validation functions
+import {NonEmptyArray} from 'fp-ts/lib/NonEmptyArray'; // additional import
+
+type Validation = (e: UserRegistrationDto) 
+    =&gt; E.Either&lt;NonEmptyArray&lt;string&gt;, UserRegistrationDto&gt;; 
+
+const fieldsNotEmptyV: Validation = (e) =&gt; {
+    return e.firstName &amp;&amp; e.lastName &amp;&amp; e.age &amp;&amp; e.sex &amp;&amp; e.country ?
+        E.right(e) : E.left(['Not all required fields were filled in.']);
+}; 
+
+const validateAgeV: Validation = (e) =&gt; {
+    return e.age &gt;= 18 &amp;&amp; e.age &lt; 150 ?
+        E.right(e) : E.left([`Received an invalid age of ${e.age}`]);
+}; 
+
+const validateGenderV: Validation = (e) =&gt; {
+    return e.sex === 'M' || e.sex === 'F' || e.sex === 'X' ?
+        E.right(e) : E.left([`Received an invalid sex ${e.sex}`]);
+}; 
+</code></pre>
+<p>Regards to above, </p>
+<ul>
+<li>Lines 3-4: Create a type to save some repetitive work.</li>
+<li>Lines 6-19: These functions are similar to those we previously wrote, except we wrap our left in an array. Instead of rewriting our code, we could have created a helper that wraps the string in an array. To do that, Either offers mapLeft, which only transforms left values. We added a V suffix to our function names for clarity.</li>
+</ul>
+<p>The pipe is very similar to our earlier one as well.</p>
+<pre><code class="language-ts">import {pipe} from &quot;fp-ts/lib/pipeable&quot;;
+import {sequenceT} from &quot;fp-ts/lib/Apply&quot;; 
+
+const result = pipe(
+    exampleEvent,
+    e =&gt; sequenceT(applicativeValidation)(
+        fieldsNotEmptyV(e),
+        validateAgeV(e),
+        validateGenderV(e),
+    ), 
+    E.map(([first]) =&gt; first), 
+);
+console.log(result)
+</code></pre>
+<p><code>Note:</code> In the functional world, traverse and sequence handle lists (by which we mean anything iterable, so not limited to a List type) of elements. <strong>The sequence function can be used to “swap” the list and monad.</strong> For example, we can go from a list of optionals to an optional list (but only if none of the optionals contain empty values). The traverse function is similar but applies a function to each element in the list.</p>
+<h2 id="what-is-lifting"><a class="header" href="#what-is-lifting">What is lifting?</a></h2>
+<p>According to Bartosz Milewski’s lectures on category theory, lifting actually comes from the representation of the relation between a Functor and an ordinary mapping of functions, as follows:</p>
+<p>Fa -&gt;  Fb   (3)</p>
+<p>^       ^
+|       |   (2)</p>
+<p>a  -&gt;   b   (1)</p>
+<p>The transformation of a value we call a into a different value b is represented by an arrow from left to right, shown by (1).
+The up arrows shown by (2) signify a value transformation into a Functor, explaining the F that appears just before the character. We saw earlier that monads in many languages have a function to put a value inside a monad. So, the up arrow would be something like Option.of(a) in practice.
+With the horizontal arrow, shown by (3), we’re dealing with transformations between Functors. A Functor with value a is changed into a Functor containing a value b.</p>
+<p><code>Relation between a Functor and an ordinary mapping of functions:</code></p>
+<p><img src="../assets/images/relation_functor_mapping.png" alt="Relation between a Functor and an ordinary mapping of functions" /></p>
+<p>All of this comes from category theory, where we deal with Objects and Morphisms. The former are the letters, the latter are the arrows between them. So, with a -&gt; b, the arrow is a morphism from object a to b. Once applied to functional programming, the objects are types, and the arrows are functions. The horizontal arrows show functions transforming one value into another, and below are just ordinary values. At the same time, we see Functors wrapping those same values above. Now, lifting is simply moving from function (1) to function (3) and is called lifting because of the convention that requires us to write the version with the Functors above the normal one! We move up into the realm of Functors. Functional programming languages provide specific functions for this action. In PureScript, these are called lift with a suffix indicating the number of arguments the lifted function takes. For example, lift2 lifts a function of two arguments.</p>
+<p>We can use this because we currently have a function that works with values, not Functors or monads, that is., createUser. The functions that create the parameters we need produce monads, though. So, we lift our createUser function, and if functions that generate parameters don’t return a monad, we wrap them in one.</p>
+<p>A simple example in PureScript would look like this:</p>
+<pre><code class="language-ts">firstValue :: Maybe String
+firstValue = Just &quot;a&quot; 
+
+secondValue :: Maybe String
+secondValue = Just &quot;b&quot; 
+
+needsLifting :: String -&gt; String -&gt; String
+needsLifting a b = a &lt;&gt; b 
+
+doesNotWork = needsLifting firstValue secondValue 
+
+getLiftResult = lift2 needsLifting firstValue secondValue 
+</code></pre>
+<p>Let’s look at the explanation of the above code:</p>
+<p>Lines 2 and 5: Let’s suppose these are the results from some other functions, and they return Maybe values (which is the name for an Option in PureScript).
+Line 8: This function works with normal values, taking Strings as input and producing the concatenated version.
+Line 10: When we do this, our compiler complains that it expects a String and gets a Maybe string, which isn’t the same. If we were to wrap it in one, the compiler would start complaining about the second parameter.
+Line 12: Here, we start with lift2 and give it a function to lift and the required number of parameters (two) wrapped in a functor, and everything compiles. The function returns the result, wrapped in another Maybe, because the function has been lifted into the world of functors.</p>
+<h2 id="taskeither-vs-task"><a class="header" href="#taskeither-vs-task">TaskEither vs. Task</a></h2>
+<p>TaskEither is a monad transformer provided by fp-ts. It’s actually a monad Transformer. We already mentioned how we can stack monads on top of each other to combine their effects. That helps us understand why Either reference is there. What about Task? We haven’t seen that one before!</p>
+<p>Task is a monad for asynchronous non-failing calls. A Promise is easily converted into a Task. Simply create a function that returns a Promise. That’s it!</p>
+<pre><code class="language-ts">const thisIsATask: T.Task&lt;number&gt; = () =&gt; Promise.resolve(42);
+</code></pre>
+<p>This monad is useful because it’s a monad. We can perform all kinds of transformations, like with any other monad:</p>
+<pre><code class="language-ts">// result is still T.Task&lt;number&gt;
+const result = pipe(
+    thisIsATask,
+    T.map(n =&gt; n + 1) // after getting back the result, we increase it by 1
+);
+</code></pre>
+<p>Similarly, we can use chain to combine multiple Tasks. That means we now have the power of monads along with their composability and ease of use for the common asynchronous Node functionality. Eventually, when we actually need the results, we call the Task as a function and it returns the Promise it contains.
+We’re now creating a Task and telling our code to perform a map on it when it’s run. It doesn’t start running, though. We can test this by adding a console.log statement. Nothing prints.</p>
+<pre><code class="language-ts">// now result is Promise&lt;number&gt;
+const asTask: T.Task&lt;number&gt; = () =&gt; {
+    return new Promise((resolve) =&gt; {
+        console.log('Doing stuff')
+        return resolve(42);
+    });
+};
+
+const result = pipe(
+    thisIsATask,
+    T.map(n =&gt; n + 1)
+);
+</code></pre>
+<p>Before we continue, let’s take a small detour. As we mentioned several times before, functional programming tries to keep everything pure and thus easy to reason with. Side effects and I/O ruin this condition because they add impurity to our program. If our function uses I/O, it gives different results, despite having the same input. For instance, if we call the Lambda we’re monitoring more frequently, we get back a different sum. This is why FP does the best it can and moves all this content to the edge. So, despite what we might be expecting, this is pure because nothing is actually happening. There’s no asynchronous behavior (that is, a Promise) being run.</p>
+<p>At some point, we’ll actually have to run the Task. Otherwise, why did we create it? That said, FP leaves this responsibility to the application’s user. Do we actually want to get things done? In that case, simply invoke the function and we’ll be responsible for the result!</p>
+<p><code>Notice</code> that the logging appears. As a result, the program we’re writing will be pure and free of side effects. That is, it will be pure until, at the final step, we invoke the function to get back a Promise that contains the results we desperately desire. On a high level, we’re describing what we want the code to do. When it’s run, an interpreter decides what must actually happen. It decides whether it needs side effects. If the interpreter is a mock one, it might not need any side effects! Real interpreters probably will, though.</p>
+<h3 id="combining-task-and-either"><a class="header" href="#combining-task-and-either">Combining Task and Either</a></h3>
+<p>Let’s return to the subject at hand. We know what a Task is and we already knew Either. What’s their combined power? That answer is simple.That is, handling asynchronous tasks that might fail. Instead of writing a try or catch, we use the TaskEither monad and it either returns an error when the catch is triggered, or gives back our result. Our call to AWS can definitely fail, for example, if we made a mistake in the function’s name.</p>
+<p>Here’s the first function from our file again:</p>
+<pre><code class="language-ts">const getMetricInfo = (between: Between, fun: string) =&gt; 
+    (metric: Metric): TE.TaskEither&lt;string, StatsResult&gt; =&gt; {
+
+    const paramsForCW = generateCWMetricStatisticsParams(metric, between);
+    const metricToStatsResult = metricsToStatsResult(fun, metric); //return -&gt; next code block
+</code></pre>
+<h3 id="taskeithers-map"><a class="header" href="#taskeithers-map">TaskEither’s map</a></h3>
+<p>Next, we use TaskEither’s map to transform the output StatsResult type we defined earlier. Finally, but importantly, we start the flow by feeding in the function name, fun. Without that function call, nothing would happen. We’d merely have a function waiting for an argument.</p>
+<p>Because flow is simply a compose in a different order, we also know why we partially applied our functions earlier. That is, only one parameter is passed to the next function, but two of our functions required three parameters! We gave them the two we already had, knowing that the flow would deliver the third and final parameter.</p>
+<p>Note that we originally wrote the flow above like this:</p>
+<pre><code class="language-ts">    return flow(
+        paramsForCW,
+        p =&gt; TE.tryCatch(() =&gt; getCWMetrics(p), String),
+        TE.map(metricToStatsResult)
+    )(fun);
+};
+</code></pre>
+<p>We can see that the call takes a Between, the function name, and a metric name. It returns a TaskEither, with the error as a string (the left) and the successful result as a StatsResult. What about paramsForCW and metricToStatsResult? Both are partially applied functions. The parameter generation function has received a metric name and between but is still missing a function name. The metricToStatsResult function has the function and metric names but is waiting for the output of the Cloudwatch call. So, both const values are functions waiting for just one more parameter. We’ve used this technique of partially applying before, in our introduction, when we were demonstrating composing.</p>
+<p>Furthermore, flow is a helper from the fp-ts library for composing functions. It’s actually just compose, but applied from left to right. It starts generating parameters, passing those to our cloudwatch function, which is inside a TaskEither constructor (lifting function) tryCatch. The latter eventually runs what we pass in (that is, our Promise-generating cloudwatch function) and in the case of failure, it uses the constructor we gave as a second argument to build an error. Here we pass the String constructor to get the error as a string. Note that tryCatch actually requires a Lazy<Promise> as the first parameter. In practice, this simply means that we pass in a function that returns a Promise. This is because that is effectively lazy, that is, not evaluated immediately.</p>
+<h4 id="eager-or-lazy"><a class="header" href="#eager-or-lazy">Eager or Lazy</a></h4>
+<p>Programming languages can be sorted by their type of evaluation, eager or lazy, with Haskell as one example of the latter. Essentially, in a lazy language, something is only evaluated when necessary. This might seem more complex, but it has its advantages. For one, there are potential performance gains because what isn’t needed is never evaluated (Java developers can compare this with Hibernate’s eager vs. lazy fetch modes). Another advantage is the ability to work with infinities, for example, taking the first five elements of an infinite list. Our program would never come to an end if we had to evaluate the entire list! A lazy language, on the other hand, just evaluates the first five elements, which is all it needs at that point, and returns those.</p>
+<h3 id="continue-of-taskeithers-map"><a class="header" href="#continue-of-taskeithers-map">Continue of TaskEither’s map</a></h3>
+<p>Though we like this version because we could further abstract away the tryCatch as a utility with a predetermined error constructor, this isn’t actually pure because a Promise is created as soon as our function is called. The previous code, on the other hand, was lazy. By postponing creation, it stayed pure.</p>
+<p>Also, we may be wondering about the map with metricToStatsResult. Is this the right location for that transformation? Isn’t the goal of this module just to get information out of Cloudwatch? This is a valid point. On the other hand, in this way, AWS types remain an implementation detail, invisible to whoever uses the entrypoint functions. Although in that case, to be entirely consistent we should also remove Datapoints from the returned type. Removing Datapoints is a possible improvement.</p>
+<p>On to the second entrypoint function.</p>
+<pre><code class="language-ts">export const retrieveMetrics = (between: Between, metrics: readonly Metric[]) =&gt; 
+    (fun: string): TE.TaskEither&lt;string, StatsResult[]&gt; =&gt; {
+        return A.array.sequence(TE.taskEither)
+            (metrics.map(getMetricInfo(between, fun)));
+};
+</code></pre>
+<p>First, note the export. This function is exported and is the real entrypoint of our gateway module. Because the code is a bit dense, the body has been split into two lines. The signature should be obvious by this point. The parameters are similar to those we gave to the other function, except we’re now expecting an array of metrics instead of a single one. All metrics we desire can now be passed into this function. Similarly, the return has changed into an array of StatsResult. To get a slightly better result, we could’ve created a StatsResults (note the final s) as an alias for this array.</p>
+<h3 id="the-arraysequence-function"><a class="header" href="#the-arraysequence-function">The array.sequence function</a></h3>
+<p>What does A.array.sequence from the Array module do? The naming might be a giveaway. That is, it runs one or more functions of the type given as the first argument, in this case TaskEither in parallel. This is similar to running a Promise.all but as a monad, it’s even easier to use. We have abstracted away all the difficulties of parallelism.</p>
+<p>The second argument is the array of TaskEithers. We want to run the function for retrieving metrics once for every metric (three times in total). To avoid some typing, we can use partial application and pass in getMetricInfo with two out of three arguments already provided. This means we can use point-free style without passing in the metric name explicitly inside the map. If we prefer to be explicit, though, we can replace that last line with metrics.map(m =&gt; getMetricInfo(between, fun)(m)).</p>
+<p>That’s it. We’re all caught up and have finished creating our entrypoint for retrieving all relevant metric information from Cloudwatch. This is more of a real example than that of our previous chapter, but we’re still writing in the same style, using short, understandable functions that combine to form larger functionality. This time, though, we spread them out over more modules.</p>
+<p>Moreover, we were able to keep much of our code pure despite the fact that the application’s core functionality involves retrieving information from external services, which is an impure process. Our new Task and TaskEither monads (Transformer) helped us control this potentially dangerous type of code.</p>
+<h2 id="the-datapoints-interface"><a class="header" href="#the-datapoints-interface">The DataPoints interface</a></h2>
+<p>If everything goes well, we now have a TaskEither returning a StatsResult array, with each element of the array containing information for a different type of metric (one will, for example, contain data for errors). We’re ignoring the error path for now. So, how do we transform our individual StatsResult elements to an output useful to us (a developer keeping an eye on their applications)? Simple: we’ll use small, composable, and pure functions. We already have a folder and file called transformers, so why not add it all in there?</p>
+<p>First, we want the total sum of every individual metric. For clarity’s sake, we’ll dissect the AWS Datapoints type we’re currently returning within StatsResult:</p>
+<p><code>Note:</code>
+If a library has types that it wants to expose to its users, these are typically contained inside a file ending with d.ts. This provides the name of the Cloudwatch types, say cloudwatch.d.ts.</p>
+<pre><code class="language-ts">export type Datapoints = Datapoint[];
+
+export interface Datapoint {
+    Timestamp?: Timestamp;
+    Sum?: DatapointValue;
+    Average?: DatapointValue;
+    // other values
+};
+
+export type DatapointValue = number;
+</code></pre>
+<p>Our Datapoints value is an array of Datapoint. Each Datapoint contains the Sum information we want to extract, which is a DatapointValue, itself an alias for number. Note that because we set the Period parameter quite high early on, it’s possible that there’s only one number present within the array. This could help us avoid a lot of work. We can’t be sure of this, however, and assuming this status might create bugs if another user changes either the period or timeframe. We’re assuming it to be a few hours, but what if someone changes it to a few days? In that case, the probability of an array with multiple elements is very high. So, we’ll assume that there might be more than one Datapoint and thus more than one Sum.</p>
+<p>Now that we know what our type looks like, we add a new type that we want to create out of our current ones:</p>
+<pre><code class="language-ts">export type StatsSumResult = {
+    readonly functionName: string,
+    readonly metric: Metric,
+    readonly sum: number,
+}
+</code></pre>
+<p>As we can see, types.ts is the same as before, but now the sum is just one number. We should write a function that consolidates Sum elements into a single number.</p>
+<pre><code class="language-ts">import {fold, monoidSum} from &quot;fp-ts/Monoid&quot;;
+
+export const statsResultToStatsSumResult =
+    (results: readonly StatsResult[]): StatsSumResult[] =&gt; {
+        return results.map(b =&gt; ({
+            functionName: b.functionName,
+            metric: b.metric,
+            sum: fold(monoidSum)(b.data.map(d =&gt; d.Sum)),
+        }));
+    };
+</code></pre>
+<p>This is a seemingly simple function, Because it mostly just maps our current array to a new one of type StatsSumResult. We might ask what a fold is, though. What is monoidSum? Is that similar to a monad?</p>
+<p>Remember the semigroup from an earlier chapter? As a quick reminder, a semigroup provides a way of combining two values of the same type, resulting in a single value of that type. A product, which combines two numbers using multiplication, is an example. Monoids are semigroups with the addition of an empty value, a starting element. That starting value is neutral, which means that it doesn’t care what other value we combine it with. It will simply give back the other value as a result. The monoid for Product would have 1 as its empty value or starter (7 * 1 = 7), while Sum would have 0 (7 + 0 = 7). The monoidSum function is simply a utility function from fp-ts, providing a monoid sum out of the box.</p>
+<blockquote>
+<p><code>NOTE:</code> Monoid is not a synonym for Semigroup.
+<code>NOTE:</code> What’s one thing monoids and monads have in common? They’re composable.</p>
+</blockquote>
+<p>The functional world likes monoids because they’re composable. If we create a monoid for combining strings and another for combining numbers, we can use them as components when we want to handle more complex structures that contain those primitives. No additional logic is required. We’ll see an example of this later. As an additional plus, operations on monoids can be made parallel with relative ease. Take sum as an example, with values between one and four. We can add those numbers in one go, or we could sum 1 + 2 (=3) and 3 + 4 (=7) in a first phase, adding the results of those calculations in a second phase, 3 + 7.</p>
+<h3 id="whats-fold"><a class="header" href="#whats-fold">What’s fold?</a></h3>
+<p>Fold is very similar to reduce, which you might know from JavaScript or other languages. It’s a function that takes a starting element and a function (so it’s another one of those higher-order functions) that knows how to combine the accumulated value with values from a list or array, which are fed in one by one. If we want to get the sum, this function would add the current element of the array to the accumulated value. Fold and reduce are very versatile. We can easily create functions like filter or map with reduce. Try it!</p>
+<p><code>Note:</code> Fold and reduce are often used together with an array, which is why we give that as an example. We can also fold monoids and monads! Also, note that we’ll often encounter a fold left and a fold right, differing only in starting element (left side of the array, or the right) and direction.</p>
+<p>Now we know what the above code does. It uses a fold to reduce the given array with monoidSum. This means that it will start with 0 and combine elements through addition.</p>
+<p>Because we now have a type we can work with, let’s think about what we want to show our application users. We’d like to display the health of the Labda. As mentioned earlier, we’ll do this with a status, which can take three different values, namely OK, WARN, and ERR. This is good for a brief overview of the situation. For more details, we’ll also add a message that can contain further information.</p>
+<pre><code class="language-ts">export type Status = 'OK' | 'WARN' | 'ERR';
+
+export type ReducedStats = {
+    readonly status: Status,
+    readonly message: string,
+}
+</code></pre>
+<p>As usual, we limit our status to the types we specified because that makes the field easier to work with. Messages aren’t as easy to limit in value, so we’ll let the message be a string.</p>
+<h4 id="transforming-statssumresult-reducedstats"><a class="header" href="#transforming-statssumresult-reducedstats">Transforming StatsSumResult=&gt; ReducedStats</a></h4>
+<p>The next big piece of the puzzle is a function to transform a single StatsSumResult into a ReducedStats.</p>
+<pre><code class="language-ts">const statsSumToStatusAndMessage = (invokes: number) =&gt; (s: StatsSumResult) =&gt; {
+    let status: Status = 'OK'; //2
+    let message = ''; 
+
+    switch (s.metric) {
+        case 'Invocations': {
+            status = invokes === 0 ? 'WARN' : 'OK'; //7
+            message = invokes === 0 ? 'not invoked' : 'invokes ok'; 
+        }
+            break;
+        case 'Errors': {
+            const percentage = invokes !== 0 ? s.sum / invokes * 100 : 0; //12
+            status = percentage &gt;= 5 ? 'ERR' : 'OK';
+            message = percentage &gt;= 5 ? 'throwing errors' : 'no errors';
+        }
+            break;
+        case 'Throttles': {
+            const percentage = invokes !== 0 ? s.sum / invokes * 100 : 0; //18
+            status = percentage &gt;= 1 ? 'WARN' : 'OK'; (4)
+            message = percentage &gt;= 1 ? 'being throttled' : 'no throttles'; 
+        }
+            break;
+        default:
+            const _exhaustiveCheck: never = s.metric; //24
+            return _exhaustiveCheck; 
+    }
+
+    return { //28
+        status, message,
+    } 
+};
+</code></pre>
+<p>Lines 2–3: We start with an empty message and an OK status, which can be overwritten by the switch that follows. We have to tell TypeScript that status has the Status type, or it will assume that this is a string, which downstream code doesn’t accept. Ideally, the compiler would notice that only three possible values, matching those of our type, appear in this piece of code and would conclude that this is equivalent to Status. TypeScript isn’t there yet. Also, because Status doesn’t have an empty string value, we can’t initialize it as such. So, we start with the reasonable default of ‘OK’.
+Lines 7–8: We’re using a switch to check each possible value for Metric, so (to recall from earlier in this chapter) we have three in total. This is the closest we can get to the power of pattern matching in other functional languages. Notice how, when we get an Invocations, we already have the answer ready. This is because we need the number of invocations in the Errors and Throttles cases as well, so we added it as the first parameter to this function.
+Line 12: Here, we handle Error and report an error when they exceed five percent of the total invocations of the function. This is why we take the sum, divide by the invokes, multiply by 100, and check the percentage we get. If there are no invocations, there won’t be any errors, either. In that case, we return a 0. Note that the five percent threshold is a magic number and we might want to make this configurable. That’s quite easy to do through Lambda environment variables, which we’ll use later in this chapter for getting the function name. If we don’t think these values will change often, another approach could be to move the values to the constants file.
+Lines 18–20: This is similar to the errors, except here we give back a warning when we have one percent (or more) throttles.We only give a warning here, though, not an error status. An occasional throttle is nothing unusual.
+Lines 24–25: This is an exhaustiveness check, which we’ve already encountered once before. Say we had a fourth metric, called MagicInvocations, invocations of our Lambda that come out of nowhere. If MagicInvocations was a possible Metric type value, this default would try to assign it to _exhaustiveCheck, which has type never. We can’t assign something to never. So, this check throws a warning at compile time if we add a metric but forget to handle it. Do note that an IDE might not understand this and might advise us to remove or change this default case in a way that will stop it from working.
+Lines 28–30: We passed through the switch, so status and message now have the correct values, which we can return.</p>
+<p><code>Notice</code> that we’re mutating two variables within this function. Isn’t that a horrible mistake? While a different approach that doesn’t mutate variables might turn out cleaner, the important thing to note is that we’re only mutating local variables. This function creates and manipulates variables, which means that we won’t run into any issues with this mutability. If the golden rule is to avoid mutation, remember to limit the scope of any variable mutation you end up doing. Global variables, as we know, are bad. Unexposed mutation within a function is acceptable.</p>
+<p>Now we can produce a bunch of messages and strings. We actually just want to output one status and one message. How do we combine them? Well, how about using fold and a monoid? How would we go about combining two statuses? Clearly, if B says that everything’s OK and B says that there’s a warning, we want there to be a warning! Similarly, we prefer an error to a warning. So, we get the following:</p>
+<pre><code class="language-ts">import {fold, monoidSum} from &quot;fp-ts/Monoid&quot;;
+
+const statusMonoid: Monoid&lt;Status&gt; = {
+    concat: (x, y) =&gt;
+        x === 'ERR' || y === 'ERR' ? 'ERR'
+            : (x === 'WARN' || y === 'WARN' ? 'WARN' : 'OK'),
+    empty: 'OK'
+};
+</code></pre>
+<p>The monoid has a concat and an empty. Remember that the empty value is always overwritten by any other value. Here, the empty is OK because we always prefer a warning or an error to that value. The concat is written somewhat densely, but it shows what we just said, namely that error &gt; warning &gt; ok.</p>
+<p>Now a monoid for the messages:</p>
+<pre><code class="language-ts">const messageMonoid: Monoid&lt;string&gt; = {
+    concat: (x, y) =&gt; (x + ' ' + y).trim(),
+    empty: '',
+};
+</code></pre>
+<p>It’s not perfect, but it’s good enough. The empty string will be overwritten by other values and we can combine two strings by appending. As we said earlier, monoids have a nice quality that they’re composable. We’ll use the fp-ts library to accomplish this.</p>
+<pre><code class="language-ts">import { getStructMonoid } from 'fp-ts/lib/Monoid'
+
+const ReducedStatsMonoid: Monoid&lt;ReducedStats&gt; = getStructMonoid({
+    status: statusMonoid,
+    message: messageMonoid
+});
+</code></pre>
+<p>Using getStructMonoid, we say that the monoid for ReducedStats uses the two primitives above for its fields. The rest happens automatically. Now let’s bring everything together.</p>
+<pre><code class="language-ts">export const statsReducer = (results: readonly StatsSumResult[]): ReducedStats =&gt; {
+    const invocations = results
+        .filter(m =&gt; m.metric === 'Invocations')
+        .map(m =&gt; m.sum)
+        .shift() || 0; //5
+    
+    const singleStatsSumMapper = statsSumToStatusAndMessage(invocations); 
+
+    return fold(ReducedStatsMonoid)
+        (results.map(singleStatsSumMapper)); //10
+};
+</code></pre>
+<p>Lines 5–7: We saw earlier that our statsSumToStatusAndMessage needs the number of invocations, so we retrieve those. If the value isn’t present in our array, shift returns undefined and we return 0 instead. We could’ve also used the ?? operator from TypeScript, but in this case, both are equally valid.
+Line 10: Next, we give the monoid we just wrote to fold and pass in all our StatsSumResult mapped to ReducedStats. The fold function reduces those to a single status and message. It’s another nice example of the way FP allows us to write code at a higher level of abstraction. We merely say that we want the ReducedStats to be reduced into a single value. How this is done is none of our concern.</p>
+<p><code>Note:</code>
+There are other equally valid ways to reduce the stats to a status plus message. Examples include forEach, map, and reduce. But this was a nice opportunity to show monoids in action.</p>
+<h4 id="returning-results"><a class="header" href="#returning-results">Returning results</a></h4>
+<p>The last thing we want to do in regards to transforming is to give results back to the outside world. So, just in case someone puts us behind an AWS API Gateway and uses REST calls, we’ll add a status code and related fields.</p>
+<pre><code class="language-ts">type StatusCode = 200; 
+
+export type HttpResult = {
+    readonly statusCode: StatusCode,
+    readonly body: string,
+    readonly headers: Record&lt;string, string&gt;,
+}; 
+</code></pre>
+<p>Line 1: For now, we’ll define only one relevant code for the case when everything goes well.
+Lines 3–7: We’ll give back an http status code, the results in the body, and headers (which might be needed for protocols such as Cross-Origin Resource Sharing, or CORS).</p>
+<p>To go from our reduced stats to httpResultFromStats requires only a little work.</p>
+<pre><code class="language-ts">export const httpResultFromStats = (result: ReducedStats): HttpResult =&gt; ({
+    statusCode: 200,
+    body: JSON.stringify(result),
+    headers: {
+        'Access-Control-Allow-Origin': '*'
+    }
+});
+</code></pre>
+<p>Note that when we return this from a Lambda, AWS knows how to interpret these values. It sees statusCode as a http status code. Similarly, everything inside headers is added as headers to the response. In case we decide to talk with browsers, we’re allowing every origin to call us, which adds security. With that, we’ve come to the end of our happy flow. Apart from error handling, which turns out to be quite easy, a few pieces are still missing. Going way back to our Cloudwatch entrypoint, we see that we need a Between type and a function name. Where do those two come from?</p>
+<h2 id="synchronous-behavior-and-io"><a class="header" href="#synchronous-behavior-and-io">Synchronous Behavior and IO</a></h2>
+<p>We’ll ignore the function name for now and focus on how to create the Between. It should be clear that there are problems with purity when it comes to getting the start and end times because we want to show a certain range in regard to the current time. Consider the last three hours of metrics, for example. This means that the function for getting our Between returns different values depending on when it was invoked, which is impure behavior. How will we wrap it? In a Task? We could do that, but this is synchronous behavior, for which the IO monad is ideally suited. Similarly, IO is also what we normally use to wrap our logging, which is, after all, another synchronous side effect.</p>
+<p>As noted, in a hybrid language like TypeScript (which allows other styles of programming besides FP),we can decide for ourselves which effects are important enough that we want to keep an eye on them. That decision comes down to whether the correct program behavior depends on the effect, in this case, logging. In most cases it won’t, but what if our console output is used by another program as input? In the latter case, our output is an essential part of our application and should be treated with the utmost care. So, if you like debugging with console statements and all that logging is temporary, go ahead and take advantage of the flexibility of JavaScript, which doesn’t force us to wrap logging in a monad. If we’re capturing some important logs but our application doesn’t depend on them, that seems acceptable as well. On the other hand, in some rare cases (like the first one we discussed), avoiding IO might prove to be a mistake.</p>
+<h3 id="defining-constants"><a class="header" href="#defining-constants">Defining constants</a></h3>
+<p>As with several other potentially configurable values, we’ll keep it simple and only check for the last three hours. We’ll add these values to our constants.</p>
+<p>If we were to make a lot of these values (error percentage, function name, times) configurable, how would we go about passing them to so many functions? Won’t that become complicated? Part of the answer will be to gather them in a Config type, meaning that we only need to pass in one clearly defined value. If many functions need them, we’d use the Reader monad, which we’ll discuss later.</p>
+<pre><code class="language-ts">const ONE_HOUR_EPOCH_MILLI = 60 * 60 * 1000;
+export const THREE_HOURS_EPOCH_MILLI = 3 * ONE_HOUR_EPOCH_MILLI;
+</code></pre>
+<h3 id="creating-a-function-to-get-between"><a class="header" href="#creating-a-function-to-get-between">Creating a function to get Between</a></h3>
+<p>Now, we create our function to get a Between wrapped in an IO. First, create a new file called time.ts in util (the same folder in which the constants are located).</p>
+<pre><code class="language-ts">import {Between} from &quot;./types&quot;;
+import {THREE_HOURS_EPOCH_MILLI} from &quot;./constants&quot;;
+
+export const dateToBetween = (curr: Date): Between =&gt; ({
+    startTime: new Date(Number(curr) - THREE_HOURS_EPOCH_MILLI),
+    endTime: curr,
+}); 
+</code></pre>
+<p>Lines 4–7: Creating a Between based on an incoming value is pure. Given a certain date (say, January 1, 2020), it returns the same Between every time! We extract pure from the impure and put the latter in a separate function.</p>
+<p>We want to pass on both the function name and this between value. To do that, we add a type for configuration.</p>
+<pre><code class="language-ts">export type Config = {
+    between: Between,
+    functionName: string,
+};
+</code></pre>
+<p>To keep things simple, functionName is just a string. Now we’ll create a config.ts file, again in the util folder:</p>
+<pre><code class="language-ts">import {io, IO, map} from &quot;fp-ts/IO&quot;;
+import {Between, Config} from &quot;./types&quot;;
+import {create} from &quot;fp-ts/Date&quot;;
+import {dateToBetween} from &quot;./time&quot;;
+import {pipe} from &quot;fp-ts/pipeable&quot;;
+import {sequenceT} from &quot;fp-ts/Apply&quot;;
+
+const addToConfig = (between: Between, functionName: string) =&gt; ({ //8
+    between,
+    functionName,
+}); 
+
+export const generateConfig = (): IO&lt;Config&gt; =&gt; {
+    return pipe(
+        sequenceT(io)(
+            map(dateToBetween)(create), //16
+            () =&gt; process.env.FUNCTION_NAME,
+        ), 
+        map(([a, b]) =&gt; addToConfig(a, b)), 
+    );
+};
+</code></pre>
+<p>Lines 8–11: A pure function for creating our config.
+Line 16: A helper from the fp-ts library, create (according to GitHub sources) “Returns the current Date” wrapped in an IO monad.
+Line 17: This means we have to lift it into the config. Similarly, we get the function name from our environment (more on that later), so we create an IO for that too. We could use IO.of() to do that, but because IO is simply a function returning a value, we do that instead.
+Line 19: Next, we use map to retrieve the two values and pass them to our pure addToConfig.</p>
+<p>To summarize, we used two small pure functions and some glue from fp-ts `to create our functionality.</p>
+<h2 id="where-to-go-from-here"><a class="header" href="#where-to-go-from-here">Where to go from here</a></h2>
+<p>If you’ve been skimming this course and it piqued your interest, you might consider going through it again in more detail. See if you understand everything and if you can write the code yourself. Note that fp-ts is still in active development, which might necessitate some changes (for example, StateReaderTaskEither’s evalState method has become deprecated). To learn more about the fundamentals of functional programming, you should probably look into some real FP languages like Haskell or Clojure. If you want to get into the action with TypeScript, try some of the things you learned here in a pet project. You might throw in some AWS services now that you know how to create them out of a simple YAML file. If everything goes well, you could use FP next time a greenfield project comes along at work.</p>
+<p>Finally, if any of the other generic subjects briefly mentioned in this course (like DDD or TDD) weren’t familiar to you, go check them out! The great curse and blessing of IT is that there’s always more to discover about any topic. So, to quote Werner Vogels, now go explore!</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../oop/designpatterns/singleton/singleton.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../tips/functionParameters.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../oop/designpatterns/singleton/singleton.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../tips/functionParameters.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_line_numbers = true;
+        </script>
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../ace.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../editor.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mode-rust.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../theme-dawn.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>
