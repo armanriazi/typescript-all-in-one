@@ -16,6 +16,27 @@ To determine which object this refers to; use the following precedence of order.
 3.	Object method
 4.	Global scope
 
+# 
+
+Sample of bind:
+
+```javascript
+const person = {
+  firstName:"John",
+  lastName: "Doe",
+  fullName: function() {
+    return this.firstName + " " + this.lastName;
+  }
+}
+
+const member = {
+  firstName:"Hege",
+  lastName: "Nilsen",
+}
+
+let fullName = person.fullName.bind(member); //return John Doe
+```
+
 ## The Difference Between call() and apply()
 
 The difference is:
