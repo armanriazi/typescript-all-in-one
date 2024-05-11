@@ -1,19 +1,20 @@
-## Comparison call(), apply(), and bind
+## Relation container and this
 
 In an object method, this refers to the object.
-Alone, this refers to the global object.
-In a function, this refers to the global object.
-**In a function, in strict mode, this is undefined.**
-In an event, this refers to the element that received the event.
-Methods like call(), apply(), and bind() can refer this to any object.
+- [x] Alone, this refers to the global object.
+- [x] In a function, this refers to the global object.
+- [x] **In a function, in strict mode, this is undefined.**
+- [x] In an event, this refers to the element that received the event.
+- [x] Methods like call(), apply(), and bind() can refer this to any object.
 
 ## This Precedence
 To determine which object this refers to; use the following precedence of order.
 ### Precedence	Object
-.1	bind()
-.2	apply() and call()
-.3	Object method
-.4	Global scope
+
+1.	bind()
+2.	apply() and call()
+3.	Object method
+4.	Global scope
 
 ## The Difference Between call() and apply()
 
