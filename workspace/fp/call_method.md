@@ -59,5 +59,5 @@ const person1 = {
   lastName: "Doe"
 }
 
-person.fullName.apply(person1, ["Oslo", "Norway"]);
+person.fullName.apply(person1, ["Oslo", "Norway"]); //return John Doe,Oslo,Norway
 ```
