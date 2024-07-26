@@ -1,0 +1,597 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>tsconfig.json - TypeScript-All-In-One(A.R)</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../AboutMe.html"><strong aria-hidden="true">1.</strong> About Me</a></li><li class="chapter-item expanded "><a href="../TypeScript.html"><strong aria-hidden="true">2.</strong> Getting Started</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../styleguide/styleguide.html"><strong aria-hidden="true">2.1.</strong> StyleGuide</a></li><li class="chapter-item "><a href="../configuration/configuration.html"><strong aria-hidden="true">2.2.</strong> Configuration</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../configuration/cli.html"><strong aria-hidden="true">2.2.1.</strong> CLI</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../javascript/recap.html"><strong aria-hidden="true">3.</strong> JavaScript</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../javascript/equality_condition.html"><strong aria-hidden="true">3.1.</strong> Equality</a></li><li class="chapter-item "><a href="../javascript/references.html"><strong aria-hidden="true">3.2.</strong> References</a></li><li class="chapter-item "><a href="../javascript/this.html"><strong aria-hidden="true">3.3.</strong> this</a></li><li class="chapter-item "><a href="../javascript/number.html"><strong aria-hidden="true">3.4.</strong> Number</a></li><li class="chapter-item "><a href="../javascript/truthy.html"><strong aria-hidden="true">3.5.</strong> Truthy</a></li></ol></li><li class="chapter-item expanded "><a href="../quick/quick.html"><strong aria-hidden="true">4.</strong> QuickStarts</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../quick/quick.html"><strong aria-hidden="true">4.1.</strong> Node Browser Lib</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../quick/nodejs.html"><strong aria-hidden="true">4.1.1.</strong> Node.js QuickStart</a></li><li class="chapter-item "><a href="../quick/browser.html"><strong aria-hidden="true">4.1.2.</strong> Browser QuickStart</a></li><li class="chapter-item "><a href="../quick/library.html"><strong aria-hidden="true">4.1.3.</strong> Library QuickStart</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../defination/defination.html"><strong aria-hidden="true">5.</strong> Var_Let_Const_Readonly_Static</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../defination/let.html"><strong aria-hidden="true">5.1.</strong> let</a></li><li class="chapter-item "><a href="../defination/var.html"><strong aria-hidden="true">5.2.</strong> var</a></li><li class="chapter-item "><a href="../defination/const.html"><strong aria-hidden="true">5.3.</strong> const</a></li><li class="chapter-item "><a href="../types/readonly/readonly.html"><strong aria-hidden="true">5.4.</strong> readonly</a></li><li class="chapter-item "><a href="../types/static/static.html"><strong aria-hidden="true">5.5.</strong> static</a></li></ol></li><li class="chapter-item expanded "><a href="../future-javascript.html"><strong aria-hidden="true">6.</strong> Future JavaScript Now</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/string/template-strings.html"><strong aria-hidden="true">6.1.</strong> Template Strings</a></li><li class="chapter-item "><a href="../classes.html"><strong aria-hidden="true">6.2.</strong> Classes</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../classes-emit.html"><strong aria-hidden="true">6.2.1.</strong> Classes Emit</a></li></ol></li><li class="chapter-item "><a href="../rest-parameters.html"><strong aria-hidden="true">6.3.</strong> Rest Parameters</a></li><li class="chapter-item "><a href="../spread-operator.html"><strong aria-hidden="true">6.4.</strong> Spread Operator</a></li><li class="chapter-item "><a href="../for...of.html"><strong aria-hidden="true">6.5.</strong> for...of</a></li><li class="chapter-item "><a href="../promise.html"><strong aria-hidden="true">6.6.</strong> Promise</a></li><li class="chapter-item "><a href="../async/async.html"><strong aria-hidden="true">6.7.</strong> Async Await</a></li></ol></li><li class="chapter-item expanded "><a href="../project/project.html"><strong aria-hidden="true">7.</strong> Project</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../types/migrating.html"><strong aria-hidden="true">7.1.</strong> JS Migration Guide</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../project/tsconfig.html" class="active"><strong aria-hidden="true">7.1.1.</strong> tsconfig.json</a></li><li class="chapter-item "><a href="../project/files.html"><strong aria-hidden="true">7.1.2.</strong> Which Files?</a></li></ol></li><li class="chapter-item "><a href="../project/declarationspaces.html"><strong aria-hidden="true">7.2.</strong> Declaration Spaces</a></li><li class="chapter-item "><a href="../project/modules.html"><strong aria-hidden="true">7.3.</strong> Modules</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../project/external-modules.html"><strong aria-hidden="true">7.3.1.</strong> File Module Details</a></li><li class="chapter-item "><a href="../project/globals.html"><strong aria-hidden="true">7.3.2.</strong> global.d</a></li><li class="chapter-item "><a href="../project/namespacing.d.html"><strong aria-hidden="true">7.3.3.</strong> namespacing.d</a></li></ol></li><li class="chapter-item "><a href="../project/namespaces.html"><strong aria-hidden="true">7.4.</strong> Namespaces</a></li><li class="chapter-item "><a href="../project/dynamic-import-expressions.html"><strong aria-hidden="true">7.5.</strong> Dynamic Import Expressions</a></li></ol></li><li class="chapter-item expanded "><a href="../types/types.html"><strong aria-hidden="true">8.</strong> TypeScript's Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../options/intro.html"><strong aria-hidden="true">8.1.</strong> Type Checking</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../options/noImplicitAny.html"><strong aria-hidden="true">8.1.1.</strong> noImplicitAny</a></li><li class="chapter-item "><a href="../options/strictNullChecks.html"><strong aria-hidden="true">8.1.2.</strong> strictNullChecks</a></li></ol></li><li class="chapter-item "><a href="../types/primitive/primitive.html"><strong aria-hidden="true">8.2.</strong> Primitive</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/empty.html"><strong aria-hidden="true">8.2.1.</strong> Empty</a></li><li class="chapter-item "><a href="../types/wrapper/wrapper.html"><strong aria-hidden="true">8.2.2.</strong> Wrapper</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/wrapper/wrapper_objects.html"><strong aria-hidden="true">8.2.2.1.</strong> Object</a></li></ol></li></ol></li><li class="chapter-item "><a href="../types/compound/compound.html"><strong aria-hidden="true">8.3.</strong> Compound</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/compound/union/union.html"><strong aria-hidden="true">8.3.1.</strong> Union</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/compound/union/discriminated-unions.html"><strong aria-hidden="true">8.3.1.1.</strong> Discriminated-unions</a></li></ol></li><li class="chapter-item "><a href="../types/compound/enum/enum.html"><strong aria-hidden="true">8.3.2.</strong> Enums</a></li><li class="chapter-item "><a href="../types/compound/tuple/tuple.html"><strong aria-hidden="true">8.3.3.</strong> Tuple</a></li></ol></li><li class="chapter-item "><a href="../types/generic/generic.html"><strong aria-hidden="true">8.4.</strong> Generic</a></li><li class="chapter-item "><a href="../types/type-assertion.html"><strong aria-hidden="true">8.5.</strong> Type Assertion</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/mapping.html"><strong aria-hidden="true">8.5.1.</strong> Type Mapping</a></li></ol></li><li class="chapter-item "><a href="../types/freshness.html"><strong aria-hidden="true">8.6.</strong> Freshness</a></li><li class="chapter-item "><a href="../types/type-inference.html"><strong aria-hidden="true">8.7.</strong> Type Inference</a></li><li class="chapter-item "><a href="../types/duck/duck.html"><strong aria-hidden="true">8.8.</strong> Duck Type</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/duck/structural/structural.html"><strong aria-hidden="true">8.8.1.</strong> Structuring</a></li><li class="chapter-item "><a href="../types/duck/structural/destructuring.html"><strong aria-hidden="true">8.8.2.</strong> Destructuring</a></li></ol></li><li class="chapter-item "><a href="../types/narrowing/narrowing.html"><strong aria-hidden="true">8.9.</strong> Narrowing</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/narrowing/guard.html"><strong aria-hidden="true">8.9.1.</strong> Guard</a></li><li class="chapter-item "><a href="../types/narrowing/assertion-fn.html"><strong aria-hidden="true">8.9.2.</strong> AssertionFN</a></li><li class="chapter-item "><a href="../types/narrowing/widening.html"><strong aria-hidden="true">8.9.3.</strong> Widening</a></li></ol></li><li class="chapter-item "><a href="../types/literal/literal-types.html"><strong aria-hidden="true">8.10.</strong> Literal Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/inference-literal-types.html"><strong aria-hidden="true">8.10.1.</strong> Inference Literal</a></li><li class="chapter-item "><a href="../types/enum-literal-type.html"><strong aria-hidden="true">8.10.2.</strong> Enum Literal</a></li><li class="chapter-item "><a href="../types/inference-literal-gurad-type.html"><strong aria-hidden="true">8.10.3.</strong> Inference Gurad Literal</a></li></ol></li><li class="chapter-item "><a href="../types/builtin/builtin.html"><strong aria-hidden="true">8.11.</strong> Built-in</a></li><li class="chapter-item "><a href="../types/covariance_contravariance/covariance_contravariance.html"><strong aria-hidden="true">8.12.</strong> Covariance &amp; Contravariance</a></li><li class="chapter-item "><a href="../types/recursive/recursive.html"><strong aria-hidden="true">8.13.</strong> Recursive</a></li><li class="chapter-item "><a href="../types/exceptions/exceptions.html"><strong aria-hidden="true">8.14.</strong> Exception Handling</a></li><li class="chapter-item "><a href="../types/patterns/patterns.html"><strong aria-hidden="true">8.15.</strong> Patterns</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/patterns/intersection/intersection.html"><strong aria-hidden="true">8.15.1.</strong> Intersection</a></li><li class="chapter-item "><a href="../types/patterns/power/power.html"><strong aria-hidden="true">8.15.2.</strong> Power</a></li><li class="chapter-item "><a href="../types/patterns/satisfies/satisfies.html"><strong aria-hidden="true">8.15.3.</strong> Satisfies</a></li><li class="chapter-item "><a href="../types/patterns/manipulation/manipulation.html"><strong aria-hidden="true">8.15.4.</strong> Manipulation</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/patterns/manipulation/conditional.html"><strong aria-hidden="true">8.15.4.1.</strong> Conditionally</a></li><li class="chapter-item "><a href="../types/patterns/manipulation/transform-mapping.html"><strong aria-hidden="true">8.15.4.2.</strong> Transform Mapping</a></li></ol></li></ol></li><li class="chapter-item "><a href="../types/module/@types.html"><strong aria-hidden="true">8.16.</strong> @types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/module/ambient/intro.html"><strong aria-hidden="true">8.16.1.</strong> Ambient Declarations</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/module/ambient/d.ts.html"><strong aria-hidden="true">8.16.1.1.</strong> Declaration Files</a></li><li class="chapter-item "><a href="../types/module/ambient/variables.html"><strong aria-hidden="true">8.16.1.2.</strong> Variables</a></li></ol></li></ol></li><li class="chapter-item "><a href="../types/exchange/exchange-types.html"><strong aria-hidden="true">8.17.</strong> Ex/Import of Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/lib.d.ts.html"><strong aria-hidden="true">8.17.1.</strong> lib.d.ts</a></li><li class="chapter-item "><a href="../types/functions.html"><strong aria-hidden="true">8.17.2.</strong> Functions</a></li><li class="chapter-item "><a href="../types/callable.html"><strong aria-hidden="true">8.17.3.</strong> Callable</a></li><li class="chapter-item "><a href="../types/type-compatibility.html"><strong aria-hidden="true">8.17.4.</strong> Type Compatibility</a></li><li class="chapter-item "><a href="../types/system/index-signatures.html"><strong aria-hidden="true">8.17.5.</strong> Index Signatures</a></li><li class="chapter-item "><a href="../types/moving-types.html"><strong aria-hidden="true">8.17.6.</strong> Moving Types</a></li><li class="chapter-item "><a href="../types/mixins.html"><strong aria-hidden="true">8.17.7.</strong> Mixins</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../collection/collection.html"><strong aria-hidden="true">9.</strong> Collection</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../collection/array.html"><strong aria-hidden="true">9.1.</strong> Array</a></li><li class="chapter-item "><a href="../collection/map.html"><strong aria-hidden="true">9.2.</strong> Map</a></li><li class="chapter-item "><a href="../collection/iterators.html"><strong aria-hidden="true">9.3.</strong> Iterators</a></li><li class="chapter-item "><a href="../collection/generators.html"><strong aria-hidden="true">9.4.</strong> Generators</a></li></ol></li><li class="chapter-item expanded "><a href="../oop/oop.html"><strong aria-hidden="true">10.</strong> Object Orianted Programming</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/generic/generic.html"><strong aria-hidden="true">10.1.</strong> Generic</a></li><li class="chapter-item "><a href="../oop/class.html"><strong aria-hidden="true">10.2.</strong> Class</a></li><li class="chapter-item "><a href="../oop/interfaces.html"><strong aria-hidden="true">10.3.</strong> Interfaces</a></li><li class="chapter-item "><a href="../oop/inheritance.html"><strong aria-hidden="true">10.4.</strong> Inheritance</a></li><li class="chapter-item "><a href="../oop/polymorphism.html"><strong aria-hidden="true">10.5.</strong> Polymorphism</a></li><li class="chapter-item "><a href="../oop/designpatterns.html"><strong aria-hidden="true">10.6.</strong> Design Patterns</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../oop/designpatterns/decorator/decorator.html"><strong aria-hidden="true">10.6.1.</strong> Decorators</a></li><li class="chapter-item "><a href="../oop/designpatterns/observer/observer.html"><strong aria-hidden="true">10.6.2.</strong> Observer</a></li><li class="chapter-item "><a href="../oop/designpatterns/singleton/singleton.html"><strong aria-hidden="true">10.6.3.</strong> Singleton</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../fp/fp.html"><strong aria-hidden="true">11.</strong> Functional Programming</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../tips/functionParameters.html"><strong aria-hidden="true">11.1.</strong> Function parameters</a></li><li class="chapter-item "><a href="../arrow-functions.html"><strong aria-hidden="true">11.2.</strong> Arrow Functions</a></li><li class="chapter-item "><a href="../javascript/closure.html"><strong aria-hidden="true">11.3.</strong> Closure</a></li><li class="chapter-item "><a href="../tips/statefulFunctions.html"><strong aria-hidden="true">11.4.</strong> Stateful Functions</a></li><li class="chapter-item "><a href="../tips/currying.html"><strong aria-hidden="true">11.5.</strong> Currying</a></li><li class="chapter-item "><a href="../fp/project1.html"><strong aria-hidden="true">11.6.</strong> A Sample Project 1</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../fp/project1-problemstatemet.html"><strong aria-hidden="true">11.6.1.</strong> Problem Statemet</a></li></ol></li><li class="chapter-item "><a href="../fp/project2.html"><strong aria-hidden="true">11.7.</strong> A Sample Project 2</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../fp/project2-problemstatemet.html"><strong aria-hidden="true">11.7.1.</strong> Problem Statemet</a></li></ol></li><li class="chapter-item "><a href="../fp/fp-additional.html"><strong aria-hidden="true">11.8.</strong> Additional</a></li><li class="chapter-item "><a href="../fp/appendix.html"><strong aria-hidden="true">11.9.</strong> Appendix</a></li></ol></li><li class="chapter-item expanded "><a href="../errors/main.html"><strong aria-hidden="true">12.</strong> Errors in TypeScript</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../errors/common-errors.html"><strong aria-hidden="true">12.1.</strong> Common Errors</a></li><li class="chapter-item "><a href="../types/conversion.html"><strong aria-hidden="true">12.2.</strong> Type Conversion</a></li><li class="chapter-item "><a href="../errors/interpreting-errors.html"><strong aria-hidden="true">12.3.</strong> Interpreting Errors</a></li></ol></li><li class="chapter-item expanded "><a href="../testing/intro.html"><strong aria-hidden="true">13.</strong> Testing</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../testing/jest.html"><strong aria-hidden="true">13.1.</strong> Jest</a></li><li class="chapter-item "><a href="../testing/cypress.html"><strong aria-hidden="true">13.2.</strong> Cypress</a></li></ol></li><li class="chapter-item expanded "><a href="../jsx/tsx.html"><strong aria-hidden="true">14.</strong> JSX</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../jsx/react.html"><strong aria-hidden="true">14.1.</strong> React</a></li><li class="chapter-item "><a href="../jsx/redux.html"><strong aria-hidden="true">14.2.</strong> Redux</a></li><li class="chapter-item "><a href="../jsx/others.html"><strong aria-hidden="true">14.3.</strong> Non React JSX</a></li></ol></li><li class="chapter-item expanded "><a href="../tools/intro.html"><strong aria-hidden="true">15.</strong> Tools</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../tools/prettier.html"><strong aria-hidden="true">15.1.</strong> Prettier</a></li><li class="chapter-item "><a href="../tools/husky.html"><strong aria-hidden="true">15.2.</strong> Husky</a></li><li class="chapter-item "><a href="../tools/eslint.html"><strong aria-hidden="true">15.3.</strong> ESLint</a></li><li class="chapter-item "><a href="../tools/changelog.html"><strong aria-hidden="true">15.4.</strong> Changelog</a></li></ol></li><li class="chapter-item expanded "><a href="../tips/main.html"><strong aria-hidden="true">16.</strong> TIPs</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../tips/typeInstantiation.html"><strong aria-hidden="true">16.1.</strong> Type Instantiation</a></li><li class="chapter-item "><a href="../tips/stringEnums.html"><strong aria-hidden="true">16.2.</strong> String Based Enums</a></li><li class="chapter-item "><a href="../tips/nominalTyping.html"><strong aria-hidden="true">16.3.</strong> Nominal Typing</a></li><li class="chapter-item "><a href="../tips/lazyObjectLiteralInitialization.html"><strong aria-hidden="true">16.4.</strong> Lazy Object Literal Initialization</a></li><li class="chapter-item "><a href="../tips/classesAreUseful.html"><strong aria-hidden="true">16.5.</strong> Classes are Useful</a></li><li class="chapter-item "><a href="../tips/defaultIsBad.html"><strong aria-hidden="true">16.6.</strong> Avoid Export Default</a></li><li class="chapter-item "><a href="../tips/propertySetters.html"><strong aria-hidden="true">16.7.</strong> Limit Property Setters</a></li><li class="chapter-item "><a href="../tips/outFile.html"><strong aria-hidden="true">16.8.</strong> outFile caution</a></li><li class="chapter-item "><a href="../tips/jquery.html"><strong aria-hidden="true">16.9.</strong> JQuery tips</a></li><li class="chapter-item "><a href="../tips/staticConstructor.html"><strong aria-hidden="true">16.10.</strong> static constructors</a></li><li class="chapter-item "><a href="../tips/build-toggles.html"><strong aria-hidden="true">16.11.</strong> Build Toggles</a></li><li class="chapter-item "><a href="../tips/barrel.html"><strong aria-hidden="true">16.12.</strong> Barrel</a></li><li class="chapter-item "><a href="../tips/typed-event.html"><strong aria-hidden="true">16.13.</strong> Typesafe Event Emitter</a></li></ol></li><li class="chapter-item expanded "><a href="../compiler/overview.html"><strong aria-hidden="true">17.</strong> TypeScript Compiler Internals</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../compiler/program.html"><strong aria-hidden="true">17.1.</strong> Program</a></li><li class="chapter-item "><a href="../compiler/ast.html"><strong aria-hidden="true">17.2.</strong> AST</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../compiler/ast-tip-children.html"><strong aria-hidden="true">17.2.1.</strong> TIP: Visit Children</a></li><li class="chapter-item "><a href="../compiler/ast-tip-syntaxkind.html"><strong aria-hidden="true">17.2.2.</strong> TIP: SyntaxKind enum</a></li><li class="chapter-item "><a href="../compiler/ast-trivia.html"><strong aria-hidden="true">17.2.3.</strong> Trivia</a></li></ol></li><li class="chapter-item "><a href="../compiler/scanner.html"><strong aria-hidden="true">17.3.</strong> Scanner</a></li><li class="chapter-item "><a href="../compiler/parser.html"><strong aria-hidden="true">17.4.</strong> Parser</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../compiler/parser-functions.html"><strong aria-hidden="true">17.4.1.</strong> Parser Functions</a></li></ol></li><li class="chapter-item "><a href="../compiler/binder.html"><strong aria-hidden="true">17.5.</strong> Binder</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../compiler/binder-functions.html"><strong aria-hidden="true">17.5.1.</strong> Binder Functions</a></li><li class="chapter-item "><a href="../compiler/binder-declarations.html"><strong aria-hidden="true">17.5.2.</strong> Binder Declarations</a></li><li class="chapter-item "><a href="../compiler/binder-container.html"><strong aria-hidden="true">17.5.3.</strong> Binder Container</a></li><li class="chapter-item "><a href="../compiler/binder-symboltable.html"><strong aria-hidden="true">17.5.4.</strong> Binder SymbolTable</a></li><li class="chapter-item "><a href="../compiler/binder-diagnostics.html"><strong aria-hidden="true">17.5.5.</strong> Binder Error Reporting</a></li></ol></li><li class="chapter-item "><a href="../compiler/checker.html"><strong aria-hidden="true">17.6.</strong> Checker</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../compiler/checker-global.html"><strong aria-hidden="true">17.6.1.</strong> Checker Diagnostics</a></li><li class="chapter-item "><a href="../compiler/checker-diagnostics.html"><strong aria-hidden="true">17.6.2.</strong> Checker Error Reporting</a></li></ol></li><li class="chapter-item "><a href="../compiler/emitter.html"><strong aria-hidden="true">17.7.</strong> Emitter</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../compiler/emitter-functions.html"><strong aria-hidden="true">17.7.1.</strong> Emitter Functions</a></li><li class="chapter-item "><a href="../compiler/emitter-sourcemaps.html"><strong aria-hidden="true">17.7.2.</strong> Emitter SourceMaps</a></li></ol></li><li class="chapter-item "><a href="../compiler/contributing.html"><strong aria-hidden="true">17.8.</strong> Contributing</a></li></ol></li><li class="chapter-item expanded "><a href="../GLOSSARY.html"><strong aria-hidden="true">18.</strong> GLOSSARY</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">TypeScript-All-In-One(A.R)</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/armanriazi/typescript-all-in-one/tree/main/workspace" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/armanriazi/typescript-all-in-one/edit/main/workspace/./workspace//project/tsconfig.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h3 id="basic"><a class="header" href="#basic">Basic</a></h3>
+<p>A tsconfig.json file is used to configure the TypeScript Compiler (tsc). Usually, it is added to the root of the project, together with the <code>package.json</code> file.</p>
+<p>Notes:</p>
+<ul>
+<li><input disabled="" type="checkbox" checked=""/>
+tsconfig.json accepts comments even if it is in json format.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+It is advisable to use this configuration file instead of the command-line options.</li>
+</ul>
+<p>At the following link you can find the complete documentation and its schema:</p>
+<p><a href="https://www.typescriptlang.org/tsconfig">https://www.typescriptlang.org/tsconfig</a></p>
+<p><a href="http://json.schemastore.org/tsconfig">http://json.schemastore.org/tsconfig</a></p>
+<p>The following represents a list of the common and useful configurations:
+It is extremely easy to get started with tsconfig.json as the basic file you need is:</p>
+<pre><code class="language-json">{}
+</code></pre>
+<p>i.e. an empty JSON file at the <em>root</em> of your project. This way TypeScript will include <em>all</em> the <code>.ts</code> files in this directory (and sub directories) as a part of the compilation context. It will also select a few sane default compiler options.</p>
+<h3 id="es6-modules"><a class="header" href="#es6-modules">ES6 Modules</a></h3>
+<p>TypeScript does support ES6 (ECMAScript 2015) and many subsequent versions. This means you can use ES6 syntax, such as arrow functions, template literals, classes, modules, destructuring, and more.</p>
+<p>To enable ES6 features in your project, you can specify the <code>target</code> property in the tsconfig.json.</p>
+<p>A configuration example:</p>
+<pre><code class="language-json">{
+  &quot;compilerOptions&quot;: {
+    &quot;target&quot;: &quot;es6&quot;,
+    &quot;module&quot;: &quot;es6&quot;,
+    &quot;moduleResolution&quot;: &quot;node&quot;,
+    &quot;sourceMap&quot;: true,
+    &quot;outDir&quot;: &quot;dist&quot;
+  },
+  &quot;include&quot;: [&quot;src&quot;]
+}
+</code></pre>
+<h2 id="compilation-context"><a class="header" href="#compilation-context">Compilation Context</a></h2>
+<p>The compilation context is basically just a fancy term for grouping of the files that TypeScript will parse and analyze to determine what is valid and what isn’t. Along with the information about which files, the compilation context contains information about <em>which compiler options</em> are in use. A great way to define this logical grouping (we also like to use the term <em>project</em>) is using a <code>tsconfig.json</code> file.</p>
+<h3 id="compileroptions"><a class="header" href="#compileroptions">compilerOptions</a></h3>
+<p>You can customize the compiler options using <code>compilerOptions</code>:</p>
+<pre><code class="language-json">{
+  &quot;compilerOptions&quot;: {
+
+    /* Basic Options */                       
+    &quot;target&quot;: &quot;es5&quot;,                       /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', or 'ESNEXT'. */
+    &quot;module&quot;: &quot;commonjs&quot;,                  /* Specify module code generation: 'commonjs', 'amd', 'system', 'umd' or 'es2015'. */
+    &quot;lib&quot;: [],                             /* Specify library files to be included in the compilation:  */
+    &quot;allowJs&quot;: true,                       /* Allow JavaScript files to be compiled. */
+    &quot;checkJs&quot;: true,                       /* Report errors in .js files. */
+    &quot;jsx&quot;: &quot;preserve&quot;,                     /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */
+    &quot;declaration&quot;: true,                   /* Generates corresponding '.d.ts' file. */
+    &quot;sourceMap&quot;: true,                     /* Generates corresponding '.map' file. */
+    &quot;outFile&quot;: &quot;./&quot;,                       /* Concatenate and emit output to single file. */
+    &quot;outDir&quot;: &quot;./&quot;,                        /* Redirect output structure to the directory. */
+    &quot;rootDir&quot;: &quot;./&quot;,                       /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
+    &quot;removeComments&quot;: true,                /* Do not emit comments to output. */
+    &quot;noEmit&quot;: true,                        /* Do not emit outputs. */
+    &quot;importHelpers&quot;: true,                 /* Import emit helpers from 'tslib'. */
+    &quot;downlevelIteration&quot;: true,            /* Provide full support for iterables in 'for-of', spread, and destructuring when targeting 'ES5' or 'ES3'. */
+    &quot;isolatedModules&quot;: true,               /* Transpile each file as a separate module (similar to 'ts.transpileModule'). */
+                                              
+    /* Strict Type-Checking Options */     
+    /// As an example, these strict options can determine if a variable could be undefined at the time of use or if the variable itself is never used.   
+    &quot;strict&quot;: true,                        /* Enable all strict type-checking options. */
+    &quot;noImplicitAny&quot;: true,                 /* Raise error on expressions and declarations with an implied 'any' type. For new projects use TypeScript configuration **noImplicitAny** which enables TypeScript to issue errors where any is used or inferred. */
+    &quot;strictNullChecks&quot;: true,              /* Enable strict null checks. */
+    &quot;noImplicitThis&quot;: true,                /* Raise error on 'this' expressions with an implied 'any' type. */
+    &quot;alwaysStrict&quot;: true,                  /* Parse in strict mode and emit &quot;use strict&quot; for each source file. */
+                                              
+    /* Additional Checks */                   
+    &quot;noUnusedLocals&quot;: true,                /* Report errors on unused locals. */
+    &quot;noUnusedParameters&quot;: true,            /* Report errors on unused parameters. */
+    &quot;noImplicitReturns&quot;: true,             /* Report error when not all code paths in function return a value. */
+    &quot;noFallthroughCasesInSwitch&quot;: true,    /* Report errors for fallthrough cases in switch statement. */
+                                              
+    /* Module Resolution Options */           
+    &quot;moduleResolution&quot;: &quot;node&quot;,            /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
+    &quot;baseUrl&quot;: &quot;./&quot;,                       /* Base directory to resolve non-absolute module names. */
+    &quot;paths&quot;: {},                           /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
+    &quot;rootDirs&quot;: [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
+    &quot;typeRoots&quot;: [],                       /* List of folders to include type definitions from. */
+    &quot;types&quot;: [],                           /* Type declaration files to be included in compilation. */
+    &quot;allowSyntheticDefaultImports&quot;: true,  /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */
+                                              
+    /* Source Map Options */                  
+    &quot;sourceRoot&quot;: &quot;./&quot;,                    /* Specify the location where debugger should locate TypeScript files instead of source locations. */
+    &quot;mapRoot&quot;: &quot;./&quot;,                       /* Specify the location where debugger should locate map files instead of generated locations. */
+    &quot;inlineSourceMap&quot;: true,               /* Emit a single file with source maps instead of having a separate file. */
+    &quot;inlineSources&quot;: true,                 /* Emit the source alongside the sourcemaps within a single file; requires '--inlineSourceMap' or '--sourceMap' to be set. */
+                                              
+    /* Experimental Options */                
+    &quot;experimentalDecorators&quot;: true,        /* Enables experimental support for ES7 decorators. */
+    &quot;emitDecoratorMetadata&quot;: true          /* Enables experimental support for emitting type metadata for decorators. */
+  }
+}
+</code></pre>
+<p>These (and more) compiler options will be discussed later.</p>
+<h3 id="typescript-compiler"><a class="header" href="#typescript-compiler">TypeScript compiler</a></h3>
+<p>Good IDEs come with built in support for on the fly <code>ts</code> to <code>js</code> compilation. However, if you want to run the TypeScript compiler manually from the command line when using <code>tsconfig.json</code>, you can do it in a few ways:</p>
+<ul>
+<li>Just run <code>tsc</code> and it will look for <code>tsconfig.json</code> in the current as well as all parent folders till it finds it.</li>
+<li>Run <code>tsc -p ./path-to-project-directory</code>. Of course the path can be absolute or relative to the current directory.</li>
+</ul>
+<p>You can even start the TypeScript compiler in <em>watch</em> mode using <code>tsc -w</code> and it will watch your TypeScript project files for changes.</p>
+<h4 id="target"><a class="header" href="#target">target</a></h4>
+<p>The “target” property is used to specify which version of JavaScript ECMAScript version your TypeScript should emit/compile into. For modern browsers ES6 is a good option, for older browsers, ES5 is recommended.</p>
+<h4 id="lib"><a class="header" href="#lib">lib</a></h4>
+<p>The “lib” property is used to specify which library files to include at compilation time. TypeScript automatically includes APIs for features specified in the “target” property, but it is possible to omit or pick specific libraries for particular needs. For instance, if you are working on a server project, you could exclude the “DOM” library, which is useful only in a browser environment.</p>
+<h3 id="the-declaration-option"><a class="header" href="#the-declaration-option">The declaration option</a></h3>
+<p>The final TypeScript compilation option that we will discuss here is the declaration option, which will generate declaration files from our source TypeScript or our source JavaScript files.</p>
+<p>We can turn this option on by uncommenting it in the tsconfig.js file as follows:</p>
+<pre><code class="language-json">    &quot;outDir&quot;: &quot;dist&quot;,  
+    &quot;allowJs&quot;:true,
+    &quot;declaration&quot;: true,   
+    &quot;declarationMap&quot;: true,
+</code></pre>
+<p>For example:</p>
+<pre><code class="language-typescript">// Interface defining filterable object
+interface IFilterable {
+  name?: string;
+}
+
+// Function to filter undefined values in an array of filterable objects
+function filterUndefined&lt;T extends IFilterable&gt;
+  (input: Array&lt;T&gt;): Array&lt;T&gt; 
+{
+  let output: Array&lt;T&gt; = [];
+  for (let item of input) {
+    // Check if name property exists and is not null or undefined
+    if (item.name?.length) {
+      output.push(item);
+    }
+  }
+  return output;
+}
+</code></pre>
+<p>Generated declaration file</p>
+<pre><code class="language-typescript">// Interface defining filterable object
+interface IFilterable {
+  name?: string;
+}
+
+// Function signature to filter undefined values in an array of filterable objects
+declare function filterUndefined&lt;T extends IFilterable&gt;(input: Array&lt;T&gt;): Array&lt;T&gt;;
+
+// Caption: Declare function signature to filter undefined values in an array of filterable objects based on name property.
+
+</code></pre>
+<h3 id="subdirectory-tsconfigjson"><a class="header" href="#subdirectory-tsconfigjson">Subdirectory tsconfig.json</a></h3>
+<p>Let’s take a look at the tsconfig.json file in the sub1 directory:</p>
+<pre><code class="language-typescript">{
+ &quot;extends&quot;: &quot;../tsconfig&quot;, // point to the parent config file
+ &quot;compilerOptions&quot;: {
+ /* Strict Type-Checking Options */
+ &quot;outDir&quot;: &quot;../dist&quot;,
+ &quot;allowJs&quot;: true,
+ &quot;strict&quot;: false
+ }
+}
+</code></pre>
+<h4 id="strict"><a class="header" href="#strict">strict</a></h4>
+<p>The “strict” property enables stronger guarantees and enhances type safety. It is advisable to always include this property in your project’s tsconfig.json file. Enabling the “strict” property allows TypeScript to:</p>
+<ul>
+<li><input disabled="" type="checkbox" checked=""/>
+Emit code using “use strict” for each source file.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Consider “null” and “undefined” in the type checking process.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Disable the usage of the “any” type when no type annotations are present.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Raise an error on the usage of the “this” expression, which would otherwise imply the “any” type.</li>
+</ul>
+<h4 id="strictnullchecks"><a class="header" href="#strictnullchecks">strictNullChecks</a></h4>
+<p><code>strictNullChecks</code> is a TypeScript compiler option that enforces strict null checking. When this option is enabled, variables and parameters can only be assigned <code>null</code> or <code>undefined</code> if they have been explicitly declared to be of that type using the union type <code>null</code> | <code>undefined</code>. If a variable or parameter is not explicitly declared as nullable, TypeScript will generate an error to prevent potential runtime errors. 
+This means that when the variable is actually used if it <strong>has not been properly initialized</strong>, the compiler will generate an error message.</p>
+<pre><code class="language-typescript">let a: number;
+let b = a;
+</code></pre>
+<p><code>&gt;tags:</code> [[Error_TS2454]] [[Error_strictNullChecks]]</p>
+<pre><code class="language-md">error TS2454: Variable 'a' is used before being assigned.
+</code></pre>
+<p><code>&gt; Solution:</code></p>
+<pre><code class="language-typescript">let a: number | undefined;
+let b = a;
+</code></pre>
+<h3 id="strictnullchecks-1"><a class="header" href="#strictnullchecks-1">strictNullChecks</a></h3>
+<p>Back to strictNullChecks. The definition says that when the flag is not enabled, null and undefined values are in the domain of every type. In other words, null and undefined values belong to sets corresponding to every type. It means we can have null , undefined in domain types of string, number, or pipes. but when strictNullChecks to be true, it means null, undefined are known singleton type so they will categorize in different type of string, number, or pipes.</p>
+<h3 id="strictpropertyinitialization"><a class="header" href="#strictpropertyinitialization">strictPropertyInitialization</a></h3>
+<p>The strictPropertyInitialization compiler option will check that all properties within a class have been initialized correctly.
+Ensure non-undefined class properties are initialized in the constructor.
+The concept is similar to the strictNullChecks option that we just discussed, but it extends into class properties.</p>
+<p>Note: In order to use the strictPropertyInitialization option, we also need to enable the strictNullChecks option at the same time, or the compiler will return an error stating this.</p>
+<p>Consider the following class definition:</p>
+<p><code>&gt;tags:</code> [[Error_ TS2564]] [[Error_strictPropertyInitialization]] [[Error_constructor]]</p>
+<pre><code class="language-typescript">class WithoutInit {
+    a: number;
+    b: string;
+}
+</code></pre>
+<p><code>&gt; Solution:</code></p>
+<p>Firstly, we can use a type union, as we did with strictNullChecks, as follows:</p>
+<pre><code class="language-typescript">class WithoutInit {
+    a: number | undefined;
+    b: string | undefined;
+}
+</code></pre>
+<p>OR:</p>
+<pre><code class="language-typescript">class WithoutInit {
+    a!: number;
+    b!: string;
+}
+</code></pre>
+<p>OR:</p>
+<pre><code class="language-typescript">class WithoutInit {
+    a: number = 1;
+    b: string = &quot;test&quot;;
+}
+</code></pre>
+<p>OR:</p>
+<pre><code class="language-typescript">class WithoutInit {
+    a: number;
+    b: string;
+    constructor(a: number) {
+        this.a = a;
+        this.b = &quot;test&quot;;
+    }
+}
+</code></pre>
+<h3 id="strictbindcallapply"><a class="header" href="#strictbindcallapply">strictBindCallApply</a></h3>
+<p>JavaScript provides the bind, call, and apply functions that are used to override the value of the this variable inside a function. When using the bind, call, and apply functions, we essentially provide a particular version of the object that the function should use as the value for this and then invoke the function with the parameters it requires. The strictBindCallApply option ensures that we provide these function parameters with the correct types.</p>
+<h3 id="strictfunctiontypes"><a class="header" href="#strictfunctiontypes">strictFunctionTypes</a></h3>
+<p>When we define types in TypeScript and then attempt to assign them to each other, the compiler makes sure that the types are consistent. Unfortunately, this strict typing rule did not apply correctly in some circumstances when dealing with functions.</p>
+<p>The strictFunctionTypes option corrects this behavior.</p>
+<p><code>&gt;tags:</code> [[Error_TS2322]] [[Error_TS2345]] [[Error_strictFunctionTypes]] </p>
+<pre><code class="language-typescript">// Error TS2322
+let numberOrString: number | string;
+let numberOnly: number = numberOrString;
+//OR Error TS2345
+function withCallback(
+    fn: (a: number | string) =&gt; void
+) {
+    fn(&quot;test&quot;);
+}
+function withNumberOnly(a: number) {
+    console.log(`a : ${a}`);
+}
+withCallback(withNumberOnly);
+</code></pre>
+<h3 id="no-keys"><a class="header" href="#no-keys">no Keys</a></h3>
+<p>There are also a number of compiler options that are prefixed with the word <code>no</code>. These options are similar to the strict options in that they further <strong>guard our code</strong> <em>against things like unused parameters, implicit returns, and implicit any.</em></p>
+<p>In this lesson, we will take a look at these compiler options and how they can detect potential errors within our code. These parameters are similar in nature to strict parameters in that they can be turned on or off and can be introduced into a code base gradually.</p>
+<p>Note: <em>If the strict compiler option has been set to true, then all of these options will be enabled as well.</em></p>
+<p><code>&gt;tags:</code> [[Error_TS5055]] [[Error_noImplicitAny]]</p>
+<pre><code class="language-ts">declare function testImplicityAny();
+//OR
+function testNoParamType(value) { }
+
+class TestAny {
+    id;
+}
+</code></pre>
+<p><code>&gt; Solution:</code></p>
+<pre><code class="language-ts">declare function testImplicityAny(): void;
+//
+function testNoParamType(value: string) { }
+
+class TestAny {
+    id : any;
+}
+</code></pre>
+<h3 id="noimplicitany"><a class="header" href="#noimplicitany">noImplicitAny</a></h3>
+<p>In the example below, the <strong>return type of getName is inferred as any</strong>. This means that you can break type safety not only inside the function but also in the places it’s being used.</p>
+<pre><code class="language-ts">function getName(person) {
+  return person.name;
+}
+</code></pre>
+<h3 id="the-nounusedlocals-and-nounusedparameters-options"><a class="header" href="#the-nounusedlocals-and-nounusedparameters-options">The noUnusedLocals and noUnusedParameters options</a></h3>
+<p>The noUnusedLocals and noUnusedParameter compiler options are used to detect variables or parameters that are not used and are, therefore, superfluous.</p>
+<p><code>&gt;tags:</code> [[Error_TS5055]] [[Error_noUnusedLocals]] [[Error_noUnusedParameters]]</p>
+<p>Consider the following code:</p>
+<pre><code class="language-ts">function testFunction(input: string): boolean {
+    let test;
+    return false;
+}
+</code></pre>
+<p>When we run the code, we can see that the compiler is detecting that we have an unused parameter and that we have an unused local variable.</p>
+<ul>
+<li>
+<p>The parameter named input of type string is defined in the function definition but is never actually used within the function body.</p>
+</li>
+<li>
+<p>In a similar manner, the variable named test is defined within the function body, but it is never assigned a value and is also never used.</p>
+</li>
+</ul>
+<p>Note that while this is a trivial example and we can clearly see that these local variables and parameters are never used in this code, it may not be so easily spotted in a larger code base or larger functions, so it is best left for the compiler to find these unused variables for us.</p>
+<h3 id="the-noimplicitreturns-option"><a class="header" href="#the-noimplicitreturns-option">The noImplicitReturns option#</a></h3>
+<p>If a function has declared that it will return a value, then the noImplicitReturns compiler option will ensure that it does.
+Running the compiler, however, with the noImplicitReturns option set to true will now generate an error. We can see the compiler is detecting that the isLargeNumber function may not return a value if the false code path is taken.</p>
+<p><code>&gt;tags:</code> [[Error_TS5055]] [[Error_noImplicitReturns]]</p>
+<p>Consider the following code:</p>
+<pre><code class="language-ts">function isLargeNumber(value: number): boolean {
+    if (value &gt; 1_000_000)
+        return true;
+}
+
+console.log(`isLargeNumber(1) : ${isLargeNumber(1)}`);
+</code></pre>
+<p><code>&gt; Solution:</code></p>
+<pre><code class="language-ts">function isLargeNumber(value: number): boolean {
+    if (value &gt; 1_000_000)
+        return true;
+    return false;
+}
+</code></pre>
+<h3 id="nofallthroughcasesinswitch"><a class="header" href="#nofallthroughcasesinswitch">noFallthroughCasesInSwitch</a></h3>
+<p>The TypeScript compiler option named noFallthroughCasesInSwitch is used to trap a particular logic error within switch statements.</p>
+<p>Consider the following code:</p>
+<pre><code class="language-ts">    switch (value) {
+        case SwitchEnum.ONE:
+            returnValue = &quot;One&quot;;
+            break; //comment this line will expose an error
+        case SwitchEnum.TWO:
+            returnValue = &quot;Two&quot;;
+    }
+</code></pre>
+<h3 id="noimplicitthis"><a class="header" href="#noimplicitthis">noImplicitThis</a></h3>
+<p>The noImplicitThis compiler option is used to detect logic errors when the this variable is accessed incorrectly.</p>
+<p><code>&gt;tags:</code> [[Error_TS5055]] [[Error_noImplicitThis]]</p>
+<p>Consider the following code:</p>
+<pre><code class="language-ts">class NoImplicitThisClass {
+    id: number = 1;
+    printAfterWait() {
+        let callback = function () {
+            console.log(`this.id : ${this.id}`);
+        }
+        setTimeout(callback, 1000);
+    }
+}
+
+let classInstance = new NoImplicitThisClass();
+classInstance.printAfterWait();
+</code></pre>
+<p>The compiler correctly identifies that our reference to this.id within the callback function is not referencing the this property of the NoImplicitThisClass class. The this property within the callback function, therefore, has a type of any, hence the error.</p>
+<p>There are two ways that we could correct this code.</p>
+<ul>
+<li>Using a callback function</li>
+</ul>
+<pre><code class="language-ts">class NoImplicitThisClass {
+    id: number = 1;
+    printAfterWait() {
+    let callback = function (_this) {
+        console.log(`this.id : ${_this.id}`);
+    }
+    setTimeout(callback, 1000, this);
+    }
+</code></pre>
+<ul>
+<li>Using an arrow function</li>
+</ul>
+<pre><code class="language-ts">    let callback = () =&gt; {
+        console.log(`this.id : ${this.id}`);
+    }
+    setTimeout(callback, 1000);
+</code></pre>
+<h4 id="module"><a class="header" href="#module">module</a></h4>
+<p>The “module” property sets the module system supported for the compiled program. During runtime, a module loader is used to locate and execute dependencies based on the specified module system.</p>
+<p>The most common module loaders used in JavaScript are Node.js CommonJS for server-side applications and RequireJS for AMD modules in browser-based web applications. TypeScript can emit code for various module systems, including UMD, System, ESNext, ES2015/ES6, and ES2020.</p>
+<p>Note: The module system should be chosen based on the target environment and the module loading mechanism available in that environment.</p>
+<h4 id="moduleresolution"><a class="header" href="#moduleresolution">moduleResolution</a></h4>
+<p>The “moduleResolution” property specifies the module resolution strategy. Use “node” for modern TypeScript code, the “classic” strategy is used only for old versions of TypeScript (before 1.6).</p>
+<h4 id="esmoduleinterop"><a class="header" href="#esmoduleinterop">esModuleInterop</a></h4>
+<p>The “esModuleInterop” property allows import default from CommonJS modules that did not export using the “default” property, this property provides a shim to ensure compatibility in the emitted JavaScript. After enabling this option we can use <code>import MyLibrary from &quot;my-library&quot;</code> instead of <code>import - [x] as MyLibrary from &quot;my-library&quot;</code>.</p>
+<h4 id="jsx"><a class="header" href="#jsx">jsx</a></h4>
+<p>The “jsx” property applies only to .tsx files used in ReactJS and controls how JSX constructs are compiled into JavaScript. A common option is “preserve” which will compile to a .jsx file keeping unchanged the JSX so it can be passed to different tools like Babel for further transformations.</p>
+<h4 id="skiplibcheck"><a class="header" href="#skiplibcheck">skipLibCheck</a></h4>
+<p>The “skipLibCheck’’ property will prevent TypeScript from type-checking the entire imported third-party packages. This property will reduce the compile time of a project. TypeScript will still check your code against the type definitions provided by these packages.</p>
+<h4 id="files"><a class="header" href="#files">files</a></h4>
+<p>The “files” property indicates to the compiler a list of files that must always be included in the program.</p>
+<h4 id="include"><a class="header" href="#include">include</a></h4>
+<!-- markdownlint-disable MD049 -->
+<p>The “include” property indicates to the compiler a list of files that we would like to include. This property allows glob-like patterns, such as “*<em>” for any subdirectory, “</em>” for any file name, and “?” for optional characters.</p>
+<!-- markdownlint-enable MD049 -->
+<h4 id="exclude"><a class="header" href="#exclude">exclude</a></h4>
+<p>The “exclude” property indicates to the compiler a list of files that should not be included in the compilation. This can include files such as “node_modules” or test files.
+Note: tsconfig.json allows comments.</p>
+<h3 id="importhelpers"><a class="header" href="#importhelpers">importHelpers</a></h3>
+<p>TypeScript uses helper code when generating code for certain advanced or down-leveled JavaScript features. By default, these helpers are duplicated in files using them. The <code>importHelpers</code> option imports these helpers from the <code>tslib</code> module instead, making the JavaScript output more efficient.</p>
+<h3 id="migration-to-typescript-advice"><a class="header" href="#migration-to-typescript-advice">Migration to TypeScript Advice</a></h3>
+<p>For large projects, it is recommended to adopt a gradual transition where TypeScript and JavaScript code will initially coexist. Only small projects can be migrated to TypeScript in one go.</p>
+<p>The first step of this transition is to introduce TypeScript into the build chain process. This can be done by using the “allowJs” compiler option, which permits .ts and .tsx files to coexist with existing JavaScript files. As TypeScript will fall back to a type of “any” for a variable when it cannot infer the type from JavaScript files, it is recommended to disable “noImplicitAny” in your compiler options at the beginning of the migration.</p>
+<p>The second step is to ensure that your JavaScript tests work alongside TypeScript files so that you can run tests as you convert each module. If you are using Jest, consider using <code>ts-jest</code>, which allows you to test TypeScript projects with Jest.</p>
+<p>The third step is to include type declarations for third-party libraries in your project. These declarations can be found either bundled or on DefinitelyTyped. You can search for them using <a href="https://www.typescriptlang.org/dt/search">https://www.typescriptlang.org/dt/search</a> and install them using:</p>
+<pre><code class="language-shell">npm install --save-dev @types/package-name or yarn add --dev @types/package-name.
+</code></pre>
+<p>The fourth step is to migrate module by module with a bottom-up approach, following your Dependency Graph starting with the leaves. The idea is to start converting Modules that do not depend on other Modules. To visualize the dependency graphs, you can use the “madge” tool.</p>
+<p>Good candidate modules for these initial conversions are utility functions and code related to external APIs or specifications. It is possible to automatically generate TypeScript type definitions from Swagger contracts, GraphQL or JSON schemas to be included in your project.</p>
+<p>When there are no specifications or official schemas available, you can generate types from raw data, such as JSON returned by a server. However, it is recommended to generate types from specifications instead of data to avoid missing edge cases.</p>
+<p>During the migration, refrain from code refactoring and focus only on adding types to your modules.</p>
+<p>The fifth step is to enable “noImplicitAny,” which will enforce that all types are known and defined, providing a better TypeScript experience for your project.</p>
+<p>During the migration, you can use the <code>@ts-check</code> directive, which enables TypeScript type checking in a JavaScript file. This directive provides a loose version of type checking and can be initially used to identify issues in JavaScript files. When <code>@ts-check</code> is included in a file, TypeScript will try to deduce definitions using JSDoc-style comments. However, consider using JSDoc annotations only at a very early stage of the migration.</p>
+<p>Consider keeping the default value of <code>noEmitOnError</code> in your tsconfig.json as false. This will allow you to output JavaScript source code even if errors are reported.</p>
+<h2 id="exploring-the-type-system"><a class="header" href="#exploring-the-type-system">Exploring the Type System</a></h2>
+<h3 id="the-typescript-language-service"><a class="header" href="#the-typescript-language-service">The TypeScript Language Service</a></h3>
+<p>The TypeScript Language Service, also known as tsserver, offers various features such as error reporting, diagnostics, compile-on-save, renaming, go to definition, completion lists, signature help, and more. It is primarily used by integrated development environments (IDEs) to provide IntelliSense support. It seamlessly integrates with Visual Studio Code and is utilized by tools like Conquer of Completion (Coc).</p>
+<p>Developers can leverage a dedicated API and create their own custom language service plugins to enhance the TypeScript editing experience. This can be particularly useful for implementing special linting features or enabling auto-completion for a custom templating language.</p>
+<!-- markdownlint-disable MD044 -->
+<p>An example of a real-world custom plugin is “typescript-styled-plugin”, which provides syntax error reporting and IntelliSense support for CSS properties in styled components.</p>
+<!-- markdownlint-enable MD044 -->
+<p>For more information and quick start guides, you can refer to the official TypeScript Wiki on GitHub: <a href="https://github.com/microsoft/TypeScript/wiki/">https://github.com/microsoft/TypeScript/wiki/</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../types/migrating.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../project/files.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../types/migrating.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../project/files.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_line_numbers = true;
+        </script>
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../ace.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../editor.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mode-rust.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../theme-dawn.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>

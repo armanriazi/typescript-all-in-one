@@ -1,0 +1,574 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>TypeScript&#x27;s Types - TypeScript-All-In-One(A.R)</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../AboutMe.html"><strong aria-hidden="true">1.</strong> About Me</a></li><li class="chapter-item expanded "><a href="../TypeScript.html"><strong aria-hidden="true">2.</strong> Getting Started</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../styleguide/styleguide.html"><strong aria-hidden="true">2.1.</strong> StyleGuide</a></li><li class="chapter-item "><a href="../configuration/configuration.html"><strong aria-hidden="true">2.2.</strong> Configuration</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../configuration/cli.html"><strong aria-hidden="true">2.2.1.</strong> CLI</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../javascript/recap.html"><strong aria-hidden="true">3.</strong> JavaScript</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../javascript/equality_condition.html"><strong aria-hidden="true">3.1.</strong> Equality</a></li><li class="chapter-item "><a href="../javascript/references.html"><strong aria-hidden="true">3.2.</strong> References</a></li><li class="chapter-item "><a href="../javascript/this.html"><strong aria-hidden="true">3.3.</strong> this</a></li><li class="chapter-item "><a href="../javascript/number.html"><strong aria-hidden="true">3.4.</strong> Number</a></li><li class="chapter-item "><a href="../javascript/truthy.html"><strong aria-hidden="true">3.5.</strong> Truthy</a></li></ol></li><li class="chapter-item expanded "><a href="../quick/quick.html"><strong aria-hidden="true">4.</strong> QuickStarts</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../quick/quick.html"><strong aria-hidden="true">4.1.</strong> Node Browser Lib</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../quick/nodejs.html"><strong aria-hidden="true">4.1.1.</strong> Node.js QuickStart</a></li><li class="chapter-item "><a href="../quick/browser.html"><strong aria-hidden="true">4.1.2.</strong> Browser QuickStart</a></li><li class="chapter-item "><a href="../quick/library.html"><strong aria-hidden="true">4.1.3.</strong> Library QuickStart</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../defination/defination.html"><strong aria-hidden="true">5.</strong> Var_Let_Const_Readonly_Static</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../defination/let.html"><strong aria-hidden="true">5.1.</strong> let</a></li><li class="chapter-item "><a href="../defination/var.html"><strong aria-hidden="true">5.2.</strong> var</a></li><li class="chapter-item "><a href="../defination/const.html"><strong aria-hidden="true">5.3.</strong> const</a></li><li class="chapter-item "><a href="../types/readonly/readonly.html"><strong aria-hidden="true">5.4.</strong> readonly</a></li><li class="chapter-item "><a href="../types/static/static.html"><strong aria-hidden="true">5.5.</strong> static</a></li></ol></li><li class="chapter-item expanded "><a href="../future-javascript.html"><strong aria-hidden="true">6.</strong> Future JavaScript Now</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/string/template-strings.html"><strong aria-hidden="true">6.1.</strong> Template Strings</a></li><li class="chapter-item "><a href="../classes.html"><strong aria-hidden="true">6.2.</strong> Classes</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../classes-emit.html"><strong aria-hidden="true">6.2.1.</strong> Classes Emit</a></li></ol></li><li class="chapter-item "><a href="../rest-parameters.html"><strong aria-hidden="true">6.3.</strong> Rest Parameters</a></li><li class="chapter-item "><a href="../spread-operator.html"><strong aria-hidden="true">6.4.</strong> Spread Operator</a></li><li class="chapter-item "><a href="../for...of.html"><strong aria-hidden="true">6.5.</strong> for...of</a></li><li class="chapter-item "><a href="../promise.html"><strong aria-hidden="true">6.6.</strong> Promise</a></li><li class="chapter-item "><a href="../async/async.html"><strong aria-hidden="true">6.7.</strong> Async Await</a></li></ol></li><li class="chapter-item expanded "><a href="../project/project.html"><strong aria-hidden="true">7.</strong> Project</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/migrating.html"><strong aria-hidden="true">7.1.</strong> JS Migration Guide</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../project/tsconfig.html"><strong aria-hidden="true">7.1.1.</strong> tsconfig.json</a></li><li class="chapter-item "><a href="../project/files.html"><strong aria-hidden="true">7.1.2.</strong> Which Files?</a></li></ol></li><li class="chapter-item "><a href="../project/declarationspaces.html"><strong aria-hidden="true">7.2.</strong> Declaration Spaces</a></li><li class="chapter-item "><a href="../project/modules.html"><strong aria-hidden="true">7.3.</strong> Modules</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../project/external-modules.html"><strong aria-hidden="true">7.3.1.</strong> File Module Details</a></li><li class="chapter-item "><a href="../project/globals.html"><strong aria-hidden="true">7.3.2.</strong> global.d</a></li><li class="chapter-item "><a href="../project/namespacing.d.html"><strong aria-hidden="true">7.3.3.</strong> namespacing.d</a></li></ol></li><li class="chapter-item "><a href="../project/namespaces.html"><strong aria-hidden="true">7.4.</strong> Namespaces</a></li><li class="chapter-item "><a href="../project/dynamic-import-expressions.html"><strong aria-hidden="true">7.5.</strong> Dynamic Import Expressions</a></li></ol></li><li class="chapter-item expanded "><a href="../types/types.html" class="active"><strong aria-hidden="true">8.</strong> TypeScript's Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../options/intro.html"><strong aria-hidden="true">8.1.</strong> Type Checking</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../options/noImplicitAny.html"><strong aria-hidden="true">8.1.1.</strong> noImplicitAny</a></li><li class="chapter-item "><a href="../options/strictNullChecks.html"><strong aria-hidden="true">8.1.2.</strong> strictNullChecks</a></li></ol></li><li class="chapter-item "><a href="../types/primitive/primitive.html"><strong aria-hidden="true">8.2.</strong> Primitive</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/empty.html"><strong aria-hidden="true">8.2.1.</strong> Empty</a></li><li class="chapter-item "><a href="../types/wrapper/wrapper.html"><strong aria-hidden="true">8.2.2.</strong> Wrapper</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/wrapper/wrapper_objects.html"><strong aria-hidden="true">8.2.2.1.</strong> Object</a></li></ol></li></ol></li><li class="chapter-item "><a href="../types/compound/compound.html"><strong aria-hidden="true">8.3.</strong> Compound</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/compound/union/union.html"><strong aria-hidden="true">8.3.1.</strong> Union</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/compound/union/discriminated-unions.html"><strong aria-hidden="true">8.3.1.1.</strong> Discriminated-unions</a></li></ol></li><li class="chapter-item "><a href="../types/compound/enum/enum.html"><strong aria-hidden="true">8.3.2.</strong> Enums</a></li><li class="chapter-item "><a href="../types/compound/tuple/tuple.html"><strong aria-hidden="true">8.3.3.</strong> Tuple</a></li></ol></li><li class="chapter-item "><a href="../types/generic/generic.html"><strong aria-hidden="true">8.4.</strong> Generic</a></li><li class="chapter-item "><a href="../types/type-assertion.html"><strong aria-hidden="true">8.5.</strong> Type Assertion</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/mapping.html"><strong aria-hidden="true">8.5.1.</strong> Type Mapping</a></li></ol></li><li class="chapter-item "><a href="../types/freshness.html"><strong aria-hidden="true">8.6.</strong> Freshness</a></li><li class="chapter-item "><a href="../types/type-inference.html"><strong aria-hidden="true">8.7.</strong> Type Inference</a></li><li class="chapter-item "><a href="../types/duck/duck.html"><strong aria-hidden="true">8.8.</strong> Duck Type</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/duck/structural/structural.html"><strong aria-hidden="true">8.8.1.</strong> Structuring</a></li><li class="chapter-item "><a href="../types/duck/structural/destructuring.html"><strong aria-hidden="true">8.8.2.</strong> Destructuring</a></li></ol></li><li class="chapter-item "><a href="../types/narrowing/narrowing.html"><strong aria-hidden="true">8.9.</strong> Narrowing</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/narrowing/guard.html"><strong aria-hidden="true">8.9.1.</strong> Guard</a></li><li class="chapter-item "><a href="../types/narrowing/assertion-fn.html"><strong aria-hidden="true">8.9.2.</strong> AssertionFN</a></li><li class="chapter-item "><a href="../types/narrowing/widening.html"><strong aria-hidden="true">8.9.3.</strong> Widening</a></li></ol></li><li class="chapter-item "><a href="../types/literal/literal-types.html"><strong aria-hidden="true">8.10.</strong> Literal Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/inference-literal-types.html"><strong aria-hidden="true">8.10.1.</strong> Inference Literal</a></li><li class="chapter-item "><a href="../types/enum-literal-type.html"><strong aria-hidden="true">8.10.2.</strong> Enum Literal</a></li><li class="chapter-item "><a href="../types/inference-literal-gurad-type.html"><strong aria-hidden="true">8.10.3.</strong> Inference Gurad Literal</a></li></ol></li><li class="chapter-item "><a href="../types/builtin/builtin.html"><strong aria-hidden="true">8.11.</strong> Built-in</a></li><li class="chapter-item "><a href="../types/covariance_contravariance/covariance_contravariance.html"><strong aria-hidden="true">8.12.</strong> Covariance &amp; Contravariance</a></li><li class="chapter-item "><a href="../types/recursive/recursive.html"><strong aria-hidden="true">8.13.</strong> Recursive</a></li><li class="chapter-item "><a href="../types/exceptions/exceptions.html"><strong aria-hidden="true">8.14.</strong> Exception Handling</a></li><li class="chapter-item "><a href="../types/patterns/patterns.html"><strong aria-hidden="true">8.15.</strong> Patterns</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/patterns/intersection/intersection.html"><strong aria-hidden="true">8.15.1.</strong> Intersection</a></li><li class="chapter-item "><a href="../types/patterns/power/power.html"><strong aria-hidden="true">8.15.2.</strong> Power</a></li><li class="chapter-item "><a href="../types/patterns/satisfies/satisfies.html"><strong aria-hidden="true">8.15.3.</strong> Satisfies</a></li><li class="chapter-item "><a href="../types/patterns/manipulation/manipulation.html"><strong aria-hidden="true">8.15.4.</strong> Manipulation</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/patterns/manipulation/conditional.html"><strong aria-hidden="true">8.15.4.1.</strong> Conditionally</a></li><li class="chapter-item "><a href="../types/patterns/manipulation/transform-mapping.html"><strong aria-hidden="true">8.15.4.2.</strong> Transform Mapping</a></li></ol></li></ol></li><li class="chapter-item "><a href="../types/module/@types.html"><strong aria-hidden="true">8.16.</strong> @types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/module/ambient/intro.html"><strong aria-hidden="true">8.16.1.</strong> Ambient Declarations</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/module/ambient/d.ts.html"><strong aria-hidden="true">8.16.1.1.</strong> Declaration Files</a></li><li class="chapter-item "><a href="../types/module/ambient/variables.html"><strong aria-hidden="true">8.16.1.2.</strong> Variables</a></li></ol></li></ol></li><li class="chapter-item "><a href="../types/exchange/exchange-types.html"><strong aria-hidden="true">8.17.</strong> Ex/Import of Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/lib.d.ts.html"><strong aria-hidden="true">8.17.1.</strong> lib.d.ts</a></li><li class="chapter-item "><a href="../types/functions.html"><strong aria-hidden="true">8.17.2.</strong> Functions</a></li><li class="chapter-item "><a href="../types/callable.html"><strong aria-hidden="true">8.17.3.</strong> Callable</a></li><li class="chapter-item "><a href="../types/type-compatibility.html"><strong aria-hidden="true">8.17.4.</strong> Type Compatibility</a></li><li class="chapter-item "><a href="../types/system/index-signatures.html"><strong aria-hidden="true">8.17.5.</strong> Index Signatures</a></li><li class="chapter-item "><a href="../types/moving-types.html"><strong aria-hidden="true">8.17.6.</strong> Moving Types</a></li><li class="chapter-item "><a href="../types/mixins.html"><strong aria-hidden="true">8.17.7.</strong> Mixins</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../collection/collection.html"><strong aria-hidden="true">9.</strong> Collection</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../collection/array.html"><strong aria-hidden="true">9.1.</strong> Array</a></li><li class="chapter-item "><a href="../collection/map.html"><strong aria-hidden="true">9.2.</strong> Map</a></li><li class="chapter-item "><a href="../collection/iterators.html"><strong aria-hidden="true">9.3.</strong> Iterators</a></li><li class="chapter-item "><a href="../collection/generators.html"><strong aria-hidden="true">9.4.</strong> Generators</a></li></ol></li><li class="chapter-item expanded "><a href="../oop/oop.html"><strong aria-hidden="true">10.</strong> Object Orianted Programming</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../types/generic/generic.html"><strong aria-hidden="true">10.1.</strong> Generic</a></li><li class="chapter-item "><a href="../oop/class.html"><strong aria-hidden="true">10.2.</strong> Class</a></li><li class="chapter-item "><a href="../oop/interfaces.html"><strong aria-hidden="true">10.3.</strong> Interfaces</a></li><li class="chapter-item "><a href="../oop/inheritance.html"><strong aria-hidden="true">10.4.</strong> Inheritance</a></li><li class="chapter-item "><a href="../oop/polymorphism.html"><strong aria-hidden="true">10.5.</strong> Polymorphism</a></li><li class="chapter-item "><a href="../oop/designpatterns.html"><strong aria-hidden="true">10.6.</strong> Design Patterns</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../oop/designpatterns/decorator/decorator.html"><strong aria-hidden="true">10.6.1.</strong> Decorators</a></li><li class="chapter-item "><a href="../oop/designpatterns/observer/observer.html"><strong aria-hidden="true">10.6.2.</strong> Observer</a></li><li class="chapter-item "><a href="../oop/designpatterns/singleton/singleton.html"><strong aria-hidden="true">10.6.3.</strong> Singleton</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../fp/fp.html"><strong aria-hidden="true">11.</strong> Functional Programming</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../tips/functionParameters.html"><strong aria-hidden="true">11.1.</strong> Function parameters</a></li><li class="chapter-item "><a href="../arrow-functions.html"><strong aria-hidden="true">11.2.</strong> Arrow Functions</a></li><li class="chapter-item "><a href="../javascript/closure.html"><strong aria-hidden="true">11.3.</strong> Closure</a></li><li class="chapter-item "><a href="../tips/statefulFunctions.html"><strong aria-hidden="true">11.4.</strong> Stateful Functions</a></li><li class="chapter-item "><a href="../tips/currying.html"><strong aria-hidden="true">11.5.</strong> Currying</a></li><li class="chapter-item "><a href="../fp/project1.html"><strong aria-hidden="true">11.6.</strong> A Sample Project 1</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../fp/project1-problemstatemet.html"><strong aria-hidden="true">11.6.1.</strong> Problem Statemet</a></li></ol></li><li class="chapter-item "><a href="../fp/project2.html"><strong aria-hidden="true">11.7.</strong> A Sample Project 2</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../fp/project2-problemstatemet.html"><strong aria-hidden="true">11.7.1.</strong> Problem Statemet</a></li></ol></li><li class="chapter-item "><a href="../fp/fp-additional.html"><strong aria-hidden="true">11.8.</strong> Additional</a></li><li class="chapter-item "><a href="../fp/appendix.html"><strong aria-hidden="true">11.9.</strong> Appendix</a></li></ol></li><li class="chapter-item expanded "><a href="../errors/main.html"><strong aria-hidden="true">12.</strong> Errors in TypeScript</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../errors/common-errors.html"><strong aria-hidden="true">12.1.</strong> Common Errors</a></li><li class="chapter-item "><a href="../types/conversion.html"><strong aria-hidden="true">12.2.</strong> Type Conversion</a></li><li class="chapter-item "><a href="../errors/interpreting-errors.html"><strong aria-hidden="true">12.3.</strong> Interpreting Errors</a></li></ol></li><li class="chapter-item expanded "><a href="../testing/intro.html"><strong aria-hidden="true">13.</strong> Testing</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../testing/jest.html"><strong aria-hidden="true">13.1.</strong> Jest</a></li><li class="chapter-item "><a href="../testing/cypress.html"><strong aria-hidden="true">13.2.</strong> Cypress</a></li></ol></li><li class="chapter-item expanded "><a href="../jsx/tsx.html"><strong aria-hidden="true">14.</strong> JSX</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../jsx/react.html"><strong aria-hidden="true">14.1.</strong> React</a></li><li class="chapter-item "><a href="../jsx/redux.html"><strong aria-hidden="true">14.2.</strong> Redux</a></li><li class="chapter-item "><a href="../jsx/others.html"><strong aria-hidden="true">14.3.</strong> Non React JSX</a></li></ol></li><li class="chapter-item expanded "><a href="../tools/intro.html"><strong aria-hidden="true">15.</strong> Tools</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../tools/prettier.html"><strong aria-hidden="true">15.1.</strong> Prettier</a></li><li class="chapter-item "><a href="../tools/husky.html"><strong aria-hidden="true">15.2.</strong> Husky</a></li><li class="chapter-item "><a href="../tools/eslint.html"><strong aria-hidden="true">15.3.</strong> ESLint</a></li><li class="chapter-item "><a href="../tools/changelog.html"><strong aria-hidden="true">15.4.</strong> Changelog</a></li></ol></li><li class="chapter-item expanded "><a href="../tips/main.html"><strong aria-hidden="true">16.</strong> TIPs</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../tips/typeInstantiation.html"><strong aria-hidden="true">16.1.</strong> Type Instantiation</a></li><li class="chapter-item "><a href="../tips/stringEnums.html"><strong aria-hidden="true">16.2.</strong> String Based Enums</a></li><li class="chapter-item "><a href="../tips/nominalTyping.html"><strong aria-hidden="true">16.3.</strong> Nominal Typing</a></li><li class="chapter-item "><a href="../tips/lazyObjectLiteralInitialization.html"><strong aria-hidden="true">16.4.</strong> Lazy Object Literal Initialization</a></li><li class="chapter-item "><a href="../tips/classesAreUseful.html"><strong aria-hidden="true">16.5.</strong> Classes are Useful</a></li><li class="chapter-item "><a href="../tips/defaultIsBad.html"><strong aria-hidden="true">16.6.</strong> Avoid Export Default</a></li><li class="chapter-item "><a href="../tips/propertySetters.html"><strong aria-hidden="true">16.7.</strong> Limit Property Setters</a></li><li class="chapter-item "><a href="../tips/outFile.html"><strong aria-hidden="true">16.8.</strong> outFile caution</a></li><li class="chapter-item "><a href="../tips/jquery.html"><strong aria-hidden="true">16.9.</strong> JQuery tips</a></li><li class="chapter-item "><a href="../tips/staticConstructor.html"><strong aria-hidden="true">16.10.</strong> static constructors</a></li><li class="chapter-item "><a href="../tips/build-toggles.html"><strong aria-hidden="true">16.11.</strong> Build Toggles</a></li><li class="chapter-item "><a href="../tips/barrel.html"><strong aria-hidden="true">16.12.</strong> Barrel</a></li><li class="chapter-item "><a href="../tips/typed-event.html"><strong aria-hidden="true">16.13.</strong> Typesafe Event Emitter</a></li></ol></li><li class="chapter-item expanded "><a href="../compiler/overview.html"><strong aria-hidden="true">17.</strong> TypeScript Compiler Internals</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../compiler/program.html"><strong aria-hidden="true">17.1.</strong> Program</a></li><li class="chapter-item "><a href="../compiler/ast.html"><strong aria-hidden="true">17.2.</strong> AST</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../compiler/ast-tip-children.html"><strong aria-hidden="true">17.2.1.</strong> TIP: Visit Children</a></li><li class="chapter-item "><a href="../compiler/ast-tip-syntaxkind.html"><strong aria-hidden="true">17.2.2.</strong> TIP: SyntaxKind enum</a></li><li class="chapter-item "><a href="../compiler/ast-trivia.html"><strong aria-hidden="true">17.2.3.</strong> Trivia</a></li></ol></li><li class="chapter-item "><a href="../compiler/scanner.html"><strong aria-hidden="true">17.3.</strong> Scanner</a></li><li class="chapter-item "><a href="../compiler/parser.html"><strong aria-hidden="true">17.4.</strong> Parser</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../compiler/parser-functions.html"><strong aria-hidden="true">17.4.1.</strong> Parser Functions</a></li></ol></li><li class="chapter-item "><a href="../compiler/binder.html"><strong aria-hidden="true">17.5.</strong> Binder</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../compiler/binder-functions.html"><strong aria-hidden="true">17.5.1.</strong> Binder Functions</a></li><li class="chapter-item "><a href="../compiler/binder-declarations.html"><strong aria-hidden="true">17.5.2.</strong> Binder Declarations</a></li><li class="chapter-item "><a href="../compiler/binder-container.html"><strong aria-hidden="true">17.5.3.</strong> Binder Container</a></li><li class="chapter-item "><a href="../compiler/binder-symboltable.html"><strong aria-hidden="true">17.5.4.</strong> Binder SymbolTable</a></li><li class="chapter-item "><a href="../compiler/binder-diagnostics.html"><strong aria-hidden="true">17.5.5.</strong> Binder Error Reporting</a></li></ol></li><li class="chapter-item "><a href="../compiler/checker.html"><strong aria-hidden="true">17.6.</strong> Checker</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../compiler/checker-global.html"><strong aria-hidden="true">17.6.1.</strong> Checker Diagnostics</a></li><li class="chapter-item "><a href="../compiler/checker-diagnostics.html"><strong aria-hidden="true">17.6.2.</strong> Checker Error Reporting</a></li></ol></li><li class="chapter-item "><a href="../compiler/emitter.html"><strong aria-hidden="true">17.7.</strong> Emitter</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../compiler/emitter-functions.html"><strong aria-hidden="true">17.7.1.</strong> Emitter Functions</a></li><li class="chapter-item "><a href="../compiler/emitter-sourcemaps.html"><strong aria-hidden="true">17.7.2.</strong> Emitter SourceMaps</a></li></ol></li><li class="chapter-item "><a href="../compiler/contributing.html"><strong aria-hidden="true">17.8.</strong> Contributing</a></li></ol></li><li class="chapter-item expanded "><a href="../GLOSSARY.html"><strong aria-hidden="true">18.</strong> GLOSSARY</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">TypeScript-All-In-One(A.R)</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/armanriazi/typescript-all-in-one/tree/main/workspace" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/armanriazi/typescript-all-in-one/edit/main/workspace/./workspace//types/types.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="types-as-sets"><a class="header" href="#types-as-sets">Types as Sets</a></h1>
+<p>In TypeScript, a type is a set of possible values. This set is also referred to as the domain of the type. Each value of a type can be viewed as an element in a set. A type establishes the constraints that every element in the set must satisfy to be considered a member of that set.
+The primary task of TypeScript is to check and verify whether one set is a subset of another.</p>
+<p>TypeScript supports various types of sets:</p>
+<table><thead><tr><th>Set term</th><th>TypeScript</th><th>Notes</th></tr></thead><tbody>
+<tr><td>Empty set</td><td>never</td><td>“never” contains anything apart itself</td></tr>
+<tr><td>Single element set</td><td>undefined / null / literal type</td><td></td></tr>
+<tr><td>Finite set</td><td>boolean / union</td><td></td></tr>
+<tr><td>Infinite set</td><td>string / number / object</td><td></td></tr>
+<tr><td>Universal set</td><td>any / unknown</td><td>Every element is a member of “any” and every set is a subset of it / “unknown” is a type-safe counterpart of “any”</td></tr>
+</tbody></table>
+<p>Here few examples:</p>
+<table><thead><tr><th>TypeScript</th><th>Set term</th><th>Example</th></tr></thead><tbody>
+<tr><td>never</td><td>∅ (empty set)</td><td>const x: never = ‘x’; // Error: Type ‘string’ is not assignable to type ‘never’</td></tr>
+<tr><td></td><td></td><td></td></tr>
+<tr><td>Literal type</td><td>Single element set</td><td>type X = ‘X’;</td></tr>
+<tr><td></td><td></td><td>type Y = 7;</td></tr>
+<tr><td></td><td></td><td></td></tr>
+<tr><td>Value assignable to T</td><td>Value ∈ T (member of)</td><td>type XY = ‘X’ | ‘Y’;</td></tr>
+<tr><td></td><td></td><td>const x: XY = ‘X’;</td></tr>
+<tr><td></td><td></td><td></td></tr>
+<tr><td>T1 assignable to T2</td><td>T1 ⊆ T2 (subset of)</td><td>type XY = ‘X’ | ‘Y’;</td></tr>
+<tr><td></td><td></td><td>const x: XY = ‘X’;</td></tr>
+<tr><td></td><td></td><td>const j: XY = ‘J’; // Type ‘“J”’ is not assignable to type ‘XY’.</td></tr>
+<tr><td></td><td></td><td></td></tr>
+<tr><td>T1 extends T2</td><td>T1 ⊆ T2 (subset of)</td><td>type X = ‘X’ extends string ? true : false;</td></tr>
+<tr><td></td><td></td><td></td></tr>
+<tr><td>T1 | T2</td><td>T1 ∪ T2 (union)</td><td>type XY = ‘X’ | ‘Y’;</td></tr>
+<tr><td></td><td></td><td>type JK = 1 | 2;</td></tr>
+<tr><td></td><td></td><td></td></tr>
+<tr><td>T1 &amp; T2</td><td>T1 ∩ T2 (intersection)</td><td>type X = { a: string }</td></tr>
+<tr><td></td><td></td><td>type Y = { b: string }</td></tr>
+<tr><td></td><td></td><td>type XY = X &amp; Y</td></tr>
+<tr><td></td><td></td><td>const x: XY = { a: ‘a’, b: ‘b’ }</td></tr>
+<tr><td></td><td></td><td></td></tr>
+<tr><td>unknown</td><td>Universal set</td><td>const x: unknown = 1</td></tr>
+</tbody></table>
+<h1 id="sfiat"><a class="header" href="#sfiat">S.F.I.A.T</a></h1>
+<p>Interfaces are a way of defining custom types. Using interfaces allows us to cover almost every possible combination of types, meaning that <strong>using the any type, in most cases, is unnecessary</strong>. We use an acronym within our programming teams, which is Simply Find an Interface for the Any Type, pronounced sveat or sweat.  While this may sound rather odd, it simply brings home the point that the any type can and should be defined <strong>as an interface</strong>, so simply find it.
+In short, avoid the any type at any cost.</p>
+<h1 id="inferred-typing"><a class="header" href="#inferred-typing">Inferred typing</a></h1>
+<p><strong>Type inference</strong> is the automatic deduction of the data types of specific expressions in a programming language, usually done at compile time.
+As a bonus, statically typed languages can offer better performance, especially for long-running applications.
+Is a feature of TypeScript that allows the type of a variable or expression to be <strong>determined based on the context</strong> The process of determining the type of a variable <strong>based on its value</strong>. in which it appears rather than being explicitly specified with a type annotation.
+<code>as</code> keyword in a type assertion
+It provides a way to override the inferred type of a variable.</p>
+<h1 id="duck-typing"><a class="header" href="#duck-typing">Duck typing</a></h1>
+<p>Checks the compatibility of an object with a particular type based on <em>the presence of certain properties or methods rather than the object’s actual type.</em>
+In TypeScript, objects are considered compatible based on their shape rather than the order of their properties. <strong>In other words, two variables are considered to have the same type if they have the same properties and methods.</strong> In TypeScript, objects are considered compatible based on their <strong>shape rather than the order of their properties.</strong></p>
+<p>Sample of non-duck:</p>
+<pre><code class="language-typescript">//*Missing property example*
+// Declare a variable 'nameIdObject' and initialize it with an object that has a 'name' property, an 'id' property, and a 'print' method
+var nameIdObject = { name: &quot;myName&quot;, id: 1, print() {} };
+// Assign a new object to 'nameIdObject'. This object has a 'name' property and an 'id' property, but it does not have the 'print' method
+// that the original object had.
+nameIdObject = { id: 3, name: &quot;thirdName&quot; };
+//*Dynamic object typing*
+// Declare a variable 'obj1' and initialize it with an object that has an 'id' property and a 'print' method
+var obj1 = { id: 1, print() { } };
+
+// Declare a variable 'obj2' and initialize it with an object that has an 'id' property, a 'print' method, and a 'select' method
+var obj2 = { id: 2, print() { }, select() { } }
+
+// Attempt to assign 'obj2' to 'obj1'. This won't cause a type error because 'obj2' has all of the methods that are present in the type of 'obj1'
+obj1 = obj2;
+
+// Attempt to assign 'obj1' to 'obj2'. This will cause a type error because 'obj1' is missing the 'select' method that is present in the type of 'obj2'
+obj2 = obj1;
+</code></pre>
+<p><code>&gt; Output:</code></p>
+<pre><code class="language-md">index.ts(5,1): error TS2741: Property 'print' is missing in type '{ id: number; name: string; }' but required in type '{ name: string; id: number; print(): void; }'.
+</code></pre>
+<h1 id="explicit-casting"><a class="header" href="#explicit-casting">Explicit casting</a></h1>
+<p>uses the angled bracket syntax, that is, <strong>&lt; type &gt;</strong>, surrounding the name of the type.  <code>&lt;any&gt;{ id: 1, name: &quot;item1&quot; }</code></p>
+<h1 id="type-aliases"><a class="header" href="#type-aliases">Type Aliases</a></h1>
+<pre><code class="language-typescript">// Define a type alias for a string or number
+type StringOrNumber = string | number;
+
+// Declare a function that takes two arguments, both of type 'StringOrNumber'
+function addWithTypeAlias(
+  arg1: StringOrNumber,
+  arg2: StringOrNumber
+) {
+  // Convert both arguments to strings and return the concatenation
+  return arg1.toString() + arg2.toString();
+}
+
+console.log(addWithTypeAlias(1, 2)); // Output: '12'
+console.log(addWithTypeAlias('Hello', ' World')); // Output: 'Hello World'
+
+</code></pre>
+<h1 id="literal-types"><a class="header" href="#literal-types">Literal Types</a></h1>
+<p>TypeScript also allows us to use what are known as literals, which are almost a <strong>hybrid of enums and type aliases</strong>. A literal will limit the allowed values to a set of values specified. A literal can be made of string, number, or boolean values.</p>
+<pre><code class="language-typescript">// Define a literal `AllowedStringValues` that can be either &quot;one&quot;, &quot;two&quot;, or &quot;three&quot;.
+type AllowedStringValues = &quot;one&quot; | &quot;two&quot; | &quot;three&quot;;
+
+// Define a literal `AllowedNumericValues` that can be either 1, 20, or 65535.
+type AllowedNumericValues = 1 | 20 | 65535;
+
+// The `withLiteral` function takes a parameter `input` of the union type `AllowedStringValues | AllowedNumericValues`.
+function withLiteral(input: AllowedStringValues | AllowedNumericValues) {
+  // Logs the string representation of `input` to the console.
+  console.log(`called with : ${input}`);
+}
+
+</code></pre>
+<h2 id="literal-types-vs-aliases"><a class="header" href="#literal-types-vs-aliases">Literal Types vs Aliases</a></h2>
+<p>The syntax used for literals is very similar to the syntax of a type alias where we use the type keyword followed by a set of allowed values. Unlike type aliases, however, we are not specifying a set of different types. We are specifying a set of allowed values, which is similar in concept to an enum.</p>
+<h1 id="comparison-rules"><a class="header" href="#comparison-rules">Comparison Rules</a></h1>
+<p>The TypeScript comparison process is recursive and executed on types nested at any level.</p>
+<p>A type “X” is compatible with “Y” if “Y” has at least the same members as “X”.</p>
+<pre><code class="language-typescript">type X = {
+    a: string;
+};
+type Y = {
+    a: string;
+    b: string;
+};
+const y = { a: 'A', b: 'B' }; // Valid, as it has at least the same members as X
+const r: X = y;
+</code></pre>
+<h3 id="types-can-be-implicit"><a class="header" href="#types-can-be-implicit">Types can be Implicit</a></h3>
+<p>TypeScript will try to infer as much of the type information as it can in order to give you type safety with minimal cost of productivity during code development. For example, in the following example TypeScript will know that foo is of type <code>number</code> below and will give an error on the second line as shown:</p>
+<pre><code class="language-typescript">var foo = 123;
+foo = '456'; // Error: cannot assign `string` to `number`
+
+// Is foo a number or a string?
+</code></pre>
+<p>This type inference is well motivated. If you do stuff like shown in this example, then, in the rest of your code, you cannot be certain that <code>foo</code> is a <code>number</code> or a <code>string</code>. Such issues turn up often in large multi-file code bases. We will deep dive into the type inference rules later.</p>
+<h3 id="types-can-be-explicit"><a class="header" href="#types-can-be-explicit">Types can be Explicit</a></h3>
+<p>As we’ve mentioned before, TypeScript will infer as much as it can safely. However, you can use annotations to:</p>
+<ol>
+<li>Help along the compiler, and more importantly document stuff for the next developer who has to read your code (that might be future you!).</li>
+<li>Enforce that what the compiler sees, is what you thought it should see. That is your understanding of the code matches an algorithmic analysis of the code (done by the compiler).</li>
+</ol>
+<p>TypeScript uses postfix type annotations popular in other <em>optionally</em> annotated languages (e.g. ActionScript and F#).</p>
+<pre><code class="language-typescript">var foo: number = 123;
+</code></pre>
+<p>So if you do something wrong the compiler will report an error e.g.:</p>
+<pre><code class="language-typescript">var foo: number = '123'; // Error: cannot assign a `string` to a `number`
+</code></pre>
+<p>We will discuss all the details of all the annotation syntax supported by TypeScript in a later chapter.</p>
+<h3 id="assign-a-type"><a class="header" href="#assign-a-type">Assign a type</a></h3>
+<p>Type Declarations and Type Assertions.In the following example, we use x: X (“: Type”) to declare a type for the variable x.</p>
+<pre><code class="language-typescript">type X = {
+    a: string;
+};
+
+const x: X = {
+    a: 'a',
+    b: 'b', // Error: Object literal may only specify known properties
+};
+</code></pre>
+<h2 id="type-vs-interface"><a class="header" href="#type-vs-interface">Type vs Interface</a></h2>
+<ul>
+<li>Use <code>type</code> when you <em>might</em> need a union or intersection:</li>
+</ul>
+<pre><code class="language-typescript">type Foo = number | { someProperty: number }
+</code></pre>
+<ul>
+<li>Use <code>interface</code> when you want <code>extends</code> or <code>implements</code> e.g.</li>
+</ul>
+<pre><code class="language-typescript">interface Foo {
+  foo: string;
+}
+interface FooBar extends Foo {
+  bar: string;
+}
+class X implements FooBar {
+  foo: string;
+  bar: string;
+}
+</code></pre>
+<ul>
+<li>Otherwise use whatever makes you happy that day. I use <a href="https://www.youtube.com/watch?v=IXAT3If0pGI">type</a></li>
+</ul>
+<h2 id="extending-types"><a class="header" href="#extending-types">Extending Types</a></h2>
+<p>It is also possible to extend from multiple types:</p>
+<pre><code class="language-typescript">interface A {
+    a: string;
+}
+interface B {
+    b: string;
+}
+interface Y extends A, B {
+    y: string;
+}
+</code></pre>
+<p>The <code>extends</code> keyword works only on interfaces and classes, for types use an intersection:</p>
+<pre><code class="language-typescript">type A = {
+    a: number;
+};
+type B = {
+    b: number;
+};
+type C = A &amp; B;
+</code></pre>
+<p>It is possible to extend a type using an inference but not vice versa:</p>
+<pre><code class="language-typescript">type A = {
+    a: string;
+};
+interface B extends A {
+    b: string;
+}
+</code></pre>
+<h3 id="types-are-structural"><a class="header" href="#types-are-structural">Types are structural</a></h3>
+<p>In some languages (specifically nominally typed ones) static typing results in unnecessary ceremony because even though <em>you know</em> that the code will work fine the language semantics force you to copy stuff around. This is why stuff like <strong>automapper</strong> for c# is <em>vital</em> for C#. In TypeScript because we really want it to be easy for JavaScript developers with a minimum cognitive overload, types are <em>structural</em>. This means that <strong>duck typing</strong> is a first class language construct. Consider the following example. The function <code>iTakePoint2D</code> will accept anything that contains all the things (<code>x</code> and <code>y</code>) it expects:</p>
+<pre><code class="language-typescript">interface Point2D {
+    x: number;
+    y: number;
+}
+interface Point3D {
+    x: number;
+    y: number;
+    z: number;
+}
+var point2D: Point2D = { x: 0, y: 10 }
+var point3D: Point3D = { x: 0, y: 10, z: 20 }
+function iTakePoint2D(point: Point2D) { /* do something */ }
+
+iTakePoint2D(point2D); // exact match okay
+iTakePoint2D(point3D); // extra information okay
+iTakePoint2D({ x: 0 }); // Error: missing information `y`
+</code></pre>
+<p>TypeScript is based on a structural type system but excess property checking is a property of TypeScript which allows it to check whether an object has the exact properties specified in the type.</p>
+<p>Excess Property Checking is performed when assigning object literals to variables or when passing them as arguments to the function’s excess property, for instance.</p>
+<!-- skip -->
+<pre><code class="language-typescript">type X = {
+    a: string;
+};
+const y = { a: 'a', b: 'b' };
+const x: X = y; // Valid because structural typing
+const w: X = { a: 'a', b: 'b' }; // Invalid because excess property checking
+</code></pre>
+<h3 id="type-errors-do-not-prevent-javascript-emit"><a class="header" href="#type-errors-do-not-prevent-javascript-emit">Type errors do not prevent JavaScript emit</a></h3>
+<p>To make it easy for you to migrate your JavaScript code to TypeScript, even if there are compilation errors, by default TypeScript <em>will emit valid JavaScript</em> the best that it can. e.g.</p>
+<pre><code class="language-typescript">var foo = 123;
+foo = '456'; // Error: cannot assign a `string` to a `number`
+</code></pre>
+<p>will emit the following js:</p>
+<pre><code class="language-typescript">var foo = 123;
+foo = '456';
+</code></pre>
+<p>So you can incrementally upgrade your JavaScript code to TypeScript. This is very different from how many other language compilers work and yet another reason to move to TypeScript.</p>
+<h3 id="weak-types"><a class="header" href="#weak-types">Weak Types</a></h3>
+<p>A type is considered weak when it contains nothing but a set of all-optional properties:</p>
+<pre><code class="language-typescript">type X = {
+    a?: string;
+    b?: string;
+};
+</code></pre>
+<p>TypeScript considers an error to assign anything to a weak type when there is no overlap, for instance, the following throws an error:</p>
+<!-- skip -->
+<pre><code class="language-typescript">type Options = {
+    a?: string;
+    b?: string;
+};
+
+const fn = (options: Options) =&gt; undefined;
+
+fn({ c: 'c' }); // Invalid
+</code></pre>
+<p>Although not recommended, if needed, it is possible to bypass this check by using type assertion:</p>
+<pre><code class="language-typescript">type Options = {
+    a?: string;
+    b?: string;
+};
+const fn = (options: Options) =&gt; undefined;
+fn({ c: 'c' } as Options); // Valid
+</code></pre>
+<p>Or by adding <code>unknown</code> to the <a href="../types/system/index-signatures.html">index signatures</a> to the weak type:</p>
+<pre><code class="language-typescript">type Options = {
+    [prop: string]: unknown;
+    a?: string;
+    b?: string;
+};
+const fn = (options: Options) =&gt; undefined;
+fn({ c: 'c' }); // Valid
+</code></pre>
+<h4 id="strong-type-vs-weak-type"><a class="header" href="#strong-type-vs-weak-type">Strong Type VS Weak Type</a></h4>
+<p>Strong typing enforces strict type checking, while weak typing allows for more flexibility in type conversions.</p>
+<h3 id="explicit-type-annotation"><a class="header" href="#explicit-type-annotation">Explicit Type Annotation</a></h3>
+<p>We can be specific and pass a type, in the following example property <code>x</code> is of type <code>number</code>:</p>
+<pre><code class="language-typescript">const v = {
+    x: 1, // Inferred type: number (widening)
+};
+v.x = 3; // Valid
+</code></pre>
+<p>We can make the type annotation more specific by using a union of literal types:</p>
+<!-- skip -->
+<pre><code class="language-typescript">const v: { x: 1 | 2 | 3 } = {
+    x: 1, // x is now a union of literal types: 1 | 2 | 3
+};
+v.x = 3; // Valid
+v.x = 100; // Invalid
+</code></pre>
+<h3 id="type-narrowing"><a class="header" href="#type-narrowing">Type Narrowing</a></h3>
+<p>Type Narrowing is the process in TypeScript where a general type is narrowed down to a more specific type. This occurs when TypeScript analyzes the code and determines that certain conditions or operations can refine the type information.(instanceof, in, typeof, const)</p>
+<h3 id="indexed-access-types"><a class="header" href="#indexed-access-types">Indexed Access Types</a></h3>
+<p>In TypeScript is it possible to access and manipulate  the types of properties within another type using an index, <code>Type[Key]</code>.</p>
+<pre><code class="language-typescript">type Person = {
+    name: string;
+    age: number;
+};
+
+type AgeType = Person['age']; // number
+</code></pre>
+<pre><code class="language-typescript">type MyTuple = [string, number, boolean];
+type MyType = MyTuple[2]; // boolean
+</code></pre>
+<h2 id="type-annotations"><a class="header" href="#type-annotations">Type Annotations</a></h2>
+<p>On variables declared using <code>var</code>, <code>let</code> and <code>const</code>, it is possible to optionally add a type:</p>
+<pre><code class="language-typescript">const x: number = 1;
+</code></pre>
+<p>TypeScript does a good job of inferring types, especially when simple one, so these declarations in most cases are not necessary.</p>
+<p>On functions is possible to add type annotations to parameters:</p>
+<pre><code class="language-typescript">function sum(a: number, b: number) {
+    return a + b;
+}
+</code></pre>
+<p>The following is an example using a anonymous functions (so called lambda function):</p>
+<pre><code class="language-typescript">const sum = (a: number, b: number) =&gt; a + b;
+</code></pre>
+<p>These annotation can be avoided when a default value for a parameter is present:</p>
+<pre><code class="language-typescript">const sum = (a = 10, b: number) =&gt; a + b;
+</code></pre>
+<p>Return type annotations can be added to functions:</p>
+<pre><code class="language-typescript">const sum = (a = 10, b: number): number =&gt; a + b;
+</code></pre>
+<p>This is useful especially for  more complex functions as writing expliciting the return type before an implementation can help better think about the function.</p>
+<p>Generally consider annotating type signatures but not the body local variables and add types always to object literals.</p>
+<p>TypeScript provides convenient syntax for providing names for type annotations that you would like to use in more than one place. The aliases are created using the <code>type SomeName = someValidTypeAnnotation</code> syntax. An example is demonstrated below:</p>
+<pre><code class="language-typescript">type StrOrNum = string|number;
+
+// Usage: just like any other notation
+var sample: StrOrNum;
+sample = 123;
+sample = '123';
+
+// Just checking
+sample = true; // Error!
+</code></pre>
+<p>Unlike an <code>interface</code> you can give a type alias to literally any type annotation (useful for stuff like union and intersection types). Here are a few more examples to make you familiar with the syntax:</p>
+<pre><code class="language-typescript">type Text = string | { text: string };
+type Coordinates = [number, number];
+type Callback = (data: string) =&gt; void;
+</code></pre>
+<p><code>&gt; TIP:</code> If you need to have hierarchies of Type annotations use an <code>interface</code>. They can be used with <code>implements</code> and <code>extends</code></p>
+<p><code>&gt; TIP:</code> Use a type alias for simpler object structures (like <code>Coordinates</code>) just to give them a semantic name. Also when you want to give semantic names to <strong>Union or Intersection types</strong>, a Type alias is the way to go.</p>
+<h2 id="object-type"><a class="header" href="#object-type">Object Type</a></h2>
+<p>TypeScript introduces the object type to cover types that are not primitive types. This includes any type that is not number, boolean, string, null, symbol, or undefined.</p>
+<pre><code class="language-typescript">let structuredObject: object = {
+  name: &quot;myObject&quot;,
+  properties: {
+    id: 1,
+    type: &quot;AnObject&quot;
+  }
+};
+
+// Define a function that takes an object as an argument and logs its string representation
+function printObjectType(a: object) {
+  console.log(`a: ${JSON.stringify(a)}`);
+}
+
+printObjectType(structuredObject);
+printObjectType(&quot;this is a string&quot;);
+
+</code></pre>
+<h3 id="conditional-type"><a class="header" href="#conditional-type">Conditional Type</a></h3>
+<pre><code class="language-typescript">type IsArray&lt;T&gt; = T extends any[] ? true : false;
+const myArray = [1, 2, 3];
+const myNumber = 42;
+type IsMyArrayAnArray = IsArray&lt;typeof myArray&gt;; // Type true
+type IsMyNumberAnArray = IsArray&lt;typeof myNumber&gt;; 
+</code></pre>
+<h4 id="type-inference"><a class="header" href="#type-inference">Type Inference</a></h4>
+<p>conditional type inference in TypeScript is a feature that allows TypeScript to <strong>infer different types based on conditions</strong>.
+Which statement best describes type inference in TypeScript?
+A process by which TypeScript <strong>automatically</strong> infers the types of variables and expressions from their usage in code.</p>
+<p>Better <strong>runtime performance is not</strong> a benefit of advanced type inference in TypeScript.</p>
+<h3 id="ambient-declarations"><a class="header" href="#ambient-declarations">Ambient Declarations</a></h3>
+<p><a href="./module/@types.html">’@’types</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../project/dynamic-import-expressions.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../options/intro.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../project/dynamic-import-expressions.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../options/intro.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_line_numbers = true;
+        </script>
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../ace.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../editor.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mode-rust.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../theme-dawn.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>
